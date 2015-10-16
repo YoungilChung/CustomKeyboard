@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MMKeyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>MMShareExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>E0F252EA1BC3AED1002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F253001BC3AFBC002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F253111BC3B48E002F5E89</key>
 		<dict>
 			<key>primary</key>
 			<true/>

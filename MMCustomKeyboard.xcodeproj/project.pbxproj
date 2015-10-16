@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADD5DD1E5587C14994712F5F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
+		CA3380539A61BC37422CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
+		E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */ = {isa = PBXBuildFile; fileRef = E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */; settings = {ASSET_TAGS = (); }; };
+		E083213A1BC4095A00610142 /* Keyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08321391BC4095A00610142 /* Keyboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		E083213C1BC40F3A00610142 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E083213B1BC40F3A00610142 /* test.png */; settings = {ASSET_TAGS = (); }; };
+		E083213E1BC412D500610142 /* images.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E083213D1BC412D500610142 /* images.jpg */; settings = {ASSET_TAGS = (); }; };
+		E083213F1BC4132800610142 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E083213B1BC40F3A00610142 /* test.png */; settings = {ASSET_TAGS = (); }; };
+		E0CF48371BCB9D1B00FA01C2 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */; };
+		E0CF48381BCB9D3600FA01C2 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */; };
 		E0F252CC1BC3AED1002F5E89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252CB1BC3AED1002F5E89 /* main.m */; };
 		E0F252CF1BC3AED1002F5E89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252CE1BC3AED1002F5E89 /* AppDelegate.m */; };
 		E0F252D21BC3AED1002F5E89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252D11BC3AED1002F5E89 /* ViewController.m */; };
@@ -15,6 +24,12 @@
 		E0F252DA1BC3AED1002F5E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0F252D81BC3AED1002F5E89 /* LaunchScreen.storyboard */; };
 		E0F252E51BC3AED1002F5E89 /* MMCustomKeyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252E41BC3AED1002F5E89 /* MMCustomKeyboardTests.m */; };
 		E0F252F01BC3AED1002F5E89 /* MMCustomKeyboardUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252EF1BC3AED1002F5E89 /* MMCustomKeyboardUITests.m */; };
+		E0F253051BC3AFBC002F5E89 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */; };
+		E0F253091BC3AFBC002F5E89 /* MMKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E0F253161BC3B48E002F5E89 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F253151BC3B48E002F5E89 /* ShareViewController.m */; };
+		E0F2531D1BC3B48E002F5E89 /* MMShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E0F253251BC3C1C9002F5E89 /* Retro.gif in Resources */ = {isa = PBXBuildFile; fileRef = E0F253241BC3C1C9002F5E89 /* Retro.gif */; settings = {ASSET_TAGS = (); }; };
+		FBD32F9DFA68DA6CF9ABF20E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,9 +47,48 @@
 			remoteGlobalIDString = E0F252C61BC3AED1002F5E89;
 			remoteInfo = MMCustomKeyboard;
 		};
+		E0F253071BC3AFBC002F5E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0F252BF1BC3AED1002F5E89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0F253001BC3AFBC002F5E89;
+			remoteInfo = MMKeyboard;
+		};
+		E0F2531B1BC3B48E002F5E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0F252BF1BC3AED1002F5E89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0F253111BC3B48E002F5E89;
+			remoteInfo = MMShareExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E0F2530D1BC3AFBC002F5E89 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E0F2531D1BC3B48E002F5E89 /* MMShareExtension.appex in Embed App Extensions */,
+				E0F253091BC3AFBC002F5E89 /* MMKeyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MarqueeExtensionJavaScript.js; sourceTree = "<group>"; };
+		E073B11E1BC6BE9900F9FA2B /* MMShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMShareExtension.entitlements; sourceTree = "<group>"; };
+		E08321391BC4095A00610142 /* Keyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyboard.storyboard; sourceTree = "<group>"; };
+		E083213B1BC40F3A00610142 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../MMCustomKeyboard/test.png; sourceTree = "<group>"; };
+		E083213D1BC412D500610142 /* images.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpg; sourceTree = "<group>"; };
+		E0966C611BC5021C001C5FA9 /* MMCustomKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMCustomKeyboard.entitlements; sourceTree = "<group>"; };
+		E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		E0D432161BC4FD1900A34FD2 /* MMKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMKeyboard.entitlements; sourceTree = "<group>"; };
 		E0F252C71BC3AED1002F5E89 /* MMCustomKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMCustomKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0F252CB1BC3AED1002F5E89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0F252CD1BC3AED1002F5E89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +105,16 @@
 		E0F252EB1BC3AED1002F5E89 /* MMCustomKeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMCustomKeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0F252EF1BC3AED1002F5E89 /* MMCustomKeyboardUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCustomKeyboardUITests.m; sourceTree = "<group>"; };
 		E0F252F11BC3AED1002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MMKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0F253031BC3AFBC002F5E89 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		E0F253061BC3AFBC002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MMShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0F253141BC3B48E002F5E89 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		E0F253151BC3B48E002F5E89 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		E0F2531A1BC3B48E002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F253241BC3C1C9002F5E89 /* Retro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Retro.gif; sourceTree = "<group>"; };
+		F14FF7EF35AC921287A978BE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0CF48381BCB9D3600FA01C2 /* libxml2.2.tbd in Frameworks */,
+				ADD5DD1E5587C14994712F5F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,16 +141,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0F252FE1BC3AFBC002F5E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA3380539A61BC37422CE6CB /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0F2530F1BC3B48E002F5E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0CF48371BCB9D1B00FA01C2 /* libxml2.2.tbd in Frameworks */,
+				FBD32F9DFA68DA6CF9ABF20E /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57A943875CC8157BE850A9DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */,
+				054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A59C3608DB83950552878D35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */,
+				F14FF7EF35AC921287A978BE /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E0F252BE1BC3AED1002F5E89 = {
 			isa = PBXGroup;
 			children = (
 				E0F252C91BC3AED1002F5E89 /* MMCustomKeyboard */,
 				E0F252E31BC3AED1002F5E89 /* MMCustomKeyboardTests */,
 				E0F252EE1BC3AED1002F5E89 /* MMCustomKeyboardUITests */,
+				E0F253021BC3AFBC002F5E89 /* MMKeyboard */,
+				E0F253131BC3B48E002F5E89 /* MMShareExtension */,
 				E0F252C81BC3AED1002F5E89 /* Products */,
+				57A943875CC8157BE850A9DF /* Pods */,
+				A59C3608DB83950552878D35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +199,8 @@
 				E0F252C71BC3AED1002F5E89 /* MMCustomKeyboard.app */,
 				E0F252E01BC3AED1002F5E89 /* MMCustomKeyboardTests.xctest */,
 				E0F252EB1BC3AED1002F5E89 /* MMCustomKeyboardUITests.xctest */,
+				E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */,
+				E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,11 +208,13 @@
 		E0F252C91BC3AED1002F5E89 /* MMCustomKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				E0966C611BC5021C001C5FA9 /* MMCustomKeyboard.entitlements */,
 				E0F252CD1BC3AED1002F5E89 /* AppDelegate.h */,
 				E0F252CE1BC3AED1002F5E89 /* AppDelegate.m */,
 				E0F252D01BC3AED1002F5E89 /* ViewController.h */,
 				E0F252D11BC3AED1002F5E89 /* ViewController.m */,
 				E0F252D31BC3AED1002F5E89 /* Main.storyboard */,
+				E0F253241BC3C1C9002F5E89 /* Retro.gif */,
 				E0F252D61BC3AED1002F5E89 /* Assets.xcassets */,
 				E0F252D81BC3AED1002F5E89 /* LaunchScreen.storyboard */,
 				E0F252DB1BC3AED1002F5E89 /* Info.plist */,
@@ -140,6 +249,32 @@
 			path = MMCustomKeyboardUITests;
 			sourceTree = "<group>";
 		};
+		E0F253021BC3AFBC002F5E89 /* MMKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E0D432161BC4FD1900A34FD2 /* MMKeyboard.entitlements */,
+				E083213B1BC40F3A00610142 /* test.png */,
+				E0F253031BC3AFBC002F5E89 /* KeyboardViewController.h */,
+				E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */,
+				E0F253061BC3AFBC002F5E89 /* Info.plist */,
+				E08321391BC4095A00610142 /* Keyboard.storyboard */,
+			);
+			path = MMKeyboard;
+			sourceTree = "<group>";
+		};
+		E0F253131BC3B48E002F5E89 /* MMShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */,
+				E073B11E1BC6BE9900F9FA2B /* MMShareExtension.entitlements */,
+				E083213D1BC412D500610142 /* images.jpg */,
+				E0F253141BC3B48E002F5E89 /* ShareViewController.h */,
+				E0F253151BC3B48E002F5E89 /* ShareViewController.m */,
+				E0F2531A1BC3B48E002F5E89 /* Info.plist */,
+			);
+			path = MMShareExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,13 +282,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0F252F41BC3AED1002F5E89 /* Build configuration list for PBXNativeTarget "MMCustomKeyboard" */;
 			buildPhases = (
+				E2AC073C7FBC03A6778834E9 /* Check Pods Manifest.lock */,
 				E0F252C31BC3AED1002F5E89 /* Sources */,
 				E0F252C41BC3AED1002F5E89 /* Frameworks */,
 				E0F252C51BC3AED1002F5E89 /* Resources */,
+				E0F2530D1BC3AFBC002F5E89 /* Embed App Extensions */,
+				1863789A153B73A850C3784A /* Copy Pods Resources */,
+				107AB98B1BDF3A19C29E72E8 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E0F253081BC3AFBC002F5E89 /* PBXTargetDependency */,
+				E0F2531C1BC3B48E002F5E89 /* PBXTargetDependency */,
 			);
 			name = MMCustomKeyboard;
 			productName = MMCustomKeyboard;
@@ -196,6 +337,46 @@
 			productReference = E0F252EB1BC3AED1002F5E89 /* MMCustomKeyboardUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		E0F253001BC3AFBC002F5E89 /* MMKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0F2530A1BC3AFBC002F5E89 /* Build configuration list for PBXNativeTarget "MMKeyboard" */;
+			buildPhases = (
+				65AC8CECF61E55DB8B06141F /* Check Pods Manifest.lock */,
+				E0F252FD1BC3AFBC002F5E89 /* Sources */,
+				E0F252FE1BC3AFBC002F5E89 /* Frameworks */,
+				E0F252FF1BC3AFBC002F5E89 /* Resources */,
+				C91A9B1762A8E30D8A1BFA81 /* Copy Pods Resources */,
+				EB71CCA6D05B3B609FA56EE2 /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMKeyboard;
+			productName = MMKeyboard;
+			productReference = E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		E0F253111BC3B48E002F5E89 /* MMShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0F2531E1BC3B48E002F5E89 /* Build configuration list for PBXNativeTarget "MMShareExtension" */;
+			buildPhases = (
+				A3FE5CD9A1EF800A11A452E3 /* Check Pods Manifest.lock */,
+				E0F2530E1BC3B48E002F5E89 /* Sources */,
+				E0F2530F1BC3B48E002F5E89 /* Frameworks */,
+				E0F253101BC3B48E002F5E89 /* Resources */,
+				0D4543A1ACB10F21DDED1E0D /* Copy Pods Resources */,
+				D498AC8DD9D12FBEC5F68573 /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMShareExtension;
+			productName = MMShareExtension;
+			productReference = E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +388,12 @@
 				TargetAttributes = {
 					E0F252C61BC3AED1002F5E89 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 8C5NFLAES4;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E0F252DF1BC3AED1002F5E89 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -215,6 +402,24 @@
 					E0F252EA1BC3AED1002F5E89 = {
 						CreatedOnToolsVersion = 7.0.1;
 						TestTargetID = E0F252C61BC3AED1002F5E89;
+					};
+					E0F253001BC3AFBC002F5E89 = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 8C5NFLAES4;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					E0F253111BC3B48E002F5E89 = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 8C5NFLAES4;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -234,6 +439,8 @@
 				E0F252C61BC3AED1002F5E89 /* MMCustomKeyboard */,
 				E0F252DF1BC3AED1002F5E89 /* MMCustomKeyboardTests */,
 				E0F252EA1BC3AED1002F5E89 /* MMCustomKeyboardUITests */,
+				E0F253001BC3AFBC002F5E89 /* MMKeyboard */,
+				E0F253111BC3B48E002F5E89 /* MMShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -244,6 +451,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0F252DA1BC3AED1002F5E89 /* LaunchScreen.storyboard in Resources */,
+				E083213C1BC40F3A00610142 /* test.png in Resources */,
+				E0F253251BC3C1C9002F5E89 /* Retro.gif in Resources */,
 				E0F252D71BC3AED1002F5E89 /* Assets.xcassets in Resources */,
 				E0F252D51BC3AED1002F5E89 /* Main.storyboard in Resources */,
 			);
@@ -263,7 +472,163 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0F252FF1BC3AFBC002F5E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E083213A1BC4095A00610142 /* Keyboard.storyboard in Resources */,
+				E083213E1BC412D500610142 /* images.jpg in Resources */,
+				E083213F1BC4132800610142 /* test.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0F253101BC3B48E002F5E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D4543A1ACB10F21DDED1E0D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		107AB98B1BDF3A19C29E72E8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1863789A153B73A850C3784A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65AC8CECF61E55DB8B06141F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A3FE5CD9A1EF800A11A452E3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C91A9B1762A8E30D8A1BFA81 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D498AC8DD9D12FBEC5F68573 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2AC073C7FBC03A6778834E9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB71CCA6D05B3B609FA56EE2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E0F252C31BC3AED1002F5E89 /* Sources */ = {
@@ -292,6 +657,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0F252FD1BC3AFBC002F5E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0F253051BC3AFBC002F5E89 /* KeyboardViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0F2530E1BC3B48E002F5E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0F253161BC3B48E002F5E89 /* ShareViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -304,6 +685,16 @@
 			isa = PBXTargetDependency;
 			target = E0F252C61BC3AED1002F5E89 /* MMCustomKeyboard */;
 			targetProxy = E0F252EC1BC3AED1002F5E89 /* PBXContainerItemProxy */;
+		};
+		E0F253081BC3AFBC002F5E89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0F253001BC3AFBC002F5E89 /* MMKeyboard */;
+			targetProxy = E0F253071BC3AFBC002F5E89 /* PBXContainerItemProxy */;
+		};
+		E0F2531C1BC3B48E002F5E89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0F253111BC3B48E002F5E89 /* MMShareExtension */;
+			targetProxy = E0F2531B1BC3B48E002F5E89 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -411,23 +802,33 @@
 		};
 		E0F252F51BC3AED1002F5E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MMCustomKeyboard/MMCustomKeyboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		E0F252F61BC3AED1002F5E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MMCustomKeyboard/MMCustomKeyboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -479,6 +880,70 @@
 			};
 			name = Release;
 		};
+		E0F2530B1BC3AFBC002F5E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MMKeyboard/MMKeyboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MMKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E0F2530C1BC3AFBC002F5E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MMKeyboard/MMKeyboard.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MMKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E0F2531F1BC3B48E002F5E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MMShareExtension/MMShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MMShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E0F253201BC3B48E002F5E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MMShareExtension/MMShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MMShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -498,6 +963,7 @@
 				E0F252F61BC3AED1002F5E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E0F252F71BC3AED1002F5E89 /* Build configuration list for PBXNativeTarget "MMCustomKeyboardTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +972,7 @@
 				E0F252F91BC3AED1002F5E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E0F252FA1BC3AED1002F5E89 /* Build configuration list for PBXNativeTarget "MMCustomKeyboardUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +981,25 @@
 				E0F252FC1BC3AED1002F5E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0F2530A1BC3AFBC002F5E89 /* Build configuration list for PBXNativeTarget "MMKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0F2530B1BC3AFBC002F5E89 /* Debug */,
+				E0F2530C1BC3AFBC002F5E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0F2531E1BC3B48E002F5E89 /* Build configuration list for PBXNativeTarget "MMShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0F2531F1BC3B48E002F5E89 /* Debug */,
+				E0F253201BC3B48E002F5E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
