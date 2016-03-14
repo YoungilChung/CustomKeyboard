@@ -8,27 +8,54 @@
 
 /* Begin PBXBuildFile section */
 		ADD5DD1E5587C14994712F5F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
+		C3C360852783765A711F843B /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
+		C3C36097E66EFBB1F16FC2EC /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
+		C3C36129329CCD2000D6BA9C /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BE73735B5398B1073AB /* KeyboardViewController.m */; };
+		C3C3618FA01A59DBBE1EBC9B /* WhatsAppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */; };
+		C3C361ADFB9D6F688497E2A1 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C36282A6EF8A0157387202 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C36366045609F5009D92D9 /* PopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C362E555CFF12F2C16D52F /* PopUpViewController.m */; };
+		C3C36399EEEB8B75B27657B0 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
+		C3C364AA8840A8CAB853DDC8 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
+		C3C364FAB7625AD9AA884A22 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
+		C3C365B82662F72946D27486 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
+		C3C366452D0E588FB7046FD0 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
+		C3C366EEB65A4C44E958A79B /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
+		C3C3673953ABDF35CB3BDDB1 /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
+		C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E5114B7906DA44ED8B2 /* MMViewController.m */; };
+		C3C3676B0AA3AEEDEFC5E61A /* unnamed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C369902F1F7CB1FA29388B /* unnamed@2x.png */; };
+		C3C367DECCFFB7E79875EEFC /* whatsapp_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */; };
+		C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
+		C3C368736746CC9307526561 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
+		C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
+		C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
+		C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364D6B6E48FBD6568923A /* ShareViewController.m */; };
+		C3C36BB4DB25203B0CF48F85 /* PopUpShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36AC94AE3E26C4F0C9729 /* PopUpShareViewController.m */; };
+		C3C36BF2E61298B253B66882 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C36C54FF701C0A696CBFE0 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
+		C3C36C7D7962D5664FE75682 /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
+		C3C36D039DCCD5D895F3FE30 /* hipchat-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */; };
+		C3C36D510A716F2B770603DC /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
+		C3C36DB0F68BB43F179A01F7 /* MMCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */; };
+		C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
+		C3C36E30BFD17C31F0BF19D3 /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
+		C3C36E915107223560CB0627 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BE73735B5398B1073AB /* KeyboardViewController.m */; };
+		C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */; };
+		C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A7768BE187CED64FB56 /* AppDelegate.m */; };
 		CA3380539A61BC37422CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
-		E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */ = {isa = PBXBuildFile; fileRef = E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */; settings = {ASSET_TAGS = (); }; };
-		E083213A1BC4095A00610142 /* Keyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08321391BC4095A00610142 /* Keyboard.storyboard */; settings = {ASSET_TAGS = (); }; };
-		E083213C1BC40F3A00610142 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E083213B1BC40F3A00610142 /* test.png */; settings = {ASSET_TAGS = (); }; };
-		E083213E1BC412D500610142 /* images.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E083213D1BC412D500610142 /* images.jpg */; settings = {ASSET_TAGS = (); }; };
-		E083213F1BC4132800610142 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E083213B1BC40F3A00610142 /* test.png */; settings = {ASSET_TAGS = (); }; };
+		E004E1E11BDF778100ADB749 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E004E1E01BDF778100ADB749 /* MessageUI.framework */; };
+		E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */ = {isa = PBXBuildFile; fileRef = E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */; };
+		E083213A1BC4095A00610142 /* Keyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08321391BC4095A00610142 /* Keyboard.storyboard */; };
 		E0CF48371BCB9D1B00FA01C2 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */; };
 		E0CF48381BCB9D3600FA01C2 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */; };
 		E0F252CC1BC3AED1002F5E89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252CB1BC3AED1002F5E89 /* main.m */; };
-		E0F252CF1BC3AED1002F5E89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252CE1BC3AED1002F5E89 /* AppDelegate.m */; };
-		E0F252D21BC3AED1002F5E89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252D11BC3AED1002F5E89 /* ViewController.m */; };
 		E0F252D51BC3AED1002F5E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0F252D31BC3AED1002F5E89 /* Main.storyboard */; };
 		E0F252D71BC3AED1002F5E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0F252D61BC3AED1002F5E89 /* Assets.xcassets */; };
 		E0F252DA1BC3AED1002F5E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0F252D81BC3AED1002F5E89 /* LaunchScreen.storyboard */; };
 		E0F252E51BC3AED1002F5E89 /* MMCustomKeyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252E41BC3AED1002F5E89 /* MMCustomKeyboardTests.m */; };
 		E0F252F01BC3AED1002F5E89 /* MMCustomKeyboardUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F252EF1BC3AED1002F5E89 /* MMCustomKeyboardUITests.m */; };
-		E0F253051BC3AFBC002F5E89 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */; };
 		E0F253091BC3AFBC002F5E89 /* MMKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E0F253161BC3B48E002F5E89 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F253151BC3B48E002F5E89 /* ShareViewController.m */; };
 		E0F2531D1BC3B48E002F5E89 /* MMShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E0F253251BC3C1C9002F5E89 /* Retro.gif in Resources */ = {isa = PBXBuildFile; fileRef = E0F253241BC3C1C9002F5E89 /* Retro.gif */; settings = {ASSET_TAGS = (); }; };
 		FBD32F9DFA68DA6CF9ABF20E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,22 +106,47 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhatsAppIcon@2x.png"; sourceTree = "<group>"; };
+		C3C362E555CFF12F2C16D52F /* PopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpViewController.m; sourceTree = "<group>"; };
+		C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GIFEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C3C364D6B6E48FBD6568923A /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		C3C3652A66D27084E23CB9E8 /* GIFEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFEntity.h; sourceTree = "<group>"; };
+		C3C3652CE75D47458843956E /* GIFEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFEntity.m; sourceTree = "<group>"; };
+		C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whatsapp_logo@2x.png"; sourceTree = "<group>"; };
+		C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backspaceIcon.png; sourceTree = "<group>"; };
+		C3C36668573729E1CDDF4508 /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
+		C3C3670F60C56E1FAF8D9AE9 /* PopUpShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpShareViewController.h; sourceTree = "<group>"; };
+		C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPreviewViewController.m; sourceTree = "<group>"; };
+		C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		C3C36824024BA0D4AD3533B5 /* PopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpViewController.h; sourceTree = "<group>"; };
+		C3C36883851D5152713169A6 /* GIFEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GIFEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C3C368B18319EBA9B4A486F7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPreviewViewController.h; sourceTree = "<group>"; };
+		C3C369009B466503ECE28922 /* MMCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		C3C369902F1F7CB1FA29388B /* unnamed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unnamed@2x.png"; sourceTree = "<group>"; };
+		C3C369EB71DAF1A423D16974 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		C3C36A7768BE187CED64FB56 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C3C36AC94AE3E26C4F0C9729 /* PopUpShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpShareViewController.m; sourceTree = "<group>"; };
+		C3C36AECD49D462F97FACB69 /* KeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		C3C36BE73735B5398B1073AB /* KeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
+		C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hipchat-logo@2x.png"; sourceTree = "<group>"; };
+		C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTick.png; sourceTree = "<group>"; };
+		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		C3C36E5114B7906DA44ED8B2 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
+		C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NextKeyboardIcon.png; sourceTree = "<group>"; };
+		C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GifDatabase.xcdatamodel; sourceTree = "<group>"; };
+		E004E1E01BDF778100ADB749 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MarqueeExtensionJavaScript.js; sourceTree = "<group>"; };
 		E073B11E1BC6BE9900F9FA2B /* MMShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMShareExtension.entitlements; sourceTree = "<group>"; };
 		E08321391BC4095A00610142 /* Keyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyboard.storyboard; sourceTree = "<group>"; };
-		E083213B1BC40F3A00610142 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../MMCustomKeyboard/test.png; sourceTree = "<group>"; };
-		E083213D1BC412D500610142 /* images.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpg; sourceTree = "<group>"; };
 		E0966C611BC5021C001C5FA9 /* MMCustomKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMCustomKeyboard.entitlements; sourceTree = "<group>"; };
 		E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		E0D432161BC4FD1900A34FD2 /* MMKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMKeyboard.entitlements; sourceTree = "<group>"; };
 		E0F252C71BC3AED1002F5E89 /* MMCustomKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMCustomKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0F252CB1BC3AED1002F5E89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E0F252CD1BC3AED1002F5E89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E0F252CE1BC3AED1002F5E89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E0F252D01BC3AED1002F5E89 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E0F252D11BC3AED1002F5E89 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0F252D41BC3AED1002F5E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E0F252D61BC3AED1002F5E89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0F252D91BC3AED1002F5E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,14 +158,9 @@
 		E0F252EF1BC3AED1002F5E89 /* MMCustomKeyboardUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCustomKeyboardUITests.m; sourceTree = "<group>"; };
 		E0F252F11BC3AED1002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0F253011BC3AFBC002F5E89 /* MMKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MMKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0F253031BC3AFBC002F5E89 /* KeyboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
-		E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
 		E0F253061BC3AFBC002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0F253121BC3B48E002F5E89 /* MMShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MMShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0F253141BC3B48E002F5E89 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		E0F253151BC3B48E002F5E89 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		E0F2531A1BC3B48E002F5E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0F253241BC3C1C9002F5E89 /* Retro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Retro.gif; sourceTree = "<group>"; };
 		F14FF7EF35AC921287A978BE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -153,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E004E1E11BDF778100ADB749 /* MessageUI.framework in Frameworks */,
 				E0CF48371BCB9D1B00FA01C2 /* libxml2.2.tbd in Frameworks */,
 				FBD32F9DFA68DA6CF9ABF20E /* libPods.a in Frameworks */,
 			);
@@ -173,10 +221,91 @@
 		A59C3608DB83950552878D35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E004E1E01BDF778100ADB749 /* MessageUI.framework */,
 				E0CF48361BCB9D1B00FA01C2 /* libxml2.2.tbd */,
 				F14FF7EF35AC921287A978BE /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3C361F81EDE948ACE294396 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */,
+				C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */,
+				C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */,
+				C3C36883851D5152713169A6 /* GIFEntity+CoreDataProperties.h */,
+				C3C3652A66D27084E23CB9E8 /* GIFEntity.h */,
+				C3C3652CE75D47458843956E /* GIFEntity.m */,
+				C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C3C365578B91571CC644DBB3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36B1FC9C68325B43D754F /* Collection View */,
+				C3C36A7768BE187CED64FB56 /* AppDelegate.m */,
+				C3C368B18319EBA9B4A486F7 /* AppDelegate.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C3C366018A8177A61D17752E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C3C369902F1F7CB1FA29388B /* unnamed@2x.png */,
+				C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */,
+				C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */,
+				C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */,
+				C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */,
+				C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C3C36861C927A8B4EEEFAF06 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36AC94AE3E26C4F0C9729 /* PopUpShareViewController.m */,
+				C3C364D6B6E48FBD6568923A /* ShareViewController.m */,
+				C3C3670F60C56E1FAF8D9AE9 /* PopUpShareViewController.h */,
+				C3C369EB71DAF1A423D16974 /* ShareViewController.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C3C36994939BF7CCD26458E3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C3C36B0E5F6C53B7F6AFE7E6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36AECD49D462F97FACB69 /* KeyboardViewController.h */,
+				C3C36BE73735B5398B1073AB /* KeyboardViewController.m */,
+				C3C362E555CFF12F2C16D52F /* PopUpViewController.m */,
+				C3C36824024BA0D4AD3533B5 /* PopUpViewController.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C3C36B1FC9C68325B43D754F /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */,
+				C3C369009B466503ECE28922 /* MMCollectionViewFlowLayout.h */,
+				C3C36668573729E1CDDF4508 /* MMViewController.h */,
+				C3C36E5114B7906DA44ED8B2 /* MMViewController.m */,
+				C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */,
+				C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */,
+			);
+			path = "Collection View";
 			sourceTree = "<group>";
 		};
 		E0F252BE1BC3AED1002F5E89 = {
@@ -209,16 +338,13 @@
 			isa = PBXGroup;
 			children = (
 				E0966C611BC5021C001C5FA9 /* MMCustomKeyboard.entitlements */,
-				E0F252CD1BC3AED1002F5E89 /* AppDelegate.h */,
-				E0F252CE1BC3AED1002F5E89 /* AppDelegate.m */,
-				E0F252D01BC3AED1002F5E89 /* ViewController.h */,
-				E0F252D11BC3AED1002F5E89 /* ViewController.m */,
 				E0F252D31BC3AED1002F5E89 /* Main.storyboard */,
-				E0F253241BC3C1C9002F5E89 /* Retro.gif */,
 				E0F252D61BC3AED1002F5E89 /* Assets.xcassets */,
 				E0F252D81BC3AED1002F5E89 /* LaunchScreen.storyboard */,
 				E0F252DB1BC3AED1002F5E89 /* Info.plist */,
 				E0F252CA1BC3AED1002F5E89 /* Supporting Files */,
+				C3C365578B91571CC644DBB3 /* Main */,
+				C3C361F81EDE948ACE294396 /* Resources */,
 			);
 			path = MMCustomKeyboard;
 			sourceTree = "<group>";
@@ -253,11 +379,10 @@
 			isa = PBXGroup;
 			children = (
 				E0D432161BC4FD1900A34FD2 /* MMKeyboard.entitlements */,
-				E083213B1BC40F3A00610142 /* test.png */,
-				E0F253031BC3AFBC002F5E89 /* KeyboardViewController.h */,
-				E0F253041BC3AFBC002F5E89 /* KeyboardViewController.m */,
 				E0F253061BC3AFBC002F5E89 /* Info.plist */,
 				E08321391BC4095A00610142 /* Keyboard.storyboard */,
+				C3C366018A8177A61D17752E /* Images */,
+				C3C36B0E5F6C53B7F6AFE7E6 /* Main */,
 			);
 			path = MMKeyboard;
 			sourceTree = "<group>";
@@ -267,10 +392,9 @@
 			children = (
 				E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */,
 				E073B11E1BC6BE9900F9FA2B /* MMShareExtension.entitlements */,
-				E083213D1BC412D500610142 /* images.jpg */,
-				E0F253141BC3B48E002F5E89 /* ShareViewController.h */,
-				E0F253151BC3B48E002F5E89 /* ShareViewController.m */,
 				E0F2531A1BC3B48E002F5E89 /* Info.plist */,
+				C3C36861C927A8B4EEEFAF06 /* Main */,
+				C3C36994939BF7CCD26458E3 /* Images */,
 			);
 			path = MMShareExtension;
 			sourceTree = "<group>";
@@ -451,10 +575,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0F252DA1BC3AED1002F5E89 /* LaunchScreen.storyboard in Resources */,
-				E083213C1BC40F3A00610142 /* test.png in Resources */,
-				E0F253251BC3C1C9002F5E89 /* Retro.gif in Resources */,
 				E0F252D71BC3AED1002F5E89 /* Assets.xcassets in Resources */,
 				E0F252D51BC3AED1002F5E89 /* Main.storyboard in Resources */,
+				C3C364AA8840A8CAB853DDC8 /* NextKeyboardIcon.png in Resources */,
+				C3C36BF2E61298B253B66882 /* greenTick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,8 +601,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E083213A1BC4095A00610142 /* Keyboard.storyboard in Resources */,
-				E083213E1BC412D500610142 /* images.jpg in Resources */,
-				E083213F1BC4132800610142 /* test.png in Resources */,
+				C3C3676B0AA3AEEDEFC5E61A /* unnamed@2x.png in Resources */,
+				C3C3618FA01A59DBBE1EBC9B /* WhatsAppIcon@2x.png in Resources */,
+				C3C367DECCFFB7E79875EEFC /* whatsapp_logo@2x.png in Resources */,
+				C3C368736746CC9307526561 /* NextKeyboardIcon.png in Resources */,
+				C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */,
+				C3C36D039DCCD5D895F3FE30 /* hipchat-logo@2x.png in Resources */,
+				C3C361ADFB9D6F688497E2A1 /* greenTick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +616,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */,
+				C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */,
+				C3C36282A6EF8A0157387202 /* greenTick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,9 +766,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0F252D21BC3AED1002F5E89 /* ViewController.m in Sources */,
-				E0F252CF1BC3AED1002F5E89 /* AppDelegate.m in Sources */,
 				E0F252CC1BC3AED1002F5E89 /* main.m in Sources */,
+				C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */,
+				C3C3673953ABDF35CB3BDDB1 /* GifDatabase.xcdatamodel in Sources */,
+				C3C36DB0F68BB43F179A01F7 /* MMCollectionViewFlowLayout.m in Sources */,
+				C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */,
+				C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */,
+				C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */,
+				C3C360852783765A711F843B /* GIFEntity.m in Sources */,
+				C3C365B82662F72946D27486 /* GIFEntity+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0F252F01BC3AED1002F5E89 /* MMCustomKeyboardUITests.m in Sources */,
+				C3C36E915107223560CB0627 /* KeyboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +799,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0F253051BC3AFBC002F5E89 /* KeyboardViewController.m in Sources */,
+				C3C36C54FF701C0A696CBFE0 /* CoreDataStack.m in Sources */,
+				C3C36097E66EFBB1F16FC2EC /* GifDatabase.xcdatamodel in Sources */,
+				C3C36129329CCD2000D6BA9C /* KeyboardViewController.m in Sources */,
+				C3C36366045609F5009D92D9 /* PopUpViewController.m in Sources */,
+				C3C36C7D7962D5664FE75682 /* MMPreviewViewController.m in Sources */,
+				C3C364FAB7625AD9AA884A22 /* GIFEntity.m in Sources */,
+				C3C36399EEEB8B75B27657B0 /* GIFEntity+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +813,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0F253161BC3B48E002F5E89 /* ShareViewController.m in Sources */,
+				C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */,
+				C3C36E30BFD17C31F0BF19D3 /* GifDatabase.xcdatamodel in Sources */,
+				C3C36BB4DB25203B0CF48F85 /* PopUpShareViewController.m in Sources */,
+				C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */,
+				C3C36D510A716F2B770603DC /* MMPreviewViewController.m in Sources */,
+				C3C366EEB65A4C44E958A79B /* GIFEntity.m in Sources */,
+				C3C366452D0E588FB7046FD0 /* GIFEntity+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +958,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMCustomKeyboard/MMCustomKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET_IS_EXTENSION,
+				);
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
@@ -824,6 +979,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMCustomKeyboard/MMCustomKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET_IS_EXTENSION,
+				);
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
@@ -887,6 +1047,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMKeyboard/MMKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET,
+				);
 				INFOPLIST_FILE = MMKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
@@ -903,6 +1068,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMKeyboard/MMKeyboard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET,
+				);
 				INFOPLIST_FILE = MMKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
@@ -919,6 +1089,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMShareExtension/MMShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET,
+				);
 				INFOPLIST_FILE = MMShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;
@@ -935,6 +1110,11 @@
 				CODE_SIGN_ENTITLEMENTS = MMShareExtension/MMShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					TARGET,
+				);
 				INFOPLIST_FILE = MMShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;

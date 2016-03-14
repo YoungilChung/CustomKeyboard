@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.TomMonk.MMCustomKeyboard</string>
+		<string>group.TomMonk.MMCustomKeyboard</string>
 	</array>
 </dict>
 </plist>

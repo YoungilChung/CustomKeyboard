@@ -1,26 +1,15 @@
 PODS:
   - FLAnimatedImage (1.0.8)
-  - hpple (0.2.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
-  - XExtensionItem (0.9.3):
-    - XExtensionItem/Core (= 0.9.3)
-    - XExtensionItem/Tumblr (= 0.9.3)
-  - XExtensionItem/Core (0.9.3)
-  - XExtensionItem/Tumblr (0.9.3):
-    - XExtensionItem/Core
 
 DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
-  - hpple
   - SDWebImage
-  - XExtensionItem
 
 SPEC CHECKSUMS:
   FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
-  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  XExtensionItem: ce626520bbca225930b9c8e2283b226df431af3f
 
-COCOAPODS: 0.39.0.rc.1
+COCOAPODS: 0.39.0

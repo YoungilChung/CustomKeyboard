@@ -32,6 +32,7 @@
 
 - (void)downloadGif:(NSURL *)url callback:(void (^)(FLAnimatedImage *image))callback;
 - (void)downloadURLWithString:(NSString *)urlString callback:(void (^)(FLAnimatedImage *image))callback;
+- (void)downloadURLString:(NSString *)urlString callback:(void (^)(FLAnimatedImageView *imageView))callback;
 
 #if DEBUG
 // Only intended to report internal state for debugging

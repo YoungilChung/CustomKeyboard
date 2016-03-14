@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>MMCustomKeyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>MMKeyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>MMShareExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E0F252C61BC3AED1002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F252DF1BC3AED1002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F252EA1BC3AED1002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F253001BC3AFBC002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F253111BC3B48E002F5E89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
