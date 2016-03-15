@@ -7,40 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A7FC1BC1C97FFE000E7CEB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */; };
+		9A7FC1C11C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
+		9A7FC1C21C98005B00E7CEB1 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */; };
+		9A7FC1C31C98034600E7CEB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */; };
+		9A7FC1C41C98034700E7CEB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */; };
+		9A7FC1C71C980B3A00E7CEB1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */; };
+		9A7FC1C81C981CCD00E7CEB1 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */; };
+		9A7FC1C91C981CCE00E7CEB1 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */; };
+		9A7FC1CA1C981CD700E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
+		9A7FC1CB1C981CD800E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
 		ADD5DD1E5587C14994712F5F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
-		C3C360852783765A711F843B /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
-		C3C36097E66EFBB1F16FC2EC /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
+		C3C3602186A3EF4B71E9B5DE /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
+		C3C36108F7441A1C80B44792 /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C36129329CCD2000D6BA9C /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BE73735B5398B1073AB /* KeyboardViewController.m */; };
+		C3C3616021CBC8E2F76EE83E /* KeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C369C0A63B83683CBBD8E3 /* KeyboardButtonView.m */; };
 		C3C3618FA01A59DBBE1EBC9B /* WhatsAppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */; };
+		C3C3619678A38FEC8EFB38BA /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C361ADFB9D6F688497E2A1 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C361E03D8EEA80C7BB0D69 /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
+		C3C3620430ADF6B539F8F145 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */; };
+		C3C362408E1A70C87629D109 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C36282A6EF8A0157387202 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C3630D2B0B3D5FFEA126D5 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */; };
 		C3C36366045609F5009D92D9 /* PopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C362E555CFF12F2C16D52F /* PopUpViewController.m */; };
-		C3C36399EEEB8B75B27657B0 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
+		C3C36374D40A8DA4E51E5CB8 /* KeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C369C0A63B83683CBBD8E3 /* KeyboardButtonView.m */; };
+		C3C363898A7305FCB2665CB1 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
+		C3C36420BFD4BE5466B978F6 /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
 		C3C364AA8840A8CAB853DDC8 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
-		C3C364FAB7625AD9AA884A22 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
-		C3C365B82662F72946D27486 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
-		C3C366452D0E588FB7046FD0 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */; };
-		C3C366EEB65A4C44E958A79B /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3652CE75D47458843956E /* GIFEntity.m */; };
-		C3C3673953ABDF35CB3BDDB1 /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
+		C3C3652A225F2F097DB553BB /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
+		C3C3655C05A87877A1C33AB4 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
+		C3C365F3BC0BB872247A9920 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
+		C3C3663C6AEB890DAE25F03B /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
+		C3C3666AAC46758CDF737E69 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */; };
+		C3C366F2C83B7FE82E67D745 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E5114B7906DA44ED8B2 /* MMViewController.m */; };
 		C3C3676B0AA3AEEDEFC5E61A /* unnamed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C369902F1F7CB1FA29388B /* unnamed@2x.png */; };
+		C3C367CCF138DC06B96573D9 /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
+		C3C367DD3BA7B34A5E9D2B94 /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
 		C3C367DECCFFB7E79875EEFC /* whatsapp_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */; };
 		C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
 		C3C368736746CC9307526561 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
 		C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
 		C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
 		C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364D6B6E48FBD6568923A /* ShareViewController.m */; };
+		C3C36A0D1FCF2F3FD3C7F55D /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
+		C3C36A7E505947B78B3236D5 /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
+		C3C36AA5095C250A3A2A86FF /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
+		C3C36B0AEAD333343A00E424 /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
 		C3C36BB4DB25203B0CF48F85 /* PopUpShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36AC94AE3E26C4F0C9729 /* PopUpShareViewController.m */; };
+		C3C36BBD466757CC5F761347 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
 		C3C36BF2E61298B253B66882 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
 		C3C36C54FF701C0A696CBFE0 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
 		C3C36C7D7962D5664FE75682 /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
 		C3C36D039DCCD5D895F3FE30 /* hipchat-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */; };
+		C3C36D31BD8B6DF479A9C920 /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
 		C3C36D510A716F2B770603DC /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
 		C3C36DB0F68BB43F179A01F7 /* MMCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */; };
+		C3C36DCDC2A3AA389BC00444 /* KeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C369C0A63B83683CBBD8E3 /* KeyboardButtonView.m */; };
 		C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
-		C3C36E30BFD17C31F0BF19D3 /* GifDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */; };
 		C3C36E915107223560CB0627 /* KeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BE73735B5398B1073AB /* KeyboardViewController.m */; };
 		C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */; };
+		C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
 		C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A7768BE187CED64FB56 /* AppDelegate.m */; };
 		CA3380539A61BC37422CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
 		E004E1E11BDF778100ADB749 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E004E1E01BDF778100ADB749 /* MessageUI.framework */; };
@@ -108,13 +136,21 @@
 /* Begin PBXFileReference section */
 		054A5AE1725D2EAF752FB0A5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		07D3DA3FD396AF1B12EA03B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9A7FC1BB1C97FFE000E7CEB1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		9A7FC1BD1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GIFEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GIFEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9A7FC1BF1C98005B00E7CEB1 /* GIFEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFEntity.h; sourceTree = "<group>"; };
+		9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFEntity.m; sourceTree = "<group>"; };
+		9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhatsAppIcon@2x.png"; sourceTree = "<group>"; };
+		C3C3610BC33B4C63B99CDDCD /* KeyboardButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardButtonView.h; sourceTree = "<group>"; };
+		C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardButton.m; sourceTree = "<group>"; };
+		C3C3625E75DF10647834B18B /* newHipchat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newHipchat.png; sourceTree = "<group>"; };
 		C3C362E555CFF12F2C16D52F /* PopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpViewController.m; sourceTree = "<group>"; };
+		C3C363B0535749BBF96ED0DF /* MMKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardButton.h; sourceTree = "<group>"; };
 		C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GIFEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C3C364D6B6E48FBD6568923A /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		C3C3652A66D27084E23CB9E8 /* GIFEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFEntity.h; sourceTree = "<group>"; };
-		C3C3652CE75D47458843956E /* GIFEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFEntity.m; sourceTree = "<group>"; };
+		C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-delete.pdf"; sourceTree = "<group>"; };
 		C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whatsapp_logo@2x.png"; sourceTree = "<group>"; };
 		C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backspaceIcon.png; sourceTree = "<group>"; };
 		C3C36668573729E1CDDF4508 /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
@@ -122,22 +158,26 @@
 		C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPreviewViewController.m; sourceTree = "<group>"; };
 		C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		C3C36824024BA0D4AD3533B5 /* PopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpViewController.h; sourceTree = "<group>"; };
-		C3C36883851D5152713169A6 /* GIFEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GIFEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C3C368697DA2B30EC639619A /* newFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newFacebook.png; sourceTree = "<group>"; };
 		C3C368B18319EBA9B4A486F7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPreviewViewController.h; sourceTree = "<group>"; };
 		C3C369009B466503ECE28922 /* MMCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		C3C369902F1F7CB1FA29388B /* unnamed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unnamed@2x.png"; sourceTree = "<group>"; };
+		C3C369C0A63B83683CBBD8E3 /* KeyboardButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardButtonView.m; sourceTree = "<group>"; };
 		C3C369EB71DAF1A423D16974 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyFileIcon.png; sourceTree = "<group>"; };
 		C3C36A7768BE187CED64FB56 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C3C36AC94AE3E26C4F0C9729 /* PopUpShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpShareViewController.m; sourceTree = "<group>"; };
 		C3C36AECD49D462F97FACB69 /* KeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardViewController.h; sourceTree = "<group>"; };
+		C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downloadIcon.png; sourceTree = "<group>"; };
 		C3C36BE73735B5398B1073AB /* KeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
 		C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hipchat-logo@2x.png"; sourceTree = "<group>"; };
 		C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTick.png; sourceTree = "<group>"; };
 		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newWhatsAppIcon.png; sourceTree = "<group>"; };
 		C3C36E5114B7906DA44ED8B2 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
+		C3C36E95AF253D52DD7666EF /* icon-close.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-close.pdf"; sourceTree = "<group>"; };
 		C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NextKeyboardIcon.png; sourceTree = "<group>"; };
-		C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GifDatabase.xcdatamodel; sourceTree = "<group>"; };
 		E004E1E01BDF778100ADB749 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MarqueeExtensionJavaScript.js; sourceTree = "<group>"; };
 		E073B11E1BC6BE9900F9FA2B /* MMShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMShareExtension.entitlements; sourceTree = "<group>"; };
@@ -218,6 +258,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A7FC1C51C9809D400E7CEB1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				9A7FC1BD1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.h */,
+				9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */,
+				9A7FC1BF1C98005B00E7CEB1 /* GIFEntity.h */,
+				9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */,
+				C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */,
+				9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */,
+				C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		A59C3608DB83950552878D35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,16 +282,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C3C36033A5105E423911FDD6 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		C3C361F81EDE948ACE294396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */,
-				C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */,
-				C3C36F25EA1155E2A2556961 /* GifDatabase.xcdatamodel */,
-				C3C36883851D5152713169A6 /* GIFEntity+CoreDataProperties.h */,
-				C3C3652A66D27084E23CB9E8 /* GIFEntity.h */,
-				C3C3652CE75D47458843956E /* GIFEntity.m */,
-				C3C36495A4AD2A7469628B03 /* GIFEntity+CoreDataProperties.m */,
+				9A7FC1C51C9809D400E7CEB1 /* Database */,
+				C3C36DD2FAAE627EFAB181ED /* Icons */,
+				C3C36033A5105E423911FDD6 /* Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -261,6 +319,11 @@
 				C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */,
 				C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */,
 				C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */,
+				C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */,
+				C3C368697DA2B30EC639619A /* newFacebook.png */,
+				C3C3625E75DF10647834B18B /* newHipchat.png */,
+				C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */,
+				C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -284,6 +347,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		C3C369AEED9EF97322381E58 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */,
+				C3C363B0535749BBF96ED0DF /* MMKeyboardButton.h */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		C3C36B0E5F6C53B7F6AFE7E6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +363,8 @@
 				C3C36BE73735B5398B1073AB /* KeyboardViewController.m */,
 				C3C362E555CFF12F2C16D52F /* PopUpViewController.m */,
 				C3C36824024BA0D4AD3533B5 /* PopUpViewController.h */,
+				C3C369C0A63B83683CBBD8E3 /* KeyboardButtonView.m */,
+				C3C3610BC33B4C63B99CDDCD /* KeyboardButtonView.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -306,6 +380,15 @@
 				C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */,
 			);
 			path = "Collection View";
+			sourceTree = "<group>";
+		};
+		C3C36DD2FAAE627EFAB181ED /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				C3C36E95AF253D52DD7666EF /* icon-close.pdf */,
+				C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		E0F252BE1BC3AED1002F5E89 = {
@@ -383,6 +466,7 @@
 				E08321391BC4095A00610142 /* Keyboard.storyboard */,
 				C3C366018A8177A61D17752E /* Images */,
 				C3C36B0E5F6C53B7F6AFE7E6 /* Main */,
+				C3C369AEED9EF97322381E58 /* Content */,
 			);
 			path = MMKeyboard;
 			sourceTree = "<group>";
@@ -579,6 +663,14 @@
 				E0F252D51BC3AED1002F5E89 /* Main.storyboard in Resources */,
 				C3C364AA8840A8CAB853DDC8 /* NextKeyboardIcon.png in Resources */,
 				C3C36BF2E61298B253B66882 /* greenTick.png in Resources */,
+				9A7FC1C71C980B3A00E7CEB1 /* Localizable.strings in Resources */,
+				C3C367CCF138DC06B96573D9 /* icon-close.pdf in Resources */,
+				C3C362408E1A70C87629D109 /* icon-delete.pdf in Resources */,
+				C3C36A7E505947B78B3236D5 /* newWhatsAppIcon.png in Resources */,
+				C3C365F3BC0BB872247A9920 /* newFacebook.png in Resources */,
+				C3C36420BFD4BE5466B978F6 /* newHipchat.png in Resources */,
+				C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */,
+				C3C3619678A38FEC8EFB38BA /* copyFileIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +700,13 @@
 				C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */,
 				C3C36D039DCCD5D895F3FE30 /* hipchat-logo@2x.png in Resources */,
 				C3C361ADFB9D6F688497E2A1 /* greenTick.png in Resources */,
+				C3C3602186A3EF4B71E9B5DE /* icon-close.pdf in Resources */,
+				C3C366F2C83B7FE82E67D745 /* icon-delete.pdf in Resources */,
+				C3C36AA5095C250A3A2A86FF /* newWhatsAppIcon.png in Resources */,
+				C3C3655C05A87877A1C33AB4 /* newFacebook.png in Resources */,
+				C3C36B0AEAD333343A00E424 /* newHipchat.png in Resources */,
+				C3C36BBD466757CC5F761347 /* downloadIcon.png in Resources */,
+				C3C36108F7441A1C80B44792 /* copyFileIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +717,13 @@
 				E0647C611BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js in Resources */,
 				C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */,
 				C3C36282A6EF8A0157387202 /* greenTick.png in Resources */,
+				C3C367DD3BA7B34A5E9D2B94 /* icon-close.pdf in Resources */,
+				C3C3663C6AEB890DAE25F03B /* icon-delete.pdf in Resources */,
+				C3C36D31BD8B6DF479A9C920 /* newWhatsAppIcon.png in Resources */,
+				C3C363898A7305FCB2665CB1 /* newFacebook.png in Resources */,
+				C3C3652A225F2F097DB553BB /* newHipchat.png in Resources */,
+				C3C36A0D1FCF2F3FD3C7F55D /* downloadIcon.png in Resources */,
+				C3C361E03D8EEA80C7BB0D69 /* copyFileIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,13 +874,15 @@
 			files = (
 				E0F252CC1BC3AED1002F5E89 /* main.m in Sources */,
 				C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */,
-				C3C3673953ABDF35CB3BDDB1 /* GifDatabase.xcdatamodel in Sources */,
 				C3C36DB0F68BB43F179A01F7 /* MMCollectionViewFlowLayout.m in Sources */,
+				9A7FC1C21C98005B00E7CEB1 /* GIFEntity.m in Sources */,
 				C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */,
 				C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */,
 				C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */,
-				C3C360852783765A711F843B /* GIFEntity.m in Sources */,
-				C3C365B82662F72946D27486 /* GIFEntity+CoreDataProperties.m in Sources */,
+				9A7FC1BC1C97FFE000E7CEB1 /* Model.xcdatamodeld in Sources */,
+				9A7FC1C11C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */,
+				C3C3666AAC46758CDF737E69 /* MMKeyboardButton.m in Sources */,
+				C3C36374D40A8DA4E51E5CB8 /* KeyboardButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,12 +908,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3C36C54FF701C0A696CBFE0 /* CoreDataStack.m in Sources */,
-				C3C36097E66EFBB1F16FC2EC /* GifDatabase.xcdatamodel in Sources */,
 				C3C36129329CCD2000D6BA9C /* KeyboardViewController.m in Sources */,
+				9A7FC1C31C98034600E7CEB1 /* Model.xcdatamodeld in Sources */,
+				9A7FC1C81C981CCD00E7CEB1 /* GIFEntity.m in Sources */,
 				C3C36366045609F5009D92D9 /* PopUpViewController.m in Sources */,
+				9A7FC1CA1C981CD700E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */,
 				C3C36C7D7962D5664FE75682 /* MMPreviewViewController.m in Sources */,
-				C3C364FAB7625AD9AA884A22 /* GIFEntity.m in Sources */,
-				C3C36399EEEB8B75B27657B0 /* GIFEntity+CoreDataProperties.m in Sources */,
+				C3C3630D2B0B3D5FFEA126D5 /* MMKeyboardButton.m in Sources */,
+				C3C3616021CBC8E2F76EE83E /* KeyboardButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,12 +924,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */,
-				C3C36E30BFD17C31F0BF19D3 /* GifDatabase.xcdatamodel in Sources */,
 				C3C36BB4DB25203B0CF48F85 /* PopUpShareViewController.m in Sources */,
+				9A7FC1C41C98034700E7CEB1 /* Model.xcdatamodeld in Sources */,
+				9A7FC1C91C981CCE00E7CEB1 /* GIFEntity.m in Sources */,
 				C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */,
+				9A7FC1CB1C981CD800E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */,
 				C3C36D510A716F2B770603DC /* MMPreviewViewController.m in Sources */,
-				C3C366EEB65A4C44E958A79B /* GIFEntity.m in Sources */,
-				C3C366452D0E588FB7046FD0 /* GIFEntity+CoreDataProperties.m in Sources */,
+				C3C3620430ADF6B539F8F145 /* MMKeyboardButton.m in Sources */,
+				C3C36DCDC2A3AA389BC00444 /* KeyboardButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,6 +1294,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9A7FC1BB1C97FFE000E7CEB1 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9A7FC1BB1C97FFE000E7CEB1 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E0F252BF1BC3AED1002F5E89 /* Project object */;
 }

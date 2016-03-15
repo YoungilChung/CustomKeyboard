@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  MMCustomKeyboard
+
+  Created by Tom Atterton on 15/03/16.
+  Copyright © 2016 mm0030240. All rights reserved.
+*/
+
+
+/*********** Categories ***********/
+"Category.All" = "All";
+"Category.Normal" = "Normal";
+"Category.Awesome" = "Awesome";
+
+
+/*********** PreviewViewController ***********/
+"PreviewViewController.Title.Label" = "Change Category of GIF?";
+
+
+/*********** CoreData ***********/
+"CoreData.Entity.Key" = "GIFEntity";
+"CoreData.Category.Key" = "gifCategory";
+"CoreData.URL.Key" = "gifURL";

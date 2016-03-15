@@ -3,13 +3,16 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - UIImage-Vector (0.1.0)
 
 DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
   - SDWebImage
+  - UIImage-Vector
 
 SPEC CHECKSUMS:
   FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  UIImage-Vector: 447a6d0a82c68561ced0dddd5114c187cf216589
 
 COCOAPODS: 0.39.0

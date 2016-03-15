@@ -19,20 +19,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UIImage-Vector.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1741A7EA680E08111C5CC419A79E367D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1A79BA86DB198181905CBBFC1F1E6701</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57B5F8E874E9F2A34B44F19B356BB2A6</key>
+		<key>23A5F717015B9BC93D90EDD4440FECCA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52724DFDAEDEFAF2E7BCC6A16717FAAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9B52970D60A5A924790AE23FF389B06</key>
 		<dict>
 			<key>primary</key>
 			<true/>

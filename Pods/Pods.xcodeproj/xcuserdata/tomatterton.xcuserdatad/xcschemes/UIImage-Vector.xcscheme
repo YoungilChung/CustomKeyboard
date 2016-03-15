@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23A5F717015B9BC93D90EDD4440FECCA"
-               BlueprintName = "SDWebImage"
+               BlueprintIdentifier = "B9B52970D60A5A924790AE23FF389B06"
+               BlueprintName = "UIImage-Vector"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libSDWebImage.a">
+               BuildableName = "libUIImage-Vector.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

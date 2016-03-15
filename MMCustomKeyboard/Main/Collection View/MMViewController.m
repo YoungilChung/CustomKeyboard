@@ -22,26 +22,35 @@
 @property(nonatomic, strong) NSMutableDictionary *gifHolder;
 @property(nonatomic, strong) NSMutableArray *holderArray;
 @property(nonatomic, strong) NSMutableArray *allUrlHolderArray;
-@property(nonatomic, strong) NSMutableArray *normalUrlHolderArray;
-@property(nonatomic, strong) NSMutableArray *awesomeUrlHolderArray;
-@property(nonatomic, strong) UIView *holderView;
-@property(nonatomic, strong) UIView *tempHolderView;
 @property(strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property(nonatomic) NSString *gifCategory;
 @property(nonatomic) NSString *searchKey;
-@property(nonatomic) NSInteger currentImageIndex;
-@property(nonatomic) NSInteger collectionAmount;
-@property(nonatomic) NSIndexPath *currentImageIndexPath;
-@property(nonatomic, strong) GIFEntity *tempEntity;
 @property(nonatomic, strong) MMCollectionViewFlowLayout *flowLayout;
 
 @end
 
 @implementation MMViewController
 
+//- (void)viewWillAppear:(BOOL)animated {
+//	[self loadGif];
+//}
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	[self loadGif];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadGif) name:@"reloadGIFS" object:nil];
+
+//	NSLog(@"Comes here");
+//	[self.collectionView reloadData];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadGIFS" object:nil];
+
+}
+
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -49,12 +58,12 @@
 
 	// Do any additional setup after loading the view, typically from a nib.
 	[self.fetchedResultsController performFetch:nil];
-	self.gifCategory = @"All";
+	self.gifCategory = NSLocalizedString(@"Category.All", nil);
 
+	self.flowLayout.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.flowLayout = [MMCollectionViewFlowLayout new];
 	[self.flowLayout setMinimumInteritemSpacing:0];
 	[self.flowLayout setMinimumLineSpacing:0];
-	self.flowLayout.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
 
 	self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.flowLayout];
@@ -79,22 +88,22 @@
 	switch (self.segmentControl.selectedSegmentIndex) {
 		case 0:
 			//All
-			self.gifCategory = @"All";
-			self.searchKey = @"gifURL";
+			self.gifCategory = NSLocalizedString(@"Category.All", nil);
+			self.searchKey = NSLocalizedString(@"CoreData.URL.Key", nil);
 			[self.fetchedResultsController performFetch:nil];
 			[self loadGif];
 			break;
 		case 1:
 			//Normal
-			self.gifCategory = @"Normal";
-			self.searchKey = @"gifCategory";
+			self.gifCategory = NSLocalizedString(@"Category.Normal", nil);
+			self.searchKey = NSLocalizedString(@"CoreData.Category.Key", nil);
 			[self.fetchedResultsController performFetch:nil];
 			[self loadGif];
 			break;
 		case 2:
 			//Awesome
-			self.gifCategory = @"Awesome";
-			self.searchKey = @"gifCategory";
+			self.gifCategory = NSLocalizedString(@"Category.Awesome", nil);;
+			self.searchKey = NSLocalizedString(@"CoreData.Category.Key", nil);
 			[self.fetchedResultsController performFetch:nil];
 			[self loadGif];
 			break;
@@ -109,34 +118,33 @@
 
 - (void)loadGif {
 	[self.fetchedResultsController performFetch:nil];
-	//	self.collectionView.scrollEnabled = YES;
 	self.holderArray = [@[] mutableCopy];
-	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:@"gifCategory"];
+	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)];
 
 	if (tempArray.count == 0) {
 		NSLog(@"Empty");
 	}
 	else {
-		if ([self.searchKey isEqualToString:@"gifCategory"]) {
+		if ([self.searchKey isEqualToString:NSLocalizedString(@"CoreData.Category.Key", nil)]) {
 			[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 				if ([self.gifCategory isEqualToString:@"Normal"]) {
-					if ([[obj valueForKey:@"gifCategory"] isEqualToString:@"Normal"]) {
+					if ([[obj valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)] isEqualToString:NSLocalizedString(@"Category.Normal", nil)]) {
 						//						[self.urlHolderArray addObject:[obj valueForKey:@"gifURL"]];
-						[self.holderArray addObject:[obj valueForKey:@"gifURL"]];
+						[self.holderArray addObject:[obj valueForKey:NSLocalizedString(@"CoreData.URL.Key", nil)]];
 						//						self.holderArray = self.normalUrlHolderArray;
 					}
 				}
 				if ([self.gifCategory isEqualToString:@"Awesome"]) {
-					if ([[obj valueForKey:@"gifCategory"] isEqualToString:@"Awesome"]) {
+					if ([[obj valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)] isEqualToString:NSLocalizedString(@"Category.Awesome", nil)]) {
 						//						[self.urlHolderArray addObject:[obj valueForKey:@"gifURL"]];
-						[self.holderArray addObject:[obj valueForKey:@"gifURL"]];
+						[self.holderArray addObject:[obj valueForKey:NSLocalizedString(@"CoreData.URL.Key", nil)]];
 						//						self.holderArray = self.awesomeUrlHolderArray;
 					}
 				}
 			}];
 		}
 		else {
-			tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:@"gifURL"];
+			tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:NSLocalizedString(@"CoreData.URL.Key", nil)];
 			self.allUrlHolderArray = [tempArray mutableCopy];
 			self.holderArray = self.allUrlHolderArray;
 		}
@@ -175,7 +183,8 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake(self.collectionView.layer.frame.size.width / 3, self.collectionView.layer.frame.size.width / 3);
+	CGFloat width = CGRectGetWidth(self.view.frame);
+	return CGSizeMake((CGFloat) (self.collectionView.layer.frame.size.width / 3.006), (CGFloat) (self.collectionView.layer.frame.size.width / 3.006));
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -204,8 +213,8 @@
 	NSUInteger item = (NSUInteger) indexPath.item;
 
 	[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(GIFEntity *obj, NSUInteger idx, BOOL *stop) {
-		if ([[obj valueForKey:@"gifURL"] isEqualToString:self.holderArray[item]]) {
-			MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:(FLAnimatedImage *)self.gifHolder[self.holderArray[item]] withGifEntity:obj];
+		if ([[obj valueForKey:NSLocalizedString(@"CoreData.URL.Key", nil)] isEqualToString:self.holderArray[item]]) {
+			MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:(FLAnimatedImage *) self.gifHolder[self.holderArray[item]] withGifEntity:obj];
 			viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 			[self presentViewController:viewController animated:YES completion:nil];
 		}
@@ -216,8 +225,8 @@
 #pragma  mark - NSFetchedResultController
 
 - (NSFetchRequest *)entryListFetchRequest {
-	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GIFEntity"];
-	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifURL" ascending:NO]]; // This will sort how the request is shown
+	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSLocalizedString(@"CoreData.Entity.Key", nil)];
+	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSLocalizedString(@"CoreData.URL.Key", nil) ascending:NO]]; // This will sort how the request is shown
 	return fetchRequest;
 }
 
