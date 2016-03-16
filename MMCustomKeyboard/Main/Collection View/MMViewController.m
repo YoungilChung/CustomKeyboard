@@ -126,11 +126,11 @@
 	}
 	else {
 		if ([self.searchKey isEqualToString:NSLocalizedString(@"CoreData.Category.Key", nil)]) {
-			[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(GIFEntity *obj, NSUInteger idx, BOOL *stop) {
 				if ([self.gifCategory isEqualToString:@"Normal"]) {
-					if ([[obj valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)] isEqualToString:NSLocalizedString(@"Category.Normal", nil)]) {
+					if ([obj.gifCategory isEqualToString:NSLocalizedString(@"Category.Normal", nil)]) {
 						//						[self.urlHolderArray addObject:[obj valueForKey:@"gifURL"]];
-						[self.holderArray addObject:[obj valueForKey:NSLocalizedString(@"CoreData.URL.Key", nil)]];
+						[self.holderArray addObject:obj.gifURL];
 						//						self.holderArray = self.normalUrlHolderArray;
 					}
 				}

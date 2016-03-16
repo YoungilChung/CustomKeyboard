@@ -89,8 +89,8 @@
 		NSDictionary *views = @{@"topHolder" : topHolderView, @"bottomHolder" : bottomHolderView, @"delete" : deleteButton, @"sendGif" : sendGifButton,
 				@"sendUrl" : sendUrlButton, @"hipChatButton" : hipchatButton, @"facebookButton" : facebookButton, @"whatsAppButton" : whatsAppButton,
 				@"close" : closeButton,
-//			@"holder": holderView
 		};
+
 		NSDictionary *metrics = @{@"padding" : @(10)};
 
 
@@ -158,7 +158,7 @@
 //	[self loadMessage:@"URL Copied!"]; // TODO implement
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	[[UIPasteboard generalPasteboard] setURL:url];
-	NSDictionary* userInfo = @{@"iconPressed": @"url saved"};
+	NSDictionary *userInfo = @{@"iconPressed" : @"url saved"};
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
 	self.hidden = YES;
 
@@ -171,7 +171,7 @@
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	NSData *data = [NSData dataWithContentsOfURL:url];
 	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
-	NSDictionary* userInfo = @{@"iconPressed": @"gif saved"};
+	NSDictionary *userInfo = @{@"iconPressed" : @"gif saved"};
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
 	self.hidden = YES;
 
@@ -182,10 +182,8 @@
 
 - (void)onCloseTapped:(UIButton *)sender {
 
-//	[self removeFromSuperview];
-	self.hidden = YES;
 
-	NSDictionary* userInfo = @{@"iconPressed": @"closed"};
+	NSDictionary *userInfo = @{@"iconPressed" : @"closed"};
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
 
 //	}];

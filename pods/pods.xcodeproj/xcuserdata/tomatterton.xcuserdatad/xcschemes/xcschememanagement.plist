@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23A5F717015B9BC93D90EDD4440FECCA</key>
+		<key>50F6FF3CCC975CAC8D475B65A9853134</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52724DFDAEDEFAF2E7BCC6A16717FAAA</key>
+		<key>68C29271358EBE649409215334E8E387</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9B52970D60A5A924790AE23FF389B06</key>
+		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4D50A11E171016EC5A7E0FF9F1CCFB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

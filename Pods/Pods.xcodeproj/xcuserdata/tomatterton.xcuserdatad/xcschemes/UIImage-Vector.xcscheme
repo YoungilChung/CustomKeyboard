@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B9B52970D60A5A924790AE23FF389B06"
+               BlueprintIdentifier = "50F6FF3CCC975CAC8D475B65A9853134"
                BlueprintName = "UIImage-Vector"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libUIImage-Vector.a">
