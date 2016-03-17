@@ -5,6 +5,7 @@
 
 #import "MMKeyboardCollectionViewCell.h"
 #import "FLAnimatedImageView.h"
+#import "FLAnimatedImage.h"
 
 @interface MMKeyboardCollectionViewCell()
 
@@ -65,11 +66,11 @@
 	dispatch_async(imageQueue, ^{
 		NSURL *url = [NSURL URLWithString:urlString];
 		NSData *imageData = [NSData dataWithContentsOfURL:url];
-		UIImage *imageObject = [UIImage imageWithData:imageData];
+		FLAnimatedImage *imageObject = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:url]];
 
 		dispatch_async(dispatch_get_main_queue(), ^{
 			// Update the UI
-			[self.imageView setImage:imageObject];
+			[self.imageView setAnimatedImage:imageObject];
 			self.imageView.alpha = 1.f;
 		});
 

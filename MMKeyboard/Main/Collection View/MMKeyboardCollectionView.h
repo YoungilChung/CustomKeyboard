@@ -6,15 +6,27 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger , MMSearchType){
+@class KeyboardViewController;
+
+typedef NS_ENUM(NSInteger, MMSearchType) {
 	MMSearchTypeAll = 0,
 	MMSearchTypeNormal,
 	MMSearchTypeAwesome,
 
 };
-@interface MMKeyboardCollectionView : UIView
 
--(instancetype)initWithPresentingViewController;
+@interface MMKeyboardCollectionView : UIView
+@property(nonatomic, strong) UICollectionView *collectionView;
+
+- (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController;
+
+- (void)onAllGifsButtonTapped:(UIButton *)sender;
+
+- (void)onNormalButtonTapped:(UIButton *)sender;
+
+- (void)onAwesomeButtonTapped:(UIButton *)sender;
+
+- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation;
 
 
 @end

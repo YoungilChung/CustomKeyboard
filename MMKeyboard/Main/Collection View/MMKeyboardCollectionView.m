@@ -9,22 +9,26 @@
 #import "KeyboardButtonView.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
+#import "KeyboardViewController.h"
+#import "MMKeyboardCollectionViewFlowLayout.h"
+#import <MobileCoreServices/UTCoreTypes.h>
 
-@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
+@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, UITextDocumentProxy>
 
 // View
 @property(nonatomic, strong) KeyboardButtonView *buttonView;
-@property(nonatomic, strong) UICollectionView *collectionView;
+@property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
+@property(nonatomic, strong) KeyboardViewController *presentingViewController;
+
 
 // Variables
 @property(nonatomic, strong) NSMutableArray *data;
 @property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property(nonatomic) MMSearchType type;
-@property (nonatomic, strong) NSIndexPath *longPressIndex;
+@property(nonatomic, assign) MMSearchType type;
+@property(nonatomic, assign) BOOL isPortrait;
 
 
-
-//
+// Gestures
 @property(nonatomic, strong) UILongPressGestureRecognizer *lpgr;
 
 
@@ -34,16 +38,13 @@
 @implementation MMKeyboardCollectionView
 
 
-- (instancetype)initWithFrame:(CGRect)frame {
-
-
-	self = [super initWithFrame:frame];
+- (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController {
+	self = [super init];
 
 	if (self) {
 
-//		self.presentingViewController = presentingViewController;
 		self.type = MMSearchTypeAll;
-
+		self.presentingViewController = presentingViewController;
 		self.lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
 		self.lpgr.minimumPressDuration = .5;
 		self.lpgr.allowableMovement = 100.0f;
@@ -64,36 +65,34 @@
 	[self.fetchedResultsController performFetch:nil];
 
 
-	UICollectionViewFlowLayout *collectionFlowLayout = [UICollectionViewFlowLayout new];
-	[collectionFlowLayout setMinimumInteritemSpacing:1.0f];
-	[collectionFlowLayout setMinimumLineSpacing:1.0f];
-	[collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+	self.collectionFlowLayout = [MMKeyboardCollectionViewFlowLayout new];
+	[self.collectionFlowLayout setMinimumInteritemSpacing:1.0f];
+	[self.collectionFlowLayout setMinimumLineSpacing:1.0f];
+	[self.collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
 
-
-	self.collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:collectionFlowLayout];
+	self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.collectionFlowLayout];
 	self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.collectionView.clipsToBounds = YES;
 	[self.collectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
-	self.collectionView.pagingEnabled = YES;  // TODO do we need paging
+	self.collectionView.pagingEnabled = YES;
 	self.collectionView.backgroundColor = [UIColor blackColor];
 	[self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	self.collectionView.delegate = self;
 	self.collectionView.dataSource = self;
-	[self.collectionView addGestureRecognizer:self.lpgr]; // TODO
+	[self.collectionView addGestureRecognizer:self.lpgr];
 	[self addSubview:self.collectionView];
 
+	self.isPortrait = YES;
 
 	NSDictionary *metrics = @{};
 	NSDictionary *views = @{
 			@"collectionView" : self.collectionView,
 	};
 
-
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collectionView]-0-|" options:metrics metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collectionView]-0-|" options:metrics metrics:metrics views:views]];
 
 	[self loadGifs];
-
 }
 
 #pragma mark Methods
@@ -143,14 +142,13 @@
 #pragma mark CollectionView Delegates
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.data ? self.data.count: 0;
+	return self.data ? self.data.count : 0;
 }
 
 
-//
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-	return CGSizeMake((CGFloat) (collectionViewLayout.collectionView.frame.size.width / 2.015), (CGFloat) (collectionView.frame.size.width / 4.115));
+	return self.isPortrait ? CGSizeMake((CGFloat) (collectionView.frame.size.width / 2.015), (CGFloat) (collectionView.frame.size.width / 4.06)) : CGSizeMake((CGFloat) (collectionView.frame.size.width / 4.015), (CGFloat) (collectionView.frame.size.height / 1.45));
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,44 +158,25 @@
 	tapGestureRecognizer.delaysTouchesBegan = YES;
 	[self.collectionView addGestureRecognizer:tapGestureRecognizer];
 
+
 	MMKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 	[cell setBackgroundColor:[UIColor clearColor]];
+
 	[cell setData:self.data[(NSUInteger) indexPath.row]];
+
 	return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-}
 
 #pragma mark Touch Gestures
-
-- (void)check3Dtouch {
-	// register for 3D Touch (if available)
-	if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-
-//		[self registerForPreviewingWithDelegate:(id) self sourceView:self.view];
-		NSLog(@"3D Touch is available! Hurra!");
-
-		// no need for our alternative anymore
-		//		self.lpgr.enabled = NO;
-	}
-	else {
-		// handle a 3D Touch alternative (long gesture recognizer)
-		self.lpgr.enabled = YES;
-	}
-}
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
 	CGPoint p = [sender locationInView:self.collectionView];
 	NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
 
-//	NSString *gifUrl = [NSString stringWithFormat:@"%@", self.urlHolderArray[indexPath.row]];
-//	NSURL *url = [[NSURL alloc] initWithString:self.urlHolderArray[indexPath.row]];
-//
-//	NSData *data = [NSData dataWithContentsOfURL:url];
-//	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
-//	[self.textDocumentProxy insertText:gifUrl];
+//	NSURL *url = [[NSURL alloc] initWithString:self.data[(NSUInteger) indexPath.row]];
+	self.presentingViewController.gifCategory = self.data[(NSUInteger) indexPath.row];
+	[self.presentingViewController tappedGIF];
 //	[self loadMessage:@"URL Copied!"];
 
 }
@@ -212,7 +191,6 @@
 			self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 			[self addSubview:self.buttonView];
 
-			self.buttonView.gifUrl = self.data[(NSUInteger) self.longPressIndex.row];
 
 			NSDictionary *views = @{@"buttonView" : self.buttonView};
 
@@ -221,14 +199,15 @@
 
 
 			CGPoint p = [sender locationInView:self.collectionView];
-
 			NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+
 			if (indexPath == nil) {
 				NSLog(@"couldn't find index path");
 			}
 			else {
 
-				self.longPressIndex = indexPath; //TODO doesn't update the url bla bla bla
+				self.buttonView.gifUrl = self.data[(NSUInteger) indexPath.row];
+				self.presentingViewController.gifCategory = self.data[(NSUInteger) indexPath.row];
 			}
 		}
 
@@ -241,7 +220,6 @@
 - (NSFetchRequest *)entryListFetchRequest {
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GIFEntity"];
 	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifCategory" ascending:NO]]; // This will sort how the request is shown
-	//    NSLog(fetchRequest.sortDescriptors);
 	return fetchRequest;
 }
 
@@ -259,23 +237,47 @@
 	return _fetchedResultsController;
 }
 
+#pragma  mark MMKeyboardView Actions
 
-#pragma mark rotation TODO
-//
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//	[self.collectionView setAlpha:0.0f];
-//	[self.collectionView.collectionViewLayout invalidateLayout];
-//	CGPoint currentOffset = [self.collectionView contentOffset];
-//	self.currentIndex = currentOffset.x / self.collectionView.frame.size.width;
-//}
-//
-//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-//	[self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//	[UIView animateWithDuration:0.125f animations:^{
-//		[self.collectionView setAlpha:1.0f];
-//	}];
-//}
+- (void)onAllGifsButtonTapped:(UIButton *)sender {
 
+	if (self.type != MMSearchTypeAll) {
+		self.type = MMSearchTypeAll;
+		[self loadGifs];
+		[self.collectionView setContentOffset:CGPointZero animated:YES];
+
+	}
+}
+
+- (void)onNormalButtonTapped:(UIButton *)sender {
+
+	if (self.type != MMSearchTypeNormal) {
+		self.type = MMSearchTypeNormal;
+		[self loadGifs];
+		[self.collectionView setContentOffset:CGPointZero animated:YES];
+	}
+
+}
+
+- (void)onAwesomeButtonTapped:(UIButton *)sender {
+
+	if (self.type != MMSearchTypeAwesome) {
+		self.type = MMSearchTypeAwesome;
+		[self loadGifs];
+		[self.collectionView setContentOffset:CGPointZero animated:YES];
+	}
+}
+
+- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
+
+
+	if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+		self.isPortrait = NO;
+	}
+	else {
+		self.isPortrait = YES;
+	}
+	[self.collectionView.collectionViewLayout invalidateLayout];
+}
 
 @end

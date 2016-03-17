@@ -8,8 +8,9 @@
 #import "UIImage+Vector.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface KeyboardButtonView ()
 
+@interface KeyboardButtonView ()
+@property(nonatomic, strong) NSDictionary *userInfo;
 @end
 
 @implementation KeyboardButtonView
@@ -21,6 +22,7 @@
 	if (self) {
 
 		self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
+		self.userInfo = @{};
 
 		UIView *topHolderView = [UIView new];
 		topHolderView.backgroundColor = [UIColor clearColor];
@@ -131,13 +133,13 @@
 
 - (void)onFacebookTapped:(UIButton *)sender {
 
-	//	[self loadMessage:@"GIF Copied!"];
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	NSData *data = [NSData dataWithContentsOfURL:url];
 	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
+
 	NSURL *facebookURL = [NSURL URLWithString:@"fb-messenger://compose"];
-	//    NSURL *whatsappURL = [NSURL URLWithString:[NSString stringWithFormat:@"fb-messenger://share?ShareType.forward&attachment=%@", self.urlHolderArray[self.longPressIndex.row]]];
 	[self toApp:facebookURL];
+
 }
 
 - (void)onWhatsAppTapped:(UIButton *)sender {
@@ -146,7 +148,6 @@
 }
 
 - (void)onHipchatTapped:(UIButton *)sender {
-	//	[self loadMessage:@"URL Copied!"]; // TODO implement
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	[[UIPasteboard generalPasteboard] setURL:url];
 
@@ -155,38 +156,32 @@
 }
 
 - (void)onUrlTapped:(UIButton *)sender {
-//	[self loadMessage:@"URL Copied!"]; // TODO implement
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	[[UIPasteboard generalPasteboard] setURL:url];
-	NSDictionary *userInfo = @{@"iconPressed" : @"url saved"};
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
-	self.hidden = YES;
 
-//	}];
+	self.userInfo = @{@"iconPressed" : @"url saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+
+	self.hidden = YES;
 
 }
 
 - (void)onGifTapped:(UIButton *)sender {
-//	[self loadMessage:@"GIF Copied!"]; //TODO implement
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	NSData *data = [NSData dataWithContentsOfURL:url];
 	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
-	NSDictionary *userInfo = @{@"iconPressed" : @"gif saved"};
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
+	self.userInfo = @{@"iconPressed" : @"gif saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
 	self.hidden = YES;
-
-
-//	}];
 
 }
 
 - (void)onCloseTapped:(UIButton *)sender {
+	[self setHidden:YES];
 
+	self.userInfo = @{@"iconPressed" : @"closed"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
 
-	NSDictionary *userInfo = @{@"iconPressed" : @"closed"};
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
-
-//	}];
 }
 
 - (void)toApp:(NSURL *)url {
@@ -196,6 +191,9 @@
 		if ([responder respondsToSelector:@selector(openURL:)]) {
 //			[self loadMessage:@"GIF saved to pasteboard!"]; // TODO implement
 			[responder performSelector:@selector(openURL:) withObject:url];
+			self.userInfo = @{@"iconPressed" : @"messengers"};
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+
 		}
 	}
 }

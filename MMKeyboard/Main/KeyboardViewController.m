@@ -6,42 +6,20 @@
 //
 
 #import "KeyboardViewController.h"
-#import "FLAnimatedImage.h"
 #import "GIFEntity.h"
-#import "CoreDataStack.h"
-#import "FLAnimatedImageView.h"
-#import <MobileCoreServices/UTCoreTypes.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <FLAnimatedImage/FLAnimatedImageView.h>
-#import "PopUpViewController.h"
 #import "KeyboardButtonView.h"
 #import "MMKeyboardCollectionView.h"
 #import <MessageUI/MessageUI.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
-@interface KeyboardViewController () < 	UIViewControllerPreviewingDelegate, MFMessageComposeViewControllerDelegate>
 
-//@property(nonatomic, strong) UICollectionView *collectionView;
-//@property(nonatomic, strong) UICollectionViewFlowLayout *collectionFlowLayout;
-@property(nonatomic, strong) UIView *holderView;
-@property(nonatomic, strong) NSMutableArray *gifHolderArray;
-@property(nonatomic, strong) NSMutableArray *urlHolderArray;
-@property(nonatomic) NSUInteger numberOfGifs;
-@property(nonatomic) NSString *searchKey;
-@property(nonatomic) NSInteger currentIndex;
-@property(nonatomic) NSString *gifCategory;
-@property(nonatomic, strong) NSIndexPath *longPressIndex;
-@property(nonatomic, strong) UIButton *normalButton;
-@property(nonatomic, strong) UIButton *awesomeButton;
-@property(nonatomic, strong) UIButton *allGifsButton;
+@interface KeyboardViewController () <UIViewControllerPreviewingDelegate, MFMessageComposeViewControllerDelegate, UITextDocumentProxy>
+
+// Views
 @property(nonatomic, strong) UIButton *nextKeyboardButton;
-@property(nonatomic, strong) UIScrollView *keyboardBackground;
-@property(nonatomic, strong) UILabel *messageText;
-@property(nonatomic) CGSize collectionViewSize;
-@property(nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property(nonatomic, strong) KeyboardButtonView *buttonView;
-
-
+@property(nonatomic, strong) UILabel *messageText;
+@property(nonatomic, strong) MMKeyboardCollectionView *keyboardCollectionView;
 @end
 
 @implementation KeyboardViewController
@@ -49,6 +27,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeSubview:) name:@"closeSubview" object:nil];
+
 
 }
 
@@ -63,17 +42,13 @@
 	[super viewDidLoad];
 
 	self.view.clipsToBounds = YES;
-
-	// Check 3D Touch
-	self.numberOfGifs = 0;
-	self.searchKey = @"gifURL";
 	self.view.backgroundColor = [UIColor blackColor];
 
 
-	MMKeyboardCollectionView *keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
-	keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addSubview:keyboardCollectionView];
-
+//	MMKeyboardCollectionView *keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
+	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithPresentingViewController:self];
+	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:self.keyboardCollectionView];
 
 	UIImageView *keyboardImage = [UIImageView new];
 	keyboardImage.translatesAutoresizingMaskIntoConstraints = NO;
@@ -94,23 +69,24 @@
 	self.allGifsButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.allGifsButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.allGifsButton setTitle:NSLocalizedString(@"Category.All", nil) forState:UIControlStateNormal];
-	[self.allGifsButton addTarget:self action:@selector(onAllGifsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[self.allGifsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.allGifsButton addTarget:self action:@selector(allGifsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.allGifsButton];
 
 	self.normalButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.normalButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.normalButton setTitle:NSLocalizedString(@"Category.Normal", nil) forState:UIControlStateNormal];
-	[self.normalButton addTarget:self action:@selector(onNormalButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[self.normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.normalButton addTarget:self action:@selector(normalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.normalButton];
 
 	self.awesomeButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.awesomeButton setTitle:NSLocalizedString(@"Category.Awesome", nil) forState:UIControlStateNormal];
-	[self.awesomeButton addTarget:self action:@selector(onAwesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[self.awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.awesomeButton addTarget:self action:@selector(awesomeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.awesomeButton];
+
 
 	UIImageView *backspaceImage = [UIImageView new];
 	UIImage *backImage = [UIImage imageNamed:@"backspaceIcon.png"];
@@ -129,7 +105,7 @@
 	[backspaceButton addTarget:self action:@selector(didTapToDelete:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:backspaceButton];
 
-	NSDictionary *views = @{@"collection" : keyboardCollectionView, @"nxtKeyboardBtn" : self.nextKeyboardButton, @"keyboardImage" : keyboardImage,
+	NSDictionary *views = @{@"collection" : self.keyboardCollectionView, @"nxtKeyboardBtn" : self.nextKeyboardButton, @"keyboardImage" : keyboardImage,
 			@"allBtn" : self.allGifsButton, @"shareBtnOne" : self.normalButton, @"shareBtnTwo" : self.awesomeButton, @"backspaceImage" : backspaceImage, @"backspaceButton" : backspaceButton};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
@@ -165,177 +141,29 @@
 														 multiplier:1.0 constant:0]];
 }
 
-- (void)didTapToDelete:(UIButton *)sender {
-	[self.textDocumentProxy deleteBackward]; //TOOD when you hold button delete all text faster
+- (void)awesomeButtonPressed:(UIButton *)sender {
+	[self.keyboardCollectionView onAwesomeButtonTapped:sender];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//	[self loadGif];
-//
-//	self.lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
-//	self.lpgr.minimumPressDuration = .5;
-//	self.lpgr.allowableMovement = 100.0f;
-//	self.lpgr.delaysTouchesBegan = YES;
-//	self.lpgr.delegate = self;
-//	self.lpgr.cancelsTouchesInView = NO;
-//	[self.collectionView addGestureRecognizer:self.lpgr];
-//}
-//
-//#pragma mark  - Actions
-//
-//- (void)onAllGifsButtonTapped:(UIButton *)sender {
-//	self.searchKey = @"gifURL";
-////	[self.fetchedResultsController performFetch:nil];
-//	[self loadGif];
-//}
-//
-//- (void)onNormalButtonTapped:(UIButton *)sender {
-//	self.searchKey = @"gifCategory";
-//	self.gifCategory = @"Normal";
-////	[self.fetchedResultsController performFetch:nil];
-//	[self loadGif];
-//}
-//
-//- (void)onAwesomeButtonTapped:(UIButton *)sender {
-//	self.searchKey = @"gifCategory";
-//	self.gifCategory = @"Awesome";
-////	[self.fetchedResultsController performFetch:nil];
-//	[self loadGif];
-//}
+- (void)normalButtonPressed:(UIButton *)sender {
+	[self.keyboardCollectionView onNormalButtonTapped:sender];
+}
+
+- (void)allGifsButtonPressed:(UIButton *)sender {
+
+	[self.keyboardCollectionView onAllGifsButtonTapped:sender];
+}
+
+- (void)didTapToDelete:(UIButton *)sender {
+	for (int i = self.textDocumentProxy.documentContextBeforeInput.length; i > 0; i--) {
+		[self.textDocumentProxy deleteBackward];
+	}
+}
 
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
-
-
-#pragma  mark - Methods
-
-
-//- (void)loadGif {
-//
-////	self.collectionView.scrollEnabled = YES; // TODO scroll enabled
-//	self.gifHolderArray = [@[] mutableCopy];
-//	self.urlHolderArray = [@[] mutableCopy];
-//	self.numberOfGifs = 0;
-//
-//	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:@"gifCategory"];
-//
-//	if (tempArray.count == 0) {
-//		NSLog(@"Empty");
-//	}
-//	else {
-//
-//		if ([self.searchKey isEqualToString:@"gifCategory"]) {
-//			[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//				if ([self.gifCategory isEqualToString:@"Normal"]) {
-//					if ([[obj valueForKey:@"gifCategory"] isEqualToString:@"Normal"]) {
-//						[self.urlHolderArray addObject:[obj valueForKey:@"gifURL"]];
-//					}
-//				}
-//				if ([self.gifCategory isEqualToString:@"Awesome"]) {
-//					if ([[obj valueForKey:@"gifCategory"] isEqualToString:@"Awesome"]) {
-//						[self.urlHolderArray addObject:[obj valueForKey:@"gifURL"]];
-//					}
-//				}
-//			}];
-//			[self loadGify];
-//		}
-//		else {
-//			tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:@"gifURL"];
-//			self.urlHolderArray = [tempArray mutableCopy];
-//			[self loadGify];
-//		}
-//	}
-//}
-//
-//- (void)loadGify {
-//	[self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
-//	//	self.collectionFlowLayout.itemSize = CGSizeMake(self.collectionView.layer.frame.size.width / 2.015, self.collectionView.layer.frame.size.height / 2.015);
-
-//
-//	for (int i = 0; i < self.urlHolderArray.count; ++i) {
-//
-//		[self setupGifImageView];
-//	}
-//	[self.urlHolderArray enumerateObjectsUsingBlock:^(NSString *urlString, NSUInteger _idx, BOOL *_stop) {
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//
-//			self.numberOfGifs = self.urlHolderArray.count;
-//			// [self.collectionView reloadData]; //
-////			[self.collectionView.collectionViewLayout invalidateLayout];
-//
-//			if (_idx == self.urlHolderArray.count - 1) {
-//
-//				[self loadGifPage:0];
-//				[self loadGifPage:1];
-//				[self loadGifPage:2];
-//				[self loadGifPage:3];
-//			}
-//		});
-//	}];
-//}
-//
-//- (void)setupGifImageView {
-//	FLAnimatedImageView *imageView = [FLAnimatedImageView new];
-//	imageView.translatesAutoresizingMaskIntoConstraints = NO;
-//	imageView.contentMode = UIViewContentModeScaleToFill;
-//	imageView.clipsToBounds = YES;
-//	imageView.backgroundColor = [UIColor blackColor];
-//	[self.gifHolderArray addObject:imageView];
-//}
-//
-//- (void)loadGifPage:(NSUInteger)page {
-//	if (page < self.urlHolderArray.count) {
-//
-//		FLAnimatedImageView *imageView = self.gifHolderArray[page];
-//		UIActivityIndicatorView *activityIndicatorTemp = [[UIActivityIndicatorView new] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//		[imageView addSubview:activityIndicatorTemp];
-//		activityIndicatorTemp.center = imageView.center;
-//		[activityIndicatorTemp startAnimating];
-//
-//		[imageView downloadURLWithString:self.urlHolderArray[page] callback:^(FLAnimatedImage *image) {
-//			[activityIndicatorTemp stopAnimating];
-//			imageView.animatedImage = image;
-//		}];
-//	}
-//}
-//	- (void)loadGifPage:(NSUInteger)page
-//{
-//	if (page < self.urlHolderArray.count)
-//	{
-////		__block UIActivityIndicatorView *activityIndicatorTemp = [[UIActivityIndicatorView new] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//		FLAnimatedImageView *animatedImageView = self.gifHolderArray[page];
-////		CGPoint centerImageView = imageView.center;
-////		[animatedImageView addSubview:activityIndicatorTemp];
-////		activityIndicatorTemp.center = imageView.center;
-////		[activityIndicatorTemp startAnimating];
-//
-//		[animatedImageView downloadURLString:self.urlHolderArray[page] callback:^(FLAnimatedImageView *imageView)
-//		{
-////			[activityIndicatorTemp stopAnimating];
-//			animatedImageView.animatedImage = imageView.animatedImage;
-//		}];
-//	}
-//}
-
-
-#pragma mark ScrollView
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//	CGFloat pageWidth = scrollView.frame.size.width;
-//	float fractionalPage = scrollView.contentOffset.x / pageWidth;
-//	NSUInteger page = (NSUInteger) lround(fractionalPage);
-//	NSUInteger pageNumber = page * 4;
-//
-//	for (NSInteger i = 0; i < 8; ++i) {
-//
-//		[self loadGifPage:pageNumber + i];
-//	}
-//
-//}
-
-
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
@@ -383,12 +211,46 @@
 
 - (void)closeSubview:(NSNotification *)notification {
 	NSDictionary *userInfo = notification.userInfo;
+	NSLog(@"%@", self.gifCategory);
+	if (![userInfo[@"iconPressed"] isEqualToString:@"closed"]) {
+		[self loadMessage:userInfo[@"iconPressed"]]; //TODO fix with remove from superview
 
-	[self loadMessage:userInfo[@"iconPressed"]]; //TODO fix with remove from superview
-//	[self.collectionView.collectionViewLayout invalidateLayout];
+		self.textDocumentProxy.hasText ? NSLog(@"Has text") : [self.textDocumentProxy insertText:self.gifCategory];
 
-    [self.buttonView removeFromSuperview];
+	}
 
+
+	[self.buttonView removeFromSuperview];
+
+}
+
+
+#pragma mark rotation TODO
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	[self.keyboardCollectionView willRotateKeyboard:toInterfaceOrientation];
+	[self.keyboardCollectionView setAlpha:0.0f];
+
+}
+
+//
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	[UIView animateWithDuration:0.125f animations:^{
+		[self.keyboardCollectionView setAlpha:1.0f];
+	}];
+}
+
+- (void)tappedGIF {
+
+	if ([self.textDocumentProxy hasText]) {
+		NSLog(@"has text");
+
+	}
+	else {
+		[self.textDocumentProxy insertText:self.gifCategory];
+		[self loadMessage:@"URL Copied!"];
+
+	}
 }
 
 
