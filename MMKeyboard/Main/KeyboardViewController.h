@@ -10,7 +10,7 @@
 
 @interface KeyboardViewController : UIInputViewController
 
-@property(nonatomic, strong) NSString *gifCategory;
+@property(nonatomic, strong) NSString *gifURL;
 @property(nonatomic, strong) UIButton *normalButton;
 @property(nonatomic, strong) UIButton *awesomeButton;
 @property(nonatomic, strong) UIButton *allGifsButton;

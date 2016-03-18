@@ -9,4 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
 @interface ShareViewController : UIViewController
+
+@property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) NSString *gifURL;
+@property(nonatomic, assign) NSIndexPath *gifIndex;
+@property(nonatomic, assign) NSUInteger gifCount;
+
+
+-(void)setTitleAmount: (NSUInteger)amount;
+
 @end

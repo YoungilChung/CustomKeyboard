@@ -9,6 +9,7 @@
 #import "GIFEntity.h"
 #import "KeyboardButtonView.h"
 #import "MMKeyboardCollectionView.h"
+#import "UIImage+emoji.h"
 #import <MessageUI/MessageUI.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
@@ -184,6 +185,11 @@
 	self.messageText.translatesAutoresizingMaskIntoConstraints = NO;
 	[view addSubview:self.messageText];
 
+	UIImageView *emojiView = [UIImageView new];
+	emojiView.translatesAutoresizingMaskIntoConstraints = NO;
+	[view addSubview:emojiView];
+	[UIImage imageWithEmoji:@"😭" withSize:60.0f];
+
 	NSDictionary *views = @{@"message" : self.messageText, @"view" : view};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
@@ -211,11 +217,11 @@
 
 - (void)closeSubview:(NSNotification *)notification {
 	NSDictionary *userInfo = notification.userInfo;
-	NSLog(@"%@", self.gifCategory);
+	NSLog(@"%@", self.gifURL);
 	if (![userInfo[@"iconPressed"] isEqualToString:@"closed"]) {
 		[self loadMessage:userInfo[@"iconPressed"]]; //TODO fix with remove from superview
 
-		self.textDocumentProxy.hasText ? NSLog(@"Has text") : [self.textDocumentProxy insertText:self.gifCategory];
+		self.textDocumentProxy.hasText ? NSLog(@"Has text") : [self.textDocumentProxy insertText:self.gifURL];
 
 	}
 
@@ -247,7 +253,7 @@
 
 	}
 	else {
-		[self.textDocumentProxy insertText:self.gifCategory];
+		[self.textDocumentProxy insertText:self.gifURL];
 		[self loadMessage:@"URL Copied!"];
 
 	}

@@ -13,7 +13,7 @@
 #import "MMKeyboardCollectionViewFlowLayout.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, UITextDocumentProxy>
+@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
 // View
 @property(nonatomic, strong) KeyboardButtonView *buttonView;
@@ -38,25 +38,25 @@
 @implementation MMKeyboardCollectionView
 
 
-- (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController {
-	self = [super init];
+	- (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController {
+		self = [super init];
 
-	if (self) {
+		if (self) {
 
-		self.type = MMSearchTypeAll;
-		self.presentingViewController = presentingViewController;
-		self.lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
-		self.lpgr.minimumPressDuration = .5;
-		self.lpgr.allowableMovement = 100.0f;
-		self.lpgr.delaysTouchesBegan = YES;
-		self.lpgr.delegate = self;
-		self.lpgr.cancelsTouchesInView = NO;
+			self.type = MMSearchTypeAll;
+			self.presentingViewController = presentingViewController;
+			self.lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
+			self.lpgr.minimumPressDuration = .5;
+			self.lpgr.allowableMovement = 100.0f;
+			self.lpgr.delaysTouchesBegan = YES;
+			self.lpgr.delegate = self;
+			self.lpgr.cancelsTouchesInView = NO;
 
-		[self setup];
+			[self setup];
+		}
+
+		return self;
 	}
-
-	return self;
-}
 
 - (void)setup {
 
@@ -175,7 +175,7 @@
 	NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
 
 //	NSURL *url = [[NSURL alloc] initWithString:self.data[(NSUInteger) indexPath.row]];
-	self.presentingViewController.gifCategory = self.data[(NSUInteger) indexPath.row];
+	self.presentingViewController.gifURL = self.data[(NSUInteger) indexPath.row];
 	[self.presentingViewController tappedGIF];
 //	[self loadMessage:@"URL Copied!"];
 
@@ -207,7 +207,7 @@
 			else {
 
 				self.buttonView.gifUrl = self.data[(NSUInteger) indexPath.row];
-				self.presentingViewController.gifCategory = self.data[(NSUInteger) indexPath.row];
+				self.presentingViewController.gifURL = self.data[(NSUInteger) indexPath.row];
 			}
 		}
 
@@ -219,7 +219,7 @@
 
 - (NSFetchRequest *)entryListFetchRequest {
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GIFEntity"];
-	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifCategory" ascending:NO]]; // This will sort how the request is shown
+	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifURL" ascending:NO]]; // This will sort how the request is shown
 	return fetchRequest;
 }
 
