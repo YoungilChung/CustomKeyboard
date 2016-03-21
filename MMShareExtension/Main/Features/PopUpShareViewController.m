@@ -15,33 +15,31 @@
 
 @implementation PopUpShareViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
 	UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc]
-																		   initWithTarget:self action:@selector(userSwiped:)];
+			initWithTarget:self action:@selector(userSwiped:)];
 
 	swipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
 
 	[self.view addGestureRecognizer:swipeRecognizer];
+
+	self.view.backgroundColor = [UIColor blackColor];
 	// Do any additional setup after loading the view.
 }
 
-- (NSArray<id<UIPreviewActionItem>> *)previewActionItems
-{
-	UIPreviewAction *shareGif = [UIPreviewAction actionWithTitle:@"Copy GIF" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController)
-	{
+
+- (NSArray<id <UIPreviewActionItem>> *)previewActionItems {
+	UIPreviewAction *shareGif = [UIPreviewAction actionWithTitle:@"Copy GIF" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController) {
 		NSData *data = [NSData dataWithContentsOfURL:self.url];
-		[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *)kUTTypeGIF];
+		[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
 	}];
 
-	UIPreviewAction *shareUrl = [UIPreviewAction actionWithTitle:@"Copy URL" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController)
-	{
+	UIPreviewAction *shareUrl = [UIPreviewAction actionWithTitle:@"Copy URL" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController) {
 		[[UIPasteboard generalPasteboard] setURL:self.url];
 	}];
 
-	UIPreviewAction *deleteGif = [UIPreviewAction actionWithTitle:@"Delete Gif" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController)
-	{
+	UIPreviewAction *deleteGif = [UIPreviewAction actionWithTitle:@"Delete Gif" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction *_Nonnull action, UIViewController *_Nonnull previewViewController) {
 
 	}];
 
@@ -49,18 +47,15 @@
 }
 
 //Action method
-- (void)userSwiped:(UIGestureRecognizer *)sender
-{
+- (void)userSwiped:(UIGestureRecognizer *)sender {
 	NSLog(@"did come here");
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
-
 
 
 @end

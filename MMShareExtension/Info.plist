@@ -43,11 +43,3 @@
 	</dict>
 </dict>
 </plist>
-
-
-<!--<dict>-->
-<!--<key>NSExtensionActivationSupportsImageWithMaxCount</key>-->
-<!--<integer>1</integer>-->
-<!--<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>-->
-<!--<integer>1</integer>-->
-<!--</dict>-->

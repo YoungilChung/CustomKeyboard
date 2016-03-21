@@ -9,7 +9,6 @@
 
 @interface MMKeyboardCollectionViewCell()
 
-@property (nonatomic, strong) FLAnimatedImageView *imageView;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 
@@ -65,7 +64,6 @@
 	dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue",NULL);
 	dispatch_async(imageQueue, ^{
 		NSURL *url = [NSURL URLWithString:urlString];
-		NSData *imageData = [NSData dataWithContentsOfURL:url];
 		FLAnimatedImage *imageObject = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:url]];
 
 		dispatch_async(dispatch_get_main_queue(), ^{

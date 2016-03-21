@@ -8,25 +8,23 @@
 
 @class ShareViewController;
 
-typedef NS_ENUM(NSInteger, MMSearchType) {
-	MMSearchTypeAll = 0,
-	MMSearchTypeNormal,
-	MMSearchTypeAwesome,
-
-};
-
 @interface ShareCollectionView : UIView
+
+// Views
 @property(nonatomic, strong) UICollectionView *collectionView;
-
-@property(nonatomic, strong) NSMutableArray *data;
-
 @property(nonatomic, strong) UIView *emptyCellView;
+
+// Variables
+@property(nonatomic, strong) NSMutableArray *data;
+@property(nonatomic, strong) NSString *gifURL;
+@property(nonatomic, strong) NSIndexPath *currentIndexPath;
+
+// Public Methods
+- (void)normalButtonPressed;
+- (void)awesomeButtonPressed;
+- (void)loadGifs;
+
 
 - (instancetype)initWithPresentingViewController:(ShareViewController *)shareViewController;
 
-- (void)normalButtonPressed;
-
-- (void)awesomeButtonPressed;
-
-- (void)loadGifs;
 @end

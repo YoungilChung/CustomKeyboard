@@ -86,11 +86,11 @@
 
 	NSDictionary *metrics = @{};
 	NSDictionary *views = @{
-			@"collectionView" : self.collectionView,
+			@"shareCollectionView" : self.collectionView,
 	};
 
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collectionView]-0-|" options:metrics metrics:metrics views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collectionView]-0-|" options:metrics metrics:metrics views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[shareCollectionView]-0-|" options:metrics metrics:metrics views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareCollectionView]-0-|" options:metrics metrics:metrics views:views]];
 
 	[self loadGifs];
 }

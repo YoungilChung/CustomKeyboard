@@ -51,8 +51,8 @@
 		C3C365F3BC0BB872247A9920 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
 		C3C3663C6AEB890DAE25F03B /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C3666AAC46758CDF737E69 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */; };
+		C3C366D726FA18E5BB0EF5D9 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3620C4EC1D628BBFF2DA4 /* MMViewController.m */; };
 		C3C366F2C83B7FE82E67D745 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
-		C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E5114B7906DA44ED8B2 /* MMViewController.m */; };
 		C3C3676B0AA3AEEDEFC5E61A /* unnamed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C369902F1F7CB1FA29388B /* unnamed@2x.png */; };
 		C3C367CCF138DC06B96573D9 /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
 		C3C367DD3BA7B34A5E9D2B94 /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
@@ -170,17 +170,18 @@
 		C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCollectionFlowLayout.m; sourceTree = "<group>"; };
 		C3C3610BC33B4C63B99CDDCD /* KeyboardButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardButtonView.h; sourceTree = "<group>"; };
 		C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardButton.m; sourceTree = "<group>"; };
+		C3C3620C4EC1D628BBFF2DA4 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
 		C3C36228AFAF3F4C11B76A67 /* MMKeyboardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardCollectionViewCell.h; sourceTree = "<group>"; };
 		C3C3624D84E20AA052A2C66A /* PopUpShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpShareViewController.h; sourceTree = "<group>"; };
 		C3C3625E75DF10647834B18B /* newHipchat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newHipchat.png; sourceTree = "<group>"; };
 		C3C362E555CFF12F2C16D52F /* PopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpViewController.m; sourceTree = "<group>"; };
 		C3C363B0535749BBF96ED0DF /* MMKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardButton.h; sourceTree = "<group>"; };
 		C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		C3C36462D240778F238C340C /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
 		C3C364D6B6E48FBD6568923A /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-delete.pdf"; sourceTree = "<group>"; };
 		C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whatsapp_logo@2x.png"; sourceTree = "<group>"; };
 		C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backspaceIcon.png; sourceTree = "<group>"; };
-		C3C36668573729E1CDDF4508 /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
 		C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPreviewViewController.m; sourceTree = "<group>"; };
 		C3C3674A31F01DFFF2EDB81B /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		C3C367FF71FFB6D902C2E64F /* MMKeyboardCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardCollectionViewFlowLayout.m; sourceTree = "<group>"; };
@@ -207,7 +208,6 @@
 		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newWhatsAppIcon.png; sourceTree = "<group>"; };
 		C3C36D93F3EB1FEF84D78A33 /* MMKeyboardCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardCollectionViewFlowLayout.h; sourceTree = "<group>"; };
-		C3C36E5114B7906DA44ED8B2 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
 		C3C36E95AF253D52DD7666EF /* icon-close.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-close.pdf"; sourceTree = "<group>"; };
 		C3C36E9D8AE0FC78818E144D /* ShareCollectionFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCollectionFlowLayout.h; sourceTree = "<group>"; };
 		C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCollectionViewCell.m; sourceTree = "<group>"; };
@@ -376,6 +376,8 @@
 				C3C36B1FC9C68325B43D754F /* Collection View */,
 				C3C36A7768BE187CED64FB56 /* AppDelegate.m */,
 				C3C368B18319EBA9B4A486F7 /* AppDelegate.h */,
+				C3C3620C4EC1D628BBFF2DA4 /* MMViewController.m */,
+				C3C36462D240778F238C340C /* MMViewController.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -445,8 +447,6 @@
 			children = (
 				C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */,
 				C3C369009B466503ECE28922 /* MMCollectionViewFlowLayout.h */,
-				C3C36668573729E1CDDF4508 /* MMViewController.h */,
-				C3C36E5114B7906DA44ED8B2 /* MMViewController.m */,
 				C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */,
 				C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */,
 			);
@@ -951,7 +951,6 @@
 				C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */,
 				C3C36DB0F68BB43F179A01F7 /* MMCollectionViewFlowLayout.m in Sources */,
 				9A7FC1C21C98005B00E7CEB1 /* GIFEntity.m in Sources */,
-				C3C3675A4057B7195E8DB403 /* MMViewController.m in Sources */,
 				C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */,
 				C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */,
 				9A7FC1BC1C97FFE000E7CEB1 /* Model.xcdatamodeld in Sources */,
@@ -964,6 +963,7 @@
 				C3C3610A89A7BE7DC84F8EFB /* ShareCollectionFlowLayout.m in Sources */,
 				C3C363496E6DAB9AACE63C21 /* ShareCollectionViewCell.m in Sources */,
 				C3C36E7D2BB108215E1AF774 /* ShareCollectionView.m in Sources */,
+				C3C366D726FA18E5BB0EF5D9 /* MMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1170,6 +1170,7 @@
 					TARGET_IS_EXTENSION,
 				);
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1191,6 +1192,7 @@
 					TARGET_IS_EXTENSION,
 				);
 				INFOPLIST_FILE = MMCustomKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1259,6 +1261,7 @@
 					TARGET,
 				);
 				INFOPLIST_FILE = MMKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1280,6 +1283,7 @@
 					TARGET,
 				);
 				INFOPLIST_FILE = MMKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1301,6 +1305,7 @@
 					TARGET,
 				);
 				INFOPLIST_FILE = MMShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1322,6 +1327,7 @@
 					TARGET,
 				);
 				INFOPLIST_FILE = MMShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TomMonk.MMCustomKeyboard.MMShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,11 +11,9 @@
 @interface ShareViewController : UIViewController
 
 @property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) NSString *gifURL;
-@property(nonatomic, assign) NSIndexPath *gifIndex;
-@property(nonatomic, assign) NSUInteger gifCount;
 
-
--(void)setTitleAmount: (NSUInteger)amount;
-
+@property(nonatomic, strong) NSArray *holderConstraints;
+@property(nonatomic, strong) UIView *holder;
+@property(nonatomic, strong) UIButton *normalButton;
+@property(nonatomic, strong) UIButton *awesomeButton;
 @end

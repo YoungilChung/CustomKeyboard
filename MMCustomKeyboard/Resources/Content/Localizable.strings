@@ -21,3 +21,8 @@
 "CoreData.Entity.Key" = "GIFEntity";
 "CoreData.Category.Key" = "gifCategory";
 "CoreData.URL.Key" = "gifURL";
+
+
+/*********** PopupViewController ***********/
+
+

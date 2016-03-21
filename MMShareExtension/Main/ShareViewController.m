@@ -7,10 +7,7 @@
 //
 
 #import "ShareViewController.h"
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "FLAnimatedImage.h"
-#import "FLAnimatedImageView.h"
-#import <QuartzCore/QuartzCore.h>
 #import <CoreData/CoreData.h>
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
@@ -21,17 +18,9 @@
 
 
 // Views
-@property(nonatomic, strong) UICollectionViewFlowLayout *collectionFlowLayout;
 @property(nonatomic, strong) PopUpShareViewController *popUpShareViewController;
 @property(nonatomic, strong) FLAnimatedImageView *animatedImageView;
-
-@property(nonatomic, strong) ShareCollectionView *collectionView;
-
-
-// Variables
-@property(nonatomic, strong) NSMutableArray *urlHolderArray;
-@property(nonatomic, strong) NSMutableArray *imageObjects;
-@property(nonatomic, strong) GIFEntity *gifEntity;
+@property(nonatomic, strong) ShareCollectionView *shareCollectionView;
 
 
 @end
@@ -45,11 +34,11 @@
 	[self registerForPreviewingWithDelegate:(id) self sourceView:self.view]; // TODO
 
 
-	UIView *holder = [UIView new];
-	holder.translatesAutoresizingMaskIntoConstraints = NO;
-	holder.backgroundColor = [UIColor blackColor];
-	holder.layer.cornerRadius = 10;
-	[self.view addSubview:holder];
+	self.holder = [UIView new];
+	self.holder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.holder.backgroundColor = [UIColor blackColor];
+	self.holder.layer.cornerRadius = 10;
+	[self.view addSubview:self.holder];
 
 	UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -58,7 +47,7 @@
 	[cancelButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
 	[cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
 	[cancelButton addTarget:self action:@selector(onCancelTapped:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:cancelButton];
+	[self.holder addSubview:cancelButton];
 
 	self.titleLabel = [UILabel new];
 	self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -66,75 +55,69 @@
 	[self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 	[self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
-	[holder addSubview:self.titleLabel];
+	[self.holder addSubview:self.titleLabel];
 
-	//Collection View
-	self.collectionView = [[ShareCollectionView alloc] initWithPresentingViewController:self];
-	self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-	[holder addSubview:self.collectionView];
-
-
-	UIButton *normalButton = [UIButton buttonWithType:UIButtonTypeSystem];
-	normalButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[normalButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-	[normalButton setTitle:@"Normal" forState:UIControlStateNormal];
-	[normalButton addTarget:self action:@selector(normalButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:normalButton];
-
-	UIButton *awesomeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-	awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[awesomeButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-	[awesomeButton setTitle:@"Awesome!" forState:UIControlStateNormal];
-	[awesomeButton addTarget:self action:@selector(onAwesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:awesomeButton];
+	self.shareCollectionView = [[ShareCollectionView alloc] initWithPresentingViewController:self];
+	self.shareCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.holder addSubview:self.shareCollectionView];
 
 
-	NSDictionary *views = @{@"holder" : holder, @"cancelBtn" : cancelButton, @"title" : self.titleLabel, @"collection" : self.collectionView,
-			@"shareBtn1" : normalButton, @"shareBtn2" : awesomeButton};
+	self.normalButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.normalButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.normalButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+	[self.normalButton setTitle:@"Normal" forState:UIControlStateNormal];
+	[self.normalButton addTarget:self action:@selector(normalButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.holder addSubview:self.normalButton];
+
+	self.awesomeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.awesomeButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+	[self.awesomeButton setTitle:@"Awesome!" forState:UIControlStateNormal];
+	[self.awesomeButton addTarget:self action:@selector(onAwesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.holder addSubview:self.awesomeButton];
+
+
+	NSDictionary *views = @{@"holder" : self.holder, @"cancelBtn" : cancelButton, @"title" : self.titleLabel, @"collection" : self.shareCollectionView,
+			@"shareBtn1" : self.normalButton, @"shareBtn2" : self.awesomeButton};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-36-[holder]-36-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:holder attribute:NSLayoutAttributeCenterY
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.holder attribute:NSLayoutAttributeCenterY
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:self.view attribute:NSLayoutAttributeCenterY
 														 multiplier:1.0 constant:0]];
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:holder attribute:NSLayoutAttributeHeight
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.holder attribute:NSLayoutAttributeCenterX
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeCenterX
+														 multiplier:1.0 constant:0]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.holder attribute:NSLayoutAttributeHeight
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+														 multiplier:1.0 constant:300]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.holder attribute:NSLayoutAttributeWidth
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:nil attribute:NSLayoutAttributeNotAnAttribute
 														 multiplier:1.0 constant:300]];
 
 
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[cancelBtn]-5-[collection]-5-[shareBtn1]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[title]-5-[collection]-5-[shareBtn1]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[cancelBtn]-5-[collection]-5-[shareBtn2]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[title]-5-[collection]-5-[shareBtn2]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[cancelBtn]-(>=0)-[title]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX
-													   relatedBy:NSLayoutRelationEqual
-														  toItem:holder attribute:NSLayoutAttributeCenterX
-													  multiplier:1.0 constant:0]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[shareBtn1(==shareBtn2)]-0-[shareBtn2(==shareBtn1)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[collection]-10-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[cancelBtn]-5-[collection]-5-[shareBtn1]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[title]-5-[collection]-5-[shareBtn1]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[cancelBtn]-5-[collection]-5-[shareBtn2]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[title]-5-[collection]-5-[shareBtn2]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[cancelBtn]-(>=0)-[title]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX
+															relatedBy:NSLayoutRelationEqual
+															   toItem:self.holder attribute:NSLayoutAttributeCenterX
+														   multiplier:1.0 constant:0]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[shareBtn1(==shareBtn2)]-0-[shareBtn2(==shareBtn1)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[collection]-10-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 }
-//
-//- (void)viewWillAppear:(BOOL)animated {
-//	[super viewWillAppear:animated];
-//
-//	self.view.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height);
-//
-//	[UIView animateWithDuration:0.25 animations:^{
-//		self.view.transform = CGAffineTransformIdentity;
-//	}];
-//
-////	[self gifLoader];
-//}
-//
-//- (void)updateViewConstraints {
-//	[super updateViewConstraints];
-//}
+
 
 #pragma mark - Actions
 
@@ -142,46 +125,16 @@
 	[self.extensionContext cancelRequestWithError:[NSError new]];
 }
 
-//}
-//
+
 - (void)normalButtonTapped:(UIButton *)sender {
-	[self.collectionView normalButtonPressed];
 	[self animateViewWithType:@"Normal"];
 }
 
 - (void)onAwesomeButtonTapped:(UIButton *)sender {
-	[self.collectionView awesomeButtonPressed];
 	[self animateViewWithType:@"Awesome"];
 
 
 }
-//
-//- (void)onPostTapped:(UIButton *)sender {
-//
-//	CATransition *animation = [CATransition animation];
-//	[animation setDuration:1];
-//	[animation setType:kCATransitionPush];
-//	[animation setSubtype:kCATransitionFromBottom];
-//	[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-//	animation.delegate = self;
-//	[[self.collectionView layer] addAnimation:animation forKey:@"SlideOutandInImagek"];
-//}
-
-//- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
-//	//    [self.extensionContext completeRequestReturningItems:nil completionHandler:nil];
-//	NSMutableArray *tempUrlArray = [NSMutableArray array];
-//	NSMutableArray *tempImageArray = [NSMutableArray array];
-//	[theAnimation isRemovedOnCompletion];
-//	//	[tempUrlArray removeObjectAtIndex:0];
-//	////    [self.imageObjects removeObjectAtIndex:self.currentImageIndex];
-//	//    [tempImageArray removeObjectAtIndex:0];
-//	////    [self.animatedImageView removeFromSuperview];
-//	//	self.urlHolderArray = tempUrlArray;
-//	//	self.imageObjects = tempImageArray;
-//	//	[self.collectionView reloadData];
-//
-//}
-
 
 #pragma mark Animation
 
@@ -194,16 +147,15 @@
 
 	self.animatedImageView = [FLAnimatedImageView new];
 	self.animatedImageView.translatesAutoresizingMaskIntoConstraints = NO;
-//	tempImage1.image = [UIImage imageNamed:@"greenTick.png"];
+	[self setData:self.shareCollectionView.gifURL];
+
 	UILabel *label = [UILabel new];
+
 	[label setText:type];
 	[label setTextColor:[UIColor whiteColor]];
 	[label setFont:[UIFont systemFontOfSize:36]];
 	label.translatesAutoresizingMaskIntoConstraints = NO;
 
-	[self.animatedImageView downloadURLWithString:self.gifURL callback:^(FLAnimatedImage *image) {
-		self.animatedImageView.animatedImage = image;
-	}];
 	[self.view addSubview:holderTemp];
 	[holderTemp addSubview:self.animatedImageView];
 	[holderTemp addSubview:label];
@@ -244,20 +196,18 @@
 		holderTemp.alpha = 0.0;
 		[holderTemp layoutIfNeeded];
 
+		[self.shareCollectionView.data removeObjectAtIndex:(NSUInteger) self.shareCollectionView.currentIndexPath.row];
+
 	}                completion:^(BOOL finished) {
 
 		CoreDataStack *coreData = [CoreDataStack defaultStack];
 		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
-		gifEntity.self.gifURL = self.gifURL;
+		gifEntity.self.gifURL = self.shareCollectionView.gifURL;
 		gifEntity.self.gifCategory = type;
 		[coreData saveContext];
 
-		[self.collectionView.data removeObjectAtIndex:(NSUInteger) self.gifIndex.row];
-
-//		self.titleLabel.text = [NSString stringWithFormat:@"%lu of %ld Gifs", self.currentImageIndex + 1, (long) self.urlHolderArray.count - 1];
-
 	}];
-	[self.collectionView.collectionView reloadData];
+	[self.shareCollectionView.collectionView reloadData];
 
 
 }
@@ -266,8 +216,7 @@
 #pragma mark Preview Context
 
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-
-	[self presentViewController:viewControllerToCommit animated:true completion:nil];
+// Method needed so that the user doesn't pop to another viewcontroller.
 
 }
 
@@ -277,25 +226,17 @@
 
 	self.animatedImageView = [FLAnimatedImageView new];
 	self.animatedImageView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self setData:self.gifURL];
-	//	animatedImageView = self.imageObjects[self.currentImageIndex];
+	[self setData:self.shareCollectionView.gifURL];
 
-
-	UIButton *closeButton = [UIButton new];
-	[closeButton setTitle:@"Close" forState:UIControlStateNormal];
-	closeButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[closeButton addTarget:self action:@selector(onCloseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	//	[self.popUpShareViewController.view addSubview:closeButton];
-
-	NSURL *url = [[NSURL alloc] initWithString:self.gifURL];
+	NSURL *url = [[NSURL alloc] initWithString:self.shareCollectionView.gifURL];
 	self.popUpShareViewController.url = url;
 	self.popUpShareViewController.view.backgroundColor = [UIColor blackColor];
 	[self.popUpShareViewController.view addSubview:self.animatedImageView];
 
-	NSDictionary *views = @{@"holder" : self.animatedImageView, @"closeButton" : closeButton};
+	NSDictionary *views = @{@"imageView" : self.animatedImageView};
 	NSDictionary *metrics = @{@"padding" : @(10)};
-	[self.popUpShareViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	self.popUpShareViewController.view.backgroundColor = [UIColor clearColor];
+	[self.popUpShareViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.popUpShareViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:self.animatedImageView attribute:NSLayoutAttributeCenterY
 																				   relatedBy:NSLayoutRelationEqual
 																					  toItem:self.popUpShareViewController.view attribute:NSLayoutAttributeCenterY
@@ -307,11 +248,6 @@
 
 	previewingContext.sourceRect = self.animatedImageView.frame;
 	return self.popUpShareViewController;
-}
-
-- (void)onCloseButtonPressed:(UIButton *)sender {
-	[self.popUpShareViewController dismissViewControllerAnimated:self.accessibilityElementsHidden completion:^{
-	}];
 }
 
 
@@ -333,24 +269,5 @@
 	});
 }
 
-#pragma mark Rotation
-//
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//	[self.collectionView setAlpha:0.0f];
-//	[self.collectionView.collectionViewLayout invalidateLayout];
-//	CGPoint currentOffset = [self.collectionView contentOffset];
-//	self.currentIndex = (NSInteger) (currentOffset.x / self.collectionView.frame.size.width);
-//}
-//
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//	return self.collectionView.frame.size;
-//}
-//
-//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-//	[self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//	[UIView animateWithDuration:0.125f animations:^{
-//		[self.collectionView setAlpha:1.0f];
-//	}];
-//}
+
 @end

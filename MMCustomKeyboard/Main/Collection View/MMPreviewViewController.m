@@ -61,7 +61,6 @@
 	[self.view addSubview:deleteButton];
 
 
-
 	UIView *holderView = [UIView new];
 	holderView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:holderView];
@@ -107,7 +106,7 @@
 	[holderView addSubview:awesomeButton];
 
 
-	NSDictionary *views = @{@"holder" : holderView, @"imageView" : animatedImageView, @"normalBtn" : normalButton, @"awesomeBtn" : awesomeButton, @"deleteBtn" : deleteButton, @"close" : closeButton, @"title": titleLabel};
+	NSDictionary *views = @{@"holder" : holderView, @"imageView" : animatedImageView, @"normalBtn" : normalButton, @"awesomeBtn" : awesomeButton, @"deleteBtn" : deleteButton, @"close" : closeButton, @"title" : titleLabel};
 	NSDictionary *metrics = @{@"padding" : @(15), @"paddingTop" : @30.0f, @"imageWidth" : @(normalButton.intrinsicContentSize.width)};
 
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-paddingTop-[close]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
@@ -130,6 +129,16 @@
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[title]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(==250)]-10-[title]-15-[normalBtn(==awesomeBtn)]-5-[awesomeBtn(==normalBtn)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
+	if ([self.gifEntity.gifCategory isEqualToString:@"Normal"]) {
+		normalButton.backgroundColor = [UIColor blueColor];
+		[normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	}
+	else {
+
+		awesomeButton.backgroundColor = [UIColor blueColor];
+		[awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	}
+
 }
 
 
@@ -139,12 +148,10 @@
 
 
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You sure you wanna delete this pretty gif?" preferredStyle:UIAlertControllerStyleAlert];
-	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
-	{
+	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 
 	}]];
-	[alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-	{
+	[alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		if (self.gifEntity) {
 			//TODO are you sure you want to delete
 			CoreDataStack *coreData = [CoreDataStack defaultStack];
@@ -192,13 +199,21 @@
 
 - (void)addGifToNewCategory:(NSString *)category {
 
-	CoreDataStack *coreData = [CoreDataStack defaultStack];
-	GIFEntity *gifEntity = (GIFEntity *) [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
-//		gifEntity.self.gifURL = self.holderArray[(NSUInteger) self.currentImageIndex];
-	gifEntity.self.gifURL = self.gifEntity.gifURL;
-	gifEntity.self.gifCategory = category;
-	[[coreData managedObjectContext] deleteObject:self.gifEntity];
-	[coreData saveContext];
+	if ([self.gifEntity.gifCategory isEqualToString:category])
+	{
+
+	}
+	else
+	{
+
+		CoreDataStack *coreData = [CoreDataStack defaultStack];
+		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
+		gifEntity.self.gifURL = self.gifEntity.gifURL;
+		gifEntity.self.gifCategory = category;
+		[[coreData managedObjectContext] deleteObject:self.gifEntity];
+		[coreData saveContext];
+
+	}
 
 }
 @end

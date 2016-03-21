@@ -6,8 +6,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class FLAnimatedImageView;
+
 @interface MMKeyboardCollectionViewCell : UICollectionViewCell
 
 + (NSString *)reuseIdentifier;
+@property (nonatomic, strong) FLAnimatedImageView *imageView;
+
 -(void) setData:(NSString*)urlString;
 @end
