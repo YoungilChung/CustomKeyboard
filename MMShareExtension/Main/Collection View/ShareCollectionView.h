@@ -23,6 +23,7 @@
 - (void)normalButtonPressed;
 - (void)awesomeButtonPressed;
 - (void)loadGifs;
+- (void)currentIndexPathMethod;
 
 
 - (instancetype)initWithPresentingViewController:(ShareViewController *)shareViewController;

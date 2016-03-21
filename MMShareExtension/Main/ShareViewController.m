@@ -13,6 +13,7 @@
 #import "GIFEntity.h"
 #import "PopUpShareViewController.h"
 #import "ShareCollectionView.h"
+#import "MMKeyboardCollectionViewCell.h"
 
 @interface ShareViewController () <UIViewControllerPreviewingDelegate>
 
@@ -143,25 +144,27 @@
 
 	UIView *holderTemp = [UIView new];
 	holderTemp.translatesAutoresizingMaskIntoConstraints = NO;
+	holderTemp.layer.cornerRadius = 10;
 	holderTemp.backgroundColor = [UIColor blackColor];
 
 	self.animatedImageView = [FLAnimatedImageView new];
 	self.animatedImageView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self setData:self.shareCollectionView.gifURL];
+	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.shareCollectionView.collectionView cellForItemAtIndexPath:self.shareCollectionView.currentIndexPath];
+	[self.animatedImageView setContentMode:UIViewContentModeScaleToFill];
+	[self.animatedImageView setAnimatedImage:cell.imageView.animatedImage];
 
 	UILabel *label = [UILabel new];
 
 	[label setText:type];
 	[label setTextColor:[UIColor whiteColor]];
-	[label setFont:[UIFont systemFontOfSize:36]];
 	label.translatesAutoresizingMaskIntoConstraints = NO;
 
 	[self.view addSubview:holderTemp];
 	[holderTemp addSubview:self.animatedImageView];
 	[holderTemp addSubview:label];
 
-	NSDictionary *views = @{@"tempImage" : self.animatedImageView, @"holder" : holderTemp, @"label" : label};
-	NSDictionary *metrics = @{@"padding" : @(10)};
+	NSDictionary *views = @{@"animatedImageView" : self.animatedImageView, @"holder" : holderTemp, @"label" : label};
+	NSDictionary *metrics = @{@"padding" : @(10) ,@"imageHeight": @(self.shareCollectionView.collectionView.frame.size.height)};
 
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-36-[holder]-36-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
@@ -175,12 +178,12 @@
 															 toItem:nil attribute:NSLayoutAttributeNotAnAttribute
 														 multiplier:1.0 constant:300]];
 
-	[holderTemp addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[tempImage]-20-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holderTemp addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[animatedImageView]-10-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[holderTemp addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterX
 														   relatedBy:NSLayoutRelationEqual
 															  toItem:holderTemp attribute:NSLayoutAttributeCenterX
 														  multiplier:1.0 constant:0]];
-	[holderTemp addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tempImage]-20-[label]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holderTemp addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=10)-[animatedImageView(imageHeight)]-5-[label]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 	[holderTemp layoutIfNeeded];
 
@@ -207,7 +210,9 @@
 		[coreData saveContext];
 
 	}];
+
 	[self.shareCollectionView.collectionView reloadData];
+	[self.shareCollectionView currentIndexPathMethod];
 
 
 }
