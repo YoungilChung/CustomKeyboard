@@ -58,7 +58,7 @@
 //	CGFloat offsetAdjustment = MAXFLOAT;
 //	CGFloat horizontalOffset = proposedContentOffset.x + 5;
 //
-//	CGRect targetRect = CGRectMake(proposedContentOffset.x, 0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+//	CGRect targetRect = CGRectMake(proposedContentOffset.x, 0, self.keyboardCollectionView.bounds.size.width, self.keyboardCollectionView.bounds.size.height);
 //
 //	NSArray *array = [super layoutAttributesForElementsInRect:targetRect];
 //

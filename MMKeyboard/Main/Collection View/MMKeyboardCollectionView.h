@@ -16,7 +16,11 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 };
 
 @interface MMKeyboardCollectionView : UIView
-@property(nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, strong) NSString *gifURL;
+
+
+@property(nonatomic, strong) UICollectionView *keyboardCollectionView;
 
 - (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController;
 
@@ -27,6 +31,8 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 - (void)onAwesomeButtonTapped:(UIButton *)sender;
 
 - (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation;
+
+- (void)loadGifs;
 
 
 @end

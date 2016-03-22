@@ -57,11 +57,11 @@
 
 }
 
-- (void)setData:(NSString *)urlString
-{
+
+- (void)setData:(NSString *)urlString {
 	self.imageView.alpha = 0.f;
 
-	dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue",NULL);
+	dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue", NULL);
 	dispatch_async(imageQueue, ^{
 		NSURL *url = [NSURL URLWithString:urlString];
 		FLAnimatedImage *imageObject = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:url]];
@@ -74,7 +74,6 @@
 
 	});
 }
-
 
 + (NSString *)reuseIdentifier {
 	return @"Cell";

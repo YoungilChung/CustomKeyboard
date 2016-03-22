@@ -18,7 +18,6 @@
 
 // Views
 @property(strong, nonatomic) UICollectionView *collectionView;
-//@property(nonatomic, strong) MMCollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property(strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
@@ -26,8 +25,9 @@
 @property(strong, nonatomic) FLAnimatedImage *image;
 @property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property(nonatomic, strong) NSMutableArray *data;
-@property(nonatomic, strong) NSMutableArray *entityArray;
 @property(nonatomic, assign) MMSearchType type;
+@property(nonatomic, strong) NSMutableDictionary *gifHolder;
+
 
 @end
 
@@ -54,6 +54,8 @@
 
 	[self.fetchedResultsController performFetch:nil];
 	self.type = MMSearchTypeAll;
+
+	self.gifHolder = @{}.mutableCopy;
 
 	self.flowLayout = [UICollectionViewFlowLayout new];
 	self.flowLayout.minimumInteritemSpacing = 0;
@@ -137,7 +139,6 @@
 			switch (self.type) {
 
 				case MMSearchTypeAll: {
-//					[self.data addObject:entity.gifURL];
 					[self.data addObject:entity];
 					NSLog(@"%@", entity);
 					break;
@@ -145,14 +146,12 @@
 				case MMSearchTypeNormal: {
 
 					if ([entity.gifCategory isEqualToString:@"Normal"]) {
-//						[self.data addObject:entity.gifURL];
 						[self.data addObject:entity];
 					}
 					break;
 				}
 				case MMSearchTypeAwesome: {
 					if ([entity.gifCategory isEqualToString:@"Awesome"]) {
-//						[self.data addObject:entity.gifURL];
 						[self.data addObject:entity];
 					}
 					break;
@@ -178,16 +177,57 @@
 	return CGSizeMake((CGFloat) (self.view.frame.size.width / 3 - 4), (CGFloat) (self.view.frame.size.width / 3 - 4));
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//- (UICollectionViewCell *)keyboardCollectionView:(UICollectionView *)keyboardCollectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//
+//	MMKeyboardCollectionViewCell *cell = [keyboardCollectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//	[cell setBackgroundColor:[UIColor clearColor]];
+//
+//	[cell setData:[self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row]];
+//
+//	return cell;
+//
+//}
+
+- (MMKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
 	MMKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+
 	[cell setBackgroundColor:[UIColor clearColor]];
 
-	[cell setData:[self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row]];
+	NSUInteger item = (NSUInteger) indexPath.item;
+	FLAnimatedImage *image = self.gifHolder[self.data[item]];
+	cell.imageView.alpha = 0.f;
+
+	if (image) {
+
+		[cell.imageView setAnimatedImage:image];
+		cell.imageView.alpha = 1.f;
+		return cell;
+	}
+	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage) {
+		[self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
+		cell.imageView.alpha = 1.f;
+
+		[cell.imageView setAnimatedImage:tempImage];
+	}];
+
 
 	return cell;
-
 }
+
+- (void)loadGifItem:(NSUInteger)item callback:(void (^)(FLAnimatedImage *image))callback {
+	if (item < self.data.count) {
+		NSURL *url = [[NSURL alloc] initWithString:[self.data valueForKey:@"gifURL"][item]];
+		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+
+		[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+			FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
+			callback(image);
+		}];
+	}
+}
+
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 

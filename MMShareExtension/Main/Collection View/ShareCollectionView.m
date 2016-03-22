@@ -12,6 +12,7 @@
 #import "MMKeyboardCollectionViewCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIImage+emoji.h"
+#import "FLAnimatedImage.h"
 
 
 @interface ShareCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -21,6 +22,7 @@
 @property(nonatomic, strong) ShareViewController *presentingViewController;
 @property(nonatomic, assign) NSUInteger page;
 
+@property(nonatomic, strong) NSMutableDictionary *gifHolder;
 
 @end
 
@@ -44,7 +46,7 @@
 - (void)setup {
 
 	[self setTranslatesAutoresizingMaskIntoConstraints:NO];
-
+	self.gifHolder = [@{} mutableCopy];
 	self.page = 1;
 
 	self.collectionFlowLayout = [ShareCollectionFlowLayout new];
@@ -101,7 +103,6 @@
 }
 
 
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
 	return CGSizeMake((CGFloat) (collectionView.frame.size.width), (CGFloat) (collectionView.frame.size.height));
@@ -118,6 +119,44 @@
 	return cell;
 }
 
+//- (MMKeyboardCollectionViewCell *)keyboardCollectionView:(UICollectionView *)keyboardCollectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//
+//	MMKeyboardCollectionViewCell *cell = [keyboardCollectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//
+//	[cell setBackgroundColor:[UIColor clearColor]];
+//
+//	NSUInteger item = (NSUInteger) indexPath.item;
+//	FLAnimatedImage *image = self.gifHolder[self.data[item]];
+//	cell.imageView.alpha = 0.f;
+//
+//	if (image) {
+//
+//		[cell.imageView setAnimatedImage:image];
+//		cell.imageView.alpha = 1.f;
+//		return cell;
+//	}
+//	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage) {
+//		[self.gifHolder setValue:tempImage forKey:self.data[item]];
+//		cell.imageView.alpha = 1.f;
+//
+//		[cell.imageView setAnimatedImage:tempImage];
+//	}];
+//
+//
+//	return cell;
+//}
+//
+//- (void)loadGifItem:(NSUInteger)item callback:(void (^)(FLAnimatedImage *image))callback {
+//	if (item < self.data.count) {
+//		NSURL *url = [[NSURL alloc] initWithString:self.data[item]];
+//		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//
+//		[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//			FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
+//			callback(image);
+//		}];
+//	}
+//}
 
 #pragma mark - ScrollView Delegates
 
@@ -143,9 +182,11 @@
 
 	CGRect visibleRect = (CGRect) {.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
 	CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
+	if (!self.data.count == 0) {
 
-	self.currentIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
-	self.gifURL = self.data[(NSUInteger) [self.collectionView indexPathForItemAtPoint:visiblePoint].row];
+		self.currentIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
+		self.gifURL = self.data[(NSUInteger) [self.collectionView indexPathForItemAtPoint:visiblePoint].row];
+	}
 
 	if (!self.currentIndexPath || !self.gifURL) {
 		NSLog(@"First Time Loading");

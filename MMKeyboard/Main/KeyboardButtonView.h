@@ -6,6 +6,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class GIFEntity;
+
 @interface KeyboardButtonView : UIView
 @property (nonatomic, strong) NSString *gifUrl;
+
+-(instancetype)initWithFrame: (CGRect)frame WithEntity:(GIFEntity*)entity;
 @end
