@@ -29,7 +29,6 @@
 @property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property(nonatomic, assign) MMSearchType type;
 @property(nonatomic, assign) BOOL isPortrait;
-@property(nonatomic) CGSize collectionViewSize;
 
 
 // Gestures
@@ -55,7 +54,6 @@
 		self.lpgr.delaysTouchesBegan = YES;
 		self.lpgr.delegate = self;
 		self.lpgr.cancelsTouchesInView = NO;
-
 		[self setup];
 	}
 
@@ -148,8 +146,8 @@
 	}
 
 	[self.keyboardCollectionView reloadData];
-	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
-	[self.keyboardCollectionView layoutIfNeeded];
+//	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
+//	[self.keyboardCollectionView layoutIfNeeded];
 //	dispatch_async(dispatch_get_main_queue(), ^{
 //		// Update the UI
 //		self.collectionViewSize = CGSizeMake((CGFloat) (self.frame.size.width / 2), (CGFloat) (self.frame.size.width / 4));
@@ -164,18 +162,19 @@
 	return self.data ? self.data.count : 0;
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//	if (CGSizeEqualToSize(CGSizeZero, collectionViewLayout.collectionViewContentSize)) {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+//	if (CGSizeEqualToSize(CGSizeZero, self.collectionViewSize)) {
 //		return CGSizeZero;
 //	}
 //	else {
-//		return CGSizeMake((CGFloat) (collectionView.frame.size.width / 2), (CGFloat) (collectionViewLayout.collectionViewContentSize.height / 4 ));	}
-//
-//	NSLog(@"frame%f collection%f", self.frame.size.height, collectionViewLayout.collectionViewContentSize.height );
-//////	: CGSizeMake((CGFloat) (collectionView.frame.size.width / 4.015), (CGFloat) (collectionView.frame.size.height / 2.45)
-//	return CGSizeMake((CGFloat) (collectionView.frame.size.width / 2), (CGFloat) (collectionViewLayout.collectionViewContentSize.height / 4 ));
-//}
+//		NSLog(@"frame%f", self.keyboardCollectionViewSize.height);
+	return self.keyboardCollectionViewSize;
+//	}
+
+////	: CGSizeMake((CGFloat) (collectionView.frame.size.width / 4.015), (CGFloat) (collectionView.frame.size.height / 2.45)
+	return CGSizeMake((CGFloat) (collectionView.frame.size.width / 2), (CGFloat) (collectionViewLayout.collectionViewContentSize.height / 4));
+}
 
 - (MMKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -315,11 +314,11 @@
 	}
 }
 
-- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
-
-
-	self.isPortrait = !(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
-	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
-}
+//- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
+//
+//
+//	self.isPortrait = !(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+//	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
+//}
 
 @end

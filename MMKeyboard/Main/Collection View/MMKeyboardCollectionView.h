@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 
 
 @property(nonatomic, strong) UICollectionView *keyboardCollectionView;
+@property(nonatomic, assign) CGSize keyboardCollectionViewSize;
 
 - (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController;
 

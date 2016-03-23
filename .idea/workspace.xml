@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" description="//-(CGPoint)targetContentOffsetForProposedContentO..." line="13" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="4e6dee04-691e-4601-8407-c9fee82e2da1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" afterPath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard/Main/MMViewController.m" afterPath="$PROJECT_DIR$/MMCustomKeyboard/Main/MMViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.h" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionFlowLayout.m" afterPath="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionFlowLayout.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m" afterPath="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m" />
     </list>
     <ignored path="MMCustomKeyboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,14 +32,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MMKeyboardCollectionView.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MMKeyboardCollectionView.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32814023">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="2" selection-end-line="177" selection-end-column="3" />
+            <state vertical-scroll-proportion="-13.814815">
+              <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="226" selection-end-column="1" />
               <folding>
                 <element signature="e#101#137#0" expanded="true" />
-                <element signature="e#4224#4272#0" expanded="true" />
+                <element signature="e#4175#4223#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +48,8 @@
       <file leaf-file-name="ShareCollectionView.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.888889">
-              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="227" column="33" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
               <folding>
                 <element signature="e#101#132#0" expanded="true" />
               </folding>
@@ -65,21 +57,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShareCollectionFlowLayout.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionFlowLayout.m">
+      <file leaf-file-name="KeyboardViewController.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
-              <folding />
+            <state vertical-scroll-proportion="0.195231">
+              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+              <folding>
+                <element signature="e#4203#4242#0" expanded="true" />
+                <element signature="e#4700#4742#0" expanded="true" />
+                <element signature="e#5199#5242#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMKeyboardCollectionViewFlowLayout.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m">
+      <file leaf-file-name="MMKeyboardCollectionView.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -88,47 +84,37 @@
       <file leaf-file-name="ShareViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.444445">
-              <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MMViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/MMViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyboardButtonView.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.m">
+      <file leaf-file-name="MMAlphaKeyboardView.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.333334">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="-14.444445">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
-                <element signature="e#101#131#0" expanded="true" />
+                <element signature="e#101#132#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMPreviewViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.m">
+      <file leaf-file-name="UIInputView.h" pinned="false" current-in-tab="false">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIInputView.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="173" column="18" selection-start-line="173" selection-start-column="18" selection-end-line="173" selection-end-column="18" />
+              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMKeyboardCollectionViewCell.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.h">
+      <file leaf-file-name="MMkeyboardButton.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
@@ -137,13 +123,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMKeyboardCollectionViewCell.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.m">
+      <file leaf-file-name="MMkeyboardButton.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="72" selection-end-column="11" />
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
               <folding>
-                <element signature="e#101#141#0" expanded="true" />
+                <element signature="e#101#134#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMAlphaKeyboardView.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#101#134#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,10 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MMKeyboard/PopUpViewController.m" />
-        <option value="$PROJECT_DIR$/MMShareExtension/PopUpShareViewController.h" />
-        <option value="$PROJECT_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.h" />
-        <option value="$PROJECT_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.m" />
         <option value="$PROJECT_DIR$/MMCustomKeyboard/collectionViewFlowLayout.m" />
         <option value="$PROJECT_DIR$/MMShareExtension/PopUpShareViewController.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/KeyboardViewController.m" />
@@ -180,7 +174,6 @@
         <option value="$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMViewController.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.h" />
         <option value="$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMCollectionViewFlowLayout.m" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" />
         <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/MMShareExtension/Main/ShareCollectionFlowLayout.h" />
         <option value="$PROJECT_DIR$/MMShareExtension/UImage.h" />
@@ -198,16 +191,21 @@
         <option value="$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.m" />
         <option value="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.h" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.h" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.h" />
         <option value="$PROJECT_DIR$/MMCustomKeyboard/Main/MMViewController.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.m" />
         <option value="$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m" />
         <option value="$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.h" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" />
       </list>
     </option>
   </component>
@@ -246,7 +244,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -365,11 +362,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Collection View" />
+              <option name="myItemId" value="Feature" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,6 +436,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -587,17 +581,16 @@
     <frame x="0" y="0" width="2048" height="1152" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20325604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20325604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32902032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16785714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39926064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -605,6 +598,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -679,43 +673,11 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="36" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Images/backspaceIcon.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Images/hipchat-logo@2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMShareExtension/Images/greenTick.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Resources/CoreDataStack.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="119" selection-start-line="119" selection-start-column="119" selection-end-line="119" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/FLAnimatedImage/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6896553">
-          <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMCollectionViewFlowLayout.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -897,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -951,39 +912,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-          <folding>
-            <element signature="e#3236#3275#0" expanded="true" />
-            <element signature="e#3733#3775#0" expanded="true" />
-            <element signature="e#4232#4275#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,32 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.444445">
-          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.888889">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-          <folding>
-            <element signature="e#101#132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionFlowLayout.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1047,7 +954,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardButtonView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.333334">
+        <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#101#131#0" expanded="true" />
@@ -1065,13 +972,113 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.49056605">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#101#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIInputView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#101#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32814023">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="2" selection-end-line="177" selection-end-column="3" />
+        <state vertical-scroll-proportion="-13.814815">
+          <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="226" selection-end-column="1" />
           <folding>
             <element signature="e#101#137#0" expanded="true" />
-            <element signature="e#4224#4272#0" expanded="true" />
+            <element signature="e#4175#4223#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.444445">
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+          <folding>
+            <element signature="e#101#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="227" column="33" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
+          <folding>
+            <element signature="e#101#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.195231">
+          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding>
+            <element signature="e#4203#4242#0" expanded="true" />
+            <element signature="e#4700#4742#0" expanded="true" />
+            <element signature="e#5199#5242#0" expanded="true" />
           </folding>
         </state>
       </provider>

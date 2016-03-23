@@ -14,8 +14,9 @@
 @property(nonatomic, strong) UIButton *normalButton;
 @property(nonatomic, strong) UIButton *awesomeButton;
 @property(nonatomic, strong) UIButton *allGifsButton;
-
+// Views
 @property(nonatomic, strong) UIView *menuHolder;
+@property(nonatomic, strong) UIView *searchHolder;
 
 -(void)tappedGIF;
 

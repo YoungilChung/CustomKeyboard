@@ -10,6 +10,7 @@
 #import "KeyboardButtonView.h"
 #import "MMKeyboardCollectionView.h"
 #import "UIImage+emoji.h"
+#import "MMAlphaKeyboardView.h"
 #import <MessageUI/MessageUI.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
@@ -53,10 +54,35 @@
 	self.view.backgroundColor = [UIColor blackColor];
 
 
+
+
+//	MMAlphaKeyboardView *customKeyboard = [[MMAlphaKeyboardView alloc] initWithFrame:CGRectMake(0,0,320,200)];
+//	customKeyboard.view.translatesAutoresizingMaskIntoConstraints  = NO;
+////	customKeyboard.view.clipsToBounds = YES;
+//	[self.view addSubview:customKeyboard.view];
+
 //	MMKeyboardCollectionView *keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
+	UIView *searchHolder = [UIView new];
+	searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	searchHolder.layer.cornerRadius = 10;
+	[self.view addSubview:searchHolder];
+
+	UITextField *searchBar = [[UITextField alloc] init];
+	searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+	searchBar.backgroundColor = [UIColor whiteColor];
+	searchBar.clipsToBounds = YES;
+	[searchHolder addSubview:searchBar];
+
+	UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	searchButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[searchButton setTitle:@"search" forState:UIControlStateNormal];
+	[searchHolder addSubview:searchButton];
+
+
 	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithPresentingViewController:self];
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.keyboardCollectionView];
+
 
 	self.menuHolder = [UIView new];
 	self.menuHolder.translatesAutoresizingMaskIntoConstraints = NO;
@@ -120,8 +146,13 @@
 
 	NSDictionary *views = @{@"collection" : self.keyboardCollectionView, @"nxtKeyboardBtn" : self.nextKeyboardButton, @"keyboardImage" : keyboardImage,
 			@"allBtn" : self.allGifsButton, @"shareBtnOne" : self.normalButton, @"shareBtnTwo" : self.awesomeButton, @"backspaceImage" : backspaceImage, @"backspaceButton" : backspaceButton,
-			@"menuHolder" : self.menuHolder};
+			@"menuHolder" : self.menuHolder , @"searchHolder": searchHolder, @"searchBar": searchBar, @"searchButton": searchButton};
 	NSDictionary *metrics = @{@"padding" : @(10)};
+
+
+	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[searchBar]-3-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[searchBar]-10-[searchButton]-30-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 	[self.menuHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareBtnOne]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[self.menuHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareBtnTwo]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
@@ -132,7 +163,8 @@
 
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collection]-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[searchHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchHolder]-0-[collection]-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.nextKeyboardButton attribute:NSLayoutAttributeCenterY
@@ -175,6 +207,22 @@
 	for (int i = self.textDocumentProxy.documentContextBeforeInput.length; i > 0; i--) {
 		[self.textDocumentProxy deleteBackward];
 	}
+}
+
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+
+	if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
+		//DO Portrait
+		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 2), (CGFloat) (self.keyboardCollectionView.layer.frame.size.height / 2.015));
+	}
+	else {
+		//DO Landscape
+		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 4.015), self.keyboardCollectionView.layer.frame.size.height);
+	}
+	[self.keyboardCollectionView.keyboardCollectionView.collectionViewLayout invalidateLayout];
+
 }
 
 
@@ -255,16 +303,32 @@
 
 #pragma mark rotation TODO
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[self.keyboardCollectionView willRotateKeyboard:toInterfaceOrientation];
-	[self.keyboardCollectionView setAlpha:0.0f];
-}
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+////	[self.keyboardCollectionView willRotateKeyboard:toInterfaceOrientation];
+////	[self.keyboardCollectionView setAlpha:0.0f];
+//	NSLog(@"came here");
+//	if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
+//		//DO Portrait
+//		NSLog(@"came here portrait");
+//		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 2.015), (CGFloat) (self.keyboardCollectionView.layer.frame.size.height / 2.015));
+//	}
+//	else {
+//		//DO Landscape
+//		NSLog(@"came here laandsaccapape");
+//		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 4.015), self.keyboardCollectionView.layer.frame.size.height);
+//	}
+//}
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[UIView animateWithDuration:0.125f animations:^{
-		[self.keyboardCollectionView setAlpha:1.0f];
-	}];
-}
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+//	[UIView animateWithDuration:0.125f animations:^{
+//
+//		[self.keyboardCollectionView setAlpha:1.0f];
+//		[self.keyboardCollectionView.keyboardCollectionView.collectionViewLayout invalidateLayout];
+//	}];
+//}
+
+
+
 
 - (void)tappedGIF {
 
