@@ -12,5 +12,9 @@
 
 @interface MMAlphaKeyboardView : UIInputViewController
 
-- (instancetype)initWithFrame:(CGRect)frame;
+@property(nonatomic, strong) UIImageView *keyboardImageView;
+
+@property(nonatomic, strong) UIImage *keyboardImage;
+
+- (instancetype)init;
 @end

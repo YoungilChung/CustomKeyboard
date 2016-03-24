@@ -5,11 +5,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" afterPath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h" afterPath="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" afterPath="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Info.plist" afterPath="$PROJECT_DIR$/MMKeyboard/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Keyboard.storyboard" afterPath="$PROJECT_DIR$/MMKeyboard/Keyboard.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" />
     </list>
@@ -32,51 +32,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MMKeyboardCollectionView.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.814815">
-              <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="226" selection-end-column="1" />
-              <folding>
-                <element signature="e#101#137#0" expanded="true" />
-                <element signature="e#4175#4223#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShareCollectionView.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/Collection View/ShareCollectionView.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="227" column="33" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
-              <folding>
-                <element signature="e#101#132#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyboardViewController.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KeyboardViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.195231">
-              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+            <state vertical-scroll-proportion="7.2222223">
+              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="198" selection-end-column="313" />
               <folding>
-                <element signature="e#4203#4242#0" expanded="true" />
-                <element signature="e#4700#4742#0" expanded="true" />
-                <element signature="e#5199#5242#0" expanded="true" />
+                <element signature="e#5423#5462#0" expanded="true" />
+                <element signature="e#5960#6002#0" expanded="true" />
+                <element signature="e#6500#6543#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MMKeyboardCollectionView.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -85,52 +50,80 @@
         <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="198" column="31" selection-start-line="198" selection-start-column="31" selection-end-line="198" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMAlphaKeyboardView.m" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MMAlphaKeyboardView.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.444445">
-              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.26934096">
+              <caret line="196" column="99" selection-start-line="196" selection-start-column="99" selection-end-line="196" selection-end-column="99" />
               <folding>
-                <element signature="e#101#132#0" expanded="true" />
+                <element signature="e#102#133#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIInputView.h" pinned="false" current-in-tab="false">
-        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIInputView.h">
+      <file leaf-file-name="UITextInputTraits.h" pinned="false" current-in-tab="false">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextInputTraits.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMkeyboardButton.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.m">
+      <file leaf-file-name="AppDelegate.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/AppDelegate.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MMkeyboardButton.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.h">
+      <file leaf-file-name="Info.plist" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Info.plist">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="8.791667">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppDelegate.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/AppDelegate.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-              <folding>
-                <element signature="e#101#134#0" expanded="true" />
-              </folding>
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMKeyboard.entitlements" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/MMKeyboard.entitlements">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="46" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Info.plist" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Info.plist">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="3.125">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
               <folding>
                 <element signature="e#101#134#0" expanded="true" />
               </folding>
@@ -204,8 +197,8 @@
         <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.h" />
         <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMkeyboardButton.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" />
       </list>
     </option>
   </component>
@@ -272,7 +265,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="MMShareExtension" />
+              <option name="myItemId" value="MMKeyboard" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,7 +279,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="MMShareExtension" />
+              <option name="myItemId" value="MMKeyboard" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -304,7 +297,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="MMShareExtension" />
+              <option name="myItemId" value="MMKeyboard" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -313,38 +306,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Collection View" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMCustomKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMCustomKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,7 +337,87 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="MMKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Content" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Icons" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MMCustomKeyboard" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Content" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -582,7 +623,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20325604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20325604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -678,51 +719,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/Collection View/MMCollectionViewFlowLayout.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/PopUpViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="57" selection-start-line="40" selection-start-column="57" selection-end-line="40" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Content/MMKeyboardButton.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="2" selection-end-line="83" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Content/MMKeyboardButton.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -851,7 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -924,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -967,7 +959,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="72" selection-end-column="11" />
           <folding>
-            <element signature="e#101#141#0" expanded="true" />
+            <element signature="e#101#141#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1022,33 +1014,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#101#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.814815">
+        <state vertical-scroll-proportion="0.0">
           <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="226" selection-end-column="1" />
           <folding>
             <element signature="e#101#137#0" expanded="true" />
             <element signature="e#4175#4223#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.444445">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding>
-            <element signature="e#101#132#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1063,22 +1035,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding>
+            <element signature="e#101#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MMShareExtension/Main/ShareViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="198" column="31" selection-start-line="198" selection-start-column="31" selection-end-line="198" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextInputTraits.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.125">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/MMKeyboard.entitlements">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/AppDelegate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Main/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.791667">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.195231">
-          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+        <state vertical-scroll-proportion="7.2222223">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="198" selection-end-column="313" />
           <folding>
-            <element signature="e#4203#4242#0" expanded="true" />
-            <element signature="e#4700#4742#0" expanded="true" />
-            <element signature="e#5199#5242#0" expanded="true" />
+            <element signature="e#5423#5462#0" expanded="true" />
+            <element signature="e#5960#6002#0" expanded="true" />
+            <element signature="e#6500#6543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26934096">
+          <caret line="196" column="99" selection-start-line="196" selection-start-column="99" selection-end-line="196" selection-end-column="99" />
+          <folding>
+            <element signature="e#102#133#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class MMAlphaKeyboardView;
+
 @interface KeyboardViewController : UIInputViewController
 
 @property(nonatomic, strong) NSString *gifURL;
@@ -17,6 +19,15 @@
 // Views
 @property(nonatomic, strong) UIView *menuHolder;
 @property(nonatomic, strong) UIView *searchHolder;
+
+@property(nonatomic, strong) UIButton *abcButton;
+
+@property(nonatomic, strong) MMAlphaKeyboardView *customKeyboard;
+
+
+@property(nonatomic, strong) UIView *customKeyboardHolder;
+
+@property(nonatomic, strong) NSLayoutConstraint *customeKeyboardLeftConstraint;
 
 -(void)tappedGIF;
 

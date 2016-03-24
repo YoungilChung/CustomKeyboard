@@ -247,7 +247,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
             endingLineNumber = "237"
-            landmarkName = "-loadMessage:"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -263,85 +263,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
             endingLineNumber = "247"
-            landmarkName = "-loadMessage:"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[KeyboardViewController loadMessage:]"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardViewController.m"
-                  timestampString = "480439238.63566"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
-                  offsetFromSymbolStart = "1880">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[KeyboardViewController loadMessage:]_block_invoke"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardViewController.m"
-                  timestampString = "480439238.635743"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardViewController.m"
-                  timestampString = "480439238.635813"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardViewController.m"
-                  timestampString = "480439238.635883"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[KeyboardViewController loadMessage:]_block_invoke.219"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardViewController.m"
-                  timestampString = "480439238.635952"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -484,8 +407,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "@implementation MMAlphaKeyboardView"
-            landmarkType = "3">
+            landmarkName = "buttons"
+            landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -500,7 +423,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
-            landmarkName = "-initWithFrame:"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -516,8 +439,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "@implementation MMAlphaKeyboardView"
-            landmarkType = "3">
+            landmarkName = "-init"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -532,7 +455,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "-setup"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -548,7 +471,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-            landmarkName = "-setup"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -587,7 +510,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Feature/MMAlphaKeyboardView.m"
@@ -596,14 +519,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "-createRowOfButtonWithTitle:"
+            landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Feature/MMAlphaKeyboardView.m"
@@ -612,14 +535,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "-createButtonWithTitle:"
+            landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Feature/MMAlphaKeyboardView.m"
@@ -628,7 +551,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
             endingLineNumber = "108"
-            landmarkName = "-createButtonWithTitle:"
+            landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -643,7 +566,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
-            endingLineNumber = "35">
+            endingLineNumber = "35"
+            landmarkName = "buttonTiles4"
+            landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

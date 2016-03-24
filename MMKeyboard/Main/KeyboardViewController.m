@@ -14,8 +14,12 @@
 #import <MessageUI/MessageUI.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
+typedef enum {
+	kTagGIFKeyboard = 100,
+	kTagABCKeyboard,
+} buttonTags;
 
-@interface KeyboardViewController () <UIViewControllerPreviewingDelegate, MFMessageComposeViewControllerDelegate, UITextDocumentProxy>
+@interface KeyboardViewController () <UIViewControllerPreviewingDelegate, UITextDocumentProxy>
 
 // Views
 @property(nonatomic, strong) UIButton *nextKeyboardButton;
@@ -25,6 +29,12 @@
 
 // Variables
 @property(nonatomic, strong) NSDictionary *userInfo;
+@property(nonatomic, assign) BOOL isABCKeyboard;
+
+// Constraints
+@property(nonatomic, strong) NSLayoutConstraint *menuLeftConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *collectionLeftConstraint;
+
 @end
 
 @implementation KeyboardViewController
@@ -53,39 +63,60 @@
 	self.view.clipsToBounds = YES;
 	self.view.backgroundColor = [UIColor blackColor];
 
+	self.isABCKeyboard = NO;
 
 
+	self.customKeyboardHolder = [UIView new];
+	self.customKeyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.customKeyboardHolder.clipsToBounds = YES;
+	[self.view addSubview:self.customKeyboardHolder];
 
-//	MMAlphaKeyboardView *customKeyboard = [[MMAlphaKeyboardView alloc] initWithFrame:CGRectMake(0,0,320,200)];
+
+	self.customKeyboard = [[MMAlphaKeyboardView alloc] init];
+	self.customKeyboard.view.translatesAutoresizingMaskIntoConstraints = NO;
+	self.customKeyboard.view.clipsToBounds = YES;
+	[self.customKeyboardHolder addSubview:self.customKeyboard.view];
+	[self addChildViewController:self.customKeyboard];
+
 //	customKeyboard.view.translatesAutoresizingMaskIntoConstraints  = NO;
-////	customKeyboard.view.clipsToBounds = YES;
+//	customKeyboard.view.clipsToBounds = YES;
+
 //	[self.view addSubview:customKeyboard.view];
 
 //	MMKeyboardCollectionView *keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
-	UIView *searchHolder = [UIView new];
-	searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
-	searchHolder.layer.cornerRadius = 10;
-	[self.view addSubview:searchHolder];
+
+	self.searchHolder = [UIView new];
+	self.searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:self.searchHolder];
 
 	UITextField *searchBar = [[UITextField alloc] init];
 	searchBar.translatesAutoresizingMaskIntoConstraints = NO;
 	searchBar.backgroundColor = [UIColor whiteColor];
+	searchBar.layer.cornerRadius = 10;
 	searchBar.clipsToBounds = YES;
-	[searchHolder addSubview:searchBar];
+	[self.searchHolder addSubview:searchBar];
 
 	UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	searchButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[searchButton setTitle:@"search" forState:UIControlStateNormal];
-	[searchHolder addSubview:searchButton];
+	[self.searchHolder addSubview:searchButton];
+
+	self.abcButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	self.abcButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.abcButton setTitle:@"ABC" forState:UIControlStateNormal];
+	[self.abcButton addTarget:self action:@selector(abcButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	[self.searchHolder addSubview:self.abcButton];
 
 
 	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithPresentingViewController:self];
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.keyboardCollectionView.clipsToBounds = YES;
 	[self.view addSubview:self.keyboardCollectionView];
 
 
 	self.menuHolder = [UIView new];
 	self.menuHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.menuHolder.clipsToBounds = YES;
 	[self.view addSubview:self.menuHolder];
 
 
@@ -101,12 +132,14 @@
 
 	self.nextKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.nextKeyboardButton.clipsToBounds = YES;
 	[self.nextKeyboardButton setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisVertical];
 	[self.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
 	[self.menuHolder addSubview:self.nextKeyboardButton];
 
 	self.allGifsButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.allGifsButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.allGifsButton.clipsToBounds = YES;
 	[self.allGifsButton setTitle:NSLocalizedString(@"Category.All", nil) forState:UIControlStateNormal];
 	[self.allGifsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[self.allGifsButton addTarget:self action:@selector(allGifsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,6 +147,7 @@
 
 	self.normalButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.normalButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.normalButton.clipsToBounds = YES;
 	[self.normalButton setTitle:NSLocalizedString(@"Category.Normal", nil) forState:UIControlStateNormal];
 	[self.normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[self.normalButton addTarget:self action:@selector(normalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -121,6 +155,7 @@
 
 	self.awesomeButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.awesomeButton.clipsToBounds = YES;
 	[self.awesomeButton setTitle:NSLocalizedString(@"Category.Awesome", nil) forState:UIControlStateNormal];
 	[self.awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[self.awesomeButton addTarget:self action:@selector(awesomeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -139,6 +174,7 @@
 	[self.menuHolder addSubview:backspaceImage];
 
 	UIButton *backspaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	backspaceButton.clipsToBounds = YES;
 	backspaceButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[backspaceButton setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisVertical];
 	[backspaceButton addTarget:self action:@selector(didTapToDelete:) forControlEvents:UIControlEventTouchUpInside];
@@ -146,13 +182,14 @@
 
 	NSDictionary *views = @{@"collection" : self.keyboardCollectionView, @"nxtKeyboardBtn" : self.nextKeyboardButton, @"keyboardImage" : keyboardImage,
 			@"allBtn" : self.allGifsButton, @"shareBtnOne" : self.normalButton, @"shareBtnTwo" : self.awesomeButton, @"backspaceImage" : backspaceImage, @"backspaceButton" : backspaceButton,
-			@"menuHolder" : self.menuHolder , @"searchHolder": searchHolder, @"searchBar": searchBar, @"searchButton": searchButton};
+			@"menuHolder" : self.menuHolder, @"searchHolder" : self.searchHolder, @"searchBar" : searchBar, @"searchButton" : searchButton, @"abcButton" : self.abcButton, @"holder" : self.customKeyboardHolder, @"customKeyboard" : self.customKeyboard.view};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
 
-	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[searchBar]-3-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[searchBar]-10-[searchButton]-30-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[searchBar]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[abcButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[searchBar]-10-[searchButton]-5-[abcButton]-10-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 	[self.menuHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareBtnOne]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[self.menuHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareBtnTwo]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
@@ -165,7 +202,24 @@
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[searchHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchHolder]-0-[collection]-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+//	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.customKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+
+//	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchHolder]-0-[holder]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+
+
+	[self.customKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[customKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.customKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[customKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+	self.customeKeyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.customKeyboardHolder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-500];
+	self.menuLeftConstraint = [NSLayoutConstraint constraintWithItem:self.menuHolder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+	self.collectionLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardCollectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+
+//	[self.view addConstraints:@[self.menuLeftConstraint, self.collectionLeftConstraint, self.customeKeyboardLeftConstraint]];
+	[self.view addConstraint:self.customeKeyboardLeftConstraint];
+	[self.view addConstraint:self.menuLeftConstraint];
+	[self.view addConstraint:self.collectionLeftConstraint];
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.nextKeyboardButton attribute:NSLayoutAttributeCenterY
 														  relatedBy:NSLayoutRelationEqual
@@ -188,6 +242,63 @@
 															 toItem:backspaceImage
 														  attribute:NSLayoutAttributeCenterX
 														 multiplier:1.0 constant:0]];
+
+	self.abcButton.tag = kTagGIFKeyboard;
+
+}
+
+- (void)abcButtonPressed:(UIButton *)sender {
+
+
+
+
+//	NSDictionary *metrics = @{};
+//	NSDictionary *views = @{@"customKeyboard" : self.customKeyboard.view, @"searchHolder" : self.searchHolder, @"menuHolder" : self.menuHolder,
+//			@"holder": self.customKeyboardHolder
+//	};
+
+
+
+//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchHolder attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+
+	switch (self.abcButton.tag) {
+		case kTagGIFKeyboard: {
+			self.menuLeftConstraint.constant = self.view.frame.size.width;
+			self.collectionLeftConstraint.constant = self.view.frame.size.width;
+			self.customeKeyboardLeftConstraint.constant = 0;
+
+			self.abcButton.tag = kTagABCKeyboard;
+			[self.abcButton setTitle:@"GIF" forState:UIControlStateNormal];
+
+
+			break;
+		}
+		case kTagABCKeyboard: {
+			self.menuLeftConstraint.constant = 0;
+			self.collectionLeftConstraint.constant = 0;
+			self.customeKeyboardLeftConstraint.constant = -self.view.frame.size.width;
+			self.abcButton.tag = kTagGIFKeyboard;
+			[self.abcButton setTitle:@"ABC" forState:UIControlStateNormal];
+
+			break;
+		}
+
+		default: {
+
+			break;
+		}
+	}
+
+
+	[UIView animateWithDuration:1 animations:^{
+
+		[self.view layoutIfNeeded];
+
+	}                completion:(void (^)(BOOL)) ^{
+//		[self.keyboardCollectionView removeFromSuperview];
+
+	}];
+
 }
 
 - (void)awesomeButtonPressed:(UIButton *)sender {
@@ -213,6 +324,8 @@
 - (void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.customKeyboardHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.view.frame.size.height - self.searchHolder.frame.size.height]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.customKeyboardHolder attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
 	if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 		//DO Portrait
 		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 2), (CGFloat) (self.keyboardCollectionView.layer.frame.size.height / 2.015));
@@ -222,7 +335,6 @@
 		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 4.015), self.keyboardCollectionView.layer.frame.size.height);
 	}
 	[self.keyboardCollectionView.keyboardCollectionView.collectionViewLayout invalidateLayout];
-
 }
 
 
