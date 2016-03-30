@@ -70,6 +70,7 @@
 		9A18A6271CAA882000D6A6F9 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A18A5E91CAA87C700D6A6F9 /* SF-UI-Text-Semibold.otf */; };
 		9A27C6CF1C9976F30005766A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */; };
 		9A27C6D01C9976F40005766A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */; };
+		9A666F001CABF6D800A128FB /* UIImage+emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2B97B1C9C36FA00C4572F /* UIImage+emoji.m */; };
 		9A7FC1BC1C97FFE000E7CEB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BA1C97FFE000E7CEB1 /* Model.xcdatamodeld */; };
 		9A7FC1C11C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
 		9A7FC1C21C98005B00E7CEB1 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */; };
@@ -90,6 +91,7 @@
 		C3C3618FA01A59DBBE1EBC9B /* WhatsAppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3608F10A33F63F940E991 /* WhatsAppIcon@2x.png */; };
 		C3C3619678A38FEC8EFB38BA /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C361ADFB9D6F688497E2A1 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
+		C3C361BE111401CB46FAEE4B /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36309EBA0657EED73107F /* MMKeyboardSelection.m */; };
 		C3C361CF3AA9E21A57222936 /* ShareCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C360D145368CE6EBE40A89 /* ShareCollectionView.m */; };
 		C3C361E03D8EEA80C7BB0D69 /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C3620430ADF6B539F8F145 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361A4D4C570AD781798BE /* MMKeyboardButton.m */; };
@@ -110,6 +112,7 @@
 		C3C3650B17EAE4FD1532C049 /* MMKeyboardCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367FF71FFB6D902C2E64F /* MMKeyboardCollectionViewFlowLayout.m */; };
 		C3C36518E154C6C6649E7984 /* MMAlphaKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CB537196C139B724FAB /* MMAlphaKeyboardView.m */; };
 		C3C3652A225F2F097DB553BB /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
+		C3C365403A1769E38FA6C6CB /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36309EBA0657EED73107F /* MMKeyboardSelection.m */; };
 		C3C3655C05A87877A1C33AB4 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
 		C3C3658E3480DBD0303E02B2 /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
 		C3C36590F4F4A56ED8DAB214 /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
@@ -157,6 +160,7 @@
 		C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */; };
 		C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
 		C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A7768BE187CED64FB56 /* AppDelegate.m */; };
+		C3C36FAE744FE728C7C7444F /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36309EBA0657EED73107F /* MMKeyboardSelection.m */; };
 		C3C36FF17C8A8880BDDFAF40 /* ShareCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C360D145368CE6EBE40A89 /* ShareCollectionView.m */; };
 		CA3380539A61BC37422CE6CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
 		E004E1E11BDF778100ADB749 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E004E1E01BDF778100ADB749 /* MessageUI.framework */; };
@@ -263,6 +267,7 @@
 		C3C3624D84E20AA052A2C66A /* PopUpShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpShareViewController.h; sourceTree = "<group>"; };
 		C3C3625E75DF10647834B18B /* newHipchat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newHipchat.png; sourceTree = "<group>"; };
 		C3C362E555CFF12F2C16D52F /* PopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpViewController.m; sourceTree = "<group>"; };
+		C3C36309EBA0657EED73107F /* MMKeyboardSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardSelection.m; sourceTree = "<group>"; };
 		C3C363B0535749BBF96ED0DF /* MMKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardButton.h; sourceTree = "<group>"; };
 		C3C3643521978FCF43F1749C /* MMCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		C3C36462D240778F238C340C /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 		C3C36E9D8AE0FC78818E144D /* ShareCollectionFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCollectionFlowLayout.h; sourceTree = "<group>"; };
 		C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCollectionViewCell.m; sourceTree = "<group>"; };
 		C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NextKeyboardIcon.png; sourceTree = "<group>"; };
+		C3C36F7B8C2E919295709276 /* MMKeyboardSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardSelection.h; sourceTree = "<group>"; };
 		C3C36FA592B57673BDB2019E /* MMKeyboardCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardCollectionView.h; sourceTree = "<group>"; };
 		E004E1E01BDF778100ADB749 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E0647C601BCD3D5300BE49BF /* MarqueeExtensionJavaScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MarqueeExtensionJavaScript.js; sourceTree = "<group>"; };
@@ -581,6 +587,8 @@
 				C3C36A66BFB93B418EE6F9DD /* MMAlphaKeyboardView.h */,
 				C3C368420CFFF9BD75BB8D89 /* MMkeyboardButton.m */,
 				C3C36E6203E88CFF5755C40A /* MMkeyboardButton.h */,
+				C3C36309EBA0657EED73107F /* MMKeyboardSelection.m */,
+				C3C36F7B8C2E919295709276 /* MMKeyboardSelection.h */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -1152,6 +1160,7 @@
 				C3C366D726FA18E5BB0EF5D9 /* MMViewController.m in Sources */,
 				C3C36CA7D48612ED61702C18 /* MMAlphaKeyboardView.m in Sources */,
 				C3C363B525E6DA34C5E07A91 /* MMkeyboardButton.m in Sources */,
+				C3C365403A1769E38FA6C6CB /* MMKeyboardSelection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,6 +1189,7 @@
 				C3C36129329CCD2000D6BA9C /* KeyboardViewController.m in Sources */,
 				9A7FC1C31C98034600E7CEB1 /* Model.xcdatamodeld in Sources */,
 				9A7FC1C81C981CCD00E7CEB1 /* GIFEntity.m in Sources */,
+				9A666F001CABF6D800A128FB /* UIImage+emoji.m in Sources */,
 				C3C36366045609F5009D92D9 /* PopUpViewController.m in Sources */,
 				9A7FC1CA1C981CD700E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */,
 				C3C36C7D7962D5664FE75682 /* MMPreviewViewController.m in Sources */,
@@ -1193,6 +1203,7 @@
 				C3C36FF17C8A8880BDDFAF40 /* ShareCollectionView.m in Sources */,
 				C3C36518E154C6C6649E7984 /* MMAlphaKeyboardView.m in Sources */,
 				C3C363BB7FD57B59558523FB /* MMkeyboardButton.m in Sources */,
+				C3C36FAE744FE728C7C7444F /* MMKeyboardSelection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,6 +1229,7 @@
 				C3C368B49B12D796EAEA5FBB /* PopUpShareViewController.m in Sources */,
 				C3C3639AA535506C797AA423 /* MMAlphaKeyboardView.m in Sources */,
 				C3C36E000A8F87C555B470CE /* MMkeyboardButton.m in Sources */,
+				C3C361BE111401CB46FAEE4B /* MMKeyboardSelection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

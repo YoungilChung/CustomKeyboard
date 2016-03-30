@@ -60,8 +60,10 @@
 
 
 
-//- (CGSize)intrinsicContentSize {
 //
-//	return CGSizeMake(20, 20.0f);
+//- (CGSize)intrinsicContentSize
+//{
+//	CGSize size = [super intrinsicContentSize];
+//	return CGSizeMake(size.width, size.height);
 //}
 @end
