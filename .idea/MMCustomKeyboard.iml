@@ -8,7 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-SemiboldItalic.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-HeavyItalic.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-Heavy.otf" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Bold.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Heavy.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Medium.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMShareExtension/UIImage+emoji.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMShareExtension/MarqueeExtensionJavaScript.js" isTestSource="false" />
@@ -28,12 +28,6 @@
       <sourceFolder url="file://$MODULE_DIR$/MMShareExtension/Main/ShareViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-Medium.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Keyboard.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMkeyboardButton.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMKeyboardSelection.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMAlphaKeyboardView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMkeyboardButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Feature/MMKeyboardSelection.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Images/downloadIcon.png" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Images/newFacebook.png" isTestSource="false" />
@@ -46,19 +40,31 @@
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Images/newWhatsAppIcon.png" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Images/unnamed@2x.png" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Images/backspaceIcon.png" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Content/MMKeyboardButton.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Content/MMKeyboardButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardButtonView.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardButtonView.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/PopupButton/KeyboardPopUpButtonView.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/PopupButton/KeyboardPopUpButtonView.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardMainViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardMainViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMkeyboardButton.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMKeyboardSelection.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMAlphaKeyboardView.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMAlphaKeyboardView.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMkeyboardButton.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Keyboard/MMKeyboardSelection.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/PopUpViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/ButtonView/MMKeyboardButton.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/ButtonView/KeyboardButtonView.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/ButtonView/KeyboardButtonView.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/ButtonView/MMKeyboardButton.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewCell.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionView.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Collection View/MMKeyboardCollectionViewFlowLayout.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/KeyboardViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Searching/SearchBarView.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/Searching/SearchBarView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/Main/PopUpViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMKeyboard/MMKeyboard.entitlements" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-BoldItalic.otf" isTestSource="false" />
@@ -77,45 +83,45 @@
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboardTests/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboardTests/MMCustomKeyboardTests.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/FLAnimatedImage/FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking-prefix.pch" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/UIImage-Vector/UIImage-Vector.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/UIImage-Vector/UIImage-Vector-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/UIImage-Vector/UIImage-Vector-prefix.pch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking-prefix.pch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/AFNetworking/AFNetworking-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/FLAnimatedImage/FLAnimatedImage-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/FLAnimatedImage/FLAnimatedImage.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SDWebImage/SDWebImage-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SDWebImage/SDWebImage-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SDWebImage/SDWebImage.xcconfig" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-frameworks.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.debug.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.release.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-resources.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPSessionManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFHTTPSessionManager.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLSessionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFSecurityPolicy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFSecurityPolicy.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFNetworking.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFSecurityPolicy.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/AFNetworking/AFURLResponseSerialization.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFAutoPurgingImageCache.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImage+AFNetworking.h" isTestSource="false" />
@@ -123,27 +129,28 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFAutoPurgingImageCache.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFImageDownloader.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFAutoPurgingImageCache.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFImageDownloader.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/AFNetworking/UIKit+AFNetworking/AFImageDownloader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+GIF.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+GIF.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+GIF.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+GIF.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIButton+WebCache.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageOperation.h" isTestSource="false" />
@@ -152,40 +159,39 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDecoder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/UIImage-Vector/UIImage-Vector/UIImage+Vector.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/UIImage-Vector/UIImage-Vector/UIImage+Vector.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-Regular.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Bold.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Text-LightItalic.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Podfile" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Heavy.otf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SF-UI-Display-Semibold.otf" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/CoreDataStack.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/Model.xcdatamodeld/Model.xcdatamodel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Assets.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/GIFEntity.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/CoreDataStack.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/GIFEntity+CoreDataProperties.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/GIFEntity+CoreDataProperties.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/Content/Localizable.strings" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/GIFEntity.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/CoreDataStack.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/Icons/icon-delete.pdf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/Icons/icon-close.pdf" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/GIFEntity+CoreDataProperties.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Resources/Model.xcdatamodeld/Model.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/MMCustomKeyboard.entitlements" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/main.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/main.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/AppDelegate.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMCollectionViewFlowLayout.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMPreviewViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/Collection View/MMCollectionViewFlowLayout.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/AppDelegate.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MMCustomKeyboard/Main/MMViewController.h" isTestSource="false" />

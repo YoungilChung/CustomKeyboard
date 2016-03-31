@@ -4,17 +4,25 @@
 //
 
 #import "MMAlphaKeyboardView.h"
-#import "MMKeyboardButton.h"
+#import "MMkeyboardButton.h"
 #import "UIImage+emoji.h"
 #import "MMKeyboardSelection.h"
+#import "MMKeyboardCollectionView.h"
 
 typedef enum {
-	Delete,
-	Return,
-	Space,
-	CHG,
+	kTagGIFKeyboard = 100,
+	kTagABCKeyboard,
+	kTag123Key,
+	kTagABCKey,
+	kTagShiftKey,
+	kTagBackSpaceKey,
+	kTagAdvanceKey,
+	kTagReturnKey,
+	kTagCapitalKey,
+	kTagSpecialKey,
+	kTagNumericKey,
 
-} ButtonString;
+} buttonTags;
 
 @interface MMAlphaKeyboardView () <UITextDocumentProxy, UIGestureRecognizerDelegate, UITextFieldDelegate>
 
@@ -26,7 +34,9 @@ typedef enum {
 @property(nonatomic, strong) UIView *rowView4;
 @property(nonatomic, strong) UIView *searchHolder;
 @property(nonatomic, strong) UIView *buttonView;
-@property(nonatomic, strong) MMKeyboardSelection *selectionView;
+@property(nonatomic, strong) MMKeyboardCollectionView *keyboardCollectionView;
+@property(nonatomic, strong) UIView *collectionViewHolder;
+
 
 @property(nonatomic, strong) MMkeyboardButton *abcButton;
 @property(nonatomic, strong) MMkeyboardButton *spaceButton;
@@ -59,9 +69,16 @@ typedef enum {
 @property(nonatomic, assign) BOOL isNumericCharacter;
 @property(nonatomic, strong) UITextField *searchBar;
 
+// Gestures
 @property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
 @property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 
+// Constraints
+@property(nonatomic, strong) NSLayoutConstraint *keyboardLeftConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstrain;
+
+
+@property(nonatomic, strong) UIView *keyboardHolder;
 @end
 
 
@@ -103,23 +120,13 @@ typedef enum {
 	self.currentTiles3 = self.alphaTiles3.mutableCopy;
 
 
-	self.rowView1 = [self createRowOfButtonWithTitle:self.currentTiles1];
-	self.rowView2 = [self createRowOfButtonWithTitle:self.currentTiles2];
-	self.rowView3 = [self createRowOfButtonWithTitle:self.currentTiles3];
-	self.rowView4 = [self createFinalRow];
+//	self.view.translatesAutoresizingMaskIntoConstraints = NO;
+//	self.view.clipsToBounds = YES;
 
-	[self.view addSubview:self.rowView1];
-	[self.view addSubview:self.rowView2];
-	[self.view addSubview:self.rowView3];
-	[self.view addSubview:self.rowView4];
-
-	self.rowView1.translatesAutoresizingMaskIntoConstraints = NO;
-	self.rowView2.translatesAutoresizingMaskIntoConstraints = NO;
-	self.rowView3.translatesAutoresizingMaskIntoConstraints = NO;
-	self.rowView4.translatesAutoresizingMaskIntoConstraints = NO;
-
+///////////////////Searching bar//////////////////////////
 	self.searchHolder = [UIView new];
 	self.searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.searchHolder.clipsToBounds = YES;
 	[self.view addSubview:self.searchHolder];
 
 
@@ -144,137 +151,157 @@ typedef enum {
 	self.gifButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.gifButton setTitle:@"GIF" forState:UIControlStateNormal];
 	[self.gifButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.gifButton addTarget:self action:@selector(gifKeyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.searchHolder addSubview:self.gifButton];
-
 	self.view.userInteractionEnabled = YES;
 
-	[self addConstraintsToInputViews:self.view WithRowViews:@[self.rowView1, self.rowView2, self.rowView3, self.rowView4]];
+//////////////// Keyboard Holder /////////////////////////////////////////////
+	self.rowView1 = [self createRowOfButtonWithTitle:self.currentTiles1];
+	self.rowView2 = [self createRowOfButtonWithTitle:self.currentTiles2];
+	self.rowView3 = [self createRowOfButtonWithTitle:self.currentTiles3];
+	self.rowView4 = [self createFinalRow];
+
+	self.keyboardHolder = [UIView new];
+	self.keyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.keyboardHolder.clipsToBounds = YES;
+	[self.view addSubview:self.keyboardHolder];
+
+	self.rowView1.translatesAutoresizingMaskIntoConstraints = NO;
+	self.rowView2.translatesAutoresizingMaskIntoConstraints = NO;
+	self.rowView3.translatesAutoresizingMaskIntoConstraints = NO;
+	self.rowView4.translatesAutoresizingMaskIntoConstraints = NO;
+
+
+	[self.keyboardHolder addSubview:self.rowView1];
+	[self.keyboardHolder addSubview:self.rowView2];
+	[self.keyboardHolder addSubview:self.rowView3];
+	[self.keyboardHolder addSubview:self.rowView4];
+
+	//////////////// CollectionViewHolder/////////////////////////////////////////////
+
+	self.collectionViewHolder = [UIView new];
+	self.collectionViewHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.collectionViewHolder.clipsToBounds = YES;
+	self.collectionViewHolder.backgroundColor = [[UIColor redColor]
+			colorWithAlphaComponent:0.5];
+	[self.view addSubview:self.collectionViewHolder];
+
+	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithPresentingViewController:nil];
+	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+//	self.keyboardCollectionView.backgroundColor = [UIColor blackColor];
+	self.keyboardCollectionView.clipsToBounds = YES;
+	[self.collectionViewHolder addSubview:self.keyboardCollectionView];
+
+
+	NSDictionary *views = @{@"collection" : self.keyboardCollectionView, @"holder" : self.searchHolder, @"searchbar" : self.searchBar,
+			@"keyboardHolder" : self.keyboardHolder, @"gifButton" : self.gifButton, @"gifKeyboard" : self.keyboardCollectionView};
+
+
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchbar]-10-[gifButton(==50)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[searchbar(==30)]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[gifButton(==30)]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[holder]-0-[keyboardHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.collectionViewHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+	[self.collectionViewHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.collectionViewHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+
+
+	[self addConstraintsToInputViews:self.keyboardHolder WithRowViews:@[self.rowView1, self.rowView2, self.rowView3, self.rowView4]];
+
+
 	[self setupInputOptionsConfiguration];
+	self.gifButton.tag = kTagGIFKeyboard;
 
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-
-}
-
-- (UIView *)createFinalRow {
-
-	UIView *holder = [UIView new];
-//	UIView *holder = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,30)];
-	holder.translatesAutoresizingMaskIntoConstraints = NO;
-//	UIView *holder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-
-	NSMutableArray *testHolder = @[].mutableCopy;
-
-	MMkeyboardButton *nextKeyboardButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
-	nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
-//	nextKeyboardButton.clipsToBounds = YES;
-	[nextKeyboardButton setImage:[UIImage imageWithEmoji:@"🌐" withSize:30] forState:UIControlStateNormal];
-//	[nextKeyboardButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
-	[nextKeyboardButton addTarget:self action:@selector(gifKeyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[nextKeyboardButton setTintColor:[UIColor whiteColor]];
-	[holder addSubview:nextKeyboardButton];
-//	[nextKeyboardButton setTitle:@"gif" forState:UIControlStateNormal];
-//	[nextKeyboardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//	[nextKeyboardButton setImage:[UIImage imageNamed:@"NextKeyboardIcon"] forState:UIControlStateNormal];
-//	[nextKeyboardButton setImageEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
-
-	self.abcButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
-	self.abcButton.translatesAutoresizingMaskIntoConstraints = NO;
-	self.abcButton.clipsToBounds = YES;
-	[self.abcButton setTitle:@"123" forState:UIControlStateNormal];
-	[self.abcButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[self.abcButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:self.abcButton];
-
-	self.spaceButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
-	self.spaceButton.translatesAutoresizingMaskIntoConstraints = NO;
-	self.spaceButton.clipsToBounds = YES;
-	[self.spaceButton setTitle:@"space" forState:UIControlStateNormal];
-	[self.spaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[self.spaceButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:self.spaceButton];
-
-	self.returnButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
-	self.returnButton.translatesAutoresizingMaskIntoConstraints = NO;
-	self.returnButton.clipsToBounds = YES;
-	[self.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
-	[self.returnButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[self.returnButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-	[holder addSubview:self.returnButton];
-
-//	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton};
-//	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[abcButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[spaceButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[changeButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[returnButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-////	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[changeButton(==returnButton)]-1-[abcButton(==returnButton)]-1-[spaceButton(==returnButton)]-1-[returnButton(==changeButton)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[changeButton(==abcButton)]-1-[abcButton(==60)]-1-[spaceButton]-1-[returnButton(70)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton};
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[abcButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[spaceButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[changeButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[returnButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[changeButton(==abcButton)]-1-[abcButton(==50)]-1-[spaceButton]-1-[returnButton(70)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 
 
-//	[testHolder addObject:nextKeyboardButton];
-//	[testHolder addObject:self.abcButton];
-//	[testHolder addObject:self.spaceButton];
-//	[testHolder addObject:self.returnButton];
-//
-//	[self addIndividualButtonConstraints:testHolder WithMainView:holder];
-
-	return holder;
+	CGRect Rect = [[UIScreen mainScreen] bounds];
 
 
-}
+	NSLayoutConstraint *_heightConstraint;
 
-- (void)showKeyboardSelection:(MMkeyboardButton *)sender {
+//	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 2.6)];
+//	NSLayoutConstraint *_widthConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:Rect.size.width];
+//	[self.view addConstraint:_heightConstraint];
+//	[self.view addConstraint:_widthConstraint];
 
-
-
-
-
-
-
-
-}
-
-- (void)viewDidLayoutSubviews {
-	[super viewDidLayoutSubviews];
-
-	NSArray *keyboards = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleKeyboards"];
-
-	self.selectionView = [[MMKeyboardSelection alloc] initWithData:keyboards];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.collectionViewHolder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchHolder attribute:NSLayoutAttributeBottom multiplier:1.0 constant:2]];
+//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.collectionViewHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.view.frame.size.height - self.searchHolder.frame.size.height]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.collectionViewHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+	self.gifKeyboardLeftConstrain = [NSLayoutConstraint constraintWithItem:self.collectionViewHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
+	[self.view addConstraint:self.gifKeyboardLeftConstrain];
+	[self.view addConstraint:self.keyboardLeftConstraint];
 
 
+	switch (self.gifButton.tag) {
+		case kTagGIFKeyboard: {
 
-	NSLog(@"keyboards: %@", keyboards[0]);
 
-// check for your keyboard
-	NSUInteger index = [keyboards indexOfObject:@"com.example.productname.keyboard-extension"];
+			break;
+		}
+		case kTagABCKeyboard: {
 
-	if (index != NSNotFound) {
-		NSLog(@"found keyboard");
+
+			break;
+		}
 	}
 
 }
 
 - (void)gifKeyboardButtonPressed:(MMkeyboardButton *)sender {
 
+	switch (self.gifButton.tag) {
+		case kTagGIFKeyboard: {
+			self.keyboardLeftConstraint.constant = -self.view.frame.size.width;
+			self.gifKeyboardLeftConstrain.constant = 0;
+			self.gifButton.tag = kTagABCKeyboard;
+			[self.gifButton setTitle:@"ABC" forState:UIControlStateNormal];
 
-	NSLog(@"comes here");
-	self.selectionView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addSubview:self.selectionView];
+			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
+				//DO Portrait
+				self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 2), (CGFloat) (self.keyboardCollectionView.layer.frame.size.height / 2.015));
+			}
+			else {
+				//DO Landscape
+				self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 4.015), self.keyboardCollectionView.layer.frame.size.height);
+			}
+
+			break;
+		}
+		case kTagABCKeyboard: {
+			self.keyboardLeftConstraint.constant = 0;
+			self.gifKeyboardLeftConstrain.constant = self.view.frame.size.width;
+			self.gifButton.tag = kTagGIFKeyboard;
+			[self.gifButton setTitle:@"GIF" forState:UIControlStateNormal];
 
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:sender attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+			break;
+		}
+
+		default: {
+
+			break;
+		}
+	}
+
+
+	[UIView animateWithDuration:1 animations:^{
+
+		[self.view layoutIfNeeded];
+		[self.keyboardCollectionView.keyboardCollectionView.collectionViewLayout invalidateLayout];
+
+	}                completion:(void (^)(BOOL)) ^{
+
+	}];
 
 
 }
@@ -330,25 +357,22 @@ typedef enum {
 	else if ([title isEqualToString:@"space"]) {
 		[self.textDocumentProxy insertText:@" "];
 	}
-	else if ([title isEqualToString:@"CHG"]) {
-		[self advanceToNextInputMode];
-	}
 	else if ([title isEqualToString:@"123"]) {
 		[sender setTitle:@"ABC" forState:UIControlStateNormal];
-		[self numericButtons];
+		self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
 	}
 	else if ([title isEqualToString:@"ABC"]) {
 		[sender setTitle:@"123" forState:UIControlStateNormal];
-		[self numericButtons];
+		self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
 	}
 	else if ([title isEqualToString:@"#+="]) {
 		[sender setTitle:@"?!@" forState:UIControlStateNormal];
-		[self specialButtons];
+		self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
 	}
 
 	else if ([title isEqualToString:@"?!@"]) {
 		[sender setTitle:@"#+=" forState:UIControlStateNormal];
-		[self specialButtons];
+		self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
 	}
 	else if ([title isEqualToString:@"⇧"]) {
 		[self capataliseButtons];
@@ -361,102 +385,6 @@ typedef enum {
 	}
 }
 
-
-- (void)numericButtons {
-
-	if (!self.isNumericCharacter) {
-		self.currentTiles1 = self.numericTiles1;
-		self.currentTiles2 = self.numericTiles2;
-		self.currentTiles3 = self.numericTiles3;
-	}
-	else {
-		self.currentTiles1 = self.alphaTiles1;
-		self.currentTiles2 = self.alphaTiles2;
-		self.currentTiles3 = self.alphaTiles3;
-	}
-
-	NSMutableArray *testHolder = @[].mutableCopy;
-	[testHolder addObjectsFromArray:self.currentTiles1];
-	[testHolder addObjectsFromArray:self.currentTiles2];
-	[testHolder addObjectsFromArray:self.currentTiles3];
-
-
-	for (uint n = 0; n < [self.alphaButtons count]; ++n) {
-
-		[self.alphaButtons[n] setTitle:testHolder[n] forState:UIControlStateNormal];
-
-	}
-
-	[self.view layoutIfNeeded];
-	self.isNumericCharacter = !self.isNumericCharacter;
-}
-
-- (void)specialButtons {
-
-	if (!self.isSpecialCharacter) {
-		self.currentTiles1 = self.specialTiles1;
-		self.currentTiles2 = self.specialTiles2;
-		self.currentTiles3 = self.specialTiles3;
-	}
-	else {
-		self.currentTiles1 = self.numericTiles1;
-		self.currentTiles2 = self.numericTiles2;
-		self.currentTiles3 = self.numericTiles3;
-	}
-
-	NSMutableArray *testHolder = @[].mutableCopy;
-	[testHolder addObjectsFromArray:self.currentTiles1];
-	[testHolder addObjectsFromArray:self.currentTiles2];
-	[testHolder addObjectsFromArray:self.currentTiles3];
-
-
-	for (uint n = 0; n < [self.alphaButtons count]; ++n) {
-
-		[self.alphaButtons[n] setTitle:testHolder[n] forState:UIControlStateNormal];
-
-	}
-
-	[self.view layoutIfNeeded];
-	self.isSpecialCharacter = !self.isSpecialCharacter;
-}
-
-
-- (void)capataliseButtons {
-
-	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *obj, NSUInteger idx, BOOL *stop) {
-		NSString *title = [obj titleForState:UIControlStateNormal];
-		if ([title isEqualToString:@"BP"] || [title isEqualToString:@"CP"] || [title isEqualToString:@"CHG"] || [title isEqualToString:@"SPACE"] || [title isEqualToString:@"RETURN"] || [title isEqualToString:@"GIF"]) {
-
-		}
-
-		else {
-			if (!self.isCapitalised) {
-				if ([title isEqualToString:@"⇧"]) {
-					[obj setTitle:@"⇪" forState:UIControlStateNormal];
-
-				}
-				else {
-
-					[obj setTitle:title.uppercaseString forState:UIControlStateNormal];
-
-				}
-			}
-			else {
-				if ([title isEqualToString:@"⇪"]) {
-					[obj setTitle:@"⇧" forState:UIControlStateNormal];
-
-				}
-				else {
-
-					[obj setTitle:title.lowercaseString forState:UIControlStateNormal];
-				}
-
-			}
-		}
-	}];
-	[self.view layoutIfNeeded];
-	self.isCapitalised = !self.isCapitalised;
-}
 
 #pragma mark Actions
 
@@ -540,19 +468,6 @@ typedef enum {
 
 - (void)addConstraintsToInputViews:(UIView *)inputView WithRowViews:(NSArray *)rowViews {
 
-	NSDictionary *views = @{@"holder" : self.searchHolder, @"searchbar" : self.searchBar, @"gifButton" : self.gifButton};
-
-	[inputView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchbar]-10-[gifButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[searchbar(==30)]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self.searchHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[gifButton(==30)]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-
-	[inputView addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeTop
-														  relatedBy:NSLayoutRelationEqual
-															 toItem:inputView attribute:NSLayoutAttributeTop
-														 multiplier:1.0 constant:0]];
 
 	[rowViews enumerateObjectsUsingBlock:^(UIView *rowView, NSUInteger idx, BOOL *stop) {
 
@@ -574,7 +489,7 @@ typedef enum {
 
 			topConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeTop
 														 relatedBy:NSLayoutRelationEqual
-															toItem:self.searchHolder attribute:NSLayoutAttributeBottom
+															toItem:inputView attribute:NSLayoutAttributeTop
 														multiplier:1.0 constant:2];
 
 		}
@@ -616,8 +531,59 @@ typedef enum {
 
 	}];
 
+}- (UIView *)createFinalRow {
+
+	UIView *holder = [UIView new];
+	holder.translatesAutoresizingMaskIntoConstraints = NO;
+
+
+	MMkeyboardButton *nextKeyboardButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[nextKeyboardButton setImage:[UIImage imageWithEmoji:@"🌐" withSize:30] forState:UIControlStateNormal];
+	[nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
+	[nextKeyboardButton setTintColor:[UIColor whiteColor]];
+	[holder addSubview:nextKeyboardButton];
+
+
+	self.abcButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.abcButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.abcButton.clipsToBounds = YES;
+	[self.abcButton setTitle:@"123" forState:UIControlStateNormal];
+	[self.abcButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.abcButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+	[holder addSubview:self.abcButton];
+
+	self.spaceButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.spaceButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.spaceButton.clipsToBounds = YES;
+	[self.spaceButton setTitle:@"space" forState:UIControlStateNormal];
+	[self.spaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.spaceButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+	[holder addSubview:self.spaceButton];
+
+	self.returnButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.returnButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.returnButton.clipsToBounds = YES;
+	[self.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
+	[self.returnButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.returnButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+	[holder addSubview:self.returnButton];
+
+
+	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton};
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[abcButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[spaceButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[changeButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[returnButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[changeButton(==abcButton)]-1-[abcButton(==50)]-1-[spaceButton]-1-[returnButton(70)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+
+	return holder;
+
 }
 
+
+
+#pragma mark Helper methods
 
 - (MMkeyboardButton *)returnButtonLocation:(CGPoint)point {
 
@@ -629,12 +595,10 @@ typedef enum {
 
 		}
 		else {
-
 			CGRect buttonRect = CGRectMake(button.frame.origin.x, [button superview].frame.origin.y, button.frame.size.width, button.frame.size.height);
 			if (CGRectContainsPoint(buttonRect, point)) {
 				currentButton = button;
 			}
-
 		}
 	}
 	];
@@ -647,6 +611,79 @@ typedef enum {
 		return nil;
 	}
 }
+
+
+
+- (BOOL)changeButtons:(BOOL)changeBool typeOfTile:(NSString *)type {
+
+	if (!changeBool) {
+		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.numericTiles1 : self.specialTiles1;
+		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.numericTiles2 : self.specialTiles2;
+		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.numericTiles3 : self.specialTiles3;
+	}
+	else {
+		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles1 : self.numericTiles1;
+		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles2 : self.numericTiles2;
+		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles3 : self.numericTiles3;
+	}
+
+	NSMutableArray *testHolder = @[].mutableCopy;
+	[testHolder addObjectsFromArray:self.currentTiles1];
+	[testHolder addObjectsFromArray:self.currentTiles2];
+	[testHolder addObjectsFromArray:self.currentTiles3];
+
+
+	for (uint n = 0; n < [self.alphaButtons count]; ++n) {
+
+		[self.alphaButtons[n] setTitle:testHolder[n] forState:UIControlStateNormal];
+
+	}
+
+	[self.view layoutIfNeeded];
+	changeBool = !changeBool;
+	return changeBool;
+}
+
+
+- (void)capataliseButtons {
+
+	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *obj, NSUInteger idx, BOOL *stop) {
+		NSString *title = [obj titleForState:UIControlStateNormal];
+		if ([title isEqualToString:@"BP"] || [title isEqualToString:@"CP"] || [title isEqualToString:@"CHG"] || [title isEqualToString:@"SPACE"] || [title isEqualToString:@"RETURN"] || [title isEqualToString:@"GIF"]) {
+
+		}
+
+		else {
+			if (!self.isCapitalised) {
+				if ([title isEqualToString:@"⇧"]) {
+					[obj setTitle:@"⇪" forState:UIControlStateNormal];
+
+				}
+				else {
+
+					[obj setTitle:title.uppercaseString forState:UIControlStateNormal];
+
+				}
+			}
+			else {
+				if ([title isEqualToString:@"⇪"]) {
+					[obj setTitle:@"⇧" forState:UIControlStateNormal];
+
+				}
+				else {
+
+					[obj setTitle:title.lowercaseString forState:UIControlStateNormal];
+				}
+
+			}
+		}
+	}];
+	[self.view layoutIfNeeded];
+	self.isCapitalised = !self.isCapitalised;
+}
+
+
+
 
 
 #pragma mark - Touch Actions
@@ -698,14 +735,12 @@ typedef enum {
 	self.buttonView = [UIView new];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
-//	self.buttonView.layer.zPosition = 1;
 	[self.view addSubview:self.buttonView];
 
 	UITextView *text = [[UITextView alloc] init];
 	text.translatesAutoresizingMaskIntoConstraints = NO;
 	[text setText:sender.titleLabel.text];
 	text.layer.cornerRadius = 4;
-//	text.scrollIndicatorInsets.top == 0;
 	text.textContainerInset = UIEdgeInsetsZero;
 	text.textContainer.lineFragmentPadding = 0;
 	text.textAlignment = NSTextAlignmentCenter;
@@ -730,7 +765,7 @@ typedef enum {
 
 }
 
-#pragma mark UI
+#pragma mark Popup Methods
 
 - (void)showInputView:(MMkeyboardButton *)sender {
 	[self hideInputView];
@@ -744,6 +779,7 @@ typedef enum {
 }
 
 - (void)hideInputView {
+
 	[self.buttonView removeFromSuperview];
 	self.buttonView = nil;
 	[self.view setNeedsDisplay];
@@ -765,7 +801,6 @@ typedef enum {
 }
 
 - (void)handleTouchUpInside:(MMkeyboardButton *)sender {
-
 	[self didTapButton:sender];
 	[self hideInputView];
 }
@@ -783,33 +818,5 @@ typedef enum {
 
 	[self hideInputView];
 }
-
-
-#pragma mark Textdoucmentproxy
-
-- (NSString *)documentContextBeforeInput {
-	return nil;
-}
-
-- (NSString *)documentContextAfterInput {
-	return nil;
-}
-
-- (void)adjustTextPositionByCharacterOffset:(NSInteger)offset {
-
-}
-
-- (BOOL)hasText {
-	return NO;
-}
-
-- (void)insertText:(NSString *)text {
-
-}
-
-- (void)deleteBackward {
-
-}
-
 
 @end

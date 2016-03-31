@@ -223,6 +223,7 @@
 	NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
 
 	self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
+	NSLog(@"gifURL:%@", self.gifURL);
 	[self.presentingViewController tappedGIF];
 }
 

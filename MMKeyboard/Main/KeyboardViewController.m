@@ -204,11 +204,11 @@ typedef enum {
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchHolder]-0-[collection]-0-[menuHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 //	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.customKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 
 //	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[searchHolder]-0-[holder]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
 
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.customKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 	[self.customKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[customKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.customKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[customKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
@@ -216,7 +216,7 @@ typedef enum {
 	self.menuLeftConstraint = [NSLayoutConstraint constraintWithItem:self.menuHolder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
 	self.collectionLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardCollectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
 
-//	[self.view addConstraints:@[self.menuLeftConstraint, self.collectionLeftConstraint, self.customeKeyboardLeftConstraint]];
+//	[self.view addConstraints:@[self.menuLeftConstraint, self.keyboardLeftConstraint, self.customeKeyboardLeftConstraint]];
 	[self.view addConstraint:self.customeKeyboardLeftConstraint];
 	[self.view addConstraint:self.menuLeftConstraint];
 	[self.view addConstraint:self.collectionLeftConstraint];
@@ -254,7 +254,7 @@ typedef enum {
 
 //	NSDictionary *metrics = @{};
 //	NSDictionary *views = @{@"customKeyboard" : self.customKeyboard.view, @"searchHolder" : self.searchHolder, @"menuHolder" : self.menuHolder,
-//			@"holder": self.customKeyboardHolder
+//			@"holder": self.collectionViewHolder
 //	};
 
 
