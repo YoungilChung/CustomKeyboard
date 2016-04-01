@@ -177,9 +177,9 @@
 	return CGSizeMake((CGFloat) (self.view.frame.size.width / 3 - 4), (CGFloat) (self.view.frame.size.width / 3 - 4));
 }
 
-//- (UICollectionViewCell *)keyboardCollectionView:(UICollectionView *)keyboardCollectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//- (UICollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //
-//	MMKeyboardCollectionViewCell *cell = [keyboardCollectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//	MMKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 //	[cell setBackgroundColor:[UIColor clearColor]];
 //
 //	[cell setData:[self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row]];

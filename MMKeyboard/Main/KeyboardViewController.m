@@ -73,9 +73,9 @@ typedef enum {
 
 
 	self.customKeyboard = [[MMAlphaKeyboardView alloc] init];
-	self.customKeyboard.view.translatesAutoresizingMaskIntoConstraints = NO;
-	self.customKeyboard.view.clipsToBounds = YES;
-	[self.customKeyboardHolder addSubview:self.customKeyboard.view];
+	self.customKeyboard.translatesAutoresizingMaskIntoConstraints = NO;
+	self.customKeyboard.clipsToBounds = YES;
+	[self.customKeyboardHolder addSubview:self.customKeyboard];
 	[self addChildViewController:self.customKeyboard];
 
 //	customKeyboard.view.translatesAutoresizingMaskIntoConstraints  = NO;
@@ -83,7 +83,7 @@ typedef enum {
 
 //	[self.view addSubview:customKeyboard.view];
 
-//	MMKeyboardCollectionView *keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
+//	MMKeyboardCollectionView *gifKeyboardView = [[MMKeyboardCollectionView alloc] initWithFrame:self.view.frame];
 
 	self.searchHolder = [UIView new];
 	self.searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
@@ -182,7 +182,7 @@ typedef enum {
 
 	NSDictionary *views = @{@"collection" : self.keyboardCollectionView, @"nxtKeyboardBtn" : self.nextKeyboardButton, @"keyboardImage" : keyboardImage,
 			@"allBtn" : self.allGifsButton, @"shareBtnOne" : self.normalButton, @"shareBtnTwo" : self.awesomeButton, @"backspaceImage" : backspaceImage, @"backspaceButton" : backspaceButton,
-			@"menuHolder" : self.menuHolder, @"searchHolder" : self.searchHolder, @"searchBar" : searchBar, @"searchButton" : searchButton, @"abcButton" : self.abcButton, @"holder" : self.customKeyboardHolder, @"customKeyboard" : self.customKeyboard.view};
+			@"menuHolder" : self.menuHolder, @"searchHolder" : self.searchHolder, @"searchBar" : searchBar, @"searchButton" : searchButton, @"abcButton" : self.abcButton, @"holder" : self.customKeyboardHolder, @"customKeyboard" : self.customKeyboard};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
 
@@ -254,7 +254,7 @@ typedef enum {
 
 //	NSDictionary *metrics = @{};
 //	NSDictionary *views = @{@"customKeyboard" : self.customKeyboard.view, @"searchHolder" : self.searchHolder, @"menuHolder" : self.menuHolder,
-//			@"holder": self.collectionViewHolder
+//			@"holder": self.gifKeyboardHolder
 //	};
 
 
@@ -295,7 +295,7 @@ typedef enum {
 		[self.view layoutIfNeeded];
 
 	}                completion:(void (^)(BOOL)) ^{
-//		[self.keyboardCollectionView removeFromSuperview];
+//		[self.gifKeyboardView removeFromSuperview];
 
 	}];
 
@@ -416,26 +416,26 @@ typedef enum {
 #pragma mark rotation TODO
 
 //- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-////	[self.keyboardCollectionView willRotateKeyboard:toInterfaceOrientation];
-////	[self.keyboardCollectionView setAlpha:0.0f];
+////	[self.gifKeyboardView willRotateKeyboard:toInterfaceOrientation];
+////	[self.gifKeyboardView setAlpha:0.0f];
 //	NSLog(@"came here");
 //	if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 //		//DO Portrait
 //		NSLog(@"came here portrait");
-//		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 2.015), (CGFloat) (self.keyboardCollectionView.layer.frame.size.height / 2.015));
+//		self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2.015), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
 //	}
 //	else {
 //		//DO Landscape
 //		NSLog(@"came here laandsaccapape");
-//		self.keyboardCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.keyboardCollectionView.layer.frame.size.width / 4.015), self.keyboardCollectionView.layer.frame.size.height);
+//		self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 4.015), self.gifKeyboardView.layer.frame.size.height);
 //	}
 //}
 
 //- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 //	[UIView animateWithDuration:0.125f animations:^{
 //
-//		[self.keyboardCollectionView setAlpha:1.0f];
-//		[self.keyboardCollectionView.keyboardCollectionView.collectionViewLayout invalidateLayout];
+//		[self.gifKeyboardView setAlpha:1.0f];
+//		[self.gifKeyboardView.gifKeyboardView.collectionViewLayout invalidateLayout];
 //	}];
 //}
 

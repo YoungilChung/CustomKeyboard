@@ -43,7 +43,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.keyboard-service</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>MMAlphaKeyboardView</string>
+		<string>KeyboardMainViewController</string>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>

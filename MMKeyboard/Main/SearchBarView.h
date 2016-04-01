@@ -6,5 +6,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class MMkeyboardButton;
+@class MMCustomTextField;
+
 @interface SearchBarView : UIView
+
+@property(nonatomic, strong) MMCustomTextField *searchBar;
+@property(nonatomic, strong) MMkeyboardButton *gifButton;
+
 @end

@@ -119,9 +119,9 @@
 	return cell;
 }
 
-//- (MMKeyboardCollectionViewCell *)keyboardCollectionView:(UICollectionView *)keyboardCollectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//- (MMKeyboardCollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //
-//	MMKeyboardCollectionViewCell *cell = [keyboardCollectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//	MMKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 //
 //	[cell setBackgroundColor:[UIColor clearColor]];
 //

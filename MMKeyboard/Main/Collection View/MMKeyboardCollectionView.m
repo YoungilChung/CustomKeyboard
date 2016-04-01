@@ -11,17 +11,18 @@
 #import "GIFEntity.h"
 #import "KeyboardViewController.h"
 #import "MMKeyboardCollectionViewFlowLayout.h"
+#import "SearchGIFManager.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 
-@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
+@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate,
+		UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, SearchMangerDelegate>
 
 // View
 @property(nonatomic, strong) KeyboardButtonView *buttonView;
 @property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
 @property(nonatomic, strong) KeyboardViewController *presentingViewController;
-
 
 // Variables
 @property(nonatomic, strong) NSMutableArray *data;
@@ -77,13 +78,19 @@
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.keyboardCollectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
 	self.keyboardCollectionView.clipsToBounds;
-//	self.keyboardCollectionView.pagingEnabled = YES;
+//	self.gifKeyboardView.pagingEnabled = YES;
 	self.keyboardCollectionView.backgroundColor = [UIColor blackColor];
 	[self.keyboardCollectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	self.keyboardCollectionView.delegate = self;
 	self.keyboardCollectionView.dataSource = self;
 	[self.keyboardCollectionView addGestureRecognizer:self.lpgr];
 	[self addSubview:self.keyboardCollectionView];
+
+
+	self.searchManager = [[SearchGIFManager alloc] init];
+	self.searchManager.communicator = [[SearchForGIFSCommunicator alloc] init];
+	self.searchManager.communicator.delegate = self.searchManager;
+	self.searchManager.delegate = self;
 
 
 	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -138,6 +145,12 @@
 					if ([entity.gifCategory isEqualToString:@"Awesome"]) {
 						[self.data addObject:entity];
 					}
+
+					break;
+				}
+				case MMSearchTypeGiphy: {
+
+
 					break;
 				}
 			}
@@ -146,8 +159,8 @@
 	}
 
 	[self.keyboardCollectionView reloadData];
-//	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
-//	[self.keyboardCollectionView layoutIfNeeded];
+//	[self.gifKeyboardView.collectionViewLayout invalidateLayout];
+//	[self.gifKeyboardView layoutIfNeeded];
 //	dispatch_async(dispatch_get_main_queue(), ^{
 //		// Update the UI
 //		self.collectionViewSize = CGSizeMake((CGFloat) (self.frame.size.width / 2), (CGFloat) (self.frame.size.width / 4));
@@ -193,7 +206,15 @@
 		return cell;
 	}
 	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage) {
-		[self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
+        if (self.type == MMSearchTypeGiphy)
+        {
+            [self.gifHolder setValue:tempImage forKey:self.data[item]];
+
+        }
+        else
+        {
+            [self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
+        }
 		cell.imageView.alpha = 1.f;
 
 		[cell.imageView setAnimatedImage:tempImage];
@@ -204,8 +225,17 @@
 }
 
 - (void)loadGifItem:(NSUInteger)item callback:(void (^)(FLAnimatedImage *image))callback {
-	if (item < self.data.count) {
-		NSURL *url = [[NSURL alloc] initWithString:[self.data valueForKey:@"gifURL"][item]];
+	NSURL *url;
+	if (item < self.
+        data.count) {
+		if (self.type == MMSearchTypeGiphy) {
+
+			url = [[NSURL alloc] initWithString:self.data[item]];
+		}
+		else {
+
+			url = [[NSURL alloc] initWithString:[self.data valueForKey:@"gifURL"][item]];
+		}
 		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
 
 		[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -222,8 +252,8 @@
 	CGPoint p = [sender locationInView:self.keyboardCollectionView];
 	NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
 
-	self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
-	NSLog(@"gifURL:%@", self.gifURL);
+//	self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
+//	NSLog(@"gifURL:%@", self.gifURL);
 	[self.presentingViewController tappedGIF];
 }
 
@@ -315,11 +345,28 @@
 	}
 }
 
+- (void)didReceiveGIFS:(NSArray *)groups {
+
+	self.data = [groups mutableCopy];
+
+	NSLog(@"data:%@ groups%@ ", self.data, groups);
+	self.type = MMSearchTypeGiphy;
+	[self.keyboardCollectionView reloadData];
+
+
+}
+
+- (void)fetchingGIFSFailedWithError:(NSError *)error {
+	NSLog(@"Error %@; %@", error, [error localizedDescription]);
+}
+
+
+
 //- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
 //
 //
 //	self.isPortrait = !(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
-//	[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
+//	[self.gifKeyboardView.collectionViewLayout invalidateLayout];
 //}
 
 @end

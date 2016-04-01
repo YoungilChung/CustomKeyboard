@@ -7,11 +7,13 @@
 #import <UIKit/UIKit.h>
 
 @class KeyboardViewController;
+@class SearchGIFManager;
 
 typedef NS_ENUM(NSInteger, MMSearchType) {
 	MMSearchTypeAll = 0,
 	MMSearchTypeNormal,
 	MMSearchTypeAwesome,
+	MMSearchTypeGiphy,
 
 };
 
@@ -21,6 +23,8 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 
 
 @property(nonatomic, strong) UICollectionView *keyboardCollectionView;
+@property(nonatomic, strong) SearchGIFManager *searchManager;
+
 @property(nonatomic, assign) CGSize keyboardCollectionViewSize;
 
 - (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController;
