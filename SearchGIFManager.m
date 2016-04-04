@@ -1,4 +1,3 @@
-
 //
 // Created by Tom Atterton on 01/04/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
@@ -21,12 +20,13 @@
 
 	NSError *error = nil;
 	NSArray *groups = [SearchGIFSController gifsFromJSON:objectNotation error:&error];
+	NSArray *sendGroups = [SearchGIFSController betterGifsFromJSON:objectNotation error:&error];
 
 	if (error != nil) {
 		[self.delegate fetchingGIFSFailedWithError:error];
 
 	} else {
-		[self.delegate didReceiveGIFS:groups];
+		[self.delegate didReceiveGIFS:groups didReceiveSendGifs:sendGroups];
 	}
 }
 

@@ -9,6 +9,7 @@
 @class GIFEntity;
 
 @interface KeyboardButtonView : UIView
+
 @property (nonatomic, strong) NSString *gifUrl;
 
 -(instancetype)initWithFrame: (CGRect)frame WithEntity:(GIFEntity*)entity;

@@ -8,8 +8,9 @@
 
 @class KeyboardViewController;
 @class SearchGIFManager;
+@protocol KeyboardDelegate;
 
-typedef NS_ENUM(NSInteger, MMSearchType) {
+typedef NS_ENUM(NSUInteger, MMSearchType) {
 	MMSearchTypeAll = 0,
 	MMSearchTypeNormal,
 	MMSearchTypeAwesome,
@@ -19,15 +20,19 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 
 @interface MMKeyboardCollectionView : UIView
 
-@property (nonatomic, strong) NSString *gifURL;
 
-
-@property(nonatomic, strong) UICollectionView *keyboardCollectionView;
+// Manger
 @property(nonatomic, strong) SearchGIFManager *searchManager;
 
-@property(nonatomic, assign) CGSize keyboardCollectionViewSize;
+// Views
+@property(nonatomic, strong) UICollectionView *keyboardCollectionView;
 
-- (instancetype)initWithPresentingViewController:(KeyboardViewController *)presentingViewController;
+// Variables
+@property(nonatomic, assign) CGSize keyboardCollectionViewSize;
+@property(nonatomic, strong) NSString *gifURL;
+@property(nonatomic, assign) MMSearchType type;
+@property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
+
 
 - (void)onAllGifsButtonTapped:(UIButton *)sender;
 
@@ -35,7 +40,7 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 
 - (void)onAwesomeButtonTapped:(UIButton *)sender;
 
-- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation;
+//- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation;
 
 - (void)loadGifs;
 

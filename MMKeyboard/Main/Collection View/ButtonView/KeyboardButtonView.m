@@ -24,6 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame WithEntity:(GIFEntity *)entity {
 	self = [super init];
 	if (self) {
+
 		self.entity = entity;
 		self.keyboardFrame = frame;
 		NSLog(@"%f", frame.size.height);
@@ -137,7 +138,7 @@
 	[bottomHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[sendGif]-20-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[bottomHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[sendUrl]-20-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
-	self.gifUrl = [self.entity valueForKeyPath:@"gifURL"];
+//	self.gifUrl = [self.entity valueForKeyPath:@"gifURL"];
 
 }
 
@@ -180,19 +181,41 @@
 }
 
 - (void)onGifTapped:(UIButton *)sender {
-	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
-	NSData *data = [NSData dataWithContentsOfURL:url];
-	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
-	self.userInfo = @{@"iconPressed" : @"gif saved"};
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
-	self.hidden = YES;
+
+	if (self.entity) {
+
+
+		NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
+		NSData *data = [NSData dataWithContentsOfURL:url];
+		[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
+		self.userInfo = @{@"iconPressed" : @"gif copied"};
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+	}
+	else {
+
+		dispatch_async(dispatch_get_main_queue(), ^{
+			//Update UI
+		CoreDataStack *coreData = [CoreDataStack defaultStack];
+		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
+		gifEntity.self.gifURL = self.gifUrl;
+		gifEntity.self.gifCategory = @"Awesome";
+		[coreData saveContext];
+
+		});
+
+		self.userInfo = @{@"iconPressed" : @"gif saved"};
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+		self.hidden = YES;
+	}
+
+
 
 }
 
 - (void)onCloseTapped:(UIButton *)sender {
 	self.userInfo = @{@"iconPressed" : @"closed"};
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
-    [self setHidden:YES];
+	[self setHidden:YES];
 }
 
 - (void)onDeleteTapped:(UIButton *)sender {

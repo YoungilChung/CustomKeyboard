@@ -5,9 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "KeyboardDelegate.h"
 
-
-
-
-@interface KeyboardMainViewController : UIInputViewController
+@interface KeyboardMainViewController : UIInputViewController<KeyboardDelegate>
 @end

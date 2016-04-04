@@ -7,12 +7,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@protocol KeyboardDelegate <NSObject>
+@protocol KeyboardDelegate;
+@class MMkeyboardButton;
 
-- (void)keyWasTapped:(NSString *)key;
-- (void) updateLayout;
-
-@end
 
 @interface MMAlphaKeyboardView : UIInputView
 
@@ -21,7 +18,7 @@
 @property(nonatomic, strong) UIImage *keyboardImage;
 
 // Delegate
-@property(nullable, nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
+@property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
-- (instancetype)init;
+@property(nonatomic, strong) MMkeyboardButton *nextKeyboardButton;
 @end

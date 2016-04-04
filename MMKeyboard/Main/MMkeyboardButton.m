@@ -3,6 +3,8 @@
 
 
 
+
+
 //
 // Created by Tom Atterton on 23/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
@@ -52,7 +54,7 @@
 {
 
 	self.backgroundColor = [UIColor darkGrayColor];
-	[self.titleLabel setFont:[UIFont fontWithName:@"AmericanTypewriter" size:12]];
+	[self.titleLabel setFont:[UIFont fontWithName:@"AmericanTypewriter" size:20]];
 	self.layer.shadowColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f] CGColor];
 	self.layer.shadowOffset = CGSizeMake(0, 2.0f);
 	self.layer.shadowOpacity = 1.0f;
@@ -64,11 +66,14 @@
 }
 
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+	CGFloat margin = 10.0;
+	CGRect area = CGRectInset(self.bounds, -margin, -margin);
+	return CGRectContainsPoint(area, point);}
 
-//
-//- (CGSize)intrinsicContentSize
-//{
-//	CGSize size = [super intrinsicContentSize];
-//	return CGSizeMake(size.width, size.height);
-//}
+- (CGSize)intrinsicContentSize
+{
+	CGSize size = [super intrinsicContentSize];
+	return CGSizeMake(size.width , 45);
+}
 @end

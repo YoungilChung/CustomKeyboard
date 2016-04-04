@@ -108,7 +108,7 @@ typedef enum {
 	[self.searchHolder addSubview:self.abcButton];
 
 
-	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc] initWithPresentingViewController:self];
+	self.keyboardCollectionView = [[MMKeyboardCollectionView alloc]init ];
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.keyboardCollectionView.clipsToBounds = YES;
 	[self.view addSubview:self.keyboardCollectionView];
