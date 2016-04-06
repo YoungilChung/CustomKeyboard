@@ -6,6 +6,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "KeyboardDelegate.h"
+#import "SpellCheckerDelegate.h"
 
-@interface KeyboardMainViewController : UIInputViewController<KeyboardDelegate>
+@interface KeyboardMainViewController : UIInputViewController<KeyboardDelegate, SpellCheckerDelegate>
+
+
 @end

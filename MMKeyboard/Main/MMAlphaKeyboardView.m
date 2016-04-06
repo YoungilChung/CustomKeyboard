@@ -9,6 +9,8 @@
 #import "KeyboardDelegate.h"
 #import "MMkeyboardButton.h"
 
+#define HMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
 
 typedef enum {
 	kTagGIFKeyboard = 100,
@@ -119,6 +121,11 @@ typedef enum {
 	self.rowView3.translatesAutoresizingMaskIntoConstraints = NO;
 	self.rowView4.translatesAutoresizingMaskIntoConstraints = NO;
 
+//	[self.rowView1 setBackgroundColor:[UIColor redColor]];
+//	[self.rowView2 setBackgroundColor:[UIColor redColor]];
+//	[self.rowView3 setBackgroundColor:[UIColor redColor]];
+
+
 	[self addSubview:self.rowView1];
 	[self addSubview:self.rowView2];
 	[self addSubview:self.rowView3];
@@ -128,9 +135,24 @@ typedef enum {
 
 
 	[self setupInputOptionsConfiguration];
+	[self initialiseButtons];
 	self.gifButton.tag = kTagGIFKeyboard;
 
 }
+
+
+- (void)initialiseButtons {
+	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *obj, NSUInteger idx, BOOL *stop) {
+
+
+//		[obj setContentEdgeInsets:UIEdgeInsetsMake(obj.frame.origin.)];
+
+
+	}];
+
+
+}
+
 
 - (void)didTapButton:(MMkeyboardButton *)sender {
 
@@ -204,6 +226,10 @@ typedef enum {
 	button.translatesAutoresizingMaskIntoConstraints = NO;
 	[button setTitle:title forState:UIControlStateNormal];
 	button.titleLabel.textColor = [UIColor whiteColor];
+	[button setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
+
+//	[button setContentMode:UIViewContentModeCenter];
+//	button.contentEdgeInsets = UIEdgeInsetsMake(-15, -15, -15, -15);
 
 	[button addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 	[button addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
@@ -211,6 +237,17 @@ typedef enum {
 
 }
 
+- (UIImage *)createImageWithColor:(UIColor *)color {
+	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	return theImage;
+}
 
 #pragma mark layout methods
 
@@ -222,17 +259,27 @@ typedef enum {
 		NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeTop
 																		 relatedBy:NSLayoutRelationEqual
 																			toItem:mainView attribute:NSLayoutAttributeTop
-																		multiplier:1.0 constant:8];
+																		multiplier:1.0 constant:5];
 
 		NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeBottom
 																			relatedBy:NSLayoutRelationEqual
 																			   toItem:mainView attribute:NSLayoutAttributeBottom
-																		   multiplier:1.0 constant:-8];
+																		   multiplier:1.0 constant:-5];
 
 
 		NSLayoutConstraint *rightConstraint;
+		NSLayoutConstraint *leftConstraint;
 
-		if (idx == buttons.count - 1) {
+
+		if ([button.titleLabel.text isEqualToString:@"l"]) {
+			rightConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeRight
+														   relatedBy:NSLayoutRelationEqual
+															  toItem:mainView attribute:NSLayoutAttributeRight
+														  multiplier:1.0 constant:-18];
+		}
+
+
+		else if (idx == buttons.count - 1) {
 			rightConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeRight
 														   relatedBy:NSLayoutRelationEqual
 															  toItem:mainView attribute:NSLayoutAttributeRight
@@ -250,16 +297,21 @@ typedef enum {
 
 		}
 
-		NSLayoutConstraint *leftConstraint;
 
-		if (idx == 0) {
+		if ([button.titleLabel.text isEqualToString:@"a"]) {
+			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:mainView attribute:NSLayoutAttributeLeft
+														 multiplier:1.0 constant:18];
+
+		}
+		else if (idx == 0) {
 			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:mainView attribute:NSLayoutAttributeLeft
 														 multiplier:1.0 constant:5];
 
 		}
-
 
 		else {
 			MMkeyboardButton *prevtButton = buttons[idx - 1];
@@ -295,33 +347,33 @@ typedef enum {
 
 		NSLayoutConstraint *leftSideConstraint;
 
-		if (idx == 1) {
+//		if (idx == 1) {
+
+//			rightSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeRightMargin
+//															   relatedBy:NSLayoutRelationEqual
+//																  toItem:inputView attribute:NSLayoutAttributeRightMargin
+//															  multiplier:1.0 constant:-12];
+//
+//			leftSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeLeftMargin
+//															  relatedBy:NSLayoutRelationEqual
+//																 toItem:inputView attribute:NSLayoutAttributeLeftMargin
+//															 multiplier:1.0 constant:12];
+
+//		}
+
+//		else {
 
 		rightSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeRight
 														   relatedBy:NSLayoutRelationEqual
 															  toItem:inputView attribute:NSLayoutAttributeRight
-														  multiplier:1.0 constant:-12];
+														  multiplier:1.0 constant:-1];
 
 		leftSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeLeft
-																				  relatedBy:NSLayoutRelationEqual
-																					 toItem:inputView attribute:NSLayoutAttributeLeft
-																				 multiplier:1.0 constant:12];
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:inputView attribute:NSLayoutAttributeLeft
+														 multiplier:1.0 constant:1];
 
-		}
-
-		else {
-
-			rightSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeRight
-															   relatedBy:NSLayoutRelationEqual
-																  toItem:inputView attribute:NSLayoutAttributeRight
-															  multiplier:1.0 constant:-1];
-
-			leftSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeLeft
-																				  relatedBy:NSLayoutRelationEqual
-																					 toItem:inputView attribute:NSLayoutAttributeLeft
-																				 multiplier:1.0 constant:1];
-
-		}
+//		}
 
 
 		[inputView addConstraints:@[leftSideConstraint, rightSideConstraint]];
@@ -415,10 +467,10 @@ typedef enum {
 
 
 	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : self.nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton};
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[abcButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[spaceButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[changeButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[returnButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[abcButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[spaceButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[changeButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[returnButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[abcButton(==changeButton)]-5-[changeButton(==50)]-5-[spaceButton]-5-[returnButton(70)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
 	return holder;
@@ -438,10 +490,10 @@ typedef enum {
 //
 //		}
 //		else {
-			CGRect buttonRect = CGRectMake(button.frame.origin.x, [button superview].frame.origin.y, button.frame.size.width, button.frame.size.height);
-			if (CGRectContainsPoint(buttonRect, point)) {
-				currentButton = button;
-			}
+		CGRect buttonRect = CGRectMake(button.frame.origin.x, [button superview].frame.origin.y, button.frame.size.width, button.frame.size.height);
+		if (CGRectContainsPoint(buttonRect, point)) {
+			currentButton = button;
+		}
 //		}
 	}
 	];
@@ -639,11 +691,11 @@ typedef enum {
 	[[UIDevice currentDevice] playInputClick];
 
 	[self showInputView:sender];
-	[self didTapButton:sender]; //TODO
 }
 
 - (void)handleTouchUpInside:(MMkeyboardButton *)sender {
 
+	[self didTapButton:sender]; //TODO
 	[self hideInputView];
 }
 

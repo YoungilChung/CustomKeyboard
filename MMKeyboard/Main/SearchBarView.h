@@ -8,21 +8,15 @@
 
 @class MMkeyboardButton;
 @class MMCustomTextField;
+@protocol KeyboardDelegate;
 
 @interface SearchBarView : UIView
 
 // Views
 @property(nonatomic, strong) MMCustomTextField *searchBar;
 @property(nonatomic, strong) MMkeyboardButton *gifButton;
-@property(nonatomic, strong) MMkeyboardButton *allButton;
-@property(nonatomic, strong) MMkeyboardButton *normalButton;
-@property(nonatomic, strong) MMkeyboardButton *awesomeButton;
 
-@property(nonatomic, strong) NSLayoutConstraint *allButtonLeftConstraint;
-
-@property(nonatomic, strong) NSLayoutConstraint *normalButtonLeftConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *awesomeButtonLeftConstraint ;
-
--(void) animateButtonsOut: (BOOL)isOut;
+// Delegate
+@property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
 @end

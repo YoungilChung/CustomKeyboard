@@ -8,7 +8,11 @@
 @protocol KeyboardDelegate <NSObject>
 
 - (void)keyWasTapped:(NSString *)key;
+
 - (void)cellWasTapped:(NSString *)gifURL WithMessageTitle:(NSString *)message;
+
+- (void)searchBarTapped;
+
 - (void)updateLayout;
 
 @end

@@ -120,6 +120,7 @@
 	[self.fetchedResultsController performFetch:nil];
 
 	self.data = [@[] mutableCopy];
+	[self.keyboardCollectionView setContentOffset:CGPointZero animated:YES];
 
 
 	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)];

@@ -10,6 +10,9 @@
 #import "MMKeyboardCollectionView.h"
 #import "MMCustomTextField.h"
 #import "SearchGIFManager.h"
+#import "CategoryHolder.h"
+#import "SpellCheckerManager.h"
+#import "AutoCorrectCollectionView.h"
 
 
 typedef enum {
@@ -25,17 +28,23 @@ typedef enum {
 // Views
 @property(nonatomic, strong) MMAlphaKeyboardView *keyboardView;
 @property(nonatomic, strong) SearchBarView *searchHolder;
+@property(nonatomic, strong) CategoryHolder *categoryHolderView;
 @property(nonatomic, strong) UIView *gifKeyboardHolder;
 @property(nonatomic, strong) MMKeyboardCollectionView *gifKeyboardView;
+@property(nonatomic, strong) AutoCorrectCollectionView *autoCorrectCollectionView;
+@property(nonatomic, strong) SpellCheckerManager *spellCheckerManager;
 
 // Variables
 @property(nonatomic, strong) UILabel *messageText;
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) NSString *gifURL;
+@property(nonatomic, strong) NSString *currentString;
+
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *keyboardLeftConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstrain;
+@property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
 @end
 
@@ -44,6 +53,17 @@ typedef enum {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+
+
+	self.spellCheckerManager = [SpellCheckerManager new];
+	self.spellCheckerManager.delegate = self;
+	[self.spellCheckerManager loadForSpellCorrection];
+
+
+	self.autoCorrectCollectionView = [[AutoCorrectCollectionView alloc] initWithSpellManager:self.spellCheckerManager];
+	self.autoCorrectCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:self.autoCorrectCollectionView];
 
 	self.keyboardView = [[MMAlphaKeyboardView alloc] init];
 	[[MMAlphaKeyboardView alloc] inputAssistantItem];
@@ -54,18 +74,25 @@ typedef enum {
 
 	self.searchHolder = [[SearchBarView alloc] init];
 	self.searchHolder.translatesAutoresizingMaskIntoConstraints = NO;
-//	[self.searchHolder setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
 	self.searchHolder.clipsToBounds = YES;
-	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didRecognizeTapGesture:)];
-	[self.searchHolder.searchBar addGestureRecognizer:tapGesture];
-	[self.searchHolder.gifButton addTarget:self action:@selector(gifKeyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
+	self.searchHolder.keyboardDelegate = self;
+	[self.searchHolder.gifButton addTarget:self action:@selector(changeKeyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.searchHolder];
+
+	self.categoryHolderView = [CategoryHolder new];
+	self.categoryHolderView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.categoryHolderView.clipsToBounds = YES;
+	[self.categoryHolderView.allButton addTarget:self action:@selector(allButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.categoryHolderView.normalButton addTarget:self action:@selector(normalButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.categoryHolderView.awesomeButton addTarget:self action:@selector(awesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.categoryHolderView.deleteButton addTarget:self action:@selector(deleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:self.categoryHolderView];
 
 	self.gifKeyboardHolder = [UIView new];
 	self.gifKeyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
 	self.gifKeyboardHolder.clipsToBounds = YES;
 	[self.view addSubview:self.gifKeyboardHolder];
+
 
 	self.gifKeyboardView = [[MMKeyboardCollectionView alloc] init];
 	self.gifKeyboardView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -76,10 +103,16 @@ typedef enum {
 	NSDictionary *views = @{@"searchBar" : self.searchHolder, @"keyboardView" : self.keyboardView, @"gifKeyboard" : self.gifKeyboardView};
 	NSDictionary *metrics = @{};
 
-//	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[searchBar]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
@@ -89,9 +122,41 @@ typedef enum {
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
+//	[self requestSupplementaryLexiconWithCompletion:^(UILexicon *receivedLexicon) {
+//		self.lexicon = receivedLexicon;
+//	}];
+
+
 }
 
-- (void)didRecognizeTapGesture:(UITapGestureRecognizer *)gesture {
+- (void)changeKeyboardButtonPressed:(MMkeyboardButton *)sender {
+
+	[self animateKeyboard:(buttonTags) sender.tag];
+
+}
+
+- (void)deleteButtonTapped:(UIButton *)sender {
+	[self.textDocumentProxy deleteBackward];
+
+}
+
+- (void)awesomeButtonTapped:(UIButton *)sender {
+
+	self.gifKeyboardView.type = MMSearchTypeAwesome;
+	[self.gifKeyboardView loadGifs];
+
+
+}
+
+- (void)normalButtonTapped:(UIButton *)sender {
+	self.gifKeyboardView.type = MMSearchTypeNormal;
+	[self.gifKeyboardView loadGifs];
+
+}
+
+- (void)allButtonTapped:(UIButton *)sender {
+	self.gifKeyboardView.type = MMSearchTypeAll;
+	[self.gifKeyboardView loadGifs];
 
 }
 
@@ -104,27 +169,70 @@ typedef enum {
 	[super viewDidAppear:animated];
 
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchHolder attribute:NSLayoutAttributeBottom multiplier:1.0 constant:2]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchHolder attribute:NSLayoutAttributeBottom multiplier:1.0 constant:2]];;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeTop
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:2]];
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:2]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.self.keyboardView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.self.gifKeyboardHolder attribute:NSLayoutAttributeTop multiplier:1.0 constant:-40]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.keyboardView attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:-5]];
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeTop
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:2]];
 
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.keyboardView attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:-5]];
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//	self.autoCorrectCollectionView.hidden = YES;
+	self.searchHolder.hidden = YES;
+	self.autoCorrectCollectionView.hidden = NO;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.gifKeyboardHolder attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:-5]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.categoryHolderView attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:-5]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeBottom
+														 multiplier:1.0 constant:0]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeBottom
+														 multiplier:1.0 constant:0]];
+
+
+//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeHeight
+//														  relatedBy:NSLayoutRelationGreaterThanOrEqual
+//															 toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+//														 multiplier:1.0 constant:10]];
 	CGRect Rect = [[UIScreen mainScreen] bounds];
 
 	NSLayoutConstraint *_heightConstraint;
-	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 1.8)];
-	[self.view addConstraint:_heightConstraint];
+//	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 2.8)];
+//	[self.view addConstraint:_heightConstraint];
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-	self.gifKeyboardLeftConstrain = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
-	[self.view addConstraint:self.gifKeyboardLeftConstrain];
+	self.gifKeyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
+	self.categoryLeftConstraint = [NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
+
+	[self.view addConstraint:self.gifKeyboardLeftConstraint];
 	[self.view addConstraint:self.keyboardLeftConstraint];
+	[self.view addConstraint:self.categoryLeftConstraint];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -159,9 +267,11 @@ typedef enum {
 
 #pragma mark Actions
 
-- (void)gifKeyboardButtonPressed:(buttonTags)tag {
 
-	switch (self.searchHolder.gifButton.tag) {
+- (void)animateKeyboard:(buttonTags)tag {
+
+
+	switch (tag) {
 		case kTagGIFKeyboard: {
 
 
@@ -176,12 +286,11 @@ typedef enum {
 			}
 
 			self.keyboardLeftConstraint.constant = -self.view.frame.size.width;
-			self.gifKeyboardLeftConstrain.constant = 0;
+			self.gifKeyboardLeftConstraint.constant = 0;
+			self.categoryLeftConstraint.constant = 0;
 
 			self.searchHolder.gifButton.tag = kTagABCKeyboard;
 			[self.searchHolder.gifButton setTitle:@"ABC" forState:UIControlStateNormal];
-			[self.searchHolder animateButtonsOut:NO];
-//			NSLog(@"GIF");
 
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
@@ -197,9 +306,9 @@ typedef enum {
 		case kTagABCKeyboard: {
 
 			self.keyboardLeftConstraint.constant = 0;
-			self.gifKeyboardLeftConstrain.constant = self.view.frame.size.width;
+			self.gifKeyboardLeftConstraint.constant = self.view.frame.size.width;
+			self.categoryLeftConstraint.constant = self.view.frame.size.width;
 			[self.gifKeyboardView.keyboardCollectionView setContentOffset:CGPointZero animated:YES];
-			[self.searchHolder animateButtonsOut:YES];
 
 			self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 			[self.searchHolder.gifButton setTitle:@"GIF" forState:UIControlStateNormal];
@@ -246,7 +355,7 @@ typedef enum {
 			}
 			else {
 				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
-				[self gifKeyboardButtonPressed:kTagABCKeyboard];
+				[self animateKeyboard:kTagGIFKeyboard];
 			}
 		}
 		else {
@@ -259,12 +368,31 @@ typedef enum {
 
 			[self.textDocumentProxy deleteBackward];
 		}
+
+		else if ([key isEqualToString:@" "]) {
+
+			[self.textDocumentProxy insertText:key];
+
+
+			self.currentString = @"";
+			[self.spellCheckerManager fetchWords:self.currentString];
+
+		}
 		else {
 
 			[self.textDocumentProxy insertText:key];
+			self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
+
+			[self.spellCheckerManager fetchWords:self.currentString];
+
+//			[self checkText:self.currentString];
 		}
 	}
 
+}
+
+- (void)searchBarTapped {
+	[self animateKeyboard:kTagABCKeyboard];
 }
 
 - (void)updateLayout {
@@ -281,7 +409,57 @@ typedef enum {
 		[self loadMessage:message];
 	}
 }
+//
+//- (void)primarySpell:(NSString *)primaryString {
+//
+//	NSLog(@"primary:%@", primaryString);
+//	[self.autoCorrectCollectionView updateText:primaryString forSection:ksectionHeaderPrimary];
+////	self.autoCorrectCollectionView.primaryString = primaryString;
+//}
+//
+//- (void)secondarySpell:(NSString *)secondaryString {
+//
+//	NSLog(@"secondary:%@", secondaryString);
+//	[self.autoCorrectCollectionView updateText:secondaryString forSection:ksectionHeaderSecondary];
+//
+////	self.autoCorrectCollectionView.secondaryString;
+//}
+//
+//- (void)tertiarySpell:(NSString *)tertiaryString {
+//
+//	NSLog(@"tertiary:%@", tertiaryString);
+//	[self.autoCorrectCollectionView updateText:tertiaryString forSection:ksectionHeaderTertiary];
+//
+////	self.autoCorrectCollectionView.tertiaryString;
+//}
 
+- (void)hideView:(BOOL)shouldHide {
+
+	if (!shouldHide) {
+		NSLog(@"show");
+		self.searchHolder.hidden = YES;
+		self.autoCorrectCollectionView.hidden = NO;
+	}
+	else {
+		NSLog(@"hide");
+
+		self.autoCorrectCollectionView.hidden = YES;
+		self.searchHolder.hidden = NO;
+	}
+
+}
+
+
+- (void)checkText:(NSString *)checkedText {
+
+	UITextChecker *textChecker = [[UITextChecker alloc] init];
+	NSLog(@"currentString:%@", self.currentString);
+	NSArray *completions = [textChecker completionsForPartialWordRange:NSMakeRange(0, self.currentString.length) inString:self.currentString language:@"en"];
+
+	NSLog(@"completions:%@ %@ %@", completions[0], completions[1], completions[2]);
+
+
+}
 
 #pragma  mark  Helpers
 
