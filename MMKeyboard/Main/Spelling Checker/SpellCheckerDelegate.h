@@ -10,6 +10,7 @@
 -(void)primarySpell:(NSString *)primaryString;
 -(void)secondarySpell:(NSString *)secondaryString;
 -(void)tertiarySpell:(NSString *)tertiaryString;
+- (void)tappedWord:(NSString *)tappedWord;
 
 -(void)hideView:(BOOL)shouldHide;
 

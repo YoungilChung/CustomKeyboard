@@ -7,18 +7,24 @@
 #import <UIKit/UIKit.h>
 
 @class SpellCheckerManager;
+@protocol SpellCheckerDelegate;
 typedef enum {
 	ksectionHeaderPrimary = 100,
 	ksectionHeaderSecondary,
 	ksectionHeaderTertiary,
 } sectionHeaders;
+
 @interface AutoCorrectCollectionView : UIView
 
+// Views
 @property(nonatomic, strong) NSString *primaryString;
 @property(nonatomic, strong) NSString *secondaryString;
 @property(nonatomic, strong) NSString *tertiaryString;
 
--(instancetype)initWithSpellManager:(SpellCheckerManager *)manager;	
+//Delegate
+@property(nonatomic, weak) id <SpellCheckerDelegate> delegate;
 
+// Method
 -(void)updateText:(NSString*)updatedText forSection:(sectionHeaders)section;
+
 @end

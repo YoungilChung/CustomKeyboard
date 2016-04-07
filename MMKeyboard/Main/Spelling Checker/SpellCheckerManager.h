@@ -12,14 +12,16 @@
 @interface SpellCheckerManager : NSObject
 
 
-@property (nonatomic, strong)NSString *primaryString;
-@property (nonatomic, strong)NSString *secondaryString;
-@property (nonatomic, strong)NSString *tertiaryString;
+@property(nonatomic, strong) NSString *primaryString;
+@property(nonatomic, strong) NSString *secondaryString;
+@property(nonatomic, strong) NSString *tertiaryString;
 
 // Delegate
 @property(nonatomic, weak) id <SpellCheckerDelegate> delegate;
 
 - (void)loadForSpellCorrection;
+
 - (void)fetchWords:(NSString *)queryString;
+
 
 @end

@@ -22,7 +22,7 @@ typedef enum {
 } buttonTags;
 
 
-@interface KeyboardMainViewController () <UITextDocumentProxy>
+@interface KeyboardMainViewController () <UITextDocumentProxy, SpellCheckerDelegate, UIGestureRecognizerDelegate>
 
 
 // Views
@@ -39,6 +39,7 @@ typedef enum {
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) NSString *gifURL;
 @property(nonatomic, strong) NSString *currentString;
+@property(nonatomic, strong) NSString *primaryString;
 
 
 // Constraints
@@ -55,14 +56,20 @@ typedef enum {
 	[super viewDidLoad];
 
 
-
 	self.spellCheckerManager = [SpellCheckerManager new];
 	self.spellCheckerManager.delegate = self;
 	[self.spellCheckerManager loadForSpellCorrection];
 
 
-	self.autoCorrectCollectionView = [[AutoCorrectCollectionView alloc] initWithSpellManager:self.spellCheckerManager];
+	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+	ges.minimumPressDuration = 0.1;
+	ges.numberOfTouchesRequired = 1;
+	ges.delegate = self;
+	[self.categoryHolderView.deleteButton addGestureRecognizer:ges];
+
+	self.autoCorrectCollectionView = [[AutoCorrectCollectionView alloc] init];
 	self.autoCorrectCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.autoCorrectCollectionView.delegate = self;
 	[self.view addSubview:self.autoCorrectCollectionView];
 
 	self.keyboardView = [[MMAlphaKeyboardView alloc] init];
@@ -122,42 +129,6 @@ typedef enum {
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
-//	[self requestSupplementaryLexiconWithCompletion:^(UILexicon *receivedLexicon) {
-//		self.lexicon = receivedLexicon;
-//	}];
-
-
-}
-
-- (void)changeKeyboardButtonPressed:(MMkeyboardButton *)sender {
-
-	[self animateKeyboard:(buttonTags) sender.tag];
-
-}
-
-- (void)deleteButtonTapped:(UIButton *)sender {
-	[self.textDocumentProxy deleteBackward];
-
-}
-
-- (void)awesomeButtonTapped:(UIButton *)sender {
-
-	self.gifKeyboardView.type = MMSearchTypeAwesome;
-	[self.gifKeyboardView loadGifs];
-
-
-}
-
-- (void)normalButtonTapped:(UIButton *)sender {
-	self.gifKeyboardView.type = MMSearchTypeNormal;
-	[self.gifKeyboardView loadGifs];
-
-}
-
-- (void)allButtonTapped:(UIButton *)sender {
-	self.gifKeyboardView.type = MMSearchTypeAll;
-	[self.gifKeyboardView loadGifs];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -178,7 +149,6 @@ typedef enum {
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:self.keyboardView attribute:NSLayoutAttributeTop
 														 multiplier:1.0 constant:-5]];
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeTop
 														  relatedBy:NSLayoutRelationEqual
@@ -189,11 +159,9 @@ typedef enum {
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:self.keyboardView attribute:NSLayoutAttributeTop
 														 multiplier:1.0 constant:-5]];
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//	self.autoCorrectCollectionView.hidden = YES;
-	self.searchHolder.hidden = YES;
-	self.autoCorrectCollectionView.hidden = NO;
+	self.autoCorrectCollectionView.alpha = 0.0f;
+
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:self.gifKeyboardHolder attribute:NSLayoutAttributeTop
@@ -213,18 +181,6 @@ typedef enum {
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:self.view attribute:NSLayoutAttributeBottom
 														 multiplier:1.0 constant:0]];
-
-
-//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeHeight
-//														  relatedBy:NSLayoutRelationGreaterThanOrEqual
-//															 toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-//														 multiplier:1.0 constant:10]];
-	CGRect Rect = [[UIScreen mainScreen] bounds];
-
-	NSLayoutConstraint *_heightConstraint;
-//	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 2.8)];
-//	[self.view addConstraint:_heightConstraint];
-
 
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
 	self.gifKeyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
@@ -264,6 +220,14 @@ typedef enum {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"closeSubview" object:nil];
 	self.userInfo = @{};
 }
+
+
+#pragma mark touch gestures
+-(void)longPress:(UILongPressGestureRecognizer*)gesture {
+	[[self textDocumentProxy] deleteBackward];
+
+}
+
 
 #pragma mark Actions
 
@@ -335,6 +299,33 @@ typedef enum {
 
 }
 
+
+#pragma mark GifKeyboard Actions
+
+- (void)allButtonTapped:(UIButton *)sender {
+	self.gifKeyboardView.type = MMSearchTypeAll;
+	[self.gifKeyboardView loadGifs];
+
+}
+
+- (void)normalButtonTapped:(UIButton *)sender {
+	self.gifKeyboardView.type = MMSearchTypeNormal;
+	[self.gifKeyboardView loadGifs];
+
+}
+
+- (void)awesomeButtonTapped:(UIButton *)sender {
+
+	self.gifKeyboardView.type = MMSearchTypeAwesome;
+	[self.gifKeyboardView loadGifs];
+}
+
+- (void)deleteButtonTapped:(UIButton *)sender {
+	[self.textDocumentProxy deleteBackward];
+
+}
+
+
 #pragma mark KeyboardDelegate
 
 - (void)keyWasTapped:(NSString *)key {
@@ -367,15 +358,14 @@ typedef enum {
 		if ([key isEqualToString:@"⌫"]) {
 
 			[self.textDocumentProxy deleteBackward];
+			self.currentString = self.currentString.length < 1 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+			[self.spellCheckerManager fetchWords:self.currentString];
+
 		}
 
 		else if ([key isEqualToString:@" "]) {
 
-			[self.textDocumentProxy insertText:key];
-
-
-			self.currentString = @"";
-			[self.spellCheckerManager fetchWords:self.currentString];
+			[self replaceWord:self.primaryString];
 
 		}
 		else {
@@ -384,8 +374,6 @@ typedef enum {
 			self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
 
 			[self.spellCheckerManager fetchWords:self.currentString];
-
-//			[self checkText:self.currentString];
 		}
 	}
 
@@ -409,59 +397,91 @@ typedef enum {
 		[self loadMessage:message];
 	}
 }
-//
-//- (void)primarySpell:(NSString *)primaryString {
-//
-//	NSLog(@"primary:%@", primaryString);
-//	[self.autoCorrectCollectionView updateText:primaryString forSection:ksectionHeaderPrimary];
-////	self.autoCorrectCollectionView.primaryString = primaryString;
-//}
-//
-//- (void)secondarySpell:(NSString *)secondaryString {
-//
-//	NSLog(@"secondary:%@", secondaryString);
-//	[self.autoCorrectCollectionView updateText:secondaryString forSection:ksectionHeaderSecondary];
-//
-////	self.autoCorrectCollectionView.secondaryString;
-//}
-//
-//- (void)tertiarySpell:(NSString *)tertiaryString {
-//
-//	NSLog(@"tertiary:%@", tertiaryString);
-//	[self.autoCorrectCollectionView updateText:tertiaryString forSection:ksectionHeaderTertiary];
-//
-////	self.autoCorrectCollectionView.tertiaryString;
-//}
+
+
+#pragma mark SpellChecker Delegate
+
+- (void)primarySpell:(NSString *)primaryString {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.primaryString = primaryString;
+		[self.autoCorrectCollectionView updateText:primaryString forSection:ksectionHeaderPrimary];
+	});
+
+}
+
+- (void)secondarySpell:(NSString *)secondaryString {
+	dispatch_async(dispatch_get_main_queue(), ^{
+
+		[self.autoCorrectCollectionView updateText:secondaryString forSection:ksectionHeaderSecondary];
+	});
+
+}
+
+- (void)tertiarySpell:(NSString *)tertiaryString {
+	dispatch_async(dispatch_get_main_queue(), ^{
+
+		[self.autoCorrectCollectionView updateText:tertiaryString forSection:ksectionHeaderTertiary];
+	});
+
+}
+
+
+- (void)tappedWord:(NSString *)tappedWord {
+
+
+	[self replaceWord:tappedWord];
+
+}
+
 
 - (void)hideView:(BOOL)shouldHide {
 
 	if (!shouldHide) {
-		NSLog(@"show");
-		self.searchHolder.hidden = YES;
-		self.autoCorrectCollectionView.hidden = NO;
+		dispatch_async(dispatch_get_main_queue(), ^{
+
+			[UIView animateWithDuration:0.3 animations:^{
+
+				self.searchHolder.alpha = 0.0f;
+				self.autoCorrectCollectionView.alpha = 1.0f;
+
+			}];
+		});
 	}
 	else {
-		NSLog(@"hide");
 
-		self.autoCorrectCollectionView.hidden = YES;
-		self.searchHolder.hidden = NO;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[UIView animateWithDuration:0.3 animations:^{
+
+				self.autoCorrectCollectionView.alpha = 0.0f;
+				self.searchHolder.alpha = 1.0f;
+			}];
+
+		});
 	}
 
 }
 
 
-- (void)checkText:(NSString *)checkedText {
+#pragma mark TextControl
 
-	UITextChecker *textChecker = [[UITextChecker alloc] init];
-	NSLog(@"currentString:%@", self.currentString);
-	NSArray *completions = [textChecker completionsForPartialWordRange:NSMakeRange(0, self.currentString.length) inString:self.currentString language:@"en"];
 
-	NSLog(@"completions:%@ %@ %@", completions[0], completions[1], completions[2]);
+- (void)replaceWord:(NSString *)replacedWord {
 
+	if (replacedWord.length > 1) {
+		NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
+		NSLog(@"%@", [tokens lastObject]);
+		for (int i = 0; i < [[tokens lastObject] length]; i++) {
+			[self.textDocumentProxy deleteBackward];
+		}
+		[self.textDocumentProxy insertText:[NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]]];
+		self.primaryString = @"";
+		self.currentString = @"";
+		[self.spellCheckerManager fetchWords:self.currentString];
+	}
 
 }
 
-#pragma  mark  Helpers
+#pragma  mark  ViewControl
 
 - (void)loadMessage:(NSString *)textMessage {
 	UIView *view = [UIView new];
@@ -532,6 +552,15 @@ typedef enum {
 
 }
 
+
+- (void)changeKeyboardButtonPressed:(MMkeyboardButton *)sender {
+
+	[self animateKeyboard:(buttonTags) sender.tag];
+
+}
+
+
+#pragma mark TextDocumentProxy
 
 - (void)textDidChange:(id <UITextInput>)textInput {
 

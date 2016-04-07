@@ -8,7 +8,7 @@
 #import "KeyboardDelegate.h"
 #import "SpellCheckerDelegate.h"
 
-@interface KeyboardMainViewController : UIInputViewController<KeyboardDelegate, SpellCheckerDelegate>
+@interface KeyboardMainViewController : UIInputViewController<KeyboardDelegate>
 
 
 @end

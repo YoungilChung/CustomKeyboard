@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITextChecker (Additions)
+@interface UITextChecker (Additions
+                          )
 
 - (NSArray *)guessesForWord:(NSString *)word;
 

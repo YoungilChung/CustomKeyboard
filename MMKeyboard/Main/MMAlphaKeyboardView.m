@@ -8,6 +8,8 @@
 #import "UIImage+emoji.h"
 #import "KeyboardDelegate.h"
 #import "MMkeyboardButton.h"
+#import "keyboardKeysModel.h"
+#import "PopupButtonView.h"
 
 #define HMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
@@ -59,6 +61,8 @@ typedef enum {
 @property(nonatomic, assign) NSUInteger paddingKeyboard;
 @property(nonatomic, assign) NSUInteger paddingKeyboardRows;
 
+@property(nonatomic, strong) keyboardKeysModel *keyboardKeysModel;
+
 // Gestures
 @property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
 @property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
@@ -72,17 +76,7 @@ typedef enum {
 	self = [super init];
 	if (self) {
 
-		self.alphaTiles1 = @[@"q", @"w", @"e", @"r", @"t", @"y", @"u", @"i", @"o", @"p"];
-		self.alphaTiles2 = @[@"a", @"s", @"d", @"f", @"g", @"h", @"j", @"k", @"l"];
-		self.alphaTiles3 = @[@"⇧", @"z", @"x", @"c", @"v", @"b", @"n", @"m", @"⌫"];
-
-		self.numericTiles1 = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"0"];
-		self.numericTiles2 = @[@"-", @"/", @":", @";", @"(", @")", @"€", @"&", @"@"];
-		self.numericTiles3 = @[@"#+=", @".", @",", @"?", @"!", @"™", @"'", @"\"", @"⌫"];
-
-		self.specialTiles1 = @[@"[", @"]", @"{", @"}", @"#", @"%", @"^", @"*", @"+", @"="];
-		self.specialTiles2 = @[@"_", @"\"", @"|", @"~", @"<", @">", @"£", @"$", @"¥"];
-		self.specialTiles3 = @[@"?!@", @".", @",", @"?", @"!", @"®", @"'", @"•", @"⌫"];
+		self.keyboardKeysModel = [[keyboardKeysModel alloc] init];
 
 		[self setup];
 	}
@@ -103,9 +97,9 @@ typedef enum {
 
 	self.alphaButtons = @[].mutableCopy;
 
-	self.currentTiles1 = self.alphaTiles1.mutableCopy;
-	self.currentTiles2 = self.alphaTiles2.mutableCopy;
-	self.currentTiles3 = self.alphaTiles3.mutableCopy;
+	self.currentTiles1 = self.keyboardKeysModel.alphaTiles1.mutableCopy;
+	self.currentTiles2 = self.keyboardKeysModel.alphaTiles2.mutableCopy;
+	self.currentTiles3 = self.keyboardKeysModel.alphaTiles3.mutableCopy;
 
 
 	self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -228,8 +222,6 @@ typedef enum {
 	button.titleLabel.textColor = [UIColor whiteColor];
 	[button setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
 
-//	[button setContentMode:UIViewContentModeCenter];
-//	button.contentEdgeInsets = UIEdgeInsetsMake(-15, -15, -15, -15);
 
 	[button addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 	[button addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
@@ -510,14 +502,14 @@ typedef enum {
 - (BOOL)changeButtons:(BOOL)changeBool typeOfTile:(NSString *)type {
 
 	if (!changeBool) {
-		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.numericTiles1 : self.specialTiles1;
-		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.numericTiles2 : self.specialTiles2;
-		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.numericTiles3 : self.specialTiles3;
+		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.numericTiles1 : self.keyboardKeysModel.specialTiles1;
+		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.numericTiles2 : self.keyboardKeysModel.specialTiles2;
+		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.numericTiles3 : self.keyboardKeysModel.specialTiles3;
 	}
 	else {
-		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles1 : self.numericTiles1;
-		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles2 : self.numericTiles2;
-		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.alphaTiles3 : self.numericTiles3;
+		self.currentTiles1 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.alphaTiles1 : self.keyboardKeysModel.numericTiles1;
+		self.currentTiles2 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.alphaTiles2 : self.keyboardKeysModel.numericTiles2;
+		self.currentTiles3 = ([type isEqualToString:@"numeric"]) ? self.keyboardKeysModel.alphaTiles3 : self.keyboardKeysModel.numericTiles3;
 	}
 
 	NSMutableArray *testHolder = @[].mutableCopy;
@@ -582,6 +574,15 @@ typedef enum {
 - (void)setupInputOptionsConfiguration {
 	[self tearDownInputOptionsConfiguration];
 
+	UILongPressGestureRecognizer *longPressGestureRecognizer =
+			[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+	longPressGestureRecognizer.minimumPressDuration = 0.3;
+	longPressGestureRecognizer.delegate = self;
+
+	[self addGestureRecognizer:longPressGestureRecognizer];
+	self.optionsViewRecognizer = longPressGestureRecognizer;
+
+
 	UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_handlePanning:)];
 	panGestureRecognizer.delegate = self;
 
@@ -590,6 +591,7 @@ typedef enum {
 }
 
 - (void)tearDownInputOptionsConfiguration {
+
 	[self removeGestureRecognizer:self.optionsViewRecognizer];
 	[self removeGestureRecognizer:self.panGestureRecognizer];
 }
@@ -619,31 +621,43 @@ typedef enum {
 	}
 }
 
+#pragma mark touch gestures
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+	CGPoint location = [gesture locationInView:self];
+	self.panningButton = [self returnButtonLocation:location];
+
+	if (gesture.state == UIGestureRecognizerStateBegan) {
+
+//		MMkeyboardButton *button = (MMkeyboardButton *) gesture.view;
+//		NSString *title = [button titleForState:UIControlStateNormal];
+
+		if ([self.panningButton.titleLabel.text isEqualToString:@"⌫"]) {
+			[self.keyboardDelegate keyWasTapped:self.panningButton.titleLabel.text];
+		}
+
+		[self hideInputView];
+	}
+
+	else if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
+
+		if (self.panGestureRecognizer.state != UIGestureRecognizerStateRecognized) {
+
+
+			[self handleTouchUpInside:self.panningButton];
+		}
+	}
+
+}
 
 #pragma mark keyboard popup
 
 - (void)addPopupToButton:(MMkeyboardButton *)sender {
 
-	self.buttonView = [UIView new];
+	self.buttonView = [[PopupButtonView alloc] initWithButtonTitle:sender.titleLabel.text];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
 	[self.superview addSubview:self.buttonView];
-
-	UITextView *text = [[UITextView alloc] init];
-	text.translatesAutoresizingMaskIntoConstraints = NO;
-	[text setText:sender.titleLabel.text];
-	text.layer.cornerRadius = 4;
-	text.textContainerInset = UIEdgeInsetsZero;
-	text.textContainer.lineFragmentPadding = 0;
-	text.textAlignment = NSTextAlignmentCenter;
-	[text setFont:[UIFont boldSystemFontOfSize:30]];
-	text.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
-	[self.buttonView addSubview:text];
-
-
-	NSDictionary *metrics = @{};
-	NSDictionary *views = @{@"buttonView" : self.buttonView, @"text" : text};
-
 
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height * 2.1)]];
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.width * 1.3)]];
@@ -654,10 +668,6 @@ typedef enum {
 
 //	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
-
-	[self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[text]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[text]-(0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
 }
 
 #pragma mark Popup Methods
@@ -681,8 +691,12 @@ typedef enum {
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	return (gestureRecognizer == _panGestureRecognizer) && (otherGestureRecognizer == _panGestureRecognizer);
+- (BOOL)                         gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:
+		(UIGestureRecognizer *)otherGestureRecognizer {
+	return (gestureRecognizer == _panGestureRecognizer || gestureRecognizer == _optionsViewRecognizer) &&
+			(otherGestureRecognizer == _panGestureRecognizer || otherGestureRecognizer == _optionsViewRecognizer);
+//	return (gestureRecognizer == _panGestureRecognizer) && (otherGestureRecognizer == _panGestureRecognizer);
 }
 
 #pragma mark - Touch Actions
@@ -701,13 +715,17 @@ typedef enum {
 
 #pragma mark - Touch Handling
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches
+		   withEvent:
+				   (UIEvent *)event {
 	[super touchesEnded:touches withEvent:event];
 
 	[self hideInputView];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet *)touches
+			   withEvent:
+					   (UIEvent *)event {
 	[super touchesCancelled:touches withEvent:event];
 
 	[self hideInputView];
