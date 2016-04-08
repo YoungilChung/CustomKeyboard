@@ -115,9 +115,11 @@
 		C3C3621E2CD7124B17869683 /* keyboardKeysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367CA6BA815822353F272 /* keyboardKeysModel.m */; };
 		C3C3622D890060332F84322F /* KeyboardPopUpButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4C7C9A7A6C54C345A5 /* KeyboardPopUpButtonView.m */; };
 		C3C362408E1A70C87629D109 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
+		C3C362458896C6ED99567152 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */; };
 		C3C36282A6EF8A0157387202 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
 		C3C36294E29CE84896848455 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C36297DE451ACF24050FC5 /* KeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36C4FE2ADC0C4F7F99CA6 /* KeyboardButtonView.m */; };
+		C3C362B97935773A1713A079 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */; };
 		C3C362DAEAE7A20710EA286F /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		C3C362E469517E1E1E4A9856 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
 		C3C363496E6DAB9AACE63C21 /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
@@ -162,6 +164,7 @@
 		C3C36963A21192692CFA89C5 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		C3C369839F757007463FE30A /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
 		C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364D6B6E48FBD6568923A /* ShareViewController.m */; };
+		C3C369CDF47C40589CD86E85 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */; };
 		C3C36A0D1FCF2F3FD3C7F55D /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
 		C3C36A2B450DC4132044C8DF /* SpellCheckerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A8A9576979FD0452B9C /* SpellCheckerBridge.mm */; };
 		C3C36A7E505947B78B3236D5 /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
@@ -345,6 +348,7 @@
 		C3C3661FAEC08C8F87CB99A5 /* MMKeyboardCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backspaceIcon.png; sourceTree = "<group>"; };
 		C3C366BF27D29DEABD88A9EC /* SpellCheckerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckerBridge.h; sourceTree = "<group>"; };
+		C3C366C9D0821E3810C7992D /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
 		C3C366D5449168E369EBBB6F /* SearchGIFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGIFManager.h; sourceTree = SOURCE_ROOT; };
 		C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPreviewViewController.m; sourceTree = "<group>"; };
 		C3C3673F5A5104199A195BD5 /* MMCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMCustomTextField.h; path = ../MMCustomTextField.h; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 		C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCorrectCollectionView.m; sourceTree = "<group>"; };
 		C3C36B4C7C9A7A6C54C345A5 /* KeyboardPopUpButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardPopUpButtonView.m; sourceTree = "<group>"; };
 		C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downloadIcon.png; sourceTree = "<group>"; };
+		C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
 		C3C36BE73735B5398B1073AB /* KeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardViewController.m; sourceTree = "<group>"; };
 		C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hipchat-logo@2x.png"; sourceTree = "<group>"; };
 		C3C36C3006BE6F691892964A /* MMAlphaKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlphaKeyboardView.h; sourceTree = "<group>"; };
@@ -754,6 +759,8 @@
 				C3C36A64AA4B114EFEA5840F /* Utility */,
 				C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */,
 				C3C36D84056A95785ADAAC0C /* PopupButtonView.h */,
+				C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */,
+				C3C366C9D0821E3810C7992D /* PopupView.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1366,6 +1373,7 @@
 				C3C36FAB60EE7400FA6720FF /* SuggestionView.m in Sources */,
 				C3C36D49CD344013BBEDDAD1 /* keyboardKeysModel.m in Sources */,
 				C3C362DAEAE7A20710EA286F /* PopupButtonView.m in Sources */,
+				C3C362458896C6ED99567152 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1435,7 @@
 				C3C36F7CA433D3A3AFE35C41 /* SuggestionView.m in Sources */,
 				C3C364261FEBBA437935FCB6 /* keyboardKeysModel.m in Sources */,
 				C3C36F5F9C096989099D66EA /* PopupButtonView.m in Sources */,
+				C3C369CDF47C40589CD86E85 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,6 +1473,7 @@
 				C3C362E469517E1E1E4A9856 /* SuggestionView.m in Sources */,
 				C3C3621E2CD7124B17869683 /* keyboardKeysModel.m in Sources */,
 				C3C36963A21192692CFA89C5 /* PopupButtonView.m in Sources */,
+				C3C362B97935773A1713A079 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

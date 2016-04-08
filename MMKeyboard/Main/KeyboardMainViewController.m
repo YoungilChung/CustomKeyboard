@@ -371,6 +371,7 @@ typedef enum {
 		else {
 
 			[self.textDocumentProxy insertText:key];
+            
 			self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
 
 			[self.spellCheckerManager fetchWords:self.currentString];
@@ -384,6 +385,9 @@ typedef enum {
 }
 
 - (void)updateLayout {
+    
+    
+    
 
 	[self.view layoutIfNeeded];
 	[self.view setNeedsDisplay];
@@ -432,7 +436,6 @@ typedef enum {
 	[self replaceWord:tappedWord];
 
 }
-
 
 - (void)hideView:(BOOL)shouldHide {
 

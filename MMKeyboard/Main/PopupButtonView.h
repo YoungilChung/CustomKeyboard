@@ -6,8 +6,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	kpopUpStyleSingle = 100,
+	kpopUpStyleMultiple,
+} popUpStyle;
+
+
+@class MMkeyboardButton;
+
 @interface PopupButtonView : UIView
 
--(instancetype)initWithButtonTitle:(NSString*)buttonTitle;
+-(instancetype)initWithButton:(MMkeyboardButton*)button WithPopupStyle:(popUpStyle)popUpStyle;
 
 @end

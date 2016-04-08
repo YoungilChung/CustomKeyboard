@@ -36,18 +36,6 @@ typedef enum {
 @property(nonatomic, strong) MMkeyboardButton *gifButton;
 
 // Variables
-@property(nonatomic, strong) NSArray *alphaTiles1;
-@property(nonatomic, strong) NSArray *alphaTiles2;
-@property(nonatomic, strong) NSArray *alphaTiles3;
-
-@property(nonatomic, strong) NSArray *specialTiles1;
-@property(nonatomic, strong) NSArray *specialTiles2;
-@property(nonatomic, strong) NSArray *specialTiles3;
-
-@property(nonatomic, strong) NSArray *numericTiles1;
-@property(nonatomic, strong) NSArray *numericTiles2;
-@property(nonatomic, strong) NSArray *numericTiles3;
-
 @property(nonatomic, strong) NSArray *currentTiles1;
 @property(nonatomic, strong) NSArray *currentTiles2;
 @property(nonatomic, strong) NSArray *currentTiles3;
@@ -58,8 +46,6 @@ typedef enum {
 @property(nonatomic, assign) BOOL isCapitalised;
 @property(nonatomic, assign) BOOL isSpecialCharacter;
 @property(nonatomic, assign) BOOL isNumericCharacter;
-@property(nonatomic, assign) NSUInteger paddingKeyboard;
-@property(nonatomic, assign) NSUInteger paddingKeyboardRows;
 
 @property(nonatomic, strong) keyboardKeysModel *keyboardKeysModel;
 
@@ -91,9 +77,6 @@ typedef enum {
 	self.isSpecialCharacter = NO;
 	self.isNumericCharacter = NO;
 
-	self.paddingKeyboard = 2;
-	self.paddingKeyboardRows = 3;
-
 
 	self.alphaButtons = @[].mutableCopy;
 
@@ -119,7 +102,6 @@ typedef enum {
 //	[self.rowView2 setBackgroundColor:[UIColor redColor]];
 //	[self.rowView3 setBackgroundColor:[UIColor redColor]];
 
-
 	[self addSubview:self.rowView1];
 	[self addSubview:self.rowView2];
 	[self addSubview:self.rowView3];
@@ -129,21 +111,7 @@ typedef enum {
 
 
 	[self setupInputOptionsConfiguration];
-	[self initialiseButtons];
 	self.gifButton.tag = kTagGIFKeyboard;
-
-}
-
-
-- (void)initialiseButtons {
-	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *obj, NSUInteger idx, BOOL *stop) {
-
-
-//		[obj setContentEdgeInsets:UIEdgeInsetsMake(obj.frame.origin.)];
-
-
-	}];
-
 
 }
 
@@ -493,6 +461,7 @@ typedef enum {
 	if (currentButton) {
 		return currentButton;
 	}
+
 	else {
 
 		return nil;
@@ -629,14 +598,17 @@ typedef enum {
 
 	if (gesture.state == UIGestureRecognizerStateBegan) {
 
+//		[self hideInputView];
+
+
+
 //		MMkeyboardButton *button = (MMkeyboardButton *) gesture.view;
 //		NSString *title = [button titleForState:UIControlStateNormal];
 
-		if ([self.panningButton.titleLabel.text isEqualToString:@"⌫"]) {
-			[self.keyboardDelegate keyWasTapped:self.panningButton.titleLabel.text];
-		}
+//		if ([self.panningButton.titleLabel.text isEqualToString:@"⌫"]) {
+//			[self.keyboardDelegate keyWasTapped:self.panningButton.titleLabel.text];
+//		}
 
-		[self hideInputView];
 	}
 
 	else if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
@@ -654,20 +626,40 @@ typedef enum {
 
 - (void)addPopupToButton:(MMkeyboardButton *)sender {
 
-	self.buttonView = [[PopupButtonView alloc] initWithButtonTitle:sender.titleLabel.text];
+	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:kpopUpStyleMultiple];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
 	[self.superview addSubview:self.buttonView];
 
+
+	NSDictionary *metrics = @{};
+	NSDictionary *views = @{@"buttonView" : self.buttonView};
+
+
+//	[self.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height * 2.1)]];
-	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.width * 1.3)]];
+//	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.width * 1.3)]];
+
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
 
 	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-	bottomConstraint.priority = 800;
+//	bottomConstraint.priority = 800;
 	[self.superview addConstraint:bottomConstraint];
 
 //	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+	NSLayoutConstraint *centerConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+//	[centerConstraint setPriority:800];
+	[self.superview addConstraint:centerConstraint];
+
+	NSLog(@"%f%f%f%f",sender.frame.origin.y, sender.frame.origin.x, self.buttonView.frame.size.width, self.buttonView.frame.size.height);
+}
+
+
+- (void)expandedPopupButton:(MMkeyboardButton *)sender {
+
+
 }
 
 #pragma mark Popup Methods
@@ -688,6 +680,7 @@ typedef enum {
 	self.buttonView = nil;
 	[self.keyboardDelegate updateLayout];
 }
+
 
 #pragma mark - UIGestureRecognizerDelegate
 
