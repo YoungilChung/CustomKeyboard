@@ -626,41 +626,43 @@ typedef enum {
 
 - (void)addPopupToButton:(MMkeyboardButton *)sender {
 
+
 	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:kpopUpStyleMultiple];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
 	[self.superview addSubview:self.buttonView];
 
 
-	NSDictionary *metrics = @{};
-	NSDictionary *views = @{@"buttonView" : self.buttonView};
-
-
-//	[self.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height * 2.1)]];
-//	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.width * 1.3)]];
-
-	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
-	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
-
 	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-//	bottomConstraint.priority = 800;
+	bottomConstraint.priority = 800;
 	[self.superview addConstraint:bottomConstraint];
 
-//	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
+	if (sender.frame.origin.x > 125) {
+
+		[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeRight
+																   relatedBy:NSLayoutRelationEqual
+																	  toItem:sender attribute:NSLayoutAttributeRight
+																  multiplier:1.0 constant:0]];
+
+		[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeLeft
+																   relatedBy:NSLayoutRelationGreaterThanOrEqual
+																	  toItem:self attribute:NSLayoutAttributeLeft
+																  multiplier:1.0 constant:0]];
+
+	}
+	else {
+
+		[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+		[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+	}
+
 	NSLayoutConstraint *centerConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
-//	[centerConstraint setPriority:800];
+	[centerConstraint setPriority:800];
+
 	[self.superview addConstraint:centerConstraint];
-
-	NSLog(@"%f%f%f%f",sender.frame.origin.y, sender.frame.origin.x, self.buttonView.frame.size.width, self.buttonView.frame.size.height);
 }
 
-
-- (void)expandedPopupButton:(MMkeyboardButton *)sender {
-
-
-}
 
 #pragma mark Popup Methods
 
