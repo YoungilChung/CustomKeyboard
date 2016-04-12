@@ -10,5 +10,7 @@
 
 @property (nonatomic, strong) NSString *titleLabel;
 
+-(void)selectedPopupView:(BOOL)selected;
 -(instancetype)initWithTitle:(NSString *)title;
+
 @end

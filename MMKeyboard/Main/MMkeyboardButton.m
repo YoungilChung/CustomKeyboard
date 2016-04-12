@@ -56,7 +56,7 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
 
-	CGFloat margin = 10.0;
+	CGFloat margin = 15.0;
 //	CGRect area = CGRectInset(self.bounds, -margin, -margin);
 //
 ////	NSLog(@"came here with Point:%f, area:%f", self.bounds.origin.x,self.bounds.origin.y);

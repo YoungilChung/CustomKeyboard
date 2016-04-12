@@ -1,14 +1,10 @@
-
-
-
-
-
 // Created by Tom Atterton on 06/04/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
 #import "AutoCorrectCollectionView.h"
 #import "SpellCheckerDelegate.h"
+#import "SuggestionView.h"
 
 @interface AutoCorrectCollectionView () <UIGestureRecognizerDelegate>
 
@@ -17,16 +13,15 @@
 @property(nonatomic, strong) UILabel *secondaryLabel;
 @property(nonatomic, strong) UILabel *tertiaryLabel;
 
-@property(nonatomic, strong) UIView *secondaryHolder;
-@property(nonatomic, strong) UIView *tertiaryHolder;
-@property(nonatomic, strong) UIView *primaryHolder;
+@property(nonatomic, strong) SuggestionView *secondaryHolder;
+@property(nonatomic, strong) SuggestionView *tertiaryHolder;
+@property(nonatomic, strong) SuggestionView *primaryHolder;
 @end
 
 @implementation AutoCorrectCollectionView
 
 
-- (instancetype)init
-{
+- (instancetype)init {
 	self = [super init];
 
 	if (self) {
@@ -46,57 +41,27 @@
 	tapGestureRecognizer.delaysTouchesBegan = YES;
 	[self addGestureRecognizer:tapGestureRecognizer];
 
-	self.primaryHolder = [UIView new];
+	[self setBackgroundColor:[UIColor grayColor]];
+
+	self.primaryHolder = [SuggestionView new];
 	self.primaryHolder.translatesAutoresizingMaskIntoConstraints = NO;
-	self.primaryHolder.userInteractionEnabled = YES;
 	[self addSubview:self.primaryHolder];
 
-	self.primaryLabel = [UILabel new];
-	self.primaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.primaryLabel setText:self.primaryString];
-	[self.primaryLabel setTextAlignment:NSTextAlignmentCenter];
-	[self.primaryHolder addSubview:self.primaryLabel];
-
-
-	self.secondaryHolder = [UIView new];
+	self.secondaryHolder = [SuggestionView new];
 	self.secondaryHolder.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:self.secondaryHolder];
 
-	self.secondaryLabel = [UILabel new];
-	self.secondaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.secondaryLabel setText:self.secondaryString];
-	[self.secondaryLabel setTextAlignment:NSTextAlignmentCenter];
-	[self.secondaryHolder addSubview:self.secondaryLabel];
-
-
-	self.tertiaryHolder = [UIView new];
+	self.tertiaryHolder = [SuggestionView new];
 	self.tertiaryHolder.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:self.tertiaryHolder];
 
-	self.tertiaryLabel = [UILabel new];
-	self.tertiaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.tertiaryLabel setText:self.tertiaryString];
-	[self.tertiaryLabel setTextAlignment:NSTextAlignmentCenter];
-	[self.tertiaryHolder addSubview:self.tertiaryLabel];
+	NSDictionary *views = @{@"primaryHolder" : self.primaryHolder, @"secondaryHolder" : self.secondaryHolder, @"tertiaryHolder" : self.tertiaryHolder};
 
 
-	NSDictionary *metrics = @{};
-	NSDictionary *views = @{@"primaryHolder" : self.primaryHolder, @"primaryLabel" : self.primaryLabel, @"secondaryHolder" : self.secondaryHolder, @"secondaryLabel" : self.secondaryLabel, @"tertiaryHolder" : self.tertiaryHolder, @"tertiaryLabel" : self.tertiaryLabel};
-
-
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[primaryHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[secondaryHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tertiaryHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[primaryHolder(tertiaryHolder)]-2-[secondaryHolder(primaryHolder)]-2-[tertiaryHolder(primaryHolder)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-	[self.primaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[primaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self.primaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[primaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-	[self.secondaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[secondaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self.secondaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[secondaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-
-	[self.tertiaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tertiaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[self.tertiaryHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tertiaryLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[primaryHolder]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[secondaryHolder]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[tertiaryHolder]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[primaryHolder(tertiaryHolder)]-2-[secondaryHolder(primaryHolder)]-2-[tertiaryHolder(primaryHolder)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
 }
 
@@ -105,20 +70,18 @@
 
 	switch (section) {
 		case ksectionHeaderPrimary: {
-			[self.primaryLabel setText:updatedText];
+			[self.primaryHolder updateLabel:updatedText];
 			self.primaryString = updatedText;
 
 			break;
 		}
 		case ksectionHeaderSecondary: {
-
-			[self.secondaryLabel setText:updatedText];
+			[self.secondaryHolder updateLabel:updatedText];
 			self.secondaryString = updatedText;
 			break;
 		}
 		case ksectionHeaderTertiary: {
-
-			[self.tertiaryLabel setText:updatedText];
+			[self.tertiaryHolder updateLabel:updatedText];
 			self.tertiaryString = updatedText;
 			break;
 		}
@@ -135,23 +98,28 @@
 	UIView *subview = [view hitTest:loc withEvent:nil];
 
 	if (subview == self.primaryHolder) {
-		NSLog(@"primary");
 		if (self.primaryString) {
+			if (self.primaryString.length > 0) {
 
-			[self.delegate tappedWord:self.primaryString];
+				[self.delegate tappedWord:self.primaryString];
+			}
 		}
 
 	}
 	if (subview == self.secondaryHolder) {
 		if (self.secondaryString) {
+			if (self.secondaryString.length > 0) {
 
-			[self.delegate tappedWord:self.secondaryString];
+				[self.delegate tappedWord:self.secondaryString];
+			}
 		}
 	}
 	if (subview == self.tertiaryHolder) {
 		if (self.tertiaryString) {
+			if (self.tertiaryString.length > 0) {
 
-			[self.delegate tappedWord:self.tertiaryString];
+				[self.delegate tappedWord:self.tertiaryString];
+			}
 		}
 	}
 

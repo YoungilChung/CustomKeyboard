@@ -8,5 +8,7 @@
 
 @interface SuggestionView : UIView
 
+@property (nonatomic, strong) UILabel *suggestionLabel;
+-(void)updateLabel:(NSString*)labelText;
 
 @end

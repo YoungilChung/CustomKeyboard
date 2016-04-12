@@ -1,6 +1,3 @@
-
-
-
 //
 // Created by Tom Atterton on 31/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
@@ -62,7 +59,7 @@ typedef enum {
 	self.spellCheckerManager = [SpellCheckerManager new];
 	self.spellCheckerManager.delegate = self;
 	[self.spellCheckerManager loadForSpellCorrection];
-
+	[self.view setBackgroundColor:[UIColor grayColor]];
 
 	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
 	ges.minimumPressDuration = 0.1;
@@ -137,10 +134,6 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeSubview:) name:@"closeSubview" object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
 
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeTop
@@ -194,6 +187,12 @@ typedef enum {
 	[self.view addConstraint:self.categoryLeftConstraint];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+
+}
+
 - (void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 
@@ -226,7 +225,8 @@ typedef enum {
 
 
 #pragma mark touch gestures
--(void)longPress:(UILongPressGestureRecognizer*)gesture {
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture {
 	[[self textDocumentProxy] deleteBackward];
 
 }
@@ -359,22 +359,42 @@ typedef enum {
 	else {
 
 		if ([key isEqualToString:@"⌫"]) {
+			NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
-			[self.textDocumentProxy deleteBackward];
-			self.currentString = self.currentString.length < 1 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
-			[self.spellCheckerManager fetchWords:self.currentString];
+			if ([tokens.lastObject length] <= 0) {
+
+				[self.textDocumentProxy deleteBackward];
+			}
+			else {
+
+				[self.textDocumentProxy deleteBackward];
+
+				if (self.currentString.length > 0) {
+
+					self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+				}
+				else {
+					self.currentString = tokens.lastObject;
+					self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+					NSLog(@"token %@", self.currentString);
+
+				}
+
+				[self.spellCheckerManager fetchWords:self.currentString];
+			}
+
 
 		}
 
 		else if ([key isEqualToString:@" "]) {
-
+			NSLog(@"ReplacedWord %@", self.primaryString);
 			[self replaceWord:self.primaryString];
 
 		}
 		else {
 
 			[self.textDocumentProxy insertText:key];
-            
+
 			self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
 
 			[self.spellCheckerManager fetchWords:self.currentString];
@@ -388,9 +408,6 @@ typedef enum {
 }
 
 - (void)updateLayout {
-    
-    
-    
 
 	[self.view layoutIfNeeded];
 	[self.view setNeedsDisplay];
@@ -472,18 +489,31 @@ typedef enum {
 
 
 - (void)replaceWord:(NSString *)replacedWord {
+	NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
+	NSLog(@"%@", replacedWord);
+    replacedWord = [NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
 	if (replacedWord.length > 1) {
-		NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
-		NSLog(@"%@", [tokens lastObject]);
-		for (int i = 0; i < [[tokens lastObject] length]; i++) {
-			[self.textDocumentProxy deleteBackward];
+		if ([tokens.lastObject length] > 0) {
+			for (int i = 0; i < [[tokens lastObject] length]; i++) {
+				[self.textDocumentProxy deleteBackward];
+			}
+//			[self.textDocumentProxy insertText:[NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]]];
+            [self.textDocumentProxy insertText:replacedWord];
+			self.primaryString = @"";
+			self.currentString = @"";
+			[self.spellCheckerManager fetchWords:self.currentString];
 		}
-		[self.textDocumentProxy insertText:[NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]]];
-		self.primaryString = @"";
-		self.currentString = @"";
-		[self.spellCheckerManager fetchWords:self.currentString];
+		else {
+			[self.textDocumentProxy insertText:@" "];
+
+		}
 	}
+    else {
+        [self.textDocumentProxy insertText:@" "];
+        
+    }
+
 
 }
 
@@ -568,9 +598,13 @@ typedef enum {
 
 #pragma mark TextDocumentProxy
 
+- (NSString *)documentContextBeforeInput {
+
+	return nil;
+}
+
 - (void)textDidChange:(id <UITextInput>)textInput {
 
-	NSLog(@"TextInputMode: %d", self.textDocumentProxy.keyboardType);
 	self.searchHolder.searchBar.isTextFieldSelected = NO;
 }
 

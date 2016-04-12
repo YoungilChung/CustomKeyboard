@@ -27,7 +27,7 @@ typedef enum {
 @property(nonatomic, strong) UIView *rowView2;
 @property(nonatomic, strong) UIView *rowView3;
 @property(nonatomic, strong) UIView *rowView4;
-@property(nonatomic, strong) UIView *buttonView;
+@property(nonatomic, strong) PopupButtonView *buttonView;
 
 @property(nonatomic, strong) MMkeyboardButton *abcButton;
 @property(nonatomic, strong) MMkeyboardButton *spaceButton;
@@ -48,6 +48,8 @@ typedef enum {
 @property(nonatomic, assign) BOOL isNumericCharacter;
 
 @property(nonatomic, strong) keyboardKeysModel *keyboardKeysModel;
+
+@property(nonatomic, assign) popUpStyle popUpStyle;
 
 // Gestures
 @property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
@@ -87,7 +89,7 @@ typedef enum {
 
 	self.translatesAutoresizingMaskIntoConstraints = NO;
 	self.clipsToBounds = YES;
-
+	[self setBackgroundColor:[UIColor grayColor]];
 	self.rowView1 = [self createRowOfButtonWithTitle:self.currentTiles1];
 	self.rowView2 = [self createRowOfButtonWithTitle:self.currentTiles2];
 	self.rowView3 = [self createRowOfButtonWithTitle:self.currentTiles3];
@@ -97,10 +99,6 @@ typedef enum {
 	self.rowView2.translatesAutoresizingMaskIntoConstraints = NO;
 	self.rowView3.translatesAutoresizingMaskIntoConstraints = NO;
 	self.rowView4.translatesAutoresizingMaskIntoConstraints = NO;
-
-//	[self.rowView1 setBackgroundColor:[UIColor redColor]];
-//	[self.rowView2 setBackgroundColor:[UIColor redColor]];
-//	[self.rowView3 setBackgroundColor:[UIColor redColor]];
 
 	[self addSubview:self.rowView1];
 	[self addSubview:self.rowView2];
@@ -162,6 +160,7 @@ typedef enum {
 
 	self.buttons = @[].mutableCopy;
 	UIView *view = [UIView new];
+	view.backgroundColor = [UIColor clearColor];
 	[titles enumerateObjectsUsingBlock:^(NSString *titleString, NSUInteger idx, BOOL *stop) {
 		if (titleString) {
 
@@ -307,21 +306,6 @@ typedef enum {
 
 		NSLayoutConstraint *leftSideConstraint;
 
-//		if (idx == 1) {
-
-//			rightSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeRightMargin
-//															   relatedBy:NSLayoutRelationEqual
-//																  toItem:inputView attribute:NSLayoutAttributeRightMargin
-//															  multiplier:1.0 constant:-12];
-//
-//			leftSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeLeftMargin
-//															  relatedBy:NSLayoutRelationEqual
-//																 toItem:inputView attribute:NSLayoutAttributeLeftMargin
-//															 multiplier:1.0 constant:12];
-
-//		}
-
-//		else {
 
 		rightSideConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeRight
 														   relatedBy:NSLayoutRelationEqual
@@ -569,26 +553,52 @@ typedef enum {
 - (void)_handlePanning:(UIPanGestureRecognizer *)recognizer {
 	if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
 
-		if (self.panningButton) {
-
-			[self didTapButton:self.panningButton];
+		if (self.buttonView.selectedCharacter) {
+			[self.keyboardDelegate keyWasTapped:self.buttonView.selectedCharacter];
 
 		}
+		else {
+			if (self.panningButton) {
+
+				[self didTapButton:self.panningButton];
+			}
+
+		}
+
+		self.popUpStyle = kpopUpStyleSingle;
 		[self hideInputView];
 	}
 	else {
-		CGPoint location = [recognizer locationInView:self];
-		self.panningButton = [self returnButtonLocation:location];
-		if (self.panningButton) {
 
-			[self showInputView:self.panningButton];
-		}
-		else {
+		switch (self.popUpStyle) {
 
-			[self hideInputView];
+			case kpopUpStyleSingle: {
+
+				CGPoint location = [recognizer locationInView:self];
+				self.panningButton = [self returnButtonLocation:location];
+				if (self.panningButton) {
+
+					[self showInputView:self.panningButton];
+				}
+				else {
+
+					[self hideInputView];
+				}
+
+				break;
+			}
+			case kpopUpStyleMultiple: {
+
+				CGPoint location = [recognizer locationInView:self];
+				[self.buttonView updatePosition:location];
+
+				break;
+			}
 		}
+
 	}
 }
+
 
 #pragma mark touch gestures
 
@@ -596,27 +606,27 @@ typedef enum {
 	CGPoint location = [gesture locationInView:self];
 	self.panningButton = [self returnButtonLocation:location];
 
-	if (gesture.state == UIGestureRecognizerStateBegan) {
+	NSArray *multipleButtons = [self.keyboardKeysModel specialCharactersWithLetter:self.panningButton.titleLabel.text];
 
-//		[self hideInputView];
+	if (multipleButtons.count >= 1) {
+
+		if (gesture.state == UIGestureRecognizerStateBegan) {
 
 
+			[self hideInputView];
+			self.popUpStyle = kpopUpStyleMultiple;
+			[self addPopupToButton:self.panningButton WithPopStyle:kpopUpStyleMultiple];
 
-//		MMkeyboardButton *button = (MMkeyboardButton *) gesture.view;
-//		NSString *title = [button titleForState:UIControlStateNormal];
-
-//		if ([self.panningButton.titleLabel.text isEqualToString:@"⌫"]) {
-//			[self.keyboardDelegate keyWasTapped:self.panningButton.titleLabel.text];
-//		}
-
+		}
 	}
-
-	else if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
+	if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
 
 		if (self.panGestureRecognizer.state != UIGestureRecognizerStateRecognized) {
+			self.popUpStyle = kpopUpStyleSingle;
+			if (self.panningButton) {
 
-
-			[self handleTouchUpInside:self.panningButton];
+				[self handleTouchUpInside:self.panningButton];
+			}
 		}
 	}
 
@@ -624,17 +634,18 @@ typedef enum {
 
 #pragma mark keyboard popup
 
-- (void)addPopupToButton:(MMkeyboardButton *)sender {
+- (void)addPopupToButton:(MMkeyboardButton *)sender WithPopStyle:(popUpStyle)popUpStyle {
 
 
-	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:kpopUpStyleMultiple];
+	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:popUpStyle];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
+	[self.buttonView setBackgroundColor:[UIColor clearColor]];
 	[self.superview addSubview:self.buttonView];
 
 
-	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height * 2.1)]];
-	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height)]];
+	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
 	bottomConstraint.priority = 800;
 	[self.superview addConstraint:bottomConstraint];
 
@@ -672,7 +683,8 @@ typedef enum {
 
 	}
 	else {
-		[self addPopupToButton:sender];
+		self.popUpStyle = kpopUpStyleSingle;
+		[self addPopupToButton:sender WithPopStyle:kpopUpStyleSingle];
 	}
 }
 
@@ -680,6 +692,7 @@ typedef enum {
 
 	[self.buttonView removeFromSuperview];
 	self.buttonView = nil;
+
 	[self.keyboardDelegate updateLayout];
 }
 
@@ -691,7 +704,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 		(UIGestureRecognizer *)otherGestureRecognizer {
 	return (gestureRecognizer == _panGestureRecognizer || gestureRecognizer == _optionsViewRecognizer) &&
 			(otherGestureRecognizer == _panGestureRecognizer || otherGestureRecognizer == _optionsViewRecognizer);
-//	return (gestureRecognizer == _panGestureRecognizer) && (otherGestureRecognizer == _panGestureRecognizer);
 }
 
 #pragma mark - Touch Actions
@@ -704,7 +716,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 
 - (void)handleTouchUpInside:(MMkeyboardButton *)sender {
 
-	[self didTapButton:sender]; //TODO
+	[self didTapButton:sender];
 	[self hideInputView];
 }
 

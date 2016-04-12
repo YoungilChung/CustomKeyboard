@@ -87,6 +87,9 @@
 		9A7FC1C91C981CCE00E7CEB1 /* GIFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C01C98005B00E7CEB1 /* GIFEntity.m */; };
 		9A7FC1CA1C981CD700E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
 		9A7FC1CB1C981CD800E7CEB1 /* GIFEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FC1BE1C98005B00E7CEB1 /* GIFEntity+CoreDataProperties.m */; };
+		9AACBC461CBCFFDB0084C311 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
+		9AACBC471CBCFFF20084C311 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
+		9AACBC481CBCFFF30084C311 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		9AB2B97C1C9C36FA00C4572F /* UIImage+emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2B97B1C9C36FA00C4572F /* UIImage+emoji.m */; };
 		9AC7B7501CAE852900CEB356 /* MMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F6019FA7B9665C49A5A /* MMCustomTextField.m */; };
 		ADD5DD1E5587C14994712F5F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14FF7EF35AC921287A978BE /* libPods.a */; };
@@ -120,7 +123,6 @@
 		C3C36294E29CE84896848455 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C36297DE451ACF24050FC5 /* KeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36C4FE2ADC0C4F7F99CA6 /* KeyboardButtonView.m */; };
 		C3C362B97935773A1713A079 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */; };
-		C3C362DAEAE7A20710EA286F /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		C3C362E469517E1E1E4A9856 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
 		C3C363496E6DAB9AACE63C21 /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
 		C3C3634F659FCD051F1465F7 /* CategoryHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C362E87B4F4F524EABDEB6 /* CategoryHolder.m */; };
@@ -161,7 +163,6 @@
 		C3C368E6786C5552EA5F9F20 /* MMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */; };
 		C3C36934A5FA64FF36E2611A /* MMKeyboardCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3661FAEC08C8F87CB99A5 /* MMKeyboardCollectionViewFlowLayout.m */; };
 		C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
-		C3C36963A21192692CFA89C5 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		C3C369839F757007463FE30A /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
 		C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364D6B6E48FBD6568923A /* ShareViewController.m */; };
 		C3C369CDF47C40589CD86E85 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BB4F6B3E7EA55B7A1F8 /* PopupView.m */; };
@@ -199,7 +200,6 @@
 		C3C36EAC9A77FA02A51B2C82 /* backspaceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3662FF561F429EAA3A4D2 /* backspaceIcon.png */; };
 		C3C36EF868E9D9FD99AC0643 /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3646C48B408CF342FB00F /* MMKeyboardSelection.m */; };
 		C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
-		C3C36F5F9C096989099D66EA /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36514A44CFBD9336D89A0 /* PopupButtonView.m */; };
 		C3C36F7CA433D3A3AFE35C41 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
 		C3C36F81028E23DE7FBD68ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A7768BE187CED64FB56 /* AppDelegate.m */; };
 		C3C36F873287C0DE501F7450 /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3646C48B408CF342FB00F /* MMKeyboardSelection.m */; };
@@ -1365,6 +1365,7 @@
 				C3C36FE0C385F328671B6D48 /* SearchGIFManager.m in Sources */,
 				C3C368920E2A5C6AA2C23FD1 /* SearchBarView.m in Sources */,
 				C3C36CB4DEB80E7F0EE275D5 /* MMAlphaKeyboardView.m in Sources */,
+				9AACBC481CBCFFF30084C311 /* PopupButtonView.m in Sources */,
 				C3C365F269CEA84412154F0C /* MMKeyboardCollectionViewFlowLayout.m in Sources */,
 				C3C36DFB45217FB03C069CB2 /* MMKeyboardCollectionView.m in Sources */,
 				C3C36B95A02DB95D3225CEAA /* MMKeyboardCollectionViewCell.m in Sources */,
@@ -1372,7 +1373,6 @@
 				C3C36294E29CE84896848455 /* AutoCorrectCollectionView.m in Sources */,
 				C3C36FAB60EE7400FA6720FF /* SuggestionView.m in Sources */,
 				C3C36D49CD344013BBEDDAD1 /* keyboardKeysModel.m in Sources */,
-				C3C362DAEAE7A20710EA286F /* PopupButtonView.m in Sources */,
 				C3C362458896C6ED99567152 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1417,6 +1417,7 @@
 				C3C36017E2EF30680EFCE38D /* MMKeyboardButton.m in Sources */,
 				C3C36571C1EA1E3ED0D5FAD8 /* MMkeyboardButton.m in Sources */,
 				9A1801F21CB52F2F00F16524 /* NSString+Additions.m in Sources */,
+				9AACBC461CBCFFDB0084C311 /* PopupButtonView.m in Sources */,
 				C3C36768D477D86660BF8C57 /* MMCustomTextField.m in Sources */,
 				C3C367EE0595B3197B5B42E3 /* SearchGIFSController.m in Sources */,
 				C3C36F8D2D0C5B1EB5A502EE /* SearchForGIFSCommunicator.m in Sources */,
@@ -1434,7 +1435,6 @@
 				C3C36027B2540765961AC085 /* AutoCorrectCollectionView.m in Sources */,
 				C3C36F7CA433D3A3AFE35C41 /* SuggestionView.m in Sources */,
 				C3C364261FEBBA437935FCB6 /* keyboardKeysModel.m in Sources */,
-				C3C36F5F9C096989099D66EA /* PopupButtonView.m in Sources */,
 				C3C369CDF47C40589CD86E85 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1466,13 +1466,13 @@
 				C3C36014E6BA07650E7482CF /* SearchBarView.m in Sources */,
 				C3C364092A39FD1290282C79 /* MMAlphaKeyboardView.m in Sources */,
 				C3C36934A5FA64FF36E2611A /* MMKeyboardCollectionViewFlowLayout.m in Sources */,
+				9AACBC471CBCFFF20084C311 /* PopupButtonView.m in Sources */,
 				C3C3613F8ED085BB257357A0 /* MMKeyboardCollectionView.m in Sources */,
 				C3C36E34B2AE38C4C7A271AC /* MMKeyboardCollectionViewCell.m in Sources */,
 				C3C36DE890C14B55F3C5C48B /* CategoryHolder.m in Sources */,
 				C3C36206C85EF675FCA281FA /* AutoCorrectCollectionView.m in Sources */,
 				C3C362E469517E1E1E4A9856 /* SuggestionView.m in Sources */,
 				C3C3621E2CD7124B17869683 /* keyboardKeysModel.m in Sources */,
-				C3C36963A21192692CFA89C5 /* PopupButtonView.m in Sources */,
 				C3C362B97935773A1713A079 /* PopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
