@@ -20,6 +20,17 @@
 @property (nonatomic, strong) NSArray *specialTiles2;
 @property (nonatomic, strong) NSArray *specialTiles3;
 
+
+@property (nonatomic, strong) NSArray *emojiTilesSmiley;
+@property (nonatomic, strong) NSArray *emojiTilesNature;
+@property (nonatomic, strong) NSArray *emojiTilesFood;
+@property (nonatomic, strong) NSArray *emojiTilesSport;
+@property (nonatomic, strong) NSArray *emojiTilesPlaces;
+@property (nonatomic, strong) NSArray *emojiTilesObjects;
+@property (nonatomic, strong) NSArray *emojiTilesSymbols;
+@property (nonatomic, strong) NSArray *emojiTilesFlags;
+
+
 -(NSArray *)specialCharactersWithLetter:(NSString *)letter;
 
 

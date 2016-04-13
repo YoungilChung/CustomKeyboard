@@ -13,6 +13,8 @@
 #import "SpellCheckerManager.h"
 #import "AutoCorrectCollectionView.h"
 #import "MMCustomTextField.h"
+#import "MMEmojiCollectionViewCell.h"
+#import "MMEmojiCollectionView.h"
 
 
 typedef enum {
@@ -33,6 +35,8 @@ typedef enum {
 @property(nonatomic, strong) MMKeyboardCollectionView *gifKeyboardView;
 @property(nonatomic, strong) AutoCorrectCollectionView *autoCorrectCollectionView;
 @property(nonatomic, strong) SpellCheckerManager *spellCheckerManager;
+@property(nonatomic, strong) UIView *emojiKeyboardHolder;
+@property(nonatomic, strong) MMEmojiCollectionView *emojiCollectionView;
 
 // Variables
 @property(nonatomic, strong) UILabel *messageText;
@@ -60,6 +64,19 @@ typedef enum {
 	self.spellCheckerManager.delegate = self;
 	[self.spellCheckerManager loadForSpellCorrection];
 	[self.view setBackgroundColor:[UIColor grayColor]];
+
+
+	self.emojiKeyboardHolder = [UIView new];
+	self.emojiKeyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
+	self.emojiKeyboardHolder.clipsToBounds = YES;
+	[self.view addSubview:self.emojiKeyboardHolder];
+
+	self.emojiCollectionView = [[MMEmojiCollectionView alloc] init];
+	self.emojiCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.emojiCollectionView.clipsToBounds = YES;
+//	self.emojiCollectionView.keyboardDelegate = self;
+	[self.emojiKeyboardHolder addSubview:self.emojiCollectionView];
+
 
 	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
 	ges.minimumPressDuration = 0.1;
@@ -107,7 +124,7 @@ typedef enum {
 	self.gifKeyboardView.keyboardDelegate = self;
 	[self.gifKeyboardHolder addSubview:self.gifKeyboardView];
 
-	NSDictionary *views = @{@"searchBar" : self.searchHolder, @"keyboardView" : self.keyboardView, @"gifKeyboard" : self.gifKeyboardView};
+	NSDictionary *views = @{@"searchBar" : self.searchHolder, @"keyboardView" : self.keyboardView, @"gifKeyboard" : self.gifKeyboardView, @"emojiKeyboard" : self.emojiCollectionView};
 	NSDictionary *metrics = @{};
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40]];
@@ -125,6 +142,10 @@ typedef enum {
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 	[self.gifKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[self.gifKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emojiKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+	[self.emojiKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emojiKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[self.emojiKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[emojiKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
@@ -178,6 +199,17 @@ typedef enum {
 															 toItem:self.view attribute:NSLayoutAttributeBottom
 														 multiplier:1.0 constant:0]];
 
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.emojiKeyboardHolder attribute:NSLayoutAttributeTop
+														 multiplier:1.0 constant:-5]];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emojiKeyboardHolder attribute:NSLayoutAttributeBottom
+														  relatedBy:NSLayoutRelationEqual
+															 toItem:self.view attribute:NSLayoutAttributeBottom
+														 multiplier:1.0 constant:0]];
+
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
 	self.gifKeyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
 	self.categoryLeftConstraint = [NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
@@ -185,6 +217,11 @@ typedef enum {
 	[self.view addConstraint:self.gifKeyboardLeftConstraint];
 	[self.view addConstraint:self.keyboardLeftConstraint];
 	[self.view addConstraint:self.categoryLeftConstraint];
+
+	[self.emojiCollectionView layoutSubviewsEmoji];
+	[self.view bringSubviewToFront:self.emojiKeyboardHolder];
+
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -203,6 +240,7 @@ typedef enum {
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
 				self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
+				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 8), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 8));
 			}
 			else {
 				//DO Landscape
@@ -262,6 +300,7 @@ typedef enum {
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
 				self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
+				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 2), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 2.015));
 			}
 			else {
 				//DO Landscape
@@ -492,14 +531,14 @@ typedef enum {
 	NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
 	NSLog(@"%@", replacedWord);
-    replacedWord = [NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
+	replacedWord = [NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
 	if (replacedWord.length > 1) {
 		if ([tokens.lastObject length] > 0) {
 			for (int i = 0; i < [[tokens lastObject] length]; i++) {
 				[self.textDocumentProxy deleteBackward];
 			}
 //			[self.textDocumentProxy insertText:[NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]]];
-            [self.textDocumentProxy insertText:replacedWord];
+			[self.textDocumentProxy insertText:replacedWord];
 			self.primaryString = @"";
 			self.currentString = @"";
 			[self.spellCheckerManager fetchWords:self.currentString];
@@ -509,10 +548,10 @@ typedef enum {
 
 		}
 	}
-    else {
-        [self.textDocumentProxy insertText:@" "];
-        
-    }
+	else {
+		[self.textDocumentProxy insertText:@" "];
+
+	}
 
 
 }

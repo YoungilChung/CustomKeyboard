@@ -619,6 +619,7 @@ typedef enum {
 				CGPoint location = [recognizer locationInView:self];
 				[self.buttonView updatePosition:location];
 
+                
 				break;
 			}
 		}

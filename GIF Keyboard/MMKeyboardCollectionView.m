@@ -330,37 +330,6 @@
 	return _fetchedResultsController;
 }
 
-#pragma  mark MMKeyboardView Actions
-
-- (void)onAllGifsButtonTapped:(UIButton *)sender {
-
-	if (self.type != MMSearchTypeAll) {
-		self.type = MMSearchTypeAll;
-		[self loadGifs];
-		[self.keyboardCollectionView setContentOffset:CGPointZero animated:YES];
-
-	}
-}
-
-- (void)onNormalButtonTapped:(UIButton *)sender {
-
-	if (self.type != MMSearchTypeNormal) {
-		self.type = MMSearchTypeNormal;
-		[self loadGifs];
-		[self.keyboardCollectionView setContentOffset:CGPointZero animated:YES];
-	}
-
-}
-
-- (void)onAwesomeButtonTapped:(UIButton *)sender {
-
-	if (self.type != MMSearchTypeAwesome) {
-		self.type = MMSearchTypeAwesome;
-		[self loadGifs];
-		[self.keyboardCollectionView setContentOffset:CGPointZero animated:YES];
-	}
-}
-
 
 - (void)didReceiveGIFS:(NSArray *)groups didReceiveSendGifs:(NSArray *)sendGroups {
 
