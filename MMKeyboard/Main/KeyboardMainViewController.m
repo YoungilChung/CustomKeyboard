@@ -6,13 +6,13 @@
 #import "KeyboardMainViewController.h"
 #import "MMAlphaKeyboardView.h"
 #import "SearchBarView.h"
-#import "MMkeyboardButton.h"
+#import "MMKeyboardButton.h"
 #import "MMKeyboardCollectionView.h"
-#import "MMCustomTextField.h"
 #import "SearchGIFManager.h"
 #import "CategoryHolder.h"
 #import "SpellCheckerManager.h"
 #import "AutoCorrectCollectionView.h"
+#import "MMCustomTextField.h"
 
 
 typedef enum {
@@ -589,7 +589,7 @@ typedef enum {
 }
 
 
-- (void)changeKeyboardButtonPressed:(MMkeyboardButton *)sender {
+- (void)changeKeyboardButtonPressed:(MMKeyboardButton *)sender {
 
 	[self animateKeyboard:(buttonTags) sender.tag];
 

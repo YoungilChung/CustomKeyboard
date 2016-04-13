@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface keyboardKeysModel : NSObject
+@interface MMKeyboardKeysModel : NSObject
 
 @property (nonatomic, strong) NSArray *alphaTiles1;
 @property (nonatomic, strong) NSArray *alphaTiles2;

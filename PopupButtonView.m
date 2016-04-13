@@ -4,17 +4,17 @@
 //
 
 #import "PopupButtonView.h"
-#import "MMkeyboardButton.h"
-#import "keyboardKeysModel.h"
+#import "MMKeyboardKeysModel.h"
 #import "PopupView.h"
+#import "MMKeyboardButton.h"
 
 @interface PopupButtonView ()
 
 // Views
-@property(nonatomic, strong) MMkeyboardButton *button;
+@property(nonatomic, strong) MMKeyboardButton *button;
 // Variables
 @property(nonatomic, assign) popUpStyle popUpStyle;
-@property(nonatomic, strong) keyboardKeysModel *keyboardKeysModel;
+@property(nonatomic, strong) MMKeyboardKeysModel *keyboardKeysModel;
 @property(nonatomic, strong) UIView *rowView;
 
 @property(nonatomic, strong) PopupView *popupView;
@@ -22,7 +22,7 @@
 
 @implementation PopupButtonView
 
-- (instancetype)initWithButton:(MMkeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle1 {
+- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle1 {
 
 	self = [super init];
 
@@ -30,7 +30,7 @@
 
 		self.button = button;
 		self.popUpStyle = popUpStyle1;
-		self.keyboardKeysModel = [keyboardKeysModel new];
+		self.keyboardKeysModel = [MMKeyboardKeysModel new];
 		self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 		self.translatesAutoresizingMaskIntoConstraints = NO;
 		[self setup];

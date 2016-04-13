@@ -3,22 +3,21 @@
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
-#import "KeyboardButtonView.h"
-#import "MMKeyboardButton.h"
+#import "MMKeyboardButtonView.h"
 #import "UIImage+Vector.h"
 #import "GIFEntity.h"
 #import "CoreDataStack.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
 
-@interface KeyboardButtonView ()
+@interface MMKeyboardButtonView ()
 // Variables
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) GIFEntity *entity;
 @property(nonatomic, assign) CGRect keyboardFrame;
 @end
 
-@implementation KeyboardButtonView
+@implementation MMKeyboardButtonView
 
 
 - (instancetype)initWithFrame:(CGRect)frame WithEntity:(GIFEntity *)entity {
@@ -52,7 +51,7 @@
 	[self addSubview:bottomHolderView];
 
 
-	MMKeyboardButton *hipchatButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
+	UIButton *hipchatButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	hipchatButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[hipchatButton setImage:[UIImage imageNamed:@"newHipchat"] forState:UIControlStateNormal];
 	[hipchatButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -60,14 +59,14 @@
 	[hipchatButton addTarget:self action:@selector(onHipchatTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[topHolderView addSubview:hipchatButton];
 
-	MMKeyboardButton *whatsAppButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
+	UIButton *whatsAppButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	whatsAppButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[whatsAppButton setImage:[UIImage imageNamed:@"newWhatsAppIcon"] forState:UIControlStateNormal];
 	whatsAppButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
 	[whatsAppButton addTarget:self action:@selector(onWhatsAppTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[topHolderView addSubview:whatsAppButton];
 
-	MMKeyboardButton *facebookButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
+	UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	facebookButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[facebookButton setImage:[UIImage imageNamed:@"newFacebook"] forState:UIControlStateNormal];
 	facebookButton.imageView.contentMode = UIViewContentModeScaleAspectFit;

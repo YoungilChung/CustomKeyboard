@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @protocol KeyboardDelegate;
-@class MMkeyboardButton;
+@class MMKeyboardButton;
 
 
 @interface MMAlphaKeyboardView : UIInputView
@@ -20,5 +20,5 @@
 // Delegate
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
-@property(nonatomic, strong) MMkeyboardButton *nextKeyboardButton;
+@property(nonatomic, strong) MMKeyboardButton *nextKeyboardButton;
 @end

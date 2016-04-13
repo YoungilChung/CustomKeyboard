@@ -6,10 +6,9 @@
 #import "MMKeyboardCollectionView.h"
 #import "MMKeyboardCollectionViewCell.h"
 #import "AFURLSessionManager.h"
-#import "KeyboardButtonView.h"
+#import "MMKeyboardButtonView.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
-#import "KeyboardViewController.h"
 #import "MMKeyboardCollectionViewFlowLayout.h"
 #import "SearchGIFManager.h"
 #import "MMAlphaKeyboardView.h"
@@ -21,7 +20,7 @@
 		UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, SearchMangerDelegate>
 
 // View
-@property(nonatomic, strong) KeyboardButtonView *buttonView;
+@property(nonatomic, strong) MMKeyboardButtonView *buttonView;
 @property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
 
 // Variables
@@ -276,7 +275,7 @@
 			CGPoint p = [sender locationInView:self.keyboardCollectionView];
 			NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
 
-			self.buttonView = [[KeyboardButtonView alloc] initWithFrame:self.frame WithEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row]];
+			self.buttonView = [[MMKeyboardButtonView alloc] initWithFrame:self.frame WithEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row]];
 			self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 			[self addSubview:self.buttonView];
 

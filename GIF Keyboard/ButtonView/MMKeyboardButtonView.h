@@ -8,7 +8,7 @@
 
 @class GIFEntity;
 
-@interface KeyboardButtonView : UIView
+@interface MMKeyboardButtonView : UIView
 
 @property (nonatomic, strong) NSString *gifUrl;
 

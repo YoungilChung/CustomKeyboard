@@ -6,7 +6,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class KeyboardViewController;
 @class SearchGIFManager;
 @protocol KeyboardDelegate;
 

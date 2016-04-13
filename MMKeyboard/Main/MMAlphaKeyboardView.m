@@ -7,11 +7,13 @@
 #import "MMKeyboardButton.h"
 #import "UIImage+emoji.h"
 #import "KeyboardDelegate.h"
-#import "MMkeyboardButton.h"
-#import "keyboardKeysModel.h"
+#import "MMKeyboardKeysModel.h"
 #import "PopupButtonView.h"
 
 #define HMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
 
 
 typedef enum {
@@ -29,25 +31,26 @@ typedef enum {
 @property(nonatomic, strong) UIView *rowView4;
 @property(nonatomic, strong) PopupButtonView *buttonView;
 
-@property(nonatomic, strong) MMkeyboardButton *abcButton;
-@property(nonatomic, strong) MMkeyboardButton *spaceButton;
-@property(nonatomic, strong) MMkeyboardButton *returnButton;
-@property(nonatomic, strong) MMkeyboardButton *panningButton;
-@property(nonatomic, strong) MMkeyboardButton *gifButton;
+@property(nonatomic, strong) MMKeyboardButton *abcButton;
+@property(nonatomic, strong) MMKeyboardButton *spaceButton;
+@property(nonatomic, strong) MMKeyboardButton *returnButton;
+@property(nonatomic, strong) MMKeyboardButton *periodButton;
+@property(nonatomic, strong) MMKeyboardButton *panningButton;
+@property(nonatomic, strong) MMKeyboardButton *gifButton;
 
 // Variables
 @property(nonatomic, strong) NSArray *currentTiles1;
 @property(nonatomic, strong) NSArray *currentTiles2;
 @property(nonatomic, strong) NSArray *currentTiles3;
 
-@property(nonatomic, strong) NSMutableArray<MMkeyboardButton *> *buttons;
-@property(nonatomic, strong) NSMutableArray<MMkeyboardButton *> *alphaButtons;
+@property(nonatomic, strong) NSMutableArray<MMKeyboardButton *> *buttons;
+@property(nonatomic, strong) NSMutableArray<MMKeyboardButton *> *alphaButtons;
 
 @property(nonatomic, assign) BOOL isCapitalised;
 @property(nonatomic, assign) BOOL isSpecialCharacter;
 @property(nonatomic, assign) BOOL isNumericCharacter;
 
-@property(nonatomic, strong) keyboardKeysModel *keyboardKeysModel;
+@property(nonatomic, strong) MMKeyboardKeysModel *keyboardKeysModel;
 
 @property(nonatomic, assign) popUpStyle popUpStyle;
 
@@ -64,7 +67,7 @@ typedef enum {
 	self = [super init];
 	if (self) {
 
-		self.keyboardKeysModel = [[keyboardKeysModel alloc] init];
+		self.keyboardKeysModel = [[MMKeyboardKeysModel alloc] init];
 
 		[self setup];
 	}
@@ -114,46 +117,74 @@ typedef enum {
 }
 
 
-- (void)didTapButton:(MMkeyboardButton *)sender {
+- (void)didTapButton:(MMKeyboardButton *)sender {
 
-	MMkeyboardButton *button = sender;
+	MMKeyboardButton *button = sender;
 	NSString *title = [button titleForState:UIControlStateNormal];
 
-	if ([title isEqualToString:@"⌫"]) {
-		[self.keyboardDelegate keyWasTapped:title];
-	}
-	else if ([title isEqualToString:@"⏎"]) {
-		[self.keyboardDelegate keyWasTapped:@"\n"];
-	}
-	else if ([title isEqualToString:@"space"]) {
-		[self.keyboardDelegate keyWasTapped:@" "];
-	}
-	else if ([title isEqualToString:@"123"]) {
-		[sender setTitle:@"ABC" forState:UIControlStateNormal];
-		self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
-	}
-	else if ([title isEqualToString:@"ABC"]) {
-		[sender setTitle:@"123" forState:UIControlStateNormal];
-		self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
-	}
-	else if ([title isEqualToString:@"#+="]) {
-		[sender setTitle:@"?!@" forState:UIControlStateNormal];
-		self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
-	}
-	else if ([title isEqualToString:@"?!@"]) {
-		[sender setTitle:@"#+=" forState:UIControlStateNormal];
-		self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
-	}
-	else if ([title isEqualToString:@"⇧"]) {
-		[self capataliseButtons];
-	}
-	else if ([title isEqualToString:@"⇪"]) {
-		[self capataliseButtons];
+	SWITCH(title) {
+		CASE (@"⌫") {
+
+			[self.keyboardDelegate keyWasTapped:title];
+			break;
+		}
+		CASE (@"⏎") {
+
+			[self.keyboardDelegate keyWasTapped:@"\n"];
+
+			break;
+		}
+		CASE (@"space") {
+
+			[self.keyboardDelegate keyWasTapped:@" "];
+
+			break;
+		}
+		CASE (@"123") {
+			[sender setTitle:@"ABC" forState:UIControlStateNormal];
+			self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
+			break;
+		}
+		CASE (@"ABC") {
+			[sender setTitle:@"123" forState:UIControlStateNormal];
+			self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
+
+			break;
+		}
+		CASE (@"#+=") {
+			[sender setTitle:@"?!@" forState:UIControlStateNormal];
+			self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
+			break;
+		}
+		CASE (@"?!@") {
+
+			[sender setTitle:@"#+=" forState:UIControlStateNormal];
+			self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
+			break;
+		}
+		CASE (@"⇧") {
+
+			[self capataliseButtons];
+			break;
+		}
+
+		CASE (@"⇪") {
+
+			[self capataliseButtons];
+
+			break;
+		}
+		DEFAULT {
+
+			[self.keyboardDelegate keyWasTapped:title];
+
+			break;
+		}
+
+
 	}
 
-	else {
-		[self.keyboardDelegate keyWasTapped:title];
-	}
+
 }
 
 - (UIView *)createRowOfButtonWithTitle:(NSArray *)titles {
@@ -164,7 +195,7 @@ typedef enum {
 	[titles enumerateObjectsUsingBlock:^(NSString *titleString, NSUInteger idx, BOOL *stop) {
 		if (titleString) {
 
-			MMkeyboardButton *button = [self createButtonWithTitle:titleString];
+			MMKeyboardButton *button = [self createButtonWithTitle:titleString];
 			[self.buttons addObject:button];
 			[self.alphaButtons addObject:button];
 
@@ -181,39 +212,40 @@ typedef enum {
 	return view;
 }
 
-- (MMkeyboardButton *)createButtonWithTitle:(NSString *)title {
+- (MMKeyboardButton *)createButtonWithTitle:(NSString *)title {
 
-	MMkeyboardButton *button = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	MMKeyboardButton *button = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	button.translatesAutoresizingMaskIntoConstraints = NO;
 	[button setTitle:title forState:UIControlStateNormal];
 	button.titleLabel.textColor = [UIColor whiteColor];
-	[button setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
+//	[button setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
 
 
 	[button addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+	[button addTarget:self action:@selector(handleTouchUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
 	[button addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
 	return button;
 
 }
 
-- (UIImage *)createImageWithColor:(UIColor *)color {
-	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-	UIGraphicsBeginImageContext(rect.size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetFillColorWithColor(context, [color CGColor]);
-	CGContextFillRect(context, rect);
-	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-
-	return theImage;
-}
+//- (UIImage *)createImageWithColor:(UIColor *)color {
+//	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+//	UIGraphicsBeginImageContext(rect.size);
+//	CGContextRef context = UIGraphicsGetCurrentContext();
+//	CGContextSetFillColorWithColor(context, [color CGColor]);
+//	CGContextFillRect(context, rect);
+//	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+//	UIGraphicsEndImageContext();
+//
+//	return theImage;
+//}
 
 #pragma mark layout methods
 
 
 - (void)addIndividualButtonConstraints:(NSArray *)buttons WithMainView:(UIView *)mainView {
 
-	[buttons enumerateObjectsUsingBlock:^(MMkeyboardButton *button, NSUInteger idx, BOOL *stop) {
+	[buttons enumerateObjectsUsingBlock:^(MMKeyboardButton *button, NSUInteger idx, BOOL *stop) {
 
 		NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeTop
 																		 relatedBy:NSLayoutRelationEqual
@@ -235,6 +267,7 @@ typedef enum {
 														   relatedBy:NSLayoutRelationEqual
 															  toItem:mainView attribute:NSLayoutAttributeRight
 														  multiplier:1.0 constant:-18];
+			[mainView addConstraint:rightConstraint];
 		}
 
 
@@ -242,20 +275,12 @@ typedef enum {
 			rightConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeRight
 														   relatedBy:NSLayoutRelationEqual
 															  toItem:mainView attribute:NSLayoutAttributeRight
-														  multiplier:1.0 constant:-5];
+														  multiplier:1.0 constant:-2];
 
-		}
-
-		else {
-			MMkeyboardButton *nextButton = buttons[idx + 1];
-			rightConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeRight
-														   relatedBy:NSLayoutRelationEqual
-															  toItem:nextButton attribute:NSLayoutAttributeLeft
-														  multiplier:1.0 constant:-5];
+			[mainView addConstraint:rightConstraint];
 
 
 		}
-
 
 		if ([button.titleLabel.text isEqualToString:@"a"]) {
 			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
@@ -268,28 +293,28 @@ typedef enum {
 			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:mainView attribute:NSLayoutAttributeLeft
-														 multiplier:1.0 constant:5];
+														 multiplier:1.0 constant:2];
 
 		}
 
 		else {
-			MMkeyboardButton *prevtButton = buttons[idx - 1];
+			MMKeyboardButton *prevtButton = buttons[idx - 1];
 			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:prevtButton attribute:NSLayoutAttributeRight
 														 multiplier:1.0 constant:5];
 			NSLayoutConstraint *widthConstraint;
 
-			MMkeyboardButton *firstButton = buttons[0];
+			MMKeyboardButton *firstButton = buttons[0];
 			widthConstraint = [NSLayoutConstraint constraintWithItem:firstButton attribute:NSLayoutAttributeWidth
 														   relatedBy:NSLayoutRelationEqual toItem:button
 														   attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
 
-			widthConstraint.priority = 800;
+//			widthConstraint.priority = 800;
 			[mainView addConstraint:widthConstraint];
 		}
 
-		[mainView addConstraints:@[topConstraint, bottomConstraint, rightConstraint, leftConstraint]];
+		[mainView addConstraints:@[topConstraint, bottomConstraint, leftConstraint]];
 
 	}];
 
@@ -316,8 +341,6 @@ typedef enum {
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:inputView attribute:NSLayoutAttributeLeft
 														 multiplier:1.0 constant:1];
-
-//		}
 
 
 		[inputView addConstraints:@[leftSideConstraint, rightSideConstraint]];
@@ -358,15 +381,8 @@ typedef enum {
 															relatedBy:NSLayoutRelationEqual
 															   toItem:inputView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-2];
 
+			[inputView addConstraint:bottomConstraint];
 		}
-		else {
-			UIView *nextRow = rowViews[idx + 1];
-			bottomConstraint = [NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeBottom
-															relatedBy:NSLayoutRelationEqual
-															   toItem:nextRow attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-
-		}
-		[inputView addConstraint:bottomConstraint];
 
 	}];
 
@@ -378,14 +394,14 @@ typedef enum {
 	holder.translatesAutoresizingMaskIntoConstraints = NO;
 
 
-	self.nextKeyboardButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.nextKeyboardButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.nextKeyboardButton setImage:[UIImage imageWithEmoji:@"🌐" withSize:30] forState:UIControlStateNormal];
 	[self.nextKeyboardButton setTintColor:[UIColor whiteColor]];
 	[holder addSubview:self.nextKeyboardButton];
 
 
-	self.abcButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.abcButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.abcButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.abcButton.clipsToBounds = YES;
 	[self.abcButton setTitle:@"123" forState:UIControlStateNormal];
@@ -393,7 +409,17 @@ typedef enum {
 	[self.abcButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
 	[holder addSubview:self.abcButton];
 
-	self.spaceButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.periodButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.periodButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.periodButton setTitle:@"." forState:UIControlStateNormal];
+	[self.periodButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[self.periodButton addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+	[self.periodButton addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
+	[holder addSubview:self.periodButton];
+	[self.alphaButtons addObject:self.periodButton];
+
+
+	self.spaceButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.spaceButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.spaceButton.clipsToBounds = YES;
 	[self.spaceButton setTitle:@"space" forState:UIControlStateNormal];
@@ -401,7 +427,7 @@ typedef enum {
 	[self.spaceButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
 	[holder addSubview:self.spaceButton];
 
-	self.returnButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+	self.returnButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.returnButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.returnButton.clipsToBounds = YES;
 	[self.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
@@ -410,12 +436,13 @@ typedef enum {
 	[holder addSubview:self.returnButton];
 
 
-	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : self.nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton};
+	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : self.nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton, @"periodButton": self.periodButton};
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[abcButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[spaceButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[changeButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[returnButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[abcButton(==changeButton)]-5-[changeButton(==50)]-5-[spaceButton]-5-[returnButton(70)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[periodButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[abcButton(==changeButton)]-5-[changeButton(==45)]-5-[spaceButton]-5-[periodButton(==35)]-5-[returnButton(70)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
 	return holder;
 
@@ -424,11 +451,11 @@ typedef enum {
 
 #pragma mark Helper methods
 
-- (MMkeyboardButton *)returnButtonLocation:(CGPoint)point {
+- (MMKeyboardButton *)returnButtonLocation:(CGPoint)point {
 
-	__block MMkeyboardButton *currentButton;
+	__block MMKeyboardButton *currentButton;
 
-	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *button, NSUInteger idx, BOOL *stop) {
+	[self.alphaButtons enumerateObjectsUsingBlock:^(MMKeyboardButton *button, NSUInteger idx, BOOL *stop) {
 
 //		if ([button.titleLabel.text isEqualToString:@"⇧"] || [button.titleLabel.text isEqualToString:@"⇪"] || [button.titleLabel.text isEqualToString:@"⌫"] || [button.titleLabel.text isEqualToString:@"#+="] || [button.titleLabel.text isEqualToString:@"?!@"]) {
 //
@@ -485,7 +512,7 @@ typedef enum {
 
 - (void)capataliseButtons {
 
-	[self.alphaButtons enumerateObjectsUsingBlock:^(MMkeyboardButton *obj, NSUInteger idx, BOOL *stop) {
+	[self.alphaButtons enumerateObjectsUsingBlock:^(MMKeyboardButton *obj, NSUInteger idx, BOOL *stop) {
 		NSString *title = [obj titleForState:UIControlStateNormal];
 		if ([title isEqualToString:@"BP"] || [title isEqualToString:@"CP"] || [title isEqualToString:@"CHG"] || [title isEqualToString:@"SPACE"] || [title isEqualToString:@"RETURN"] || [title isEqualToString:@"GIF"]) {
 
@@ -634,7 +661,7 @@ typedef enum {
 
 #pragma mark keyboard popup
 
-- (void)addPopupToButton:(MMkeyboardButton *)sender WithPopStyle:(popUpStyle)popUpStyle {
+- (void)addPopupToButton:(MMKeyboardButton *)sender WithPopStyle:(popUpStyle)popUpStyle {
 
 
 	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:popUpStyle];
@@ -677,7 +704,7 @@ typedef enum {
 
 #pragma mark Popup Methods
 
-- (void)showInputView:(MMkeyboardButton *)sender {
+- (void)showInputView:(MMKeyboardButton *)sender {
 	[self hideInputView];
 	if ([sender.titleLabel.text isEqualToString:@"⇧"] || [sender.titleLabel.text isEqualToString:@"⇪"] || [sender.titleLabel.text isEqualToString:@"⌫"] || [sender.titleLabel.text isEqualToString:@"#+="] || [sender.titleLabel.text isEqualToString:@"?!@"]) {
 
@@ -708,16 +735,23 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 
 #pragma mark - Touch Actions
 
-- (void)handleTouchDown:(MMkeyboardButton *)sender {
+- (void)handleTouchDown:(MMKeyboardButton *)sender {
 	[[UIDevice currentDevice] playInputClick];
 
 	[self showInputView:sender];
 }
 
-- (void)handleTouchUpInside:(MMkeyboardButton *)sender {
+- (void)handleTouchUpInside:(MMKeyboardButton *)sender {
 
 	[self didTapButton:sender];
 	[self hideInputView];
+}
+
+- (void)handleTouchUpOutside:(MMKeyboardButton *)sender {
+
+//	[self showInputView:sender];
+//	[self didTapButton:sender];
+//	[self hideInputView];
 }
 
 #pragma mark - Touch Handling

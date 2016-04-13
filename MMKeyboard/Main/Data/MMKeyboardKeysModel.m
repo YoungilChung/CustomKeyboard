@@ -3,10 +3,10 @@
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
-#import "keyboardKeysModel.h"
+#import "MMKeyboardKeysModel.h"
 
 
-@implementation keyboardKeysModel
+@implementation MMKeyboardKeysModel
 
 
 - (instancetype)init {
@@ -101,6 +101,9 @@
 
 	if ([letter isEqualToString:@"n"]) {
 		specialArray = @[@"ñ", @"ń"];
+	}
+	if ([letter isEqualToString:@"."]) {
+		specialArray = @[@"?", @",", @"#", @"@", @"!"];
 	}
 
 	return specialArray;

@@ -12,7 +12,7 @@ typedef enum {
 } popUpStyle;
 
 
-@class MMkeyboardButton;
+@class MMKeyboardButton;
 @class PopupView;
 
 @interface PopupButtonView : UIView
@@ -20,6 +20,6 @@ typedef enum {
 
 @property(nonatomic, assign) NSString * selectedCharacter;
 
-- (instancetype)initWithButton:(MMkeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle;
+- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle;
 -(void)updatePosition:(CGPoint)position;
 @end

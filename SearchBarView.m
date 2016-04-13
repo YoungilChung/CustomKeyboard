@@ -5,7 +5,6 @@
 
 #import "SearchBarView.h"
 #import "MMKeyboardButton.h"
-#import "MMKeyboardButton.h"
 #import "MMCustomTextField.h"
 #import "KeyboardDelegate.h"
 
@@ -40,7 +39,7 @@
 		self.searchBar.clipsToBounds = YES;
 		[self addSubview:self.searchBar];
 
-		self.gifButton = [MMkeyboardButton buttonWithType:UIButtonTypeCustom];
+		self.gifButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 		self.gifButton.translatesAutoresizingMaskIntoConstraints = NO;
 		[self.gifButton setTitle:@"GIF" forState:UIControlStateNormal];
 		[self.gifButton setBackgroundColor:[UIColor clearColor]];

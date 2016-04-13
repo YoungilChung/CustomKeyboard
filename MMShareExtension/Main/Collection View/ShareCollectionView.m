@@ -5,7 +5,6 @@
 
 #import "ShareCollectionView.h"
 #import "ShareViewController.h"
-#import "KeyboardViewController.h"
 #import "ShareCollectionFlowLayout.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"

@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class MMkeyboardButton;
+@class MMKeyboardButton;
 @class MMCustomTextField;
 @protocol KeyboardDelegate;
 
@@ -14,7 +14,7 @@
 
 // Views
 @property(nonatomic, strong) MMCustomTextField *searchBar;
-@property(nonatomic, strong) MMkeyboardButton *gifButton;
+@property(nonatomic, strong) MMKeyboardButton *gifButton;
 
 // Delegate
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
