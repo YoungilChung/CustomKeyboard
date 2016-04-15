@@ -498,7 +498,7 @@ typedef enum {
 	[testHolder addObjectsFromArray:self.currentTiles3];
 
 
-	for (uint n = 0; n < [self.alphaButtons count]; ++n) {
+	for (uint n = 0; n < [self.alphaButtons count] - 1; ++n) {
 
 		[self.alphaButtons[n] setTitle:testHolder[n] forState:UIControlStateNormal];
 

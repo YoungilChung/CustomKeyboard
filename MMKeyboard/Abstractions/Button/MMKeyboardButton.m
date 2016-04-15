@@ -44,7 +44,7 @@
 - (void)initialize {
 
 	self.backgroundColor = [UIColor darkGrayColor];
-	[self.titleLabel setFont:[UIFont fontWithName:@"AmericanTypewriter" size:22]];
+	[self.titleLabel setFont:[UIFont fontWithName:@"AmericanTypewriter" size:20]];
 
 	self.layer.shadowColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f] CGColor];
 	self.layer.shadowOffset = CGSizeMake(0, 2.0f);
@@ -82,6 +82,6 @@
 
 - (CGSize)intrinsicContentSize {
 	CGSize size = [super intrinsicContentSize];
-	return CGSizeMake(40, 42);
+	return CGSizeMake(size.width, 42);
 }
 @end

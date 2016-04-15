@@ -24,7 +24,7 @@ typedef enum {
 } buttonTags;
 
 
-@interface KeyboardMainViewController () <UITextDocumentProxy, SpellCheckerDelegate, UIGestureRecognizerDelegate>
+@interface KeyboardMainViewController () <UITextDocumentProxy, SpellCheckerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 
 // Views
@@ -74,7 +74,8 @@ typedef enum {
 	self.emojiCollectionView = [[MMEmojiCollectionView alloc] init];
 	self.emojiCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emojiCollectionView.clipsToBounds = YES;
-//	self.emojiCollectionView.keyboardDelegate = self;
+	self.emojiCollectionView.keyboardDelegate = self;
+//	self.emojiCollectionView.alpha = 0;
 	[self.emojiKeyboardHolder addSubview:self.emojiCollectionView];
 
 
@@ -93,7 +94,7 @@ typedef enum {
 	[[MMAlphaKeyboardView alloc] inputAssistantItem];
 	self.keyboardView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.keyboardView.keyboardDelegate = self;
-	[self.keyboardView.nextKeyboardButton addTarget:self action:@selector(advanceToNextInputMode) forControlEvents:UIControlEventTouchUpInside];
+	[self.keyboardView.nextKeyboardButton addTarget:self action:@selector(emojiKeyboard:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.keyboardView];
 
 	self.searchHolder = [[SearchBarView alloc] init];
@@ -151,6 +152,7 @@ typedef enum {
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -218,9 +220,6 @@ typedef enum {
 	[self.view addConstraint:self.keyboardLeftConstraint];
 	[self.view addConstraint:self.categoryLeftConstraint];
 
-	[self.emojiCollectionView layoutSubviewsEmoji];
-	[self.view bringSubviewToFront:self.emojiKeyboardHolder];
-
 
 }
 
@@ -240,7 +239,7 @@ typedef enum {
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
 				self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
-				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 8), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 8));
+//				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 8), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 8));
 			}
 			else {
 				//DO Landscape
@@ -300,7 +299,6 @@ typedef enum {
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
 				self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
-				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 2), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 2.015));
 			}
 			else {
 				//DO Landscape
@@ -422,7 +420,6 @@ typedef enum {
 				[self.spellCheckerManager fetchWords:self.currentString];
 			}
 
-
 		}
 
 		else if ([key isEqualToString:@" "]) {
@@ -444,6 +441,10 @@ typedef enum {
 
 - (void)searchBarTapped {
 	[self animateKeyboard:kTagABCKeyboard];
+	self.searchHolder.gifButton.alpha = 1;
+	self.emojiKeyboardHolder.alpha = 0;
+	[self.view sendSubviewToBack:self.emojiKeyboardHolder];
+
 }
 
 - (void)updateLayout {
@@ -459,6 +460,20 @@ typedef enum {
 	if (message) {
 		[self loadMessage:message];
 	}
+}
+
+- (void)keyboardButtonPressed {
+
+	self.searchHolder.gifButton.alpha = 1;
+	self.emojiKeyboardHolder.alpha = 0;
+	[self.view sendSubviewToBack:self.emojiKeyboardHolder];
+}
+
+- (void)emojiKeyboard:(UIButton *)sender {
+	self.searchHolder.gifButton.alpha = 0;
+	self.emojiKeyboardHolder.alpha = 1;
+	[self.view bringSubviewToFront:self.emojiKeyboardHolder];
+
 }
 
 

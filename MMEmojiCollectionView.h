@@ -6,11 +6,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@protocol KeyboardDelegate;
+
 @interface MMEmojiCollectionView : UIView
 
+@property(nonatomic, strong) UICollectionView *mainCollectionView;
+@property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
-@property(nonatomic, strong) UICollectionView *collectionView;
-@property(nonatomic, assign) CGSize keyboardCollectionViewSize;
--(void)layoutSubviewsEmoji;
 
 @end

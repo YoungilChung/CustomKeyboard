@@ -7,4 +7,12 @@
 #import <UIKit/UIKit.h>
 
 @interface MMEmojiCollectionViewFlowLayout : UICollectionViewFlowLayout
+
+// properties to configure the size and spacing of the grid
+@property (nonatomic) CGSize itemSize;
+@property (nonatomic) CGFloat itemSpacing;
+
+// this method was used because I was switching between layouts
+- (void)configureCollectionViewForLayout:(UICollectionView *)collectionView;
+
 @end

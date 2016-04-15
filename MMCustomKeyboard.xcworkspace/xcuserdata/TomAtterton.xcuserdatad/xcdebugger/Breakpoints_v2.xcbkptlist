@@ -802,11 +802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
-            timestampString = "482080991.225655"
+            timestampString = "482319695.072382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1458,12 +1458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
-            timestampString = "482167224.958472"
+            timestampString = "482319695.072382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
-            landmarkName = "-tappedWord:"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
+            landmarkName = "-secondarySpell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1474,43 +1474,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
-            timestampString = "482167224.958472"
+            timestampString = "482319695.072382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
-            landmarkName = "-hideView:"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "-secondarySpell:"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__39-[KeyboardMainViewController hideView:]_block_invoke"
+                  symbolName = "-[KeyboardMainViewController secondarySpell:]"
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardMainViewController.m"
-                  timestampString = "482248481.884178"
+                  timestampString = "482415524.273148"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "500"
                   endingLineNumber = "500"
-                  offsetFromSymbolStart = "50">
+                  offsetFromSymbolStart = "66">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__39-[KeyboardMainViewController hideView:]_block_invoke_2"
+                  symbolName = "__45-[KeyboardMainViewController secondarySpell:]_block_invoke"
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardMainViewController.m"
-                  timestampString = "482248481.884286"
+                  timestampString = "482415524.273239"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "500"
                   endingLineNumber = "500"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "21">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1522,60 +1522,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
-            timestampString = "482167224.958472"
+            timestampString = "482319695.072382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
-            landmarkName = "-hideView:"
+            startingLineNumber = "506"
+            endingLineNumber = "506"
+            landmarkName = "-tertiarySpell:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__39-[KeyboardMainViewController hideView:]_block_invoke_2"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardMainViewController.m"
-                  timestampString = "482248481.88487"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "505"
-                  endingLineNumber = "505"
-                  offsetFromSymbolStart = "191">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.290"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardMainViewController.m"
-                  timestampString = "482248481.884962"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "505"
-                  endingLineNumber = "505"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.291"
-                  moduleName = "MMKeyboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/KeyboardMainViewController.m"
-                  timestampString = "482248481.885038"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "505"
-                  endingLineNumber = "505"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1585,12 +1538,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
-            timestampString = "482167224.958472"
+            timestampString = "482319695.072382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
-            landmarkName = "-hideView:"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "-tertiarySpell:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
+            timestampString = "482319695.072382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
+            timestampString = "482319695.072382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MMKeyboard/Main/KeyboardMainViewController.m"
+            timestampString = "482319695.072382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
