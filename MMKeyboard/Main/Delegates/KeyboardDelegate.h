@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMKeyboardSelection.h"
 
 @protocol KeyboardDelegate <NSObject>
 
@@ -20,5 +21,7 @@
 
 // Used to pass reference of a button press
 - (void)keyboardButtonPressed;
+
+- (void)changeKeyboard:(keyboardTags)tag;
 
 @end

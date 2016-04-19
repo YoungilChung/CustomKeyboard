@@ -29,6 +29,9 @@
     return [UIImage imageFromView:label];
 }
 
+
+
+
 + (UIImage *)imageWithEmoji:(NSString *)emoji
 {
     return [UIImage imageWithEmoji:emoji

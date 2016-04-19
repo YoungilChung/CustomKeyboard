@@ -9,6 +9,7 @@
 #import "KeyboardDelegate.h"
 #import "MMKeyboardKeysModel.h"
 #import "PopupButtonView.h"
+#import "ButtonShape.h"
 
 #define HMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define CASE(str)                       if ([__s__ isEqualToString:(str)])
@@ -30,6 +31,8 @@ typedef enum {
 @property(nonatomic, strong) UIView *rowView3;
 @property(nonatomic, strong) UIView *rowView4;
 @property(nonatomic, strong) PopupButtonView *buttonView;
+@property(nonatomic, strong) ButtonShape *buttonShape;
+
 
 @property(nonatomic, strong) MMKeyboardButton *abcButton;
 @property(nonatomic, strong) MMKeyboardButton *spaceButton;
@@ -396,7 +399,7 @@ typedef enum {
 
 	self.nextKeyboardButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.nextKeyboardButton setImage:[UIImage imageWithEmoji:@"🌐" withSize:30] forState:UIControlStateNormal];
+	[self.nextKeyboardButton setImage:[UIImage imageWithEmoji:@"😀" withSize:26] forState:UIControlStateNormal];
 	[self.nextKeyboardButton setTintColor:[UIColor whiteColor]];
 	[holder addSubview:self.nextKeyboardButton];
 
@@ -436,7 +439,7 @@ typedef enum {
 	[holder addSubview:self.returnButton];
 
 
-	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : self.nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton, @"periodButton": self.periodButton};
+	NSDictionary *views = @{@"abcButton" : self.abcButton, @"changeButton" : self.nextKeyboardButton, @"spaceButton" : self.spaceButton, @"returnButton" : self.returnButton, @"periodButton" : self.periodButton};
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[abcButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[spaceButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[changeButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
@@ -457,15 +460,10 @@ typedef enum {
 
 	[self.alphaButtons enumerateObjectsUsingBlock:^(MMKeyboardButton *button, NSUInteger idx, BOOL *stop) {
 
-//		if ([button.titleLabel.text isEqualToString:@"⇧"] || [button.titleLabel.text isEqualToString:@"⇪"] || [button.titleLabel.text isEqualToString:@"⌫"] || [button.titleLabel.text isEqualToString:@"#+="] || [button.titleLabel.text isEqualToString:@"?!@"]) {
-//
-//		}
-//		else {
 		CGRect buttonRect = CGRectMake(button.frame.origin.x, [button superview].frame.origin.y, button.frame.size.width, button.frame.size.height);
 		if (CGRectContainsPoint(buttonRect, point)) {
 			currentButton = button;
 		}
-//		}
 	}
 	];
 
@@ -556,7 +554,7 @@ typedef enum {
 
 	UILongPressGestureRecognizer *longPressGestureRecognizer =
 			[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-	longPressGestureRecognizer.minimumPressDuration = 0.3;
+	longPressGestureRecognizer.minimumPressDuration = 0.2;
 	longPressGestureRecognizer.delegate = self;
 
 	[self addGestureRecognizer:longPressGestureRecognizer];
@@ -619,14 +617,13 @@ typedef enum {
 				CGPoint location = [recognizer locationInView:self];
 				[self.buttonView updatePosition:location];
 
-                
+
 				break;
 			}
 		}
 
 	}
 }
-
 
 #pragma mark touch gestures
 
@@ -636,28 +633,34 @@ typedef enum {
 
 	NSArray *multipleButtons = [self.keyboardKeysModel specialCharactersWithLetter:self.panningButton.titleLabel.text];
 
-	if (multipleButtons.count >= 1) {
+	if ([self.panningButton.titleLabel.text isEqualToString:@"⌫"]) {
 
-		if (gesture.state == UIGestureRecognizerStateBegan) {
-
-
-			[self hideInputView];
-			self.popUpStyle = kpopUpStyleMultiple;
-			[self addPopupToButton:self.panningButton WithPopStyle:kpopUpStyleMultiple];
-
-		}
+		[self.keyboardDelegate keyWasTapped:self.panningButton.titleLabel.text];
 	}
-	if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
+	else {
 
-		if (self.panGestureRecognizer.state != UIGestureRecognizerStateRecognized) {
-			self.popUpStyle = kpopUpStyleSingle;
-			if (self.panningButton) {
+		if (multipleButtons.count >= 1) {
 
-				[self handleTouchUpInside:self.panningButton];
+			if (gesture.state == UIGestureRecognizerStateBegan) {
+
+
+				[self hideInputView];
+				self.popUpStyle = kpopUpStyleMultiple;
+				[self addPopupToButton:self.panningButton WithPopStyle:kpopUpStyleMultiple];
+
+			}
+		}
+		if (gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateEnded) {
+
+			if (self.panGestureRecognizer.state != UIGestureRecognizerStateRecognized) {
+				self.popUpStyle = kpopUpStyleSingle;
+				if (self.panningButton) {
+
+					[self handleTouchUpInside:self.panningButton];
+				}
 			}
 		}
 	}
-
 }
 
 #pragma mark keyboard popup
@@ -665,15 +668,20 @@ typedef enum {
 - (void)addPopupToButton:(MMKeyboardButton *)sender WithPopStyle:(popUpStyle)popUpStyle {
 
 
-	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:popUpStyle];
+	self.buttonShape = [ButtonShape new];
+	self.buttonShape.buttonView = sender.frame;
+	self.buttonShape.translatesAutoresizingMaskIntoConstraints = NO;
+	self.buttonShape.layer.cornerRadius = 4;
+	[self.superview addSubview:self.buttonShape];
+
+	self.buttonView = [[PopupButtonView alloc] initWithButton:sender WithPopupStyle:popUpStyle capitaliseButton:self.isCapitalised];
 	self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.buttonView.layer.cornerRadius = 4;
-	[self.buttonView setBackgroundColor:[UIColor clearColor]];
+	[self.buttonView setBackgroundColor:[UIColor lightGrayColor]];
 	[self.superview addSubview:self.buttonView];
 
-
 	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:2.0 constant:(CGFloat) (sender.frame.size.height)]];
-	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+	NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.buttonView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeTop multiplier:1.0 constant:-11];
 	bottomConstraint.priority = 800;
 	[self.superview addConstraint:bottomConstraint];
 
@@ -700,6 +708,13 @@ typedef enum {
 	[centerConstraint setPriority:800];
 
 	[self.superview addConstraint:centerConstraint];
+
+
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeBottom multiplier:1.0 constant:2]];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-1.4]];
+	[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sender attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
 }
 
 

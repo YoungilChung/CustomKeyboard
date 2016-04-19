@@ -29,7 +29,6 @@
 		self.searchBar = [[MMCustomTextField alloc] init];
 		self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
 		self.searchBar.backgroundColor = [UIColor whiteColor];
-		self.searchBar.clearButtonMode;
 		[self.searchBar setPlaceholder:@"Search for a GIF"];
 		self.searchBar.delegate = self;
 		self.searchBar.isTextFieldSelected = NO;
@@ -66,7 +65,20 @@
 	return NO;
 }
 
-
+//- (void)blinkAnimation:(NSString *)animationId finished:(BOOL)finished target:(UIView *)target
+//{
+//	if (shouldContinueBlinking) {
+//		[UIView beginAnimations:animationId context:target];
+//		[UIView setAnimationDuration:0.5f];
+//		[UIView setAnimationDelegate:self];
+//		[UIView setAnimationDidStopSelector:@selector(blinkAnimation:finished:target:)];
+//		if ([target alpha] == 1.0f)
+//			[target setAlpha:0.0f];
+//		else
+//			[target setAlpha:1.0f];
+//		[UIView commitAnimations];
+//	}
+//}
 
 
 @end

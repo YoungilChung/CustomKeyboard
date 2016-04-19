@@ -81,7 +81,6 @@
 
 - (IBAction)segmentController_Tapped:(UISegmentedControl *)sender {
 
-	NSLog(@"%i", sender.selectedSegmentIndex);
 	switch (sender.selectedSegmentIndex) {
 
 
@@ -112,7 +111,6 @@
 - (void)newType:(MMSearchType)type {
 
 	if (type) {
-		NSLog(@"This is the %d", type);
 		self.type = type;
 		[self loadGifs];
 	}
@@ -168,7 +166,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-	NSLog(@"%u", self.data.count);
 	return self.data ? self.data.count : 0;
 }
 
@@ -232,7 +229,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 
-	NSUInteger item = (NSUInteger) indexPath.item;
 	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
 //	entity[indexPath.row];
 	MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:cell.imageView.animatedImage withGifEntity:self.data[(NSUInteger) indexPath.row]];

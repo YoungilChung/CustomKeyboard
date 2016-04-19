@@ -14,7 +14,7 @@ typedef enum {
 	kTagEmojiObjects,
 	kTagEmojiSymbol,
 	kTagEmojiFlags,
-	kTagEmojiKeyboard,
+	kTagEmojiExit,
 	kTagEmojiDelete,
 } EmojiButtonTag;
 @interface MMEmojiCategoryHolder : UIView

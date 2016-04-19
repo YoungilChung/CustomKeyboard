@@ -34,7 +34,8 @@
 		self.text.textContainer.lineFragmentPadding = 0;
 		self.text.textAlignment = NSTextAlignmentCenter;
 		[self.text setFont:[UIFont boldSystemFontOfSize:30]];
-		[self.text setBackgroundColor:[UIColor colorWithRed:(CGFloat) (135 / 255.0) green:(CGFloat) (208 / 255.0) blue:(CGFloat) (250 / 255.0) alpha:0.8]];
+		[self.text setBackgroundColor:[UIColor clearColor]];
+//		[self.text setBackgroundColor:[UIColor colorWithRed:(CGFloat) (135 / 255.0) green:(CGFloat) (208 / 255.0) blue:(CGFloat) (250 / 255.0) alpha:0.8]];
 		[self addSubview:self.text];
 
 		NSDictionary *metrics = @{};
@@ -59,7 +60,8 @@
 	}
 	else {
 
-		[self.text setBackgroundColor:[UIColor colorWithRed:(CGFloat) (135 / 255.0) green:(CGFloat) (208 / 255.0) blue:(CGFloat) (250 / 255.0) alpha:0.8]];
+		[self.text setBackgroundColor:[UIColor clearColor]];
+//		[self.text setBackgroundColor:[UIColor colorWithRed:(CGFloat) (135 / 255.0) green:(CGFloat) (208 / 255.0) blue:(CGFloat) (250 / 255.0) alpha:0.8]];
 	}
 
 

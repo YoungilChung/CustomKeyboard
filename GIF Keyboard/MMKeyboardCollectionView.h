@@ -32,15 +32,6 @@ typedef NS_ENUM(NSUInteger, MMSearchType) {
 @property(nonatomic, assign) MMSearchType type;
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
-
-- (void)onAllGifsButtonTapped:(UIButton *)sender;
-
-- (void)onNormalButtonTapped:(UIButton *)sender;
-
-- (void)onAwesomeButtonTapped:(UIButton *)sender;
-
-//- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation;
-
 - (void)loadGifs;
 
 

@@ -15,6 +15,8 @@
 #import "MMCustomTextField.h"
 #import "MMEmojiCollectionViewCell.h"
 #import "MMEmojiCollectionView.h"
+#import "MMKeyboardSelection.h"
+#import "ButtonShape.h"
 
 
 typedef enum {
@@ -37,6 +39,7 @@ typedef enum {
 @property(nonatomic, strong) SpellCheckerManager *spellCheckerManager;
 @property(nonatomic, strong) UIView *emojiKeyboardHolder;
 @property(nonatomic, strong) MMEmojiCollectionView *emojiCollectionView;
+@property(nonatomic, strong) ButtonShape *buttonShape;
 
 // Variables
 @property(nonatomic, strong) UILabel *messageText;
@@ -44,6 +47,7 @@ typedef enum {
 @property(nonatomic, strong) NSString *gifURL;
 @property(nonatomic, strong) NSString *currentString;
 @property(nonatomic, strong) NSString *primaryString;
+@property(nonatomic, assign) BOOL selectionShowing;
 
 
 // Constraints
@@ -51,6 +55,7 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
+@property(nonatomic, strong) UIView *selectionHolder;
 @end
 
 @implementation KeyboardMainViewController
@@ -58,6 +63,8 @@ typedef enum {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	self.selectionShowing = NO;
 
 
 	self.spellCheckerManager = [SpellCheckerManager new];
@@ -75,15 +82,8 @@ typedef enum {
 	self.emojiCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emojiCollectionView.clipsToBounds = YES;
 	self.emojiCollectionView.keyboardDelegate = self;
-//	self.emojiCollectionView.alpha = 0;
 	[self.emojiKeyboardHolder addSubview:self.emojiCollectionView];
 
-
-	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-	ges.minimumPressDuration = 0.1;
-	ges.numberOfTouchesRequired = 1;
-	ges.delegate = self;
-	[self.categoryHolderView.deleteButton addGestureRecognizer:ges];
 
 	self.autoCorrectCollectionView = [[AutoCorrectCollectionView alloc] init];
 	self.autoCorrectCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -150,6 +150,18 @@ typedef enum {
 
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
+
+
+	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+	ges.minimumPressDuration = 0.2;
+	ges.numberOfTouchesRequired = 1;
+	ges.delegate = self;
+	[self.keyboardView.nextKeyboardButton addGestureRecognizer:ges];
+
+
+	UITapGestureRecognizer *tapRec = [[UITapGestureRecognizer alloc]
+			initWithTarget:self action:@selector(tap:)];
+	[tapRec setCancelsTouchesInView:NO];
 
 }
 
@@ -235,6 +247,10 @@ typedef enum {
 	switch (self.searchHolder.gifButton.tag) {
 
 		case kTagABCKeyboard: {
+			if (self.selectionShowing) {
+				self.selectionShowing = NO;
+				[self.selectionHolder removeFromSuperview];
+			}
 
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
@@ -264,7 +280,53 @@ typedef enum {
 #pragma mark touch gestures
 
 - (void)longPress:(UILongPressGestureRecognizer *)gesture {
-	[[self textDocumentProxy] deleteBackward];
+	if (!self.selectionShowing) {
+
+
+		self.selectionHolder = [UIView new];
+		self.selectionHolder.translatesAutoresizingMaskIntoConstraints = NO;
+		[self.selectionHolder setBackgroundColor:[UIColor clearColor]];
+		[self.view addSubview:self.selectionHolder];
+
+
+		self.buttonShape = [ButtonShape new];
+		self.buttonShape.buttonView = self.keyboardView.nextKeyboardButton.frame;
+		self.buttonShape.translatesAutoresizingMaskIntoConstraints = NO;
+		self.buttonShape.layer.cornerRadius = 4;
+		NSLog(@"this is the width %f", self.keyboardView.nextKeyboardButton.frame.size.height);
+//		self.buttonShape.transform = CGAffineTransformMakeTranslation(-((self.view.frame.size.width / 5) / 2) - 1, -5);
+		[self.view addSubview:self.buttonShape];
+
+
+		MMKeyboardSelection *tableView = [[MMKeyboardSelection alloc] init];
+		tableView.translatesAutoresizingMaskIntoConstraints = NO;
+		tableView.layer.cornerRadius = 4;
+		tableView.keyboardDelegate = self;
+		[tableView sizeToFit];
+		[self.selectionHolder addSubview:tableView];
+
+		NSDictionary *metrics = @{};
+		NSDictionary *views = @{@"selectionHolder" : self.selectionHolder, @"table" : tableView};
+
+		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[table(==80)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:
+				@"H:|-0-[table]-0-|"                                                 options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionHolder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:
+				self.keyboardView.nextKeyboardButton          attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:(CGFloat) (self.view.frame.size.width / 1.5)]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectionHolder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.keyboardView.nextKeyboardButton attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.keyboardView.nextKeyboardButton attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.keyboardView.nextKeyboardButton attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.selectionHolder attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-2.2]];
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.buttonShape attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.keyboardView.nextKeyboardButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+
+		self.selectionShowing = YES;
+		self.buttonShape.buttonView = self.selectionHolder.frame;
+	}
 
 }
 
@@ -370,6 +432,12 @@ typedef enum {
 
 - (void)keyWasTapped:(NSString *)key {
 
+	if (self.selectionShowing) {
+		self.selectionShowing = NO;
+		[self.selectionHolder removeFromSuperview];
+	}
+
+
 	NSString *searchString = self.searchHolder.searchBar.text;
 	if (self.searchHolder.searchBar.isTextFieldSelected) {
 
@@ -431,9 +499,12 @@ typedef enum {
 
 			[self.textDocumentProxy insertText:key];
 
-			self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
+			if (key.length == 1) {
 
-			[self.spellCheckerManager fetchWords:self.currentString];
+				self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
+
+				[self.spellCheckerManager fetchWords:self.currentString];
+			}
 		}
 	}
 
@@ -444,6 +515,12 @@ typedef enum {
 	self.searchHolder.gifButton.alpha = 1;
 	self.emojiKeyboardHolder.alpha = 0;
 	[self.view sendSubviewToBack:self.emojiKeyboardHolder];
+
+	if (self.selectionShowing) {
+		self.selectionShowing = NO;
+		[self.selectionHolder removeFromSuperview];
+	}
+
 
 }
 
@@ -469,10 +546,46 @@ typedef enum {
 	[self.view sendSubviewToBack:self.emojiKeyboardHolder];
 }
 
+
+- (void)changeKeyboard:(keyboardTags)tag {
+
+	switch (tag) {
+
+		case kTagSwitchKeyboard: {
+
+			[self advanceToNextInputMode];
+
+			break;
+		}
+		case kTagEmojiKeyboard: {
+
+			self.selectionShowing = NO;
+			self.searchHolder.gifButton.alpha = 0;
+			self.emojiKeyboardHolder.alpha = 1;
+			[self.selectionHolder removeFromSuperview];
+			[self.view bringSubviewToFront:self.emojiKeyboardHolder];
+
+			break;
+		}
+	}
+
+}
+
 - (void)emojiKeyboard:(UIButton *)sender {
-	self.searchHolder.gifButton.alpha = 0;
-	self.emojiKeyboardHolder.alpha = 1;
-	[self.view bringSubviewToFront:self.emojiKeyboardHolder];
+
+
+	if (!self.selectionShowing) {
+
+		self.searchHolder.gifButton.alpha = 0;
+		self.emojiKeyboardHolder.alpha = 1;
+		[self.view bringSubviewToFront:self.emojiKeyboardHolder];
+
+	}
+	else {
+		[self.selectionHolder removeFromSuperview];
+		self.selectionShowing = NO;
+	}
+
 
 }
 
@@ -660,6 +773,22 @@ typedef enum {
 - (void)textDidChange:(id <UITextInput>)textInput {
 
 	self.searchHolder.searchBar.isTextFieldSelected = NO;
+}
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//	if ([touch.view == self.selectionHolder]) {
+//
+//		// Don't let selections of auto-complete entries fire the
+//		// gesture recognizer
+//		NSLog(@"OTHER?");
+//		return YES;
+//	}
+//	else {
+
+	NSLog(@"Hello");
+//	}
+	return YES;
 }
 
 

@@ -16,13 +16,14 @@
 @property(nonatomic, assign) popUpStyle popUpStyle;
 @property(nonatomic, strong) MMKeyboardKeysModel *keyboardKeysModel;
 @property(nonatomic, strong) UIView *rowView;
+@property(nonatomic, assign) BOOL isCapitalised;
 
 @property(nonatomic, strong) PopupView *popupView;
 @end
 
 @implementation PopupButtonView
 
-- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle1 {
+- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle1 capitaliseButton:(BOOL)isCapitalised{
 
 	self = [super init];
 
@@ -30,6 +31,7 @@
 
 		self.button = button;
 		self.popUpStyle = popUpStyle1;
+		self.isCapitalised = isCapitalised;
 		self.keyboardKeysModel = [MMKeyboardKeysModel new];
 		self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 		self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -82,29 +84,42 @@
 		[self addSubview:self.rowView];
 
 
-		NSDictionary *metrics = @{};
+		self.rowView.layer.shadowColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f] CGColor];
+		self.rowView.layer.shadowOffset = CGSizeMake(0, 2.0f);
+		self.rowView.layer.shadowOpacity = 1.0f;
+		self.rowView.layer.shadowRadius = 0.0f;
+		self.rowView.layer.masksToBounds = NO;
+
+		self.popupView.layer.shadowColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f] CGColor];
+		self.popupView.layer.shadowOffset = CGSizeMake(0, 2.0f);
+		self.popupView.layer.shadowOpacity = 1.0f;
+		self.popupView.layer.shadowRadius = 0.0f;
+		self.popupView.layer.masksToBounds = NO;
+
+		NSDictionary *metrics = @{@"buttonWidth" : @(self.button.frame.size.width)};
 		NSDictionary *views = @{@"popupView" : self.popupView, @"rowView" : self.rowView};
 
 
 		if (self.button.frame.origin.x > 125) {
 
-			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[rowView]-0-[popupView(==30)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[rowView]-0-[popupView(==buttonWidth)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		}
 		else {
 
-			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[popupView(==30)]-0-[rowView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[popupView(==buttonWidth)]-0-[rowView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		}
 
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[popupView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
-		NSLayoutConstraint *leftConstriaint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.rowView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-		NSLayoutConstraint *heightConstriaint = [NSLayoutConstraint constraintWithItem:self.rowView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:40];
-		NSLayoutConstraint *bottomConstriaint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.rowView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+		NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.rowView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+		NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rowView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:40];
+		NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.rowView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:2];
 
-		[self addConstraints:@[leftConstriaint, heightConstriaint, bottomConstriaint]];
+		[self addConstraints:@[topConstraint, heightConstraint, bottomConstraint]];
 
 	}
 	else {
+
 		[self singlePopup];
 
 	}
@@ -152,7 +167,7 @@
 }
 
 - (PopupView *)createView:(NSString *)title {
-	PopupView *popupView = [[PopupView alloc] initWithTitle:title];
+	PopupView *popupView = [[PopupView alloc] initWithTitle:(self.isCapitalised) ? title.uppercaseString : title];
 	popupView.translatesAutoresizingMaskIntoConstraints = NO;
 	[popupView setBackgroundColor:[UIColor clearColor]];
 	return popupView;
@@ -162,6 +177,8 @@
 - (void)addIndividualConstraintsToViews:(NSArray *)viewHolder WithView:(UIView *)mainView {
 
 	[viewHolder enumerateObjectsUsingBlock:^(PopupView *popupView, NSUInteger idx, BOOL *stop) {
+
+
 
 		NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:popupView attribute:NSLayoutAttributeTop
 																		 relatedBy:NSLayoutRelationEqual
@@ -201,7 +218,7 @@
 
 			widthConstraint = [NSLayoutConstraint constraintWithItem:popupView attribute:NSLayoutAttributeWidth
 														   relatedBy:NSLayoutRelationEqual toItem:nil
-														   attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+														   attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.button.frame.size.width];
 
 
 		}
@@ -212,7 +229,7 @@
 			leftConstraint = [NSLayoutConstraint constraintWithItem:popupView attribute:NSLayoutAttributeLeft
 														  relatedBy:NSLayoutRelationEqual
 															 toItem:prevView attribute:NSLayoutAttributeRight
-														 multiplier:1.0 constant:0];
+														 multiplier:1.0 constant:1];
 
 			PopupView *firstView = viewHolder[0];
 

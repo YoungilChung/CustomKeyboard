@@ -90,7 +90,7 @@
 - (void)keyboardButtonPressed:(UIButton *)sender {
 	switch (sender.tag) {
 
-		case kTagEmojiKeyboard: {
+		case kTagEmojiExit: {
 
 			[self.keyboardDelegate keyboardButtonPressed];
 			break;

@@ -52,7 +52,7 @@
 #pragma mark - Private
 
 - (void)loadFileForCorrections {
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"big" ofType:@"txt"];
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"wiki-100k" ofType:@"txt"];
 	_checker.load(filePath.fileSystemRepresentation);
 }
 

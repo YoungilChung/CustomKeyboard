@@ -27,9 +27,6 @@
 
 - (void)setup {
 
-
-
-
 	[self setTranslatesAutoresizingMaskIntoConstraints:NO];
 	[self setBackgroundColor:[UIColor grayColor]];
 	int hEdgeInsets = 2;
@@ -38,7 +35,7 @@
 	self.keyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	self.keyboardButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.keyboardButton.layer.cornerRadius = 4;
-	self.keyboardButton.tag = kTagEmojiKeyboard;
+	self.keyboardButton.tag = kTagEmojiExit;
 	[self.keyboardButton setImage:[UIImage imageWithEmoji:@"🌐" withSize:30] forState:UIControlStateNormal];
 	[self.keyboardButton setImageEdgeInsets:UIEdgeInsetsMake(vEdgeInsets, hEdgeInsets, vEdgeInsets, hEdgeInsets)];
 	[self.keyboardButton setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
@@ -71,7 +68,8 @@
 	self.foodButton.tag = kTagEmojiFood;
 	self.foodButton.layer.cornerRadius = 4;
 	[self.foodButton setImageEdgeInsets:UIEdgeInsetsMake(vEdgeInsets, hEdgeInsets, vEdgeInsets, hEdgeInsets)];
-	[self.foodButton setImage:[UIImage imageWithEmoji:@"🍎" withSize:30] forState:UIControlStateNormal];
+	[self.foodButton setImage:[UIImage imageWithEmoji:@
+                               "🍎" withSize:30] forState:UIControlStateNormal];
 	[self.foodButton setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
 	[self.foodButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
 	[self addSubview:self.foodButton];

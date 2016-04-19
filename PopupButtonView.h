@@ -9,6 +9,7 @@
 typedef enum {
 	kpopUpStyleSingle = 100,
 	kpopUpStyleMultiple,
+	kpopUpStyleChangeKeyboard
 } popUpStyle;
 
 
@@ -20,6 +21,6 @@ typedef enum {
 
 @property(nonatomic, assign) NSString * selectedCharacter;
 
-- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle;
+- (instancetype)initWithButton:(MMKeyboardButton *)button WithPopupStyle:(popUpStyle)popUpStyle capitaliseButton:(BOOL)isCapitalised;
 -(void)updatePosition:(CGPoint)position;
 @end

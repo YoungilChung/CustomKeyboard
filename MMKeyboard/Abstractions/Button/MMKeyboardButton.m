@@ -51,6 +51,7 @@
 	self.layer.shadowOpacity = 1.0f;
 	self.layer.shadowRadius = 0.0f;
 	self.layer.masksToBounds = NO;
+
 	self.layer.cornerRadius = 4.0f;
 
 
@@ -59,9 +60,17 @@
 }
 
 
+
+
+
+
+//- (CGRect)backgroundRectForBounds:(CGRect)bounds {
+//	return CGRectInset(bounds, -50, -50);
+//}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
 
-	CGFloat margin = 15.0;
+	CGFloat margin = 10.0;
 //	CGRect area = CGRectInset(self.bounds, -margin, -margin);
 //
 ////	NSLog(@"came here with Point:%f, area:%f", self.bounds.origin.x,self.bounds.origin.y);
@@ -69,8 +78,8 @@
 
 	CGRect newBound = CGRectMake(self.bounds.origin.x - margin,
 			self.bounds.origin.y - margin,
-			self.bounds.size.width + 2 * margin,
-			self.bounds.size.height + 2 * margin );
+			self.bounds.size.width + ( margin),
+			self.bounds.size.height + (2 * margin ));
 //	CGRect relativeFrame = self.bounds;
 //	UIEdgeInsets hitTestEdgeInsets = UIEdgeInsetsMake(-margin,-5, 0, -5);
 //	CGRect hitFrame = UIEdgeInsetsInsetRect(relativeFrame, hitTestEdgeInsets);

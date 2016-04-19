@@ -17,4 +17,9 @@
 + (UIImage *)imageWithEmoji:(NSString *)emoji
                    withSize:(CGFloat)size;
 
++ (UIImage *)imageWithEmoji:(NSString *)emoji
+                   withSize:(CGFloat)size
+				   withText:(NSString *)string
+;
+
 @end
