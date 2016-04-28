@@ -103,7 +103,7 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 			if (queryString.isValidForCorrecting) {
-				NSArray *corrections = [SpellCheckerBridge correctionsForText:queryString.letterCharacterString];
+				NSArray *corrections = [SpellCheckerBridge correctionsForText:queryString];
 
 				if (corrections.count == 0) {
 					[self updateControllersWithRealWord:queryString];

@@ -13,7 +13,7 @@
 
 @interface MMEmojiCollectionViewMainCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property(nonatomic, strong) MMEmojiCollectionViewFlowLayout *collectionFlowLayout;
+@property(nonatomic, strong) UICollectionViewFlowLayout *collectionFlowLayout;
 @property(nonatomic, strong) MMKeyboardKeysModel *keyboardKeysModel;
 //@property(nonatomic, weak) NSMutableArray *emojiArray;
 
@@ -58,8 +58,9 @@
 - (void)setup {
 
 	self.translatesAutoresizingMaskIntoConstraints = NO;
-
-	self.collectionFlowLayout = [MMEmojiCollectionViewFlowLayout new];
+	self.clipsToBounds = YES;
+	self.collectionFlowLayout = [UICollectionViewFlowLayout new];
+//   self.collectionFlowLayout.itemSize = CGSizeMake(50,50);
 	[self.collectionFlowLayout setMinimumInteritemSpacing:0];
 	[self.collectionFlowLayout setMinimumLineSpacing:0];
 	[self.collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];

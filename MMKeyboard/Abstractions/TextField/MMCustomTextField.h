@@ -11,4 +11,6 @@
 
 @property (nonatomic, assign) BOOL isTextFieldSelected;
 
++ (void)selectTextForInput:(UITextField *)input atRange:(NSRange)range;
+
 @end

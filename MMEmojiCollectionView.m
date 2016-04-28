@@ -56,10 +56,7 @@
 	[self.emojiCategoryHolder.flagsButton addTarget:self action:@selector(keyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:self.emojiCategoryHolder];
 
-
 	self.collectionFlowLayout = [MMEmojiCollectionViewFlowLayout new];
-	[self.collectionFlowLayout setMinimumInteritemSpacing:0];
-	[self.collectionFlowLayout setMinimumLineSpacing:0];
 	[self.collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
 
 	self.mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.collectionFlowLayout];
@@ -70,11 +67,6 @@
 	self.mainCollectionView.delegate = self;
 	self.mainCollectionView.dataSource = self;
 	[self addSubview:self.mainCollectionView];
-
-//	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-//	tapGestureRecognizer.delegate = self;
-//	tapGestureRecognizer.delaysTouchesBegan = YES;
-//	[self.collectionView addGestureRecognizer:tapGestureRecognizer];
 
 	NSDictionary *metrics = @{};
 	NSDictionary *views = @{
@@ -116,7 +108,8 @@
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake((CGFloat) self.layer.frame.size.width, (CGFloat) self.layer.frame.size.height);
+//	return CGSizeMake((CGFloat) self.layer.frame.size.width, (CGFloat) self.layer.frame.size.height);
+	return self.emojiCollectionViewSize;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,5 +13,7 @@
 @property(nonatomic, strong) UICollectionView *mainCollectionView;
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
+@property(nonatomic, assign) CGSize emojiCollectionViewSize;
+
 
 @end

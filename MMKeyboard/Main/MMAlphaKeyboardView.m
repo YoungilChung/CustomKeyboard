@@ -36,7 +36,6 @@ typedef enum {
 
 @property(nonatomic, strong) MMKeyboardButton *abcButton;
 @property(nonatomic, strong) MMKeyboardButton *spaceButton;
-@property(nonatomic, strong) MMKeyboardButton *returnButton;
 @property(nonatomic, strong) MMKeyboardButton *periodButton;
 @property(nonatomic, strong) MMKeyboardButton *panningButton;
 @property(nonatomic, strong) MMKeyboardButton *gifButton;
@@ -667,7 +666,6 @@ typedef enum {
 
 - (void)addPopupToButton:(MMKeyboardButton *)sender WithPopStyle:(popUpStyle)popUpStyle {
 
-
 	self.buttonShape = [ButtonShape new];
 	self.buttonShape.buttonView = sender.frame;
 	self.buttonShape.translatesAutoresizingMaskIntoConstraints = NO;
@@ -758,7 +756,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 }
 
 - (void)handleTouchUpInside:(MMKeyboardButton *)sender {
-
 	[self didTapButton:sender];
 	[self hideInputView];
 }

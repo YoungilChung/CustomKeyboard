@@ -115,7 +115,7 @@ static BOOL _containsLetters(NSString* string)
         
         for (int charIndex = 0; charIndex < string.length; ++charIndex)
         {
-            unichar currentChar = [self characterAtIndex:charIndex];
+            unichar currentChar = [self characterAtIndex:(NSUInteger) charIndex];
             if (![[NSCharacterSet letterCharacterSet] characterIsMember:currentChar])
             {
                 if (firstNonLetterCharIndex == -1)
@@ -131,13 +131,14 @@ static BOOL _containsLetters(NSString* string)
         
         if (firstNonLetterCharIndex == 0 && lastNonLetterCharIndex != -1)
         {
-            string = [string substringFromIndex:lastNonLetterCharIndex + 1];
+            string = [string substringFromIndex:(NSUInteger) (lastNonLetterCharIndex + 1)];
         }
         else if (firstNonLetterCharIndex != -1)
         {
-            string = [string substringToIndex:firstNonLetterCharIndex];
+            string = [string substringToIndex:(NSUInteger) firstNonLetterCharIndex];
         }
     }
+
     return string;
 }
 
@@ -151,7 +152,7 @@ static BOOL _containsLetters(NSString* string)
         
         for (int charIndex = 0; charIndex < string.length; ++charIndex)
         {
-            unichar currentChar = [self characterAtIndex:charIndex];
+            unichar currentChar = [self characterAtIndex:(NSUInteger) charIndex];
             if (![[NSCharacterSet letterCharacterSet] characterIsMember:currentChar])
             {
                 if (firstNonLetterCharIndex == -1)

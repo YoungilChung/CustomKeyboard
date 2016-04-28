@@ -15,6 +15,8 @@
 #import "KeyboardDelegate.h"
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
+#import "UIImage+emoji.h"
+
 
 @interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate,
 		UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, SearchMangerDelegate>
@@ -22,6 +24,8 @@
 // View
 @property(nonatomic, strong) MMKeyboardButtonView *buttonView;
 @property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
+@property(nonatomic, strong) UIView *emptyCellView;
+
 
 // Variables
 @property(nonatomic, strong) NSMutableArray *data;
@@ -174,6 +178,18 @@
 #pragma mark CollectionView Delegates
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+
+	if (self.data.count == 0) {
+
+		[self loadEmptyCell];
+
+
+	}
+	else {
+		[self.emptyCellView removeFromSuperview];
+
+
+	}
 	return self.data ? self.data.count : 0;
 }
 
@@ -346,6 +362,50 @@
 }
 
 
+- (void)loadEmptyCell {
+
+	self.emptyCellView = [UIView new];
+	self.emptyCellView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.emptyCellView.backgroundColor = [UIColor clearColor];
+	[self addSubview:self.emptyCellView];
+
+	UILabel *emptyLabel = [UILabel new];
+	emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	[emptyLabel setText:@"No GIF's For You"];
+	emptyLabel.numberOfLines = 0;
+	[emptyLabel setTextAlignment:NSTextAlignmentCenter];
+	[emptyLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18]];
+	[emptyLabel setTextColor:[UIColor whiteColor]];
+	[self.emptyCellView addSubview:emptyLabel];
+
+
+	UIImageView *emojiView = [UIImageView new];
+	emojiView.translatesAutoresizingMaskIntoConstraints = NO;
+	[emojiView setImage:[UIImage imageWithEmoji:@"😭" withSize:60.0f]];
+	emojiView.contentMode = UIViewContentModeScaleAspectFit;
+	[self.emptyCellView addSubview:emojiView];
+
+	NSDictionary *views = @{@"message" : emptyLabel, @"emptyCellView" : self.emptyCellView, @"emoji" : emojiView};
+	NSDictionary *metrics = @{@"padding" : @(10)};
+
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-5-[emoji]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[message]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emoji]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+	[self.emptyCellView addConstraint:[NSLayoutConstraint constraintWithItem:emptyLabel attribute:NSLayoutAttributeCenterY
+																   relatedBy:NSLayoutRelationEqual
+																	  toItem:self.emptyCellView attribute:NSLayoutAttributeCenterY
+																  multiplier:1.0 constant:-30]];
+	[self.emptyCellView addConstraint:[NSLayoutConstraint constraintWithItem:emptyLabel attribute:NSLayoutAttributeCenterX
+																   relatedBy:NSLayoutRelationEqual
+																	  toItem:self.emptyCellView attribute:NSLayoutAttributeCenterX
+																  multiplier:1.0 constant:0]];
+
+
+}
 
 //- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
 //

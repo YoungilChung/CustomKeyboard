@@ -25,6 +25,10 @@ typedef enum {
 
 } buttonTags;
 
+#define CASE(str)          if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)          for (NSString *__s__ = (s); ; )
+#define DEFAULT
+
 
 @interface KeyboardMainViewController () <UITextDocumentProxy, SpellCheckerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -56,6 +60,8 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
 @property(nonatomic, strong) UIView *selectionHolder;
+@property(nonatomic) CGFloat stringWidth;
+@property(nonatomic, strong) NSMutableArray *lastKey;
 @end
 
 @implementation KeyboardMainViewController
@@ -151,20 +157,14 @@ typedef enum {
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
-
 	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
 	ges.minimumPressDuration = 0.2;
 	ges.numberOfTouchesRequired = 1;
 	ges.delegate = self;
 	[self.keyboardView.nextKeyboardButton addGestureRecognizer:ges];
 
-
-	UITapGestureRecognizer *tapRec = [[UITapGestureRecognizer alloc]
-			initWithTarget:self action:@selector(tap:)];
-	[tapRec setCancelsTouchesInView:NO];
-
+	self.lastKey = @[].mutableCopy;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -224,22 +224,24 @@ typedef enum {
 															 toItem:self.view attribute:NSLayoutAttributeBottom
 														 multiplier:1.0 constant:0]];
 
+	CGRect Rect = [[UIScreen mainScreen] bounds];
+	NSLayoutConstraint *_heightConstraint;
+	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 1.8)];
+	[self.view addConstraint:_heightConstraint];
+
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
 	self.gifKeyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
 	self.categoryLeftConstraint = [NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:self.view.frame.size.width];
+
+	self.emojiKeyboardHolder.alpha = 0;
 
 	[self.view addConstraint:self.gifKeyboardLeftConstraint];
 	[self.view addConstraint:self.keyboardLeftConstraint];
 	[self.view addConstraint:self.categoryLeftConstraint];
 
-
+	self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-
-
-}
 
 - (void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
@@ -255,7 +257,6 @@ typedef enum {
 			if (UIDeviceOrientationIsPortrait((UIDeviceOrientation) self.interfaceOrientation)) {
 				//DO Portrait
 				self.gifKeyboardView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.gifKeyboardView.layer.frame.size.width / 2), (CGFloat) (self.gifKeyboardView.layer.frame.size.height / 2.015));
-//				self.emojiCollectionView.keyboardCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width / 8), (CGFloat) (self.emojiCollectionView.layer.frame.size.height / 8));
 			}
 			else {
 				//DO Landscape
@@ -264,6 +265,15 @@ typedef enum {
 
 			break;
 		}
+
+		case kTagGIFKeyboard: {
+
+			self.emojiCollectionView.emojiCollectionViewSize = CGSizeMake((CGFloat) (self.emojiCollectionView.layer.frame.size.width), (CGFloat) self.emojiCollectionView.mainCollectionView.frame.size.height);
+			[self.emojiCollectionView.mainCollectionView.collectionViewLayout invalidateLayout];
+
+			break;
+		}
+
 		default:
 			break;
 	}
@@ -293,8 +303,6 @@ typedef enum {
 		self.buttonShape.buttonView = self.keyboardView.nextKeyboardButton.frame;
 		self.buttonShape.translatesAutoresizingMaskIntoConstraints = NO;
 		self.buttonShape.layer.cornerRadius = 4;
-		NSLog(@"this is the width %f", self.keyboardView.nextKeyboardButton.frame.size.height);
-//		self.buttonShape.transform = CGAffineTransformMakeTranslation(-((self.view.frame.size.width / 5) / 2) - 1, -5);
 		[self.view addSubview:self.buttonShape];
 
 
@@ -435,82 +443,138 @@ typedef enum {
 	if (self.selectionShowing) {
 		self.selectionShowing = NO;
 		[self.selectionHolder removeFromSuperview];
+
 	}
 
 
-	NSString *searchString = self.searchHolder.searchBar.text;
 	if (self.searchHolder.searchBar.isTextFieldSelected) {
 
-		if ([key isEqualToString:@"⌫"]) {
-			if (searchString.length > 0) {
-
-				self.searchHolder.searchBar.text = [searchString substringToIndex:[searchString length] - 1];
-			}
-		}
-		else if ([key isEqualToString:@"\n"]) {
-
-			if ([searchString isEqualToString:@""]) {
-
-			}
-			else {
-				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
-				[self animateKeyboard:kTagGIFKeyboard];
-			}
-		}
-		else {
-			self.searchHolder.searchBar.text = [NSString stringWithFormat:@"%@%@", searchString, key];
-		}
+		[self searchBarText:self.searchHolder.searchBar.text tappedKey:key];
 	}
+
 	else {
+		SWITCH(key) {
 
-		if ([key isEqualToString:@"⌫"]) {
-			NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
+			CASE(@"⌫") {
 
-			if ([tokens.lastObject length] <= 0) {
+				NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
-				[self.textDocumentProxy deleteBackward];
-			}
-			else {
+				if ([tokens.lastObject length] <= 0) {
 
-				[self.textDocumentProxy deleteBackward];
-
-				if (self.currentString.length > 0) {
-
-					self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+					[self.textDocumentProxy deleteBackward];
 				}
+
 				else {
-					self.currentString = tokens.lastObject;
-					self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
-					NSLog(@"token %@", self.currentString);
 
+					[self.textDocumentProxy deleteBackward];
+
+					if (self.currentString.length > 0) {
+
+						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+					}
+					else {
+						self.currentString = tokens.lastObject;
+						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+						NSLog(@"token %@", self.currentString);
+
+					}
+
+					[self.spellCheckerManager fetchWords:self.currentString];
 				}
 
-				[self.spellCheckerManager fetchWords:self.currentString];
+				break;
 			}
 
-		}
+			CASE(@" ") {
 
-		else if ([key isEqualToString:@" "]) {
-			NSLog(@"ReplacedWord %@", self.primaryString);
-			[self replaceWord:self.primaryString];
-
-		}
-		else {
-
-			[self.textDocumentProxy insertText:key];
-
-			if (key.length == 1) {
-
-				self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
-
-				[self.spellCheckerManager fetchWords:self.currentString];
+				[self replaceWord:self.primaryString];
+				break;
 			}
+
+			DEFAULT
+			{
+
+				[self.textDocumentProxy insertText:key];
+
+				if (key.length == 1) {
+					if (self.currentString.length <= 8) {
+
+						self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
+						[self.spellCheckerManager fetchWords:self.currentString];
+
+					}
+
+
+				}
+				break;
+			}
+
 		}
 	}
 
 }
 
+
+- (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font {
+	NSDictionary *attributes = @{NSFontAttributeName : font};
+	return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+}
+
+- (void)searchBarText:(NSString *)searchString tappedKey:(NSString *)key {
+
+	SWITCH(key) {
+
+		CASE(@"⌫") {
+
+			if (searchString.length > 0) {
+				if (self.lastKey.count > 0) {
+
+					self.searchHolder.leftCaretConstraint.constant -= [self widthOfString:[self.lastKey lastObject] withFont:[UIFont fontWithName:@"Helvetica" size:16]];
+					self.searchHolder.searchBar.text = [searchString substringToIndex:[searchString length] - 1];
+					[self.lastKey removeLastObject];
+				}
+			}
+
+			break;
+		}
+
+		CASE(@"\n") {
+
+			if (![searchString isEqualToString:@""]) {
+
+				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
+				[self animateKeyboard:kTagGIFKeyboard];
+			}
+
+			break;
+		}
+		CASE(@"Search")
+		{
+			if (![searchString isEqualToString:@""]) {
+
+				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
+				[self animateKeyboard:kTagGIFKeyboard];
+			}
+break;
+		}
+
+		DEFAULT
+		{
+			self.searchHolder.leftCaretConstraint.constant += [self widthOfString:key withFont:[UIFont fontWithName:@"Helvetica" size:16]];
+			[self.lastKey addObject:key];
+			self.searchHolder.searchBar.text = [NSString stringWithFormat:@"%@%@", searchString, key];
+
+			break;
+		}
+
+	}
+
+}
+
 - (void)searchBarTapped {
+
+	self.searchHolder.leftCaretConstraint.constant = 24;
+	[self.keyboardView.returnButton setTitle:@"Search" forState:UIControlStateNormal];
 	[self animateKeyboard:kTagABCKeyboard];
 	self.searchHolder.gifButton.alpha = 1;
 	self.emojiKeyboardHolder.alpha = 0;
@@ -568,11 +632,10 @@ typedef enum {
 			break;
 		}
 	}
-
 }
 
-- (void)emojiKeyboard:(UIButton *)sender {
 
+- (void)emojiKeyboard:(UIButton *)sender {
 
 	if (!self.selectionShowing) {
 
@@ -619,9 +682,7 @@ typedef enum {
 
 - (void)tappedWord:(NSString *)tappedWord {
 
-
 	[self replaceWord:tappedWord];
-
 }
 
 - (void)hideView:(BOOL)shouldHide {
@@ -762,7 +823,6 @@ typedef enum {
 
 }
 
-
 #pragma mark TextDocumentProxy
 
 - (NSString *)documentContextBeforeInput {
@@ -773,22 +833,9 @@ typedef enum {
 - (void)textDidChange:(id <UITextInput>)textInput {
 
 	self.searchHolder.searchBar.isTextFieldSelected = NO;
-}
-
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//	if ([touch.view == self.selectionHolder]) {
-//
-//		// Don't let selections of auto-complete entries fire the
-//		// gesture recognizer
-//		NSLog(@"OTHER?");
-//		return YES;
-//	}
-//	else {
-
-	NSLog(@"Hello");
-//	}
-	return YES;
+	[self.keyboardView.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
+	self.lastKey = @[].mutableCopy;
+	self.searchHolder.shouldContinueBlinking = NO;
 }
 
 

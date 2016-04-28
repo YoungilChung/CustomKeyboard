@@ -15,8 +15,10 @@
 // Views
 @property(nonatomic, strong) MMCustomTextField *searchBar;
 @property(nonatomic, strong) MMKeyboardButton *gifButton;
+@property(nonatomic, assign) BOOL shouldContinueBlinking;
 
 // Delegate
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
+@property(nonatomic, strong) NSLayoutConstraint *leftCaretConstraint;
 @end
