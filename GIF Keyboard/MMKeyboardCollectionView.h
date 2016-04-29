@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, MMSearchType) {
 @property(nonatomic, assign) MMSearchType type;
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
-- (void)loadGifs;
+- (void)loadGIFS;
 
 
 @end

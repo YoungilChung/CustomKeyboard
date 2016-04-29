@@ -9,7 +9,6 @@
 typedef enum {
 	kpopUpStyleSingle = 100,
 	kpopUpStyleMultiple,
-	kpopUpStyleChangeKeyboard
 } popUpStyle;
 
 

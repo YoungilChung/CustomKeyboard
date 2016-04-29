@@ -136,6 +136,7 @@
 		C3C36590F4F4A56ED8DAB214 /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
 		C3C365F32157D61409F028E4 /* MMEmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C42D8C1BD006E89291 /* MMEmojiCollectionView.m */; };
 		C3C365F3BC0BB872247A9920 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
+		C3C36636B51CAAF3967F0191 /* EmptyGIFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */; };
 		C3C3663C6AEB890DAE25F03B /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C3664B2F47472D2EFC747B /* MMKeyboardSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3687A8709823FDBB0DCC8 /* MMKeyboardSelectionCell.m */; };
 		C3C366653CD38ABF9E340C67 /* UITextChecker+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C365B6C03D52348F66A74C /* UITextChecker+Additions.m */; };
@@ -149,6 +150,7 @@
 		C3C367DECCFFB7E79875EEFC /* whatsapp_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C365A08EE08EF64CDE7951 /* whatsapp_logo@2x.png */; };
 		C3C367EDB0D42051342A1A13 /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36FBD234E654D1196A87A /* MMKeyboardSelection.m */; };
 		C3C367EE0595B3197B5B42E3 /* SearchGIFSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364103D64CCD8B1167010 /* SearchGIFSController.m */; };
+		C3C367FFF6D9BA88D821D189 /* EmptyGIFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */; };
 		C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
 		C3C368638E167098B28F4442 /* MMEmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C42D8C1BD006E89291 /* MMEmojiCollectionView.m */; };
 		C3C368736746CC9307526561 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
@@ -165,6 +167,7 @@
 		C3C36985B8E8E24C62DAAA44 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364D6B6E48FBD6568923A /* ShareViewController.m */; };
 		C3C369B0AD14A492620A0779 /* MMEmojiCollectionViewMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3655FCD2F4671E20DDA24 /* MMEmojiCollectionViewMainCell.m */; };
 		C3C369B1D97B72590C75D101 /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36AB068221468BBA9065F /* SearchBarView.m */; };
+		C3C369D95FE2C4D80BDFE76F /* EmptyGIFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */; };
 		C3C36A0D1FCF2F3FD3C7F55D /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
 		C3C36A2B450DC4132044C8DF /* SpellCheckerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A8A9576979FD0452B9C /* SpellCheckerBridge.mm */; };
 		C3C36A47E09CAD169F9E2CD2 /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36FBD234E654D1196A87A /* MMKeyboardSelection.m */; };
@@ -339,9 +342,11 @@
 		C3C361CC47ACB2E38793B121 /* CategoryHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHolder.h; sourceTree = "<group>"; };
 		C3C3620C4EC1D628BBFF2DA4 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
 		C3C362133A8BEECEF8C9C86E /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		C3C3621C557E8E626F9AD816 /* EmptyGIFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyGIFCell.h; sourceTree = "<group>"; };
 		C3C362282B453C94B1B4C8BD /* SpellCheckerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckerManager.m; sourceTree = "<group>"; };
 		C3C3624D84E20AA052A2C66A /* PopUpShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpShareViewController.h; sourceTree = "<group>"; };
 		C3C3625E75DF10647834B18B /* newHipchat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newHipchat.png; sourceTree = "<group>"; };
+		C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyGIFCell.m; sourceTree = "<group>"; };
 		C3C3632F0EE1F40CA9C51FAD /* MMEmojiCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEmojiCollectionViewFlowLayout.m; sourceTree = SOURCE_ROOT; };
 		C3C3634817755C21ABE75283 /* KeyboardMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardMainViewController.m; sourceTree = "<group>"; };
 		C3C363CFD0F8BA64BE4586F4 /* SpellCheckerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckerManager.h; sourceTree = "<group>"; };
@@ -831,6 +836,8 @@
 				C3C369289E1A9523AC18BC72 /* Data */,
 				C3C36A64AA4B114EFEA5840F /* Utility */,
 				C3C361D03D1443EF9C5FC2D4 /* Delegates */,
+				C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */,
+				C3C3621C557E8E626F9AD816 /* EmptyGIFCell.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1490,6 +1497,7 @@
 				C3C367EDB0D42051342A1A13 /* MMKeyboardSelection.m in Sources */,
 				C3C36CCA23102E3C85016AE5 /* MMKeyboardSelectionCell.m in Sources */,
 				C3C3647F1F4670A5DF5F414F /* ButtonShape.m in Sources */,
+				C3C36636B51CAAF3967F0191 /* EmptyGIFCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1554,6 +1562,7 @@
 				C3C36750103B75A7A312E64C /* MMKeyboardSelection.m in Sources */,
 				C3C3664B2F47472D2EFC747B /* MMKeyboardSelectionCell.m in Sources */,
 				C3C36540C7801CCCD6FE05CC /* ButtonShape.m in Sources */,
+				C3C367FFF6D9BA88D821D189 /* EmptyGIFCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1606,7 @@
 				C3C36A47E09CAD169F9E2CD2 /* MMKeyboardSelection.m in Sources */,
 				C3C36CDB0DA47502D677C651 /* MMKeyboardSelectionCell.m in Sources */,
 				C3C3697468297A052748BD40 /* ButtonShape.m in Sources */,
+				C3C369D95FE2C4D80BDFE76F /* EmptyGIFCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

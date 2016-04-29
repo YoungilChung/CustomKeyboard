@@ -8,7 +8,7 @@
 
 
 @protocol SearchMangerDelegate
-- (void)didReceiveGIFS:(NSArray *)groups didReceiveSendGifs:(NSArray *)sendGroups;
+- (void)didReceiveGIFS:(NSArray *)groups didReceiveHighQualityGIFS:(NSArray *)sendGroups;
 
 - (void)fetchingGIFSFailedWithError:(NSError *)error;
 @end

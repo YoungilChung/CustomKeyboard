@@ -102,7 +102,7 @@
 	CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:[cell superview]];
 
 	// Check for horizontal gesture
-	return fabsf(translation.x) > fabsf(translation.y);
+	return fabs(translation.x) > fabs(translation.y);
 
 }
 

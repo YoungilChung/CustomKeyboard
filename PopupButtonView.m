@@ -59,7 +59,17 @@
 
 			break;
 		}
+            
+            default:
+        {
+            [self singlePopup];
+            
+            break;
+        }
+            
+            
 	}
+    
 
 
 }

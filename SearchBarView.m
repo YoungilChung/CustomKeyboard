@@ -29,16 +29,21 @@
 
 		self.searchBar = [[MMCustomTextField alloc] init];
 		self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+		self.searchBar.clipsToBounds = YES;
+		[self.searchBar setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisHorizontal];
+
 		self.searchBar.backgroundColor = [UIColor whiteColor];
 		[self.searchBar setPlaceholder:@"Search for a GIF"];
-		self.searchBar.delegate = self;
-		self.searchBar.isTextFieldSelected = NO;
 		[self.searchBar setFont:[UIFont fontWithName:@"Helvetica" size:16]];
 		self.searchBar.layer.cornerRadius = 4;
+
 		[self.searchBar setLeftView:magnifyingGlass];
 		[self.searchBar setLeftViewMode:UITextFieldViewModeAlways];
-		self.searchBar.clipsToBounds = YES;
+
 		[self addSubview:self.searchBar];
+
+		self.searchBar.isTextFieldSelected = NO;
+		self.searchBar.delegate = self;
 
 		self.gifButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 		self.gifButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -61,7 +66,7 @@
 
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[searchBar]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[gifButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchBar]-10-[gifButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchBar]-10-[gifButton(==60)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[caret]-6-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];

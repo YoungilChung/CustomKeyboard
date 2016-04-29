@@ -7,7 +7,7 @@
 
 @protocol SearchGifsDelegate
 
-- (void)recievedGIFJSON:(NSData *)objectNotation;
+- (void)receivedGIFJSON:(NSData *)objectNotation;
 - (void)fetchingJSONFailedWithError:(NSError *)error;
 
 @end
@@ -17,6 +17,6 @@
 
 @property(weak, nonatomic) id <SearchGifsDelegate> delegate;
 
-- (void)searchForGifs:(NSString *)searchString;
+- (void)searchForGIFS:(NSString *)searchString;
 
 @end

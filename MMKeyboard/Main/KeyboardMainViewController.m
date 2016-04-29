@@ -13,13 +13,12 @@
 #import "SpellCheckerManager.h"
 #import "AutoCorrectCollectionView.h"
 #import "MMCustomTextField.h"
-#import "MMEmojiCollectionViewCell.h"
 #import "MMEmojiCollectionView.h"
-#import "MMKeyboardSelection.h"
 #import "ButtonShape.h"
 
 
 typedef enum {
+
 	kTagGIFKeyboard = 100,
 	kTagABCKeyboard,
 
@@ -44,6 +43,7 @@ typedef enum {
 @property(nonatomic, strong) UIView *emojiKeyboardHolder;
 @property(nonatomic, strong) MMEmojiCollectionView *emojiCollectionView;
 @property(nonatomic, strong) ButtonShape *buttonShape;
+@property(nonatomic, strong) UIView *selectionHolder;
 
 // Variables
 @property(nonatomic, strong) UILabel *messageText;
@@ -52,6 +52,7 @@ typedef enum {
 @property(nonatomic, strong) NSString *currentString;
 @property(nonatomic, strong) NSString *primaryString;
 @property(nonatomic, assign) BOOL selectionShowing;
+@property(nonatomic, strong) NSMutableArray *lastKey;
 
 
 // Constraints
@@ -59,9 +60,6 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
-@property(nonatomic, strong) UIView *selectionHolder;
-@property(nonatomic) CGFloat stringWidth;
-@property(nonatomic, strong) NSMutableArray *lastKey;
 @end
 
 @implementation KeyboardMainViewController
@@ -142,11 +140,14 @@ typedef enum {
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.autoCorrectCollectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[searchBar]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+
 	[self.gifKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 	[self.gifKeyboardHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[gifKeyboard]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
 
@@ -226,7 +227,7 @@ typedef enum {
 
 	CGRect Rect = [[UIScreen mainScreen] bounds];
 	NSLayoutConstraint *_heightConstraint;
-	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 1.8)];
+	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 2.0)];
 	[self.view addConstraint:_heightConstraint];
 
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
@@ -353,7 +354,7 @@ typedef enum {
 				if (self.gifKeyboardView.type == MMSearchTypeGiphy) {
 
 					self.gifKeyboardView.type = MMSearchTypeAll;
-					[self.gifKeyboardView loadGifs];
+					[self.gifKeyboardView loadGIFS];
 
 				}
 
@@ -414,20 +415,20 @@ typedef enum {
 
 - (void)allButtonTapped:(UIButton *)sender {
 	self.gifKeyboardView.type = MMSearchTypeAll;
-	[self.gifKeyboardView loadGifs];
+	[self.gifKeyboardView loadGIFS];
 
 }
 
 - (void)normalButtonTapped:(UIButton *)sender {
 	self.gifKeyboardView.type = MMSearchTypeNormal;
-	[self.gifKeyboardView loadGifs];
+	[self.gifKeyboardView loadGIFS];
 
 }
 
 - (void)awesomeButtonTapped:(UIButton *)sender {
 
 	self.gifKeyboardView.type = MMSearchTypeAwesome;
-	[self.gifKeyboardView loadGifs];
+	[self.gifKeyboardView loadGIFS];
 }
 
 - (void)deleteButtonTapped:(UIButton *)sender {
@@ -481,6 +482,16 @@ typedef enum {
 
 					[self.spellCheckerManager fetchWords:self.currentString];
 				}
+
+				break;
+			}
+
+			CASE(@"\n")
+			{
+				[self.textDocumentProxy insertText:key];
+				self.currentString = @"";
+				[self.spellCheckerManager fetchWords:self.currentString];
+
 
 				break;
 			}
@@ -797,15 +808,16 @@ break;
 
 		[self loadMessage:self.userInfo[@"iconPressed"]];
 		self.gifKeyboardView.type = MMSearchTypeAll;
-		[self.gifKeyboardView loadGifs];
+		[self.gifKeyboardView loadGIFS];
 
 	}
 
 	if ([self.userInfo[@"iconPressed"] isEqualToString:@"gif saved"]) {
 
 		[self loadMessage:self.userInfo[@"iconPressed"]];
+
 		self.gifKeyboardView.type = MMSearchTypeAll;
-		[self.gifKeyboardView loadGifs];
+		[self.gifKeyboardView loadGIFS];
 
 	}
 	else if (!([self.userInfo[@"iconPressed"] isEqualToString:@"closed"])) {

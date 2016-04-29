@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
-            landmarkName = "-loadGifs:number:"
+            landmarkName = "-loadGIFS:number:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

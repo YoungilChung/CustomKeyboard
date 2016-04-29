@@ -8,11 +8,6 @@
 
 @interface AutoCorrectCollectionView () <UIGestureRecognizerDelegate>
 
-
-@property(nonatomic, strong) UILabel *primaryLabel;
-@property(nonatomic, strong) UILabel *secondaryLabel;
-@property(nonatomic, strong) UILabel *tertiaryLabel;
-
 @property(nonatomic, strong) SuggestionView *secondaryHolder;
 @property(nonatomic, strong) SuggestionView *tertiaryHolder;
 @property(nonatomic, strong) SuggestionView *primaryHolder;

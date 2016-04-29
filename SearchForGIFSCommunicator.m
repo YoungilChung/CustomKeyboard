@@ -10,21 +10,25 @@ static NSString *publicKey = @"dc6zaTOxFJmzC";
 @implementation SearchForGIFSCommunicator {
 
 }
-- (void)searchForGifs:(NSString *)searchString {
+- (void)searchForGIFS:(NSString *)searchString {
 
 	NSString *newSearchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString*urlString =[NSString stringWithFormat:@"http://api.giphy.com/v1/gifs/search?q=%@&api_key=%@", newSearchString, publicKey];
     NSURL *url = [NSURL URLWithString:urlString];
 
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:urlRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
 
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-
-		if (error) {
-			[self.delegate fetchingJSONFailedWithError:error];
-		} else {
-			[self.delegate recievedGIFJSON:data];
-		}
-	}];
+                                      if (error) {
+                                          [self.delegate fetchingJSONFailedWithError:error];
+                                      } else {
+                                          [self.delegate receivedGIFJSON:data];
+                                      }
+                                  }];
+    [task resume];
 
 }
 

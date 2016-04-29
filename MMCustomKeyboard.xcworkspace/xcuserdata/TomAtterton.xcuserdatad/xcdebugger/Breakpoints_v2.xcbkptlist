@@ -173,7 +173,7 @@
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__36-[MMKeyboardCollectionView loadGifs]_block_invoke"
+                  symbolName = "__36-[MMKeyboardCollectionView loadGIFS]_block_invoke"
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Collection%20View/MMKeyboardCollectionView.m"
@@ -1495,7 +1495,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "-init"
+            landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1575,7 +1575,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1666,7 +1666,7 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483549189.550944"
+                  timestampString = "483636010.235572"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -1681,7 +1681,7 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483549189.551021"
+                  timestampString = "483636010.235649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
@@ -1714,7 +1714,7 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483549189.551522"
+                  timestampString = "483636010.236123"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
@@ -1729,7 +1729,7 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483549189.551608"
+                  timestampString = "483636010.236206"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
@@ -1744,7 +1744,7 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483549189.551679"
+                  timestampString = "483636010.236276"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"

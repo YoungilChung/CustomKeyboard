@@ -12,10 +12,10 @@
 
 - (void)fetchGIFSForSearchQuery:(NSString *)searchString {
 
-	[self.communicator searchForGifs:searchString];
+	[self.communicator searchForGIFS:searchString];
 }
 
-- (void)recievedGIFJSON:(NSData *)objectNotation {
+- (void)receivedGIFJSON:(NSData *)objectNotation {
 
 
 	NSError *error = nil;
@@ -26,7 +26,7 @@
 		[self.delegate fetchingGIFSFailedWithError:error];
 
 	} else {
-		[self.delegate didReceiveGIFS:groups didReceiveSendGifs:sendGroups];
+		[self.delegate didReceiveGIFS:groups didReceiveHighQualityGIFS:sendGroups];
 	}
 }
 

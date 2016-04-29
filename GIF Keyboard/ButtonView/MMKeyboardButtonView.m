@@ -235,7 +235,6 @@
 	while ((responder = [responder nextResponder]) != nil) {
 		//		if ([responder respondsToSelector:@selector(openURL)])
 		if ([responder respondsToSelector:@selector(openURL:)]) {
-//			[self loadMessage:@"GIF saved to pasteboard!"]; // TODO implement
 			[responder performSelector:@selector(openURL:) withObject:url];
 			self.userInfo = @{@"iconPressed" : @"messengers"};
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];

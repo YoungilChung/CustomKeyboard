@@ -16,6 +16,7 @@
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import "UIImage+emoji.h"
+#import "EmptyGIFCell.h"
 
 
 @interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate,
@@ -24,7 +25,7 @@
 // View
 @property(nonatomic, strong) MMKeyboardButtonView *buttonView;
 @property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
-@property(nonatomic, strong) UIView *emptyCellView;
+@property(nonatomic, strong) EmptyGIFCell *emptyCellView;
 
 
 // Variables
@@ -113,12 +114,12 @@
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[shareCollectionView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[shareCollectionView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
-	[self loadGifs];
+	[self loadGIFS];
 }
 
 #pragma mark Methods
 
-- (void)loadGifs {
+- (void)loadGIFS {
 
 	[self.fetchedResultsController performFetch:nil];
 
@@ -165,13 +166,6 @@
 	}
 
 	[self.keyboardCollectionView reloadData];
-//	[self.gifKeyboardView.collectionViewLayout invalidateLayout];
-//	[self.gifKeyboardView layoutIfNeeded];
-//	dispatch_async(dispatch_get_main_queue(), ^{
-//		// Update the UI
-//		self.collectionViewSize = CGSizeMake((CGFloat) (self.frame.size.width / 2), (CGFloat) (self.frame.size.width / 4));
-//
-//	});
 }
 
 
@@ -183,11 +177,11 @@
 
 		[self loadEmptyCell];
 
-
+		return 0;
 	}
 	else {
-		[self.emptyCellView removeFromSuperview];
 
+		[self.emptyCellView removeFromSuperview];
 
 	}
 	return self.data ? self.data.count : 0;
@@ -222,7 +216,10 @@
 			[self.gifHolder setValue:tempImage forKey:self.data[item]];
 		}
 		else {
-			[self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
+			if (item) {
+
+				[self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
+			}
 		}
 
 		cell.imageView.alpha = 1.f;
@@ -347,13 +344,18 @@
 }
 
 
-- (void)didReceiveGIFS:(NSArray *)groups didReceiveSendGifs:(NSArray *)sendGroups {
+- (void)didReceiveGIFS:(NSArray *)groups didReceiveHighQualityGIFS:(NSArray *)sendGroups {
 
-
-	self.higherQualityGif = [sendGroups mutableCopy];
-	self.data = [groups mutableCopy];
 	self.type = MMSearchTypeGiphy;
-	[self.keyboardCollectionView reloadData];
+	self.data = [groups mutableCopy];
+	self.higherQualityGif = [sendGroups mutableCopy];
+
+
+	double delayInSeconds = 1.0;
+	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (delayInSeconds * NSEC_PER_SEC));
+	dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+		[self.keyboardCollectionView reloadData];
+	});
 }
 
 
@@ -364,54 +366,15 @@
 
 - (void)loadEmptyCell {
 
-	self.emptyCellView = [UIView new];
+	self.emptyCellView = [EmptyGIFCell new];
 	self.emptyCellView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emptyCellView.backgroundColor = [UIColor clearColor];
 	[self addSubview:self.emptyCellView];
-
-	UILabel *emptyLabel = [UILabel new];
-	emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	[emptyLabel setText:@"No GIF's For You"];
-	emptyLabel.numberOfLines = 0;
-	[emptyLabel setTextAlignment:NSTextAlignmentCenter];
-	[emptyLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18]];
-	[emptyLabel setTextColor:[UIColor whiteColor]];
-	[self.emptyCellView addSubview:emptyLabel];
-
-
-	UIImageView *emojiView = [UIImageView new];
-	emojiView.translatesAutoresizingMaskIntoConstraints = NO;
-	[emojiView setImage:[UIImage imageWithEmoji:@"😭" withSize:60.0f]];
-	emojiView.contentMode = UIViewContentModeScaleAspectFit;
-	[self.emptyCellView addSubview:emojiView];
-
-	NSDictionary *views = @{@"message" : emptyLabel, @"emptyCellView" : self.emptyCellView, @"emoji" : emojiView};
+	NSDictionary *views = @{@"emptyCellView" : self.emptyCellView};
 	NSDictionary *metrics = @{@"padding" : @(10)};
 
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
-	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-5-[emoji]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[message]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.emptyCellView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emoji]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
-	[self.emptyCellView addConstraint:[NSLayoutConstraint constraintWithItem:emptyLabel attribute:NSLayoutAttributeCenterY
-																   relatedBy:NSLayoutRelationEqual
-																	  toItem:self.emptyCellView attribute:NSLayoutAttributeCenterY
-																  multiplier:1.0 constant:-30]];
-	[self.emptyCellView addConstraint:[NSLayoutConstraint constraintWithItem:emptyLabel attribute:NSLayoutAttributeCenterX
-																   relatedBy:NSLayoutRelationEqual
-																	  toItem:self.emptyCellView attribute:NSLayoutAttributeCenterX
-																  multiplier:1.0 constant:0]];
-
-
 }
-
-//- (void)willRotateKeyboard:(UIInterfaceOrientation)toInterfaceOrientation {
-//
-//
-//	self.isPortrait = !(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
-//	[self.gifKeyboardView.collectionViewLayout invalidateLayout];
-//}
 
 @end

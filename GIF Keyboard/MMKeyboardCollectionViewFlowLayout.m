@@ -36,8 +36,8 @@
 			continue;
 		}
 
-		if (fabsf(attributes.center.x - proposedContentOffsetCenterX) <
-				fabsf(candidateAttributes.center.x - proposedContentOffsetCenterX)) {
+		if (fabs(attributes.center.x - proposedContentOffsetCenterX) <
+				fabs(candidateAttributes.center.x - proposedContentOffsetCenterX)) {
 			candidateAttributes = attributes;
 		}
 	}
