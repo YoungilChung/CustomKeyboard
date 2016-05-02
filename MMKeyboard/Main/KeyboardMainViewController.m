@@ -3,6 +3,7 @@
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
+#import <FLAnimatedImage/FLAnimatedImageView.h>
 #import "KeyboardMainViewController.h"
 #import "MMAlphaKeyboardView.h"
 #import "SearchBarView.h"
@@ -15,6 +16,7 @@
 #import "MMCustomTextField.h"
 #import "MMEmojiCollectionView.h"
 #import "ButtonShape.h"
+#import "MMKeyboardButtonView.h"
 
 
 typedef enum {
@@ -60,6 +62,7 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *gifKeyboardLeftConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
+@property(nonatomic, strong) UIView *tempView;
 @end
 
 @implementation KeyboardMainViewController
@@ -199,10 +202,12 @@ typedef enum {
 															 toItem:self.gifKeyboardHolder attribute:NSLayoutAttributeTop
 														 multiplier:1.0 constant:-5]];
 
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeBottom
-														  relatedBy:NSLayoutRelationEqual
-															 toItem:self.categoryHolderView attribute:NSLayoutAttributeTop
-														 multiplier:1.0 constant:-5]];
+	NSLayoutConstraint *gifCollectionViewConstraint = [NSLayoutConstraint constraintWithItem:self.gifKeyboardHolder attribute:NSLayoutAttributeBottom
+																				   relatedBy:NSLayoutRelationEqual
+																					  toItem:self.categoryHolderView attribute:NSLayoutAttributeTop
+																				  multiplier:1.0 constant:0];
+	[gifCollectionViewConstraint setPriority:400];
+	[self.view addConstraint:gifCollectionViewConstraint];
 
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeBottom
 														  relatedBy:NSLayoutRelationEqual
@@ -228,6 +233,7 @@ typedef enum {
 	CGRect Rect = [[UIScreen mainScreen] bounds];
 	NSLayoutConstraint *_heightConstraint;
 	_heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:(CGFloat) (Rect.size.height / 2.0)];
+	[_heightConstraint setPriority:800];
 	[self.view addConstraint:_heightConstraint];
 
 	self.keyboardLeftConstraint = [NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
@@ -464,6 +470,7 @@ typedef enum {
 
 					[self.textDocumentProxy deleteBackward];
 				}
+                
 
 				else {
 
@@ -486,8 +493,7 @@ typedef enum {
 				break;
 			}
 
-			CASE(@"\n")
-			{
+			CASE(@"\n") {
 				[self.textDocumentProxy insertText:key];
 				self.currentString = @"";
 				[self.spellCheckerManager fetchWords:self.currentString];
@@ -559,14 +565,13 @@ typedef enum {
 
 			break;
 		}
-		CASE(@"Search")
-		{
+		CASE(@"Search") {
 			if (![searchString isEqualToString:@""]) {
 
 				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
 				[self animateKeyboard:kTagGIFKeyboard];
 			}
-break;
+			break;
 		}
 
 		DEFAULT
@@ -608,10 +613,10 @@ break;
 
 - (void)cellWasTapped:(NSString *)gifURL WithMessageTitle:(NSString *)message {
 	self.gifURL = gifURL;
-	self.textDocumentProxy.hasText ?: [self.textDocumentProxy insertText:gifURL];
-	if (message) {
-		[self loadMessage:message];
-	}
+//	self.textDocumentProxy.hasText ?: [self.textDocumentProxy insertText:gifURL];
+//	if (message) {
+//		[self loadMessage:message];
+//	}
 }
 
 - (void)keyboardButtonPressed {
@@ -660,6 +665,24 @@ break;
 		self.selectionShowing = NO;
 	}
 
+
+}
+
+- (void)didEnterButtonViewWithURL:(NSString *)gifURL withEntity:(GIFEntity *)entity withImage:(FLAnimatedImage *)animatedImage {
+
+	// Button View
+	MMKeyboardButtonView *buttonView = [[MMKeyboardButtonView alloc] initWithFrame:self.view.frame WithEntity:entity];
+	buttonView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:buttonView];
+
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:buttonView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:buttonView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:buttonView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:buttonView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:buttonView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+
+	buttonView.gifUrl = gifURL;
+	[buttonView.animatedImageView setAnimatedImage:animatedImage];
 
 }
 
@@ -825,7 +848,7 @@ break;
 		[self loadMessage:self.userInfo[@"iconPressed"]];
 		self.textDocumentProxy.hasText ? NSLog(@"Has text") : [self.textDocumentProxy insertText:self.gifURL];
 	}
-
+	[self.tempView removeFromSuperview];
 }
 
 

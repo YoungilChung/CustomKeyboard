@@ -35,8 +35,6 @@
 @property(nonatomic, weak) NSMutableDictionary *gifHolder;
 
 @property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property(nonatomic, assign) BOOL isPortrait;
-
 
 // Gestures
 @property(nonatomic, strong) UILongPressGestureRecognizer *lpgr;
@@ -103,8 +101,6 @@
 	tapGestureRecognizer.delegate = self;
 	tapGestureRecognizer.delaysTouchesBegan = YES;
 	[self.keyboardCollectionView addGestureRecognizer:tapGestureRecognizer];
-
-	self.isPortrait = YES;
 
 	NSDictionary *metrics = @{};
 	NSDictionary *views = @{
@@ -287,16 +283,23 @@
 
 			CGPoint p = [sender locationInView:self.keyboardCollectionView];
 			NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
+			MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
 
-			self.buttonView = [[MMKeyboardButtonView alloc] initWithFrame:self.frame WithEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row]];
-			self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
-			[self addSubview:self.buttonView];
+//
+//			self.buttonView = [[MMKeyboardButtonView alloc] initWithFrame:self.frame WithEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row]];
+//			self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
+//			[self.superview addSubview:self.buttonView];
+//
+//
+//			NSDictionary *views = @{@"buttonView" : self.buttonView};
+//
+//			[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
+//			[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+//			[self.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+////			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[buttonView]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+//			[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.tempView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
 
-
-			NSDictionary *views = @{@"buttonView" : self.buttonView};
-
-			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+//			[self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:40]];
 
 
 			if (indexPath == nil) {
@@ -312,7 +315,8 @@
 
 					self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
 				}
-				self.buttonView.gifUrl = self.gifURL;
+//				self.buttonView.gifUrl = self.gifURL;
+				[self.keyboardDelegate didEnterButtonViewWithURL:self.gifURL withEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row] withImage:cell.imageView.animatedImage];
 				[self.keyboardDelegate cellWasTapped:self.gifURL WithMessageTitle:nil];
 			}
 		}
@@ -346,16 +350,17 @@
 
 - (void)didReceiveGIFS:(NSArray *)groups didReceiveHighQualityGIFS:(NSArray *)sendGroups {
 
-	self.type = MMSearchTypeGiphy;
-	self.data = [groups mutableCopy];
-	self.higherQualityGif = [sendGroups mutableCopy];
+	if (groups && sendGroups) {
+		dispatch_async(dispatch_get_main_queue(), ^{
 
+			self.type = MMSearchTypeGiphy;
+			self.data = [groups mutableCopy];
+			self.higherQualityGif = [sendGroups mutableCopy];
+			[self.keyboardCollectionView reloadData];
+		});
 
-	double delayInSeconds = 1.0;
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (delayInSeconds * NSEC_PER_SEC));
-	dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-		[self.keyboardCollectionView reloadData];
-	});
+	}
+
 }
 
 

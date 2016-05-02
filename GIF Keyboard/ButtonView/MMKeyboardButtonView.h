@@ -7,10 +7,13 @@
 #import <UIKit/UIKit.h>
 
 @class GIFEntity;
+@class FLAnimatedImageView;
 
 @interface MMKeyboardButtonView : UIView
 
 @property (nonatomic, strong) NSString *gifUrl;
+
+@property(nonatomic, strong) FLAnimatedImageView *animatedImageView;
 
 -(instancetype)initWithFrame: (CGRect)frame WithEntity:(GIFEntity*)entity;
 @end

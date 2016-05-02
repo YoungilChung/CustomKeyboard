@@ -10,6 +10,7 @@
 //
 
 #import "GIFEntity+CoreDataProperties.h"
+#import "FLAnimatedImage.h"
 
 @implementation GIFEntity (CoreDataProperties)
 

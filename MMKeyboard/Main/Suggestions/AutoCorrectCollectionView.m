@@ -7,7 +7,7 @@
 #import "SuggestionView.h"
 
 @interface AutoCorrectCollectionView () <UIGestureRecognizerDelegate>
-
+\
 @property(nonatomic, strong) SuggestionView *secondaryHolder;
 @property(nonatomic, strong) SuggestionView *tertiaryHolder;
 @property(nonatomic, strong) SuggestionView *primaryHolder;

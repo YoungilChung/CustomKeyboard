@@ -6,6 +6,9 @@
 #import <Foundation/Foundation.h>
 #import "MMKeyboardSelection.h"
 
+@class GIFEntity;
+@class FLAnimatedImage;
+
 @protocol KeyboardDelegate <NSObject>
 
 // Which key was tapped
@@ -23,5 +26,7 @@
 - (void)keyboardButtonPressed;
 
 - (void)changeKeyboard:(keyboardTags)tag;
+
+- (void)didEnterButtonViewWithURL:(NSString *)gifURL withEntity:(GIFEntity *)entity withImage:(FLAnimatedImage *)animatedImage;
 
 @end
