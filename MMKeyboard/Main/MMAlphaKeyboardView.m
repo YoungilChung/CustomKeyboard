@@ -224,7 +224,6 @@ typedef enum {
 
 
 	[button addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-	[button addTarget:self action:@selector(handleTouchUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
 	[button addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
 	return button;
 
@@ -301,10 +300,33 @@ typedef enum {
 
 		else {
 			MMKeyboardButton *prevtButton = buttons[idx - 1];
-			leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
-														  relatedBy:NSLayoutRelationEqual
-															 toItem:prevtButton attribute:NSLayoutAttributeRight
-														 multiplier:1.0 constant:5];
+
+			if ([button.titleLabel.text isEqualToString:@"z"]) {
+
+				leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
+															  relatedBy:NSLayoutRelationEqual
+																 toItem:prevtButton attribute:NSLayoutAttributeRight
+															 multiplier:1.0 constant:15];
+			}
+
+			else if ([button.titleLabel.text isEqualToString:@"⌫"]) {
+
+				leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
+															  relatedBy:NSLayoutRelationEqual
+																 toItem:prevtButton attribute:NSLayoutAttributeRight
+															 multiplier:1.0 constant:15];
+			}
+
+			else {
+
+
+				leftConstraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeft
+															  relatedBy:NSLayoutRelationEqual
+																 toItem:prevtButton attribute:NSLayoutAttributeRight
+															 multiplier:1.0 constant:5];
+
+			}
+
 			NSLayoutConstraint *widthConstraint;
 
 			MMKeyboardButton *firstButton = buttons[0];
@@ -312,7 +334,6 @@ typedef enum {
 														   relatedBy:NSLayoutRelationEqual toItem:button
 														   attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
 
-//			widthConstraint.priority = 800;
 			[mainView addConstraint:widthConstraint];
 		}
 
@@ -758,13 +779,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
 - (void)handleTouchUpInside:(MMKeyboardButton *)sender {
 	[self didTapButton:sender];
 	[self hideInputView];
-}
-
-- (void)handleTouchUpOutside:(MMKeyboardButton *)sender {
-
-//	[self showInputView:sender];
-//	[self didTapButton:sender];
-//	[self hideInputView];
 }
 
 #pragma mark - Touch Handling

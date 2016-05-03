@@ -27,7 +27,6 @@
 
 		self.entity = entity;
 		self.keyboardFrame = frame;
-		NSLog(@"%f", frame.size.height);
 		[self setup];
 	}
 	return self;
@@ -145,10 +144,6 @@
 
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[close]-padding-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
-
-//	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[topHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-//	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bottomHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[animatedImageHolder]-40-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollViewHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[close]-5-[animatedImageHolder(pictureHeight@500)]-0-[scrollViewHolder(scrollViewHeight)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
@@ -157,9 +152,8 @@
 	[animatedImageViewHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[animatedImageView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 
-	[self addConstraint:[NSLayoutConstraint constraintWithItem:topHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-20]];
-	[self addConstraint:[NSLayoutConstraint constraintWithItem:bottomHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-20]];
-	[self addConstraint:[NSLayoutConstraint constraintWithItem:bottomHolderView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:topHolderView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-20]];
+	[self addConstraint:[NSLayoutConstraint constraintWithItem:topHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:(CGFloat) (-self.keyboardFrame.size.width / 4.5)]];
+	[self addConstraint:[NSLayoutConstraint constraintWithItem:bottomHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:(CGFloat) (-self.keyboardFrame.size.width / 4.5)]];
 
 	[buttonScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[topHolder]-0-[bottomHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[buttonScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[topHolder(scrollViewHeight)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
@@ -174,13 +168,12 @@
 
 
 	[topHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[hipChatButton(==facebookButton)]-5-[whatsAppButton(==hipChatButton)]-5-[facebookButton(==hipChatButton)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[bottomHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[delete(==sendUrl)]-5-[sendGif(==delete)]-5-[sendUrl(==delete)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[bottomHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[sendGif(==delete)]-5-[sendUrl(==sendGif)]-5-[delete(==sendGif)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 
 	[topHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[facebookButton]-15-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[topHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[hipChatButton]-15-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[topHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[whatsAppButton]-15-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
 
 
 	[bottomHolderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[delete]-15-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];

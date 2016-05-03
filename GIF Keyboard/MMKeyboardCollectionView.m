@@ -1,3 +1,4 @@
+
 //
 // Created by Tom Atterton on 16/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
@@ -23,17 +24,13 @@
 		UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, SearchMangerDelegate>
 
 // View
-@property(nonatomic, strong) MMKeyboardButtonView *buttonView;
 @property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
 @property(nonatomic, strong) EmptyGIFCell *emptyCellView;
 
 
 // Variables
 @property(nonatomic, strong) NSMutableArray *data;
-@property(nonatomic, strong) NSMutableArray *higherQualityGif;
-
 @property(nonatomic, weak) NSMutableDictionary *gifHolder;
-
 @property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 // Gestures
@@ -71,8 +68,6 @@
 	[self.fetchedResultsController performFetch:nil];
 
 	self.gifHolder = @{}.mutableCopy;
-	self.higherQualityGif = @[].mutableCopy;
-
 
 	self.collectionFlowLayout = [MMKeyboardCollectionViewFlowLayout new];
 	[self.collectionFlowLayout setMinimumInteritemSpacing:0];
@@ -84,7 +79,6 @@
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.keyboardCollectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
 	self.keyboardCollectionView.backgroundColor = [UIColor blackColor];
-	[self.keyboardCollectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	self.keyboardCollectionView.delegate = self;
 	self.keyboardCollectionView.dataSource = self;
 	[self.keyboardCollectionView addGestureRecognizer:self.lpgr];
@@ -261,18 +255,15 @@
 
 	if (self.type == MMSearchTypeGiphy) {
 
-		self.gifURL = self.higherQualityGif[(NSUInteger) indexPath.row];
+		self.gifURL = self.data[(NSUInteger) indexPath.row];
 	}
 	else {
 
 		self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
 	}
 
-	NSLog(@"gifURL:%@", self.gifURL);
 	[self.keyboardDelegate cellWasTapped:self.gifURL WithMessageTitle:@"URL Copied"];
 
-//	[self.presentingViewController tappedGIF];
-//	[self.keyboardDelegate cellWasTapped:];
 }
 
 
@@ -285,22 +276,6 @@
 			NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
 			MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
 
-//
-//			self.buttonView = [[MMKeyboardButtonView alloc] initWithFrame:self.frame WithEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row]];
-//			self.buttonView.translatesAutoresizingMaskIntoConstraints = NO;
-//			[self.superview addSubview:self.buttonView];
-//
-//
-//			NSDictionary *views = @{@"buttonView" : self.buttonView};
-//
-//			[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-//			[self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-//			[self.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-////			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[buttonView]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//			[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.tempView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
-
-//			[self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.buttonView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:40]];
-
 
 			if (indexPath == nil) {
 				NSLog(@"couldn't find index path");
@@ -309,13 +284,12 @@
 
 				if (self.type == MMSearchTypeGiphy) {
 
-					self.gifURL = self.higherQualityGif[(NSUInteger) indexPath.row];
+					self.gifURL = self.data[(NSUInteger) indexPath.row];
 				}
 				else {
 
 					self.gifURL = [self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row];
 				}
-//				self.buttonView.gifUrl = self.gifURL;
 				[self.keyboardDelegate didEnterButtonViewWithURL:self.gifURL withEntity:(self.type == MMSearchTypeGiphy) ? nil : self.data[(NSUInteger) indexPath.row] withImage:cell.imageView.animatedImage];
 				[self.keyboardDelegate cellWasTapped:self.gifURL WithMessageTitle:nil];
 			}
@@ -348,21 +322,19 @@
 }
 
 
-- (void)didReceiveGIFS:(NSArray *)groups didReceiveHighQualityGIFS:(NSArray *)sendGroups {
+- (void)didReceiveGIFS:(NSArray *)groups {
 
-	if (groups && sendGroups) {
+	if (groups) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-
 			self.type = MMSearchTypeGiphy;
 			self.data = [groups mutableCopy];
-			self.higherQualityGif = [sendGroups mutableCopy];
+			NSLog(@"%@",groups);
 			[self.keyboardCollectionView reloadData];
 		});
 
 	}
 
 }
-
 
 - (void)fetchingGIFSFailedWithError:(NSError *)error {
 	NSLog(@"Error %@; %@", error, [error localizedDescription]);

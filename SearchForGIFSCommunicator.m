@@ -5,30 +5,58 @@
 
 #import "SearchForGIFSCommunicator.h"
 
-static NSString *publicKey = @"dc6zaTOxFJmzC";
+NSString *const publicKey = @"dc6zaTOxFJmzC";
+NSString *const giphySearchURL = @"http://api.giphy.com/v1/gifs/search?q=%@&api_key=%@";
+NSString *const giphyTrendingURL = @"http://api.giphy.com/v1/gifs/trending?api_key=%@";
+NSString *const giphyRandomURL = @"http://api.giphy.com/v1/gifs/random?api_key=%@&tag=%@";
 
-@implementation SearchForGIFSCommunicator {
+@implementation SearchForGIFSCommunicator
 
-}
-- (void)searchForGIFS:(NSString *)searchString {
 
-	NSString *newSearchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString*urlString =[NSString stringWithFormat:@"http://api.giphy.com/v1/gifs/search?q=%@&api_key=%@", newSearchString, publicKey];
-    NSURL *url = [NSURL URLWithString:urlString];
+- (void)searchForGIFS:(NSString *)searchString withSearchType:(searchType)searchType {
 
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:urlRequest
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+	NSArray *randomTags = @[@"Cats", @"Dogs", @"Rabbits", @"Fox", @"Traffic", @"Crabs", @"Giraffe"];
+	NSString *urlString;
+	switch (searchType) {
 
-                                      if (error) {
-                                          [self.delegate fetchingJSONFailedWithError:error];
-                                      } else {
-                                          [self.delegate receivedGIFJSON:data];
-                                      }
-                                  }];
-    [task resume];
+		case kSearchTypeString: {
+			NSString *newSearchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+			urlString = [NSString stringWithFormat:giphySearchURL, newSearchString, publicKey];
+			break;
+		}
+
+		case kSearchTypeTrending: {
+
+			urlString = [NSString stringWithFormat:giphyTrendingURL, publicKey];
+
+			break;
+		}
+		case kSearchTypeRandom: {
+			NSLog(@"came here");
+			urlString = [NSString stringWithFormat:giphyRandomURL, publicKey, randomTags[3]];
+			break;
+		}
+		default: {
+
+			break;
+		}
+	}
+
+	NSURL *url = [NSURL URLWithString:urlString];
+
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+	NSURLSession *session = [NSURLSession sharedSession];
+	NSURLSessionDataTask *task = [session dataTaskWithRequest:urlRequest
+											completionHandler:
+													^(NSData *data, NSURLResponse *response, NSError *error) {
+
+														if (error) {
+															[self.delegate fetchingJSONFailedWithError:error];
+														} else {
+															[self.delegate receivedGIFJSON:data];
+														}
+													}];
+	[task resume];
 
 }
 

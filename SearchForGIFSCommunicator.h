@@ -5,6 +5,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+	kSearchTypeString = 100,
+	kSearchTypeTrending,
+	kSearchTypeRandom
+} searchType;
+
+
 @protocol SearchGifsDelegate
 
 - (void)receivedGIFJSON:(NSData *)objectNotation;
@@ -17,6 +24,6 @@
 
 @property(weak, nonatomic) id <SearchGifsDelegate> delegate;
 
-- (void)searchForGIFS:(NSString *)searchString;
+- (void)searchForGIFS:(NSString *)searchString withSearchType:(searchType)searchType;
 
 @end

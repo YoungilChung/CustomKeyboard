@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class MMKeyboardButton;
+@class MMGIFButton;
 @class MMCustomTextField;
 @protocol KeyboardDelegate;
 
@@ -14,7 +14,7 @@
 
 // Views
 @property(nonatomic, strong) MMCustomTextField *searchBar;
-@property(nonatomic, strong) MMKeyboardButton *gifButton;
+@property(nonatomic, strong) MMGIFButton *gifButton;
 @property(nonatomic, assign) BOOL shouldContinueBlinking;
 
 // Delegate

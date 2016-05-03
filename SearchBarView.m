@@ -7,6 +7,7 @@
 #import "MMKeyboardButton.h"
 #import "MMCustomTextField.h"
 #import "KeyboardDelegate.h"
+#import "MMGIFButton.h"
 
 
 @interface SearchBarView () <UITextFieldDelegate>
@@ -30,7 +31,7 @@
 		self.searchBar = [[MMCustomTextField alloc] init];
 		self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
 		self.searchBar.clipsToBounds = YES;
-		[self.searchBar setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisHorizontal];
+//		[self.searchBar setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisHorizontal];
 
 		self.searchBar.backgroundColor = [UIColor whiteColor];
 		[self.searchBar setPlaceholder:@"Search for a GIF"];
@@ -45,11 +46,13 @@
 		self.searchBar.isTextFieldSelected = NO;
 		self.searchBar.delegate = self;
 
-		self.gifButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
+		self.gifButton = [MMGIFButton buttonWithType:UIButtonTypeSystem];
 		self.gifButton.translatesAutoresizingMaskIntoConstraints = NO;
+		[self.gifButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+		[self.gifButton setContentHuggingPriority:1000 forAxis:UILayoutConstraintAxisHorizontal];
+		[self.gifButton setContentCompressionResistancePriority:800 forAxis:UILayoutConstraintAxisHorizontal];
 		[self.gifButton setTitle:@"GIF" forState:UIControlStateNormal];
-		[self.gifButton setBackgroundColor:[UIColor clearColor]];
-		[self.gifButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
 		[self addSubview:self.gifButton];
 
 		self.caretView = [UIView new];
@@ -65,8 +68,8 @@
 
 
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[searchBar]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[gifButton]-2-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchBar]-10-[gifButton(==60)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.gifButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:5]];
+		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[searchBar]-5-[gifButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[caret]-6-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];

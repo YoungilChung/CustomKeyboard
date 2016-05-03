@@ -8,7 +8,7 @@
 
 
 @protocol SearchMangerDelegate
-- (void)didReceiveGIFS:(NSArray *)groups didReceiveHighQualityGIFS:(NSArray *)sendGroups;
+- (void)didReceiveGIFS:(NSArray *)groups;
 
 - (void)fetchingGIFSFailedWithError:(NSError *)error;
 @end
@@ -18,6 +18,6 @@
 @property(strong, nonatomic) SearchForGIFSCommunicator *communicator;
 @property(weak, nonatomic) id <SearchMangerDelegate> delegate;
 
-- (void)fetchGIFSForSearchQuery:(NSString *)searchString;
+- (void)fetchGIFSForSearchQuery:(NSString *)searchString withSearchType:(searchType)searchType;
 
 @end

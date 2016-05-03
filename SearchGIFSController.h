@@ -9,6 +9,5 @@
 @interface SearchGIFSController : NSObject
 
 + (NSArray *)gifsFromJSON:(NSData *)objectNotation error:(NSError **)error;
-+ (NSArray *)betterGifsFromJSON:(NSData *)objectNotation error:(NSError **)error;
 
 @end

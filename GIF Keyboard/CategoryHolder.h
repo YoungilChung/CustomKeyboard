@@ -9,6 +9,8 @@
 @class MMKeyboardButton;
 
 @interface CategoryHolder : UIView
+@property(nonatomic, strong) UIButton *trendingButton;
+@property(nonatomic, strong) UIButton *randomButton;
 @property(nonatomic, strong) UIButton *allButton;
 @property(nonatomic, strong) UIButton *normalButton;
 @property(nonatomic, strong) UIButton *awesomeButton;

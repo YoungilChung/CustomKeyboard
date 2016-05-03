@@ -10,23 +10,21 @@
 @implementation SearchGIFManager
 
 
-- (void)fetchGIFSForSearchQuery:(NSString *)searchString {
+- (void)fetchGIFSForSearchQuery:(NSString *)searchString withSearchType:(searchType)searchType {
 
-	[self.communicator searchForGIFS:searchString];
+	[self.communicator searchForGIFS:searchString withSearchType:searchType];
 }
 
 - (void)receivedGIFJSON:(NSData *)objectNotation {
 
-
 	NSError *error = nil;
 	NSArray *groups = [SearchGIFSController gifsFromJSON:objectNotation error:&error];
-	NSArray *sendGroups = [SearchGIFSController betterGifsFromJSON:objectNotation error:&error];
 
 	if (error != nil) {
 		[self.delegate fetchingGIFSFailedWithError:error];
 
 	} else {
-		[self.delegate didReceiveGIFS:groups didReceiveHighQualityGIFS:sendGroups];
+		[self.delegate didReceiveGIFS:groups];
 	}
 }
 
