@@ -37,6 +37,7 @@
 @property(nonatomic, strong) UILongPressGestureRecognizer *lpgr;
 
 
+@property(nonatomic, strong) UIView *buttonCopyView;
 @end
 
 
@@ -263,6 +264,39 @@
 	}
 
 	[self.keyboardDelegate cellWasTapped:self.gifURL WithMessageTitle:@"URL Copied"];
+	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
+	[self.buttonCopyView removeFromSuperview];
+
+	self.buttonCopyView = [[UIView alloc] init];
+	self.buttonCopyView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.buttonCopyView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8]];
+	[cell addSubview:self.buttonCopyView];
+	
+	UIButton *copyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	copyButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[copyButton setTitle:@"Copy" forState:UIControlStateNormal];
+	[copyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[copyButton addTarget:self action:@selector(copyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	[copyButton.layer setBorderColor:[UIColor whiteColor].CGColor];
+	[self.buttonCopyView addSubview:copyButton];
+	
+	NSDictionary *metrics = @{};
+	NSDictionary *views = @{@"buttonCopyView": self.buttonCopyView, @"copyButton": copyButton};
+
+	[cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[buttonCopyView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonCopyView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	
+	[self.buttonCopyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=0)-[copyButton]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.buttonCopyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[copyButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.buttonCopyView addConstraint:[NSLayoutConstraint constraintWithItem:copyButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.buttonCopyView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+
+}
+
+- (void)copyButtonPressed:(UIButton *)sender {
+
+	NSDictionary *userInfo = @{@"iconPressed" : @"copied"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:userInfo];
+	[self.buttonCopyView removeFromSuperview];
 
 }
 
@@ -271,6 +305,7 @@
 	if ([sender isEqual:self.lpgr]) {
 
 		if (sender.state == UIGestureRecognizerStateBegan) {
+			[self.buttonCopyView removeFromSuperview];
 
 			CGPoint p = [sender locationInView:self.keyboardCollectionView];
 			NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
@@ -303,7 +338,7 @@
 
 - (NSFetchRequest *)entryListFetchRequest {
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GIFEntity"];
-	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifURL" ascending:NO]]; // This will sort how the request is shown
+	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"gifURL" ascending:YES]]; // This will sort how the request is shown
 	return fetchRequest;
 }
 
@@ -328,6 +363,7 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.type = MMSearchTypeGiphy;
 			self.data = [groups mutableCopy];
+			[self.emptyCellView removeFromSuperview];
 			NSLog(@"%@",groups);
 			[self.keyboardCollectionView reloadData];
 		});

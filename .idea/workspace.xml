@@ -5,29 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e6dee04-691e-4601-8407-c9fee82e2da1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MMKeyboard/Images/allIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MMKeyboard/Images/awesomeIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MMKeyboard/Images/foodIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MMKeyboard/Images/randomIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MMKeyboard/Images/trendingIcon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Images/backspaceIcon.png" afterPath="$PROJECT_DIR$/MMKeyboard/Images/backspaceIcon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" afterPath="$PROJECT_DIR$/.idea/MMCustomKeyboard.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m" afterPath="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.h" afterPath="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m" afterPath="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m" afterPath="$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/MMCustomKeyboard.xcworkspace/xcuserdata/TomAtterton.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMKeyboardButton.m" afterPath="$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMKeyboardButton.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMCustomKeyboard/Info.plist" afterPath="$PROJECT_DIR$/MMCustomKeyboard/Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m" afterPath="$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchBarView.h" afterPath="$PROJECT_DIR$/SearchBarView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchBarView.m" afterPath="$PROJECT_DIR$/SearchBarView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboardSelection.m" afterPath="$PROJECT_DIR$/MMKeyboardSelection.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MMKeyboardSelectionCell.h" afterPath="$PROJECT_DIR$/MMKeyboardSelectionCell.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchForGIFSCommunicator.h" afterPath="$PROJECT_DIR$/SearchForGIFSCommunicator.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchForGIFSCommunicator.m" afterPath="$PROJECT_DIR$/SearchForGIFSCommunicator.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchGIFManager.h" afterPath="$PROJECT_DIR$/SearchGIFManager.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchGIFManager.m" afterPath="$PROJECT_DIR$/SearchGIFManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchGIFSController.h" afterPath="$PROJECT_DIR$/SearchGIFSController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchGIFSController.m" afterPath="$PROJECT_DIR$/SearchGIFSController.m" />
@@ -54,8 +45,8 @@
       <file leaf-file-name="KeyboardMainViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.777779">
-              <caret line="294" column="1" selection-start-line="294" selection-start-column="1" selection-end-line="294" selection-end-column="1" />
+            <state vertical-scroll-proportion="-4.962963">
+              <caret line="652" column="18" selection-start-line="652" selection-start-column="8" selection-end-line="652" selection-end-column="22" />
               <folding>
                 <element signature="e#101#148#0" expanded="true" />
               </folding>
@@ -63,92 +54,95 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryHolder.m" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48497853">
-              <caret line="32" column="83" selection-start-line="32" selection-start-column="83" selection-end-line="32" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MMEmojiCategoryHolder.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMEmojiCategoryHolder.m">
+      <file leaf-file-name="KeyboardDelegate.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Delegates/KeyboardDelegate.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="27" column="22" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="backspaceIcon.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MMKeyboard/Images/backspaceIcon.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="MMKeyboardSelection.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MMKeyboardSelection.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.53343236">
+              <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMKeyboardSelectionCell.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboardSelectionCell.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMKeyboardSelectionCell.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboardSelectionCell.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMAlphaKeyboardView.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.518518">
+              <caret line="625" column="48" selection-start-line="625" selection-start-column="48" selection-end-line="625" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMGIFButton.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMGIFButton.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="34" selection-start-line="71" selection-start-column="34" selection-end-line="71" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryHolder.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="70" column="99" selection-start-line="70" selection-start-column="99" selection-end-line="70" selection-end-column="99" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MMKeyboardButtonView.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="234" column="38" selection-start-line="234" selection-start-column="38" selection-end-line="234" selection-end-column="38" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MMKeyboardCollectionView.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.296296">
-              <caret line="181" column="39" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="282" column="32" selection-start-line="282" selection-start-column="32" selection-end-line="282" selection-end-column="32" />
               <folding>
                 <element signature="e#102#138#0" expanded="true" />
-                <element signature="e#4126#4174#0" expanded="true" />
+                <element signature="e#4179#4227#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchGIFManager.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SearchGIFManager.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchForGIFSCommunicator.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PopupButtonView.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PopupButtonView.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchForGIFSCommunicator.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchGIFManager.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SearchGIFManager.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -161,19 +155,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/Delegates/EmojiKeyboardDelegate.h" />
-        <option value="$PROJECT_DIR$/MMEmojiCollectionViewMainCell.h" />
         <option value="$PROJECT_DIR$/MMShareExtension/UIImage+emoji.h" />
         <option value="$PROJECT_DIR$/MMShareExtension/UIImage+emoji.m" />
-        <option value="$PROJECT_DIR$/MMKeyboardSelectionCell.m" />
-        <option value="$PROJECT_DIR$/MMKeyboardSelectionCell.h" />
         <option value="$PROJECT_DIR$/MMKeyboardSelection.h" />
         <option value="$PROJECT_DIR$/MMEmojiCategoryHolder.h" />
         <option value="$PROJECT_DIR$/MMEmojiCategoryHolder.m" />
         <option value="$PROJECT_DIR$/PopupView.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Abstractions/Shapes/ButtonShape.h" />
         <option value="$PROJECT_DIR$/MMKeyboard/Abstractions/Shapes/ButtonShape.m" />
-        <option value="$PROJECT_DIR$/MMKeyboardSelection.m" />
         <option value="$PROJECT_DIR$/PopupButtonView.h" />
         <option value="$PROJECT_DIR$/PopupButtonView.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Data/MMKeyboardKeysModel.m" />
@@ -195,9 +184,6 @@
         <option value="$PROJECT_DIR$/MMKeyboard/Main/Delegates/KeyboardDelegate.h" />
         <option value="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMButtonViewCollectionViewCell.h" />
         <option value="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMButtonViewCollectionViewCell.m" />
-        <option value="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m" />
-        <option value="$PROJECT_DIR$/SearchGIFSController.m" />
-        <option value="$PROJECT_DIR$/SearchGIFSController.h" />
         <option value="$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMKeyboardButton.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMGIFButton.h" />
@@ -205,13 +191,21 @@
         <option value="$PROJECT_DIR$/SearchBarView.m" />
         <option value="$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMGIFButton.m" />
         <option value="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.h" />
-        <option value="$PROJECT_DIR$/SearchForGIFSCommunicator.h" />
         <option value="$PROJECT_DIR$/SearchGIFManager.h" />
+        <option value="$PROJECT_DIR$/SearchForGIFSCommunicator.h" />
         <option value="$PROJECT_DIR$/SearchGIFManager.m" />
-        <option value="$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m" />
+        <option value="$PROJECT_DIR$/SearchGIFSController.h" />
+        <option value="$PROJECT_DIR$/SearchGIFSController.m" />
         <option value="$PROJECT_DIR$/SearchForGIFSCommunicator.m" />
-        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m" />
+        <option value="$PROJECT_DIR$/RandomCategories.h" />
+        <option value="$PROJECT_DIR$/RandomCategories.m" />
         <option value="$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m" />
+        <option value="$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m" />
+        <option value="$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m" />
+        <option value="$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m" />
+        <option value="$PROJECT_DIR$/MMKeyboardSelectionCell.h" />
+        <option value="$PROJECT_DIR$/MMKeyboardSelectionCell.m" />
+        <option value="$PROJECT_DIR$/MMKeyboardSelection.m" />
       </list>
     </option>
   </component>
@@ -250,7 +244,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -341,25 +334,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Keyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMCustomKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MMKeyboard" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Images" />
+              <option name="myItemId" value="Searching" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -451,6 +426,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -599,8 +575,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18993586" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32809612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32841328" sideWeight="0.5017267" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32749078" sideWeight="0.4982733" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16773558" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -663,43 +639,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MMEmojiCollectionViewMainCell.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="60" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMEmojiCollectionView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="41" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMEmojiCollectionView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.037037">
-          <caret line="70" column="32" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Spelling Checker/SpellChecker.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Spelling Checker/SpellCheckerCommunicator.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Spelling Checker/SpellCheckerBridge.mm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -750,16 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboardSelection.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
-          <folding>
-            <element signature="e#101#132#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMCustomKeyboard/Resources/Content/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -806,14 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Delegates/KeyboardDelegate.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="126" selection-start-line="29" selection-start-column="126" selection-end-line="29" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GIF Keyboard/ButtonView/MMButtonViewCollectionViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -834,9 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#101#134#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -845,7 +763,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="231" column="45" selection-start-line="231" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
           <folding>
-            <element signature="e#145#173#0" expanded="true" />
+            <element signature="e#145#173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -855,7 +773,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="95" column="41" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
           <folding>
-            <element signature="e#101#136#0" expanded="true" />
+            <element signature="e#101#136#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -864,31 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="106.40741">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SearchGIFSController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SearchGIFSController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,7 +797,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding>
-            <element signature="e#101#134#0" expanded="true" />
+            <element signature="e#101#134#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -915,7 +807,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
           <folding>
-            <element signature="e#101#134#0" expanded="true" />
+            <element signature="e#101#134#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -933,16 +825,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="65" selection-start-line="70" selection-start-column="65" selection-end-line="70" selection-end-column="65" />
           <folding>
-            <element signature="e#101#126#0" expanded="true" />
+            <element signature="e#101#126#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMGIFButton.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -978,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PopupButtonView.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1010,51 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SearchGIFManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.296296">
-          <caret line="181" column="39" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="39" />
-          <folding>
-            <element signature="e#102#138#0" expanded="true" />
-            <element signature="e#4126#4174#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.777779">
-          <caret line="294" column="1" selection-start-line="294" selection-start-column="1" selection-end-line="294" selection-end-column="1" />
-          <folding>
-            <element signature="e#101#148#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MMKeyboard/Images/backspaceIcon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1063,15 +894,158 @@
     <entry file="file://$PROJECT_DIR$/MMEmojiCategoryHolder.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMEmojiCategoryHolder.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SearchGIFManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="77" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SearchGIFSController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="39" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#101#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomCategories.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SearchGIFSController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomCategories.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SearchForGIFSCommunicator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Abstractions/Button/MMGIFButton.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="34" selection-start-line="71" selection-start-column="34" selection-end-line="71" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIF Keyboard/MMKeyboardCollectionView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="282" column="32" selection-start-line="282" selection-start-column="32" selection-end-line="282" selection-end-column="32" />
+          <folding>
+            <element signature="e#102#138#0" expanded="true" />
+            <element signature="e#4179#4227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIF Keyboard/ButtonView/MMKeyboardButtonView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="234" column="38" selection-start-line="234" selection-start-column="38" selection-end-line="234" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GIF Keyboard/CategoryHolder.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48497853">
-          <caret line="32" column="83" selection-start-line="32" selection-start-column="83" selection-end-line="32" selection-end-column="83" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="99" selection-start-line="70" selection-start-column="99" selection-end-line="70" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/KeyboardMainViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.962963">
+          <caret line="652" column="18" selection-start-line="652" selection-start-column="8" selection-end-line="652" selection-end-column="22" />
+          <folding>
+            <element signature="e#101#148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/Delegates/KeyboardDelegate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboard/Main/MMAlphaKeyboardView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.518518">
+          <caret line="625" column="48" selection-start-line="625" selection-start-column="48" selection-end-line="625" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboardSelectionCell.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboardSelectionCell.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MMKeyboardSelection.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53343236">
+          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
           <folding />
         </state>
       </provider>

@@ -18,6 +18,7 @@
 #import "ButtonShape.h"
 #import "MMKeyboardButtonView.h"
 #import "MMGIFButton.h"
+#import "RandomCategories.h"
 
 
 typedef enum {
@@ -435,8 +436,8 @@ typedef enum {
 }
 
 - (void)randomButtonTapped:(UIButton *)sender {
-	NSLog(@"Random");
-	[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:nil withSearchType:kSearchTypeRandom];
+
+	[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:[RandomCategories searchString] withSearchType:kSearchTypeString];
 	[self animateKeyboard:kTagGIFKeyboard];
 }
 
@@ -861,6 +862,12 @@ typedef enum {
 		});
 	}
 
+	if ([self.userInfo[@"iconPressed"] isEqualToString:@"copied"]) {
+
+		[self loadMessage:self.userInfo[@"iconPressed"]];
+		[[UIPasteboard generalPasteboard] setString:self.gifURL];
+	}
+
 	[self.tempView removeFromSuperview];
 }
 
@@ -880,6 +887,7 @@ typedef enum {
 
 - (void)textDidChange:(id <UITextInput>)textInput {
 
+	NSLog(@"hello");
 	self.lastKey = @[].mutableCopy;
 	[self.keyboardView.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
 	self.searchHolder.searchBar.isTextFieldSelected = NO;

@@ -8,32 +8,42 @@
 NSString *const publicKey = @"dc6zaTOxFJmzC";
 NSString *const giphySearchURL = @"http://api.giphy.com/v1/gifs/search?q=%@&api_key=%@";
 NSString *const giphyTrendingURL = @"http://api.giphy.com/v1/gifs/trending?api_key=%@";
-NSString *const giphyRandomURL = @"http://api.giphy.com/v1/gifs/random?api_key=%@&tag=%@";
+NSString *const giphyRandomURL = @"http://api.giphy.com/v1/gifs/random?api_key=%@";
+
+@interface SearchForGIFSCommunicator ()
+@property(nonatomic) searchType customSearchType;
+@end
 
 @implementation SearchForGIFSCommunicator
 
 
 - (void)searchForGIFS:(NSString *)searchString withSearchType:(searchType)searchType {
 
-	NSArray *randomTags = @[@"Cats", @"Dogs", @"Rabbits", @"Fox", @"Traffic", @"Crabs", @"Giraffe"];
 	NSString *urlString;
+	self.customSearchType = searchType;
+
 	switch (searchType) {
 
 		case kSearchTypeString: {
 			NSString *newSearchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 			urlString = [NSString stringWithFormat:giphySearchURL, newSearchString, publicKey];
+			[self requestURL:urlString];
 			break;
 		}
 
 		case kSearchTypeTrending: {
 
 			urlString = [NSString stringWithFormat:giphyTrendingURL, publicKey];
+			[self requestURL:urlString];
+
 
 			break;
 		}
 		case kSearchTypeRandom: {
-			NSLog(@"came here");
-			urlString = [NSString stringWithFormat:giphyRandomURL, publicKey, randomTags[3]];
+
+			urlString = [NSString stringWithFormat:giphyRandomURL, publicKey];
+			[self requestURL:urlString];
+
 			break;
 		}
 		default: {
@@ -42,6 +52,10 @@ NSString *const giphyRandomURL = @"http://api.giphy.com/v1/gifs/random?api_key=%
 		}
 	}
 
+
+}
+
+- (void)requestURL:(NSString *)urlString {
 	NSURL *url = [NSURL URLWithString:urlString];
 
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -52,12 +66,12 @@ NSString *const giphyRandomURL = @"http://api.giphy.com/v1/gifs/random?api_key=%
 
 														if (error) {
 															[self.delegate fetchingJSONFailedWithError:error];
-														} else {
-															[self.delegate receivedGIFJSON:data];
 														}
+
+														[self.delegate receivedGIFJSON:data withSearchType:self.customSearchType];
+
 													}];
 	[task resume];
-
 }
 
 @end

@@ -32,9 +32,9 @@
 
 - (void)setup {
 
-	UIPanGestureRecognizer *panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
-	panner.delegate = self;
-	[self addGestureRecognizer:panner];
+//	UIPanGestureRecognizer *panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
+//	panner.delegate = self;
+//	[self addGestureRecognizer:panner];
 
 
 	self.tableView = [UITableView new];
@@ -46,7 +46,15 @@
 	[self.tableView registerClass:[MMKeyboardSelectionCell class] forCellReuseIdentifier:@"CELL"];
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+    [self.tableView setAllowsSelection:YES];
 	[self addSubview:self.tableView];
+
+	UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanning:)];
+//	panning.minimumNumberOfTouches = 1;
+//	panning.maximumNumberOfTouches = 1;
+	panning.cancelsTouchesInView = NO;
+	panning.delegate = self;
+	[self.tableView addGestureRecognizer:panning];
 
 
 	NSDictionary *views = @{@"tableView" : self.tableView};
@@ -96,14 +104,100 @@
 }
 
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+// Allow simultaneous recognition
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//	return YES;
+//}
+
+//- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+//	NSLog(@"PAN");
+//
+//	CGPoint beginLocation = [sender locationInView:self.tableView]; // touch begin state.
+////
+////	CGPoint endLocation = [sender locationInView:self.tableView];
+//	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:beginLocation];
+//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
+////
+//	[cell setHighlighted:YES];
+//
+//}
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-	UIView *cell = [gestureRecognizer view];
-	CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:[cell superview]];
-
-	// Check for horizontal gesture
-	return fabs(translation.x) > fabs(translation.y);
-
+	return [NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"];
 }
 
+- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+//	MMKeyboardSelectionCell *cell = (MMKeyboardSelectionCell *) [sender view];
+//	CGPoint translation = [sender translationInView:[cell superview]];
+//	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:translation];
+////	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
+//	switch (sender.state) {
+//		case UIGestureRecognizerStateChanged:
+//		{
+//
+//			[cell setHighlighted:YES];
+//
+//			break;
+//		}
+//		case UIGestureRecognizerStateBegan:
+//		case UIGestureRecognizerStateEnded:
+//		case UIGestureRecognizerStateFailed:
+//		default:
+//			break;
+//	}
+}
+//
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+//	if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+//		CGPoint translation = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self.superview];
+//		return fabsf(translation.x) > fabsf(translation.y);
+//	}
+//
+//	return YES;
+//}
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//	UIView *cell = [gestureRecognizer view];
+//	CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:[cell superview]];
+//
+//
+//
+//
+//	// Check for horizontal gesture
+//	return fabs(translation.y) > fabs(translation.x);
+//
+//}
+
+
+//- (void) tableViewCell:(UITableViewCell*)tableViewCell gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
+//{
+//
+//}
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+//	return YES;
+//}
+
+
+
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+//{
+//	return ![touch.view isDescendantOfView:self.tableView];
+//
+//}
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+//	   shouldReceiveTouch:(UITouch *)touch
+//{
+//	UIView *superview = touch.view;
+//	do {
+//		superview = superview.superview;
+//		if ([superview isKindOfClass:[UITableViewCell class]])
+//			return YES;
+//	} while (superview && ![superview isKindOfClass:[UITableView class]]);
+//
+//	return NO;
+//}
 @end

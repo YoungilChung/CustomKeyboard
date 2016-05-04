@@ -16,6 +16,7 @@
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) GIFEntity *entity;
 @property(nonatomic, assign) CGRect keyboardFrame;
+@property(nonatomic, strong) UIView *chooseCategoryView;
 @end
 
 @implementation MMKeyboardButtonView
@@ -235,22 +236,101 @@
 	}
 	else {
 
-		dispatch_async(dispatch_get_main_queue(), ^{
-			//Update UI
-			CoreDataStack *coreData = [CoreDataStack defaultStack];
-			GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
-			gifEntity.self.gifURL = self.gifUrl;
-			gifEntity.self.gifCategory = @"Awesome";
-			[coreData saveContext];
+		self.chooseCategoryView = [UIView new];
+		self.chooseCategoryView.translatesAutoresizingMaskIntoConstraints = NO;
+		[self.chooseCategoryView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8]];
+		[self addSubview:self.chooseCategoryView];
 
-		});
+		UILabel *titleLabel = [UILabel new];
+		titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+		[titleLabel setText:@"Choose which category to save the GIF"];
+		[titleLabel setTextColor:[UIColor whiteColor]];
+		[titleLabel setTextAlignment:NSTextAlignmentCenter];
+		[titleLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
+		[self.chooseCategoryView addSubview:titleLabel];
 
-		self.userInfo = @{@"iconPressed" : @"gif saved"};
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
-		self.hidden = YES;
+		UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		closeButton.translatesAutoresizingMaskIntoConstraints = NO;
+		[closeButton setImage:[UIImage imageWithPDFNamed:@"icon-close" withTintColor:[UIColor whiteColor] forHeight:20] forState:UIControlStateNormal];
+		closeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+		[closeButton addTarget:self action:@selector(onCloseTappedCategories:) forControlEvents:UIControlEventTouchUpInside];
+		[self.chooseCategoryView addSubview:closeButton];
+
+		UIButton *foodButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		foodButton.translatesAutoresizingMaskIntoConstraints = NO;
+		[foodButton setImage:[UIImage imageNamed:@"foodIcon"] forState:UIControlStateNormal];
+		[foodButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+		[foodButton addTarget:self action:@selector(foodButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+		[foodButton setContentCompressionResistancePriority:600 forAxis:UILayoutConstraintAxisVertical];
+		[self.chooseCategoryView addSubview:foodButton];
+
+		UIButton *awesomeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
+		[awesomeButton setImage:[UIImage imageNamed:@"awesomeIcon"] forState:UIControlStateNormal];
+		[awesomeButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+		[awesomeButton addTarget:self action:@selector(awesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+		[awesomeButton setContentCompressionResistancePriority:600 forAxis:UILayoutConstraintAxisVertical];
+		[self.chooseCategoryView addSubview:awesomeButton];
+
+
+		NSDictionary *views = @{@"chooseView" : self.chooseCategoryView, @"foodButton" : foodButton, @"awesomeButton" : awesomeButton, @"titleLabel" : titleLabel, @"close" : closeButton};
+		NSDictionary *metrics = @{};
+
+		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chooseView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chooseView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+		[self.chooseCategoryView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(40)-[titleLabel]-(>=20)-[foodButton]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.chooseCategoryView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(40)-[titleLabel]-(>=20)-[awesomeButton]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.chooseCategoryView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[foodButton(==awesomeButton)]-0-[awesomeButton(==foodButton)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.chooseCategoryView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[titleLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.chooseCategoryView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[close]-10-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+		[self.chooseCategoryView addConstraint:[NSLayoutConstraint constraintWithItem:foodButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.chooseCategoryView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:20]];
+		[self.chooseCategoryView addConstraint:[NSLayoutConstraint constraintWithItem:awesomeButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.chooseCategoryView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:20]];
+
+		[self.chooseCategoryView addConstraint:[NSLayoutConstraint constraintWithItem:closeButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.chooseCategoryView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10]];
+
+
 	}
 
 
+}
+
+- (void)onCloseTappedCategories:(UIButton *)sender {
+	[self.chooseCategoryView removeFromSuperview];
+}
+
+- (void)awesomeButtonTapped:(UIButton *)sender {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		//Update UI
+		CoreDataStack *coreData = [CoreDataStack defaultStack];
+		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
+		gifEntity.self.gifURL = self.gifUrl;
+		gifEntity.self.gifCategory = @"Awesome";
+		[coreData saveContext];
+
+	});
+
+	self.userInfo = @{@"iconPressed" : @"gif saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+
+	self.hidden = YES;
+}
+
+- (void)foodButtonTapped:(UIButton *)sender {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		//Update UI
+		CoreDataStack *coreData = [CoreDataStack defaultStack];
+		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
+		gifEntity.self.gifURL = self.gifUrl;
+		gifEntity.self.gifCategory = @"Normal";
+		[coreData saveContext];
+
+	});
+
+	self.userInfo = @{@"iconPressed" : @"gif saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+	self.hidden = YES;
 }
 
 - (void)onCloseTapped:(UIButton *)sender {

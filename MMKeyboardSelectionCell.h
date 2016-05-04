@@ -11,5 +11,6 @@
 + (NSString *)reuseIdentifier;
 
 @property(nonatomic, strong) UIImageView *imageView;
+@property(nonatomic, strong) NSString *testTitle;
 
 @end

@@ -14,7 +14,7 @@ typedef enum {
 
 @protocol SearchGifsDelegate
 
-- (void)receivedGIFJSON:(NSData *)objectNotation;
+- (void)receivedGIFJSON:(NSData *)objectNotation withSearchType:(searchType) searchtype;
 - (void)fetchingJSONFailedWithError:(NSError *)error;
 
 @end

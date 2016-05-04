@@ -98,6 +98,7 @@
 		C3C36027B2540765961AC085 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C360573CBA9913AB46B4C5 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BD0E9DDA9D747FF00BA /* PopupView.m */; };
 		C3C3608DFFD120A4D9499390 /* SpellCheckerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C362282B453C94B1B4C8BD /* SpellCheckerManager.m */; };
+		C3C360A69782ECEA7659FA1A /* RandomCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36888BC272D3B167810B4 /* RandomCategories.m */; };
 		C3C36108F7441A1C80B44792 /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C3610A89A7BE7DC84F8EFB /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
 		C3C36134DE1A2D170400F69D /* MMKeyboardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C3380DB2D8748DA26C /* MMKeyboardCollectionViewCell.m */; };
@@ -120,6 +121,7 @@
 		C3C36282A6EF8A0157387202 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
 		C3C36294E29CE84896848455 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C36298CB2CC2BB9881652A /* MMKeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F54AFE575612002B755 /* MMKeyboardButtonView.m */; };
+		C3C3629CC3FCEF221F72373E /* RandomCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36888BC272D3B167810B4 /* RandomCategories.m */; };
 		C3C3629EFB3CE370EA70BBC0 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F27B8911574E6D09CC4 /* MMKeyboardButton.m */; };
 		C3C362D3D1FE9E2D6FF0E979 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F27B8911574E6D09CC4 /* MMKeyboardButton.m */; };
 		C3C362E469517E1E1E4A9856 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
@@ -144,6 +146,7 @@
 		C3C3655C05A87877A1C33AB4 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
 		C3C3658E3480DBD0303E02B2 /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
 		C3C36590F4F4A56ED8DAB214 /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36EAB675A98497F1FE3D5 /* ShareCollectionViewCell.m */; };
+		C3C365C21DF9FF4CB5E087D4 /* RandomCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36888BC272D3B167810B4 /* RandomCategories.m */; };
 		C3C365F32157D61409F028E4 /* MMEmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C42D8C1BD006E89291 /* MMEmojiCollectionView.m */; };
 		C3C365F3BC0BB872247A9920 /* newFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C368697DA2B30EC639619A /* newFacebook.png */; };
 		C3C36636B51CAAF3967F0191 /* EmptyGIFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3631C6A98DB9132A5A47F /* EmptyGIFCell.m */; };
@@ -402,6 +405,7 @@
 		C3C368697DA2B30EC639619A /* newFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newFacebook.png; sourceTree = "<group>"; };
 		C3C3687A8709823FDBB0DCC8 /* MMKeyboardSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardSelectionCell.m; sourceTree = SOURCE_ROOT; };
 		C3C368868A8123A9962F7471 /* PopUpShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpShareViewController.m; sourceTree = "<group>"; };
+		C3C36888BC272D3B167810B4 /* RandomCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomCategories.m; sourceTree = SOURCE_ROOT; };
 		C3C368B18319EBA9B4A486F7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPreviewViewController.h; sourceTree = "<group>"; };
 		C3C368EDA40C3E787E4D94F8 /* ShareCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCollectionView.h; sourceTree = "<group>"; };
@@ -433,6 +437,7 @@
 		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newWhatsAppIcon.png; sourceTree = "<group>"; };
 		C3C36D3B4B5549A8DF4D0232 /* MMCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCustomTextField.h; sourceTree = "<group>"; };
+		C3C36D7E94C6D2AFCB4FBF06 /* RandomCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomCategories.h; sourceTree = SOURCE_ROOT; };
 		C3C36D83C39ACDCFB628E5B7 /* MMKeyboardKeysModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMKeyboardKeysModel.h; sourceTree = "<group>"; };
 		C3C36DA282959F8FBA745E44 /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarView.h; sourceTree = SOURCE_ROOT; };
 		C3C36DD7226C24445091C6B1 /* SuggestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionView.m; sourceTree = "<group>"; };
@@ -595,6 +600,8 @@
 				C3C36C781E590E63C20C8601 /* SearchGIFManager.m */,
 				C3C36DA282959F8FBA745E44 /* SearchBarView.h */,
 				C3C36AB068221468BBA9065F /* SearchBarView.m */,
+				C3C36888BC272D3B167810B4 /* RandomCategories.m */,
+				C3C36D7E94C6D2AFCB4FBF06 /* RandomCategories.h */,
 			);
 			path = Searching;
 			sourceTree = "<group>";
@@ -1534,6 +1541,7 @@
 				C3C36636B51CAAF3967F0191 /* EmptyGIFCell.m in Sources */,
 				C3C366F27D84E2CA0550D744 /* MMButtonViewCollectionViewCell.m in Sources */,
 				C3C365395D4733B4B797D946 /* MMGIFButton.m in Sources */,
+				C3C365C21DF9FF4CB5E087D4 /* RandomCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1601,6 +1609,7 @@
 				C3C367FFF6D9BA88D821D189 /* EmptyGIFCell.m in Sources */,
 				C3C3636B4054F46402FD8897 /* MMButtonViewCollectionViewCell.m in Sources */,
 				C3C36F6AE65F63354BA64143 /* MMGIFButton.m in Sources */,
+				C3C360A69782ECEA7659FA1A /* RandomCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1656,7 @@
 				C3C369D95FE2C4D80BDFE76F /* EmptyGIFCell.m in Sources */,
 				C3C362433F05B96769A8E9B7 /* MMButtonViewCollectionViewCell.m in Sources */,
 				C3C3632175B9F835F2607146 /* MMGIFButton.m in Sources */,
+				C3C3629CC3FCEF221F72373E /* RandomCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

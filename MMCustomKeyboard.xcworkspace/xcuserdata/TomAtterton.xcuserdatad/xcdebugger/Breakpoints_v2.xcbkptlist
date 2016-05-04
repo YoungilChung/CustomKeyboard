@@ -759,7 +759,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
             endingLineNumber = "15"
-            landmarkName = "+gifsFromJSON:error:"
+            landmarkName = "+gifsFromJSON:withSearchType:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -775,7 +775,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "+gifsFromJSON:error:"
+            landmarkName = "+gifsFromJSON:withSearchType:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -791,7 +791,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "+gifsFromJSON:error:"
+            landmarkName = "+gifsFromJSON:withSearchType:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1666,12 +1666,12 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483972011.8177"
+                  timestampString = "484049418.459642"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
                   endingLineNumber = "114"
-                  offsetFromSymbolStart = "220">
+                  offsetFromSymbolStart = "227">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1681,12 +1681,12 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483972011.817781"
+                  timestampString = "484049418.45973"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "114"
                   endingLineNumber = "114"
-                  offsetFromSymbolStart = "232">
+                  offsetFromSymbolStart = "246">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1714,12 +1714,12 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483972011.818309"
+                  timestampString = "484049418.460362"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "268">
+                  offsetFromSymbolStart = "285">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1729,12 +1729,12 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483972011.818398"
+                  timestampString = "484049418.460451"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "116">
+                  offsetFromSymbolStart = "98">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1744,12 +1744,12 @@
                   moduleName = "MMKeyboard"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mm0030311/Documents/MMCustomKeyboard-Final/MMKeyboard/Main/Spelling%20Checker/SpellCheckerManager.m"
-                  timestampString = "483972011.818475"
+                  timestampString = "484049418.460524"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "71">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1862,7 +1862,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "353"
             endingLineNumber = "353"
-            landmarkName = "-loadEmptyCell"
+            landmarkName = "-fetchedResultsController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1878,7 +1878,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "354"
             endingLineNumber = "354"
-            landmarkName = "-loadEmptyCell"
+            landmarkName = "-fetchedResultsController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1894,8 +1894,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "356"
             endingLineNumber = "356"
-            landmarkName = "@implementation MMKeyboardCollectionView"
-            landmarkType = "3">
+            landmarkName = "-fetchedResultsController"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1910,7 +1910,71 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "355"
             endingLineNumber = "355"
-            landmarkName = "-loadEmptyCell"
+            landmarkName = "-fetchedResultsController"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SearchForGIFSCommunicator.m"
+            timestampString = "484049037.294309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-requestURL:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SearchForGIFSCommunicator.m"
+            timestampString = "484049038.023242"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-requestURL:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SearchForGIFSCommunicator.m"
+            timestampString = "484049038.811008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-requestURL:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SearchForGIFSCommunicator.m"
+            timestampString = "484049048.812038"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-requestURL:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

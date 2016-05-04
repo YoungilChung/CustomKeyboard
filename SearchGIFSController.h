@@ -4,10 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SearchForGIFSCommunicator.h"
 
 
 @interface SearchGIFSController : NSObject
 
-+ (NSArray *)gifsFromJSON:(NSData *)objectNotation error:(NSError **)error;
++ (NSArray *)gifsFromJSON:(NSData *)objectNotation withSearchType:(searchType)searchType error:(NSError **)error;
 
 @end

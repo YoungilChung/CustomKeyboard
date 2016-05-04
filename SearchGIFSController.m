@@ -9,7 +9,7 @@
 @implementation SearchGIFSController
 
 
-+ (NSArray *)gifsFromJSON:(NSData *)objectNotation error:(NSError **)error {
++ (NSArray *)gifsFromJSON:(NSData *)objectNotation withSearchType:(searchType)searchType error:(NSError **)error {
 
 	NSError *localError = nil;
 	NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
@@ -18,11 +18,35 @@
 		*error = localError;
 		return nil;
 	}
-
+	NSArray *results = @[];
 	NSDictionary *dictResults = [parsedObject valueForKey:@"data"];
-	NSDictionary *imageResults = [dictResults valueForKey:@"images"];
-	NSDictionary *fixedHeightResults = [imageResults valueForKey:@"fixed_width_downsampled"]; // This is the smallest gif size
-	NSArray *results = [fixedHeightResults valueForKey:@"url"];
+
+	NSLog(@"it came here %@", objectNotation);
+
+	switch (searchType) {
+
+		case kSearchTypeString:
+		case kSearchTypeTrending: {
+
+
+			NSDictionary *imageResults = [dictResults valueForKey:@"images"];
+			NSDictionary *fixedHeightResults = [imageResults valueForKey:@"fixed_width_downsampled"]; // This is the smallest gif size
+			results = [fixedHeightResults valueForKey:@"url"];
+
+			break;
+		}
+
+		case kSearchTypeRandom: {
+			results = [dictResults valueForKey:@"fixed_width_downsampled_url"];
+
+			break;
+		}
+
+		default: {
+
+			break;
+		}
+	}
 
 
 	return results;

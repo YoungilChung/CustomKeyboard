@@ -15,10 +15,10 @@
 	[self.communicator searchForGIFS:searchString withSearchType:searchType];
 }
 
-- (void)receivedGIFJSON:(NSData *)objectNotation {
+- (void)receivedGIFJSON:(NSData *)objectNotation withSearchType:(searchType)searchType {
 
 	NSError *error = nil;
-	NSArray *groups = [SearchGIFSController gifsFromJSON:objectNotation error:&error];
+	NSArray *groups = [SearchGIFSController gifsFromJSON:objectNotation withSearchType:searchType error:&error];
 
 	if (error != nil) {
 		[self.delegate fetchingGIFSFailedWithError:error];

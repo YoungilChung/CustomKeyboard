@@ -77,7 +77,7 @@
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[normalButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[awesomeButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[deleteButton]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[trendingButton(==awesomeButton)]-paddingH-[randomButton(==awesomeButton)]-paddingH-[allButton(==awesomeButton)]-paddingH-[normalButton(==allButton)]-paddingH-[awesomeButton(allButton)]-paddingH-[deleteButton(trendingButton)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[allButton(==awesomeButton)]-paddingH-[normalButton(==awesomeButton)]-paddingH-[awesomeButton(==normalButton)]-paddingH-[trendingButton(==allButton)]-paddingH-[randomButton(allButton)]-paddingH-[deleteButton(trendingButton)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 	}
 	return self;
