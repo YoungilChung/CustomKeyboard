@@ -1618,12 +1618,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
-            timestampString = "483526384.558929"
+            timestampString = "484221199.307362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-fetchWords:"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-updateControllersWithInvalidWord:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1634,28 +1634,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
-            timestampString = "483526384.558929"
+            timestampString = "484221199.307362"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-updateControllersWithInvalidWord:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
+            timestampString = "484221199.307362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
             endingLineNumber = "111"
-            landmarkName = "-fetchWords:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
-            timestampString = "483526384.558929"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-fetchWords:"
+            landmarkName = "-updateControllersWithInvalidWord:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1698,11 +1698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
-            timestampString = "483526384.558929"
+            timestampString = "484221199.307362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "-fetchWords:"
             landmarkType = "5">
             <Locations>
@@ -1761,12 +1761,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MMKeyboard/Main/Spelling Checker/SpellCheckerManager.m"
-            timestampString = "483526688.915293"
+            timestampString = "484221199.307362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-fetchWords:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-updateControllersWithMisspelledWord:corrections:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

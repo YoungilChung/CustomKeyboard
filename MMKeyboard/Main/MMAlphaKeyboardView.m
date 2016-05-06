@@ -35,7 +35,6 @@ typedef enum {
 
 
 @property(nonatomic, strong) MMKeyboardButton *abcButton;
-@property(nonatomic, strong) MMKeyboardButton *spaceButton;
 @property(nonatomic, strong) MMKeyboardButton *periodButton;
 @property(nonatomic, strong) MMKeyboardButton *panningButton;
 @property(nonatomic, strong) MMKeyboardButton *gifButton;

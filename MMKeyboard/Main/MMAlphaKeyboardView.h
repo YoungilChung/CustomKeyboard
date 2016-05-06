@@ -22,5 +22,7 @@
 
 @property(nonatomic, strong) MMKeyboardButton *nextKeyboardButton;
 @property(nonatomic, strong) MMKeyboardButton *returnButton;
+@property(nonatomic, strong) MMKeyboardButton *spaceButton;
+
 
 @end

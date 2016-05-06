@@ -191,6 +191,7 @@
 		C3C36A976A4FF0032FA2EE26 /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
 		C3C36AA5095C250A3A2A86FF /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
 		C3C36AEBC96B8AB9109FCBC7 /* SearchForGIFSCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DEF44FD45676B2403A2 /* SearchForGIFSCommunicator.m */; };
+		C3C36AF1BEF3C5056E611B52 /* testfile in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C91983E4D6C45F65934 /* testfile */; };
 		C3C36B0AEAD333343A00E424 /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
 		C3C36B19B33EF2563EB092DF /* MMAlphaKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3681BD67B71D545DAFAEA /* MMAlphaKeyboardView.m */; };
 		C3C36B1F66ADCE599519C0D8 /* CategoryHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A631766DEC0B59C5370 /* CategoryHolder.m */; };
@@ -222,11 +223,13 @@
 		C3C36DC95A348029EB50B2DD /* MMKeyboardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C3380DB2D8748DA26C /* MMKeyboardCollectionViewCell.m */; };
 		C3C36E2FB2388F5825203272 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
 		C3C36E42BEDCFA9F333BE864 /* MMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A77ED95C764E65DD8D7 /* MMCustomTextField.m */; };
+		C3C36E4DB0DA594BF38C620B /* testfile in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C91983E4D6C45F65934 /* testfile */; };
 		C3C36E7006461022DD825403 /* SearchGIFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36C781E590E63C20C8601 /* SearchGIFManager.m */; };
 		C3C36E764261E02600937F77 /* MMKeyboardCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36467FCA2001C76877FF5 /* MMKeyboardCollectionView.m */; };
 		C3C36E7D2BB108215E1AF774 /* ShareCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C360D145368CE6EBE40A89 /* ShareCollectionView.m */; };
 		C3C36F0E5AA46103CF0F7045 /* MMEmojiCollectionViewMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3655FCD2F4671E20DDA24 /* MMEmojiCollectionViewMainCell.m */; };
 		C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
+		C3C36F5B5AAE0D9A6A2CE184 /* testfile in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C91983E4D6C45F65934 /* testfile */; };
 		C3C36F6AE65F63354BA64143 /* MMGIFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3614A38653323AF0B67BB /* MMGIFButton.m */; };
 		C3C36F78E675BC5296A3C2AE /* MMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A77ED95C764E65DD8D7 /* MMCustomTextField.m */; };
 		C3C36F7CA433D3A3AFE35C41 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
@@ -432,6 +435,7 @@
 		C3C36C147319EC3BBB257C6D /* UITextChecker+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextChecker+Additions.h"; sourceTree = "<group>"; };
 		C3C36C2A079D1D5FAC41531B /* hipchat-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hipchat-logo@2x.png"; sourceTree = "<group>"; };
 		C3C36C781E590E63C20C8601 /* SearchGIFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGIFManager.m; sourceTree = SOURCE_ROOT; };
+		C3C36C91983E4D6C45F65934 /* testfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testfile; sourceTree = "<group>"; };
 		C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTick.png; sourceTree = "<group>"; };
 		C3C36CE4F4C1F389E5416BF7 /* MMEmojiCollectionViewMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEmojiCollectionViewMainCell.h; sourceTree = SOURCE_ROOT; };
 		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
@@ -883,6 +887,7 @@
 				C3C369009B466503ECE28922 /* MMCollectionViewFlowLayout.h */,
 				C3C36729D3F748C19772BF32 /* MMPreviewViewController.m */,
 				C3C368C22D01E9B1B7291D6C /* MMPreviewViewController.h */,
+				C3C36C91983E4D6C45F65934 /* testfile */,
 			);
 			path = "Collection View";
 			sourceTree = "<group>";
@@ -1250,6 +1255,7 @@
 				9A18A6241CAA882000D6A6F9 /* SF-UI-Text-MediumItalic.otf in Resources */,
 				9A18A6261CAA882000D6A6F9 /* SF-UI-Text-RegularItalic.otf in Resources */,
 				9A18A61C1CAA882000D6A6F9 /* SF-UI-Display-Ultralight.otf in Resources */,
+				C3C36AF1BEF3C5056E611B52 /* testfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1314,6 +1320,7 @@
 				9A18A6081CAA881F00D6A6F9 /* SF-UI-Display-Ultralight.otf in Resources */,
 				C3C36108F7441A1C80B44792 /* copyFileIcon.png in Resources */,
 				9A18A60B1CAA881F00D6A6F9 /* SF-UI-Text-Heavy.otf in Resources */,
+				C3C36F5B5AAE0D9A6A2CE184 /* testfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1353,6 +1360,7 @@
 				9A18A5FE1CAA87C700D6A6F9 /* SF-UI-Text-Semibold.otf in Resources */,
 				9A18A5FF1CAA87C700D6A6F9 /* SF-UI-Text-SemiboldItalic.otf in Resources */,
 				C3C361E03D8EEA80C7BB0D69 /* copyFileIcon.png in Resources */,
+				C3C36E4DB0DA594BF38C620B /* testfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

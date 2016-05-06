@@ -22,6 +22,8 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 @interface SpellCheckerManager ()
 
 @property(nonatomic, strong) UITextChecker *textChecker;
+@property(nonatomic, strong) UILexicon *lexicon;
+@property(nonatomic, strong) NSMutableArray *lexiconResults;
 
 @end
 
@@ -31,10 +33,17 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 - (void)loadForSpellCorrection {
 	[SpellCheckerBridge loadForSpellCorrection];
 	self.textChecker = [UITextChecker new];
+	[self.lexicon.entries enumerateObjectsUsingBlock:^(UILexiconEntry *obj, NSUInteger idx, BOOL *stop) {
+
+		[self.lexiconResults addObject:obj.userInput];
+	}];
+
 
 }
 
 - (void)updateControllersWithRealWord:(NSString *)text {
+
+
 	NSString *word = text;
 	NSArray *guesses = [self.textChecker guessesForWord:text.letterCharacterString];
 
@@ -50,29 +59,48 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 		}
 
 		if (!shouldUseGuess && ![text isEqualToString:word]) {
-			secondaryWord = text.quotedString;
+//			secondaryWord = text.quotedString;
 		}
+
 		[self.delegate secondarySpell:secondaryWord];
 		NSString *tertiaryWord = guesses.count > 1 ? _properCasing(guesses[1], text.isUppercase) : nil;
 		tertiaryWord = [text stringByReplacingLetterCharactersWithString:tertiaryWord];
+        NSLog(@"0%@", guesses
+              );
 		[self.delegate tertiarySpell:tertiaryWord];
-	}
+
 
 	[self.delegate primarySpell:word.quotedString];
+	}
+	else {
+
+		NSLog(@"no more sorry");
+		if (text.length > 6)
+		{
+
+			[self.delegate hideView:YES];
+		}
+	}
+
 }
 
 - (void)updateControllersWithMisspelledWord:(NSString *)text corrections:(NSArray *)corrections {
+	NSLog(@"update here");
+
 	[self.delegate secondarySpell:text.quotedString];
 	SpellCheckerCommunicator *firstResult = corrections[0];
+
 	NSString *word = _properCasing(firstResult.word, text.isUppercase);
 	NSString *primaryWord = [text stringByReplacingLetterCharactersWithString:word];
 
 	[self.delegate primarySpell:primaryWord];
 
 	if (corrections.count > 1) {
+
 		for (int correctionIndex = 1; correctionIndex < corrections.count; ++correctionIndex) {
 			SpellCheckerCommunicator *result = corrections[(NSUInteger) correctionIndex];
 			NSString *resultWord = _properCasing(result.word, text.isUppercase);
+
 			if (![resultWord isEqualToString:word] && resultWord.length > 0) {
 				NSString *tertiaryWord = [text stringByReplacingLetterCharactersWithString:resultWord];
 

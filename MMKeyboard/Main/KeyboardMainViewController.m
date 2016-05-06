@@ -4,6 +4,7 @@
 //
 
 #import <FLAnimatedImage/FLAnimatedImageView.h>
+#import <CoreMedia/CoreMedia.h>
 #import "KeyboardMainViewController.h"
 #import "MMAlphaKeyboardView.h"
 #import "SearchBarView.h"
@@ -57,6 +58,7 @@ typedef enum {
 @property(nonatomic, strong) NSString *primaryString;
 @property(nonatomic, assign) BOOL selectionShowing;
 @property(nonatomic, strong) NSMutableArray *lastKey;
+@property(nonatomic, strong) UILexicon *lexicon;
 
 
 // Constraints
@@ -65,6 +67,8 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
 @property(nonatomic, strong) UIView *tempView;
+@property(nonatomic) CGFloat savedOffset;
+@property(nonatomic) CGPoint lastRecognizedInterval;
 @end
 
 @implementation KeyboardMainViewController
@@ -81,7 +85,9 @@ typedef enum {
 	[self.spellCheckerManager loadForSpellCorrection];
 	[self.view setBackgroundColor:[UIColor grayColor]];
 
-
+	[self requestSupplementaryLexiconWithCompletion:^(UILexicon *lexicon) {
+		self.lexicon = lexicon;
+	}];
 	self.emojiKeyboardHolder = [UIView new];
 	self.emojiKeyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emojiKeyboardHolder.clipsToBounds = YES;
@@ -149,7 +155,6 @@ typedef enum {
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.keyboardView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[searchBar]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-//	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.searchHolder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.categoryHolderView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 
 
@@ -172,6 +177,19 @@ typedef enum {
 	[self.keyboardView.nextKeyboardButton addGestureRecognizer:ges];
 
 	self.lastKey = @[].mutableCopy;
+
+
+	UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+	panning.minimumNumberOfTouches = 1;
+	panning.maximumNumberOfTouches = 1;
+	[panning setCancelsTouchesInView:NO];
+	panning.delegate = self;
+	[self.keyboardView.spaceButton addGestureRecognizer:panning];
+
+	UITapGestureRecognizer *tapping = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+	tapping.delegate = self;
+	[self.keyboardView.spaceButton addGestureRecognizer:tapping];
+
 }
 
 
@@ -525,8 +543,8 @@ typedef enum {
 			}
 
 			CASE(@" ") {
-
-				[self replaceWord:self.primaryString];
+				[self adjustTextPositionByCharacterOffset:100];
+//				[self replaceWord:self.primaryString];
 				break;
 			}
 
@@ -885,14 +903,64 @@ typedef enum {
 	return nil;
 }
 
+
+- (void)adjustTextPositionByCharacterOffset:(NSInteger)offset {
+
+
+}
+
+
 - (void)textDidChange:(id <UITextInput>)textInput {
 
-	NSLog(@"hello");
 	self.lastKey = @[].mutableCopy;
 	[self.keyboardView.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
 	self.searchHolder.searchBar.isTextFieldSelected = NO;
 	self.searchHolder.shouldContinueBlinking = NO;
 }
+
+- (IBAction)pan:(UIPanGestureRecognizer *)ges {
+	CGPoint translation = [ges translationInView:ges.view];
+	if (ges.state == UIGestureRecognizerStateBegan) {
+		self.savedOffset = 0;
+		self.view.alpha = 0.3;
+		self.lastRecognizedInterval = [ges translationInView:self.view];
+
+	}
+	else if (ges.state == UIGestureRecognizerStateChanged) {
+
+		if (translation.x > (self.lastRecognizedInterval.x + 3)) {
+			self.savedOffset = fminf(fmaxf((float) (translation.x), (float) -1.0), 1.0);
+			[self.textDocumentProxy adjustTextPositionByCharacterOffset:(NSInteger) self.savedOffset];
+			self.lastRecognizedInterval = translation;
+
+		}
+		else if (translation.x < (self.lastRecognizedInterval.x - 3)) {
+			self.savedOffset = fminf(fmaxf((float) (translation.x), (float) -1.0), 1.0);
+			[self.textDocumentProxy adjustTextPositionByCharacterOffset:(NSInteger) ((NSInteger) self.savedOffset)];
+			self.lastRecognizedInterval = translation;
+		}
+
+	}
+	else if (ges.state == UIGestureRecognizerStateEnded) {
+
+		self.view.alpha = 1;
+
+
+	}
+}
+
+- (void)tap:(UITapGestureRecognizer *)gesuture {
+	[self tappedWord:@" "];
+}
+
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//	if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+//		CGFloat xVelocity = [(UIPanGestureRecognizer *) gestureRecognizer velocityInView:gestureRecognizer.view].x;
+//		return fabs(xVelocity) <= 0.25;
+//	}
+//	return YES;
+//}
 
 
 @end
