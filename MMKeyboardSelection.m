@@ -12,6 +12,7 @@
 @property(nonatomic, strong) NSArray *arrayImages;
 @property(nonatomic, strong) NSArray *arrayText;
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) UITableViewCell *oldCell;
 @end
 
 @implementation MMKeyboardSelection
@@ -46,15 +47,15 @@
 	[self.tableView registerClass:[MMKeyboardSelectionCell class] forCellReuseIdentifier:@"CELL"];
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
-    [self.tableView setAllowsSelection:YES];
+	[self.tableView setAllowsSelection:YES];
 	[self addSubview:self.tableView];
 
-	UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanning:)];
-//	panning.minimumNumberOfTouches = 1;
-//	panning.maximumNumberOfTouches = 1;
-	panning.cancelsTouchesInView = NO;
-	panning.delegate = self;
-	[self.tableView addGestureRecognizer:panning];
+//	UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanning:)];
+////	panning.minimumNumberOfTouches = 1;
+////	panning.maximumNumberOfTouches = 1;
+//	panning.cancelsTouchesInView = NO;
+//	panning.delegate = self;
+//	[self.tableView addGestureRecognizer:panning];
 
 
 	NSDictionary *views = @{@"tableView" : self.tableView};
@@ -90,10 +91,10 @@
 	if ([self.arrayText[item] isEqualToString:@"Emoji"]) {
 
 		[self.keyboardDelegate changeKeyboard:kTagEmojiKeyboard];
+
 	}
 	else {
 		[self.keyboardDelegate changeKeyboard:kTagSwitchKeyboard];
-
 
 	}
 
@@ -104,100 +105,130 @@
 }
 
 
-// Allow simultaneous recognition
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//	return YES;
-//}
+- (void)updatePosition:(CGPoint)position {
 
-//- (void)handlePanning:(UIPanGestureRecognizer *)sender {
-//	NSLog(@"PAN");
-//
-//	CGPoint beginLocation = [sender locationInView:self.tableView]; // touch begin state.
-////
-////	CGPoint endLocation = [sender locationInView:self.tableView];
-//	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:beginLocation];
-//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
-////
-//	[cell setHighlighted:YES];
-//
-//}
+	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:position];
+	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+	if (cell) {
+		if (![self.oldCell isEqual:cell]) {
 
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-	return [NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"];
-}
-
-- (void)handlePanning:(UIPanGestureRecognizer *)sender {
-//	MMKeyboardSelectionCell *cell = (MMKeyboardSelectionCell *) [sender view];
-//	CGPoint translation = [sender translationInView:[cell superview]];
-//	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:translation];
-////	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
-//	switch (sender.state) {
-//		case UIGestureRecognizerStateChanged:
-//		{
-//
-//			[cell setHighlighted:YES];
-//
-//			break;
+//			[cell setSelected:NO];
 //		}
-//		case UIGestureRecognizerStateBegan:
-//		case UIGestureRecognizerStateEnded:
-//		case UIGestureRecognizerStateFailed:
-//		default:
-//			break;
-//	}
+//		else {
+			
+			self.oldCell = cell;
+			[cell setSelected:YES];
+		}
+
+	}
+	else {
+		for (int i = 0; i < self.arrayText.count; i++) {
+
+			UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+			[cell setSelected:NO];
+
+		}
+
+	}
+
+
 }
+
+
 //
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-//	if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-//		CGPoint translation = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self.superview];
-//		return fabsf(translation.x) > fabsf(translation.y);
-//	}
+//// Allow simultaneous recognition
+////- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+////	return YES;
+////}
 //
-//	return YES;
+////- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+////	NSLog(@"PAN");
+////
+////	CGPoint beginLocation = [sender locationInView:self.tableView]; // touch begin state.
+//////
+//////	CGPoint endLocation = [sender locationInView:self.tableView];
+////	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:beginLocation];
+////	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
+//////
+////	[cell setHighlighted:YES];
+////
+////}
+//
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//	return [NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"];
 //}
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-//{
-//	UIView *cell = [gestureRecognizer view];
-//	CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:[cell superview]];
 //
-//
-//
-//
-//	// Check for horizontal gesture
-//	return fabs(translation.y) > fabs(translation.x);
-//
+//- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+////	MMKeyboardSelectionCell *cell = (MMKeyboardSelectionCell *) [sender view];
+////	CGPoint translation = [sender translationInView:[cell superview]];
+////	NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:translation];
+//////	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath : indexPath];
+////	switch (sender.state) {
+////		case UIGestureRecognizerStateChanged:
+////		{
+////
+////			[cell setHighlighted:YES];
+////
+////			break;
+////		}
+////		case UIGestureRecognizerStateBegan:
+////		case UIGestureRecognizerStateEnded:
+////		case UIGestureRecognizerStateFailed:
+////		default:
+////			break;
+////	}
 //}
-
-
-//- (void) tableViewCell:(UITableViewCell*)tableViewCell gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
-//{
+////
+////- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+////	if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+////		CGPoint translation = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self.superview];
+////		return fabsf(translation.x) > fabsf(translation.y);
+////	}
+////
+////	return YES;
+////}
+////- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+////{
+////	UIView *cell = [gestureRecognizer view];
+////	CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:[cell superview]];
+////
+////
+////
+////
+////	// Check for horizontal gesture
+////	return fabs(translation.y) > fabs(translation.x);
+////
+////}
 //
-//}
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-//	return YES;
-//}
-
-
-
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-//{
-//	return ![touch.view isDescendantOfView:self.tableView];
 //
-//}
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-//	   shouldReceiveTouch:(UITouch *)touch
-//{
-//	UIView *superview = touch.view;
-//	do {
-//		superview = superview.superview;
-//		if ([superview isKindOfClass:[UITableViewCell class]])
-//			return YES;
-//	} while (superview && ![superview isKindOfClass:[UITableView class]]);
+////- (void) tableViewCell:(UITableViewCell*)tableViewCell gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
+////{
+////
+////}
+////- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+////	return YES;
+////}
 //
-//	return NO;
-//}
+//
+//
+//
+////- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+////{
+////	return ![touch.view isDescendantOfView:self.tableView];
+////
+////}
+//
+////- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+////	   shouldReceiveTouch:(UITouch *)touch
+////{
+////	UIView *superview = touch.view;
+////	do {
+////		superview = superview.superview;
+////		if ([superview isKindOfClass:[UITableViewCell class]])
+////			return YES;
+////	} while (superview && ![superview isKindOfClass:[UITableView class]]);
+////
+////	return NO;
+////}
 @end

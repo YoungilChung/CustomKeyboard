@@ -446,7 +446,6 @@ typedef enum {
 	self.spaceButton.clipsToBounds = YES;
 	[self.spaceButton setTitle:@"space" forState:UIControlStateNormal];
 	[self.spaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[self.spaceButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
 	[holder addSubview:self.spaceButton];
 
 	self.returnButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];

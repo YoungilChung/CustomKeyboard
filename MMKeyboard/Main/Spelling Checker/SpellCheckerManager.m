@@ -65,8 +65,7 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 		[self.delegate secondarySpell:secondaryWord];
 		NSString *tertiaryWord = guesses.count > 1 ? _properCasing(guesses[1], text.isUppercase) : nil;
 		tertiaryWord = [text stringByReplacingLetterCharactersWithString:tertiaryWord];
-        NSLog(@"0%@", guesses
-              );
+
 		[self.delegate tertiarySpell:tertiaryWord];
 
 
@@ -74,7 +73,6 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 	}
 	else {
 
-		NSLog(@"no more sorry");
 		if (text.length > 6)
 		{
 
@@ -85,7 +83,6 @@ static NSString *_properCasing(NSString *string, BOOL uppercase) {
 }
 
 - (void)updateControllersWithMisspelledWord:(NSString *)text corrections:(NSArray *)corrections {
-	NSLog(@"update here");
 
 	[self.delegate secondarySpell:text.quotedString];
 	SpellCheckerCommunicator *firstResult = corrections[0];

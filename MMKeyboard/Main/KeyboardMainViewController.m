@@ -1,10 +1,10 @@
+
 //
 // Created by Tom Atterton on 31/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
 #import <FLAnimatedImage/FLAnimatedImageView.h>
-#import <CoreMedia/CoreMedia.h>
 #import "KeyboardMainViewController.h"
 #import "MMAlphaKeyboardView.h"
 #import "SearchBarView.h"
@@ -69,6 +69,12 @@ typedef enum {
 @property(nonatomic, strong) UIView *tempView;
 @property(nonatomic) CGFloat savedOffset;
 @property(nonatomic) CGPoint lastRecognizedInterval;
+
+// Gestures
+@property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
+@property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+
+@property(nonatomic, strong) MMKeyboardSelection *keyboardSelection;
 @end
 
 @implementation KeyboardMainViewController
@@ -170,21 +176,26 @@ typedef enum {
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
-	UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-	ges.minimumPressDuration = 0.2;
-	ges.numberOfTouchesRequired = 1;
-	ges.delegate = self;
-	[self.keyboardView.nextKeyboardButton addGestureRecognizer:ges];
+//	UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+//	longPressGestureRecognizer.minimumPressDuration = 0.2;
+////	longPressGestureRecognizer.numberOfTouchesRequired = 1;
+////	[longPressGestureRecognizer setCancelsTouchesInView:NO];
+//	longPressGestureRecognizer.delegate = self;
+//	[self.view addGestureRecognizer:longPressGestureRecognizer];
+//	self.optionsViewRecognizer = longPressGestureRecognizer;
 
+
+	[self setupInputOptionsConfiguration];
 	self.lastKey = @[].mutableCopy;
 
 
-	UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-	panning.minimumNumberOfTouches = 1;
-	panning.maximumNumberOfTouches = 1;
-	[panning setCancelsTouchesInView:NO];
-	panning.delegate = self;
-	[self.keyboardView.spaceButton addGestureRecognizer:panning];
+//	UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+//	panGestureRecognizer.minimumNumberOfTouches = 1;
+//	panGestureRecognizer.maximumNumberOfTouches = 1;
+////	[panGestureRecognizer setCancelsTouchesInView:NO];
+//	panGestureRecognizer.delegate = self;
+//	[self.view addGestureRecognizer:panGestureRecognizer];
+//	self.panGestureRecognizer = panGestureRecognizer;
 
 	UITapGestureRecognizer *tapping = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
 	tapping.delegate = self;
@@ -323,7 +334,8 @@ typedef enum {
 
 #pragma mark touch gestures
 
-- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+
+- (void)setupSelection {
 	if (!self.selectionShowing) {
 
 
@@ -340,15 +352,15 @@ typedef enum {
 		[self.view addSubview:self.buttonShape];
 
 
-		MMKeyboardSelection *tableView = [[MMKeyboardSelection alloc] init];
-		tableView.translatesAutoresizingMaskIntoConstraints = NO;
-		tableView.layer.cornerRadius = 4;
-		tableView.keyboardDelegate = self;
-		[tableView sizeToFit];
-		[self.selectionHolder addSubview:tableView];
+		self.keyboardSelection = [[MMKeyboardSelection alloc] init];
+		self.keyboardSelection.translatesAutoresizingMaskIntoConstraints = NO;
+		self.keyboardSelection.layer.cornerRadius = 4;
+		self.keyboardSelection.keyboardDelegate = self;
+		[self.keyboardSelection sizeToFit];
+		[self.selectionHolder addSubview:self.keyboardSelection];
 
 		NSDictionary *metrics = @{};
-		NSDictionary *views = @{@"selectionHolder" : self.selectionHolder, @"table" : tableView};
+		NSDictionary *views = @{@"selectionHolder" : self.selectionHolder, @"table" : self.keyboardSelection};
 
 		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[table(==80)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:
@@ -371,7 +383,6 @@ typedef enum {
 	}
 
 }
-
 
 #pragma mark Actions
 
@@ -504,31 +515,37 @@ typedef enum {
 
 			CASE(@"⌫") {
 
-				NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
-				if ([tokens.lastObject length] <= 0) {
+				NSMutableArray *tokens = [[self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
+
+
+				if (tokens.count == 0) {
 
 					[self.textDocumentProxy deleteBackward];
-				}
 
+				}
 
 				else {
 
-					[self.textDocumentProxy deleteBackward];
+					if ([tokens.lastObject isEqualToString:@""]) {
+						[tokens removeLastObject];
+					}
 
 					if (self.currentString.length > 0) {
 
-						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+						self.currentString = [self.currentString substringToIndex:[self.currentString length] - 1];
 					}
 					else {
+
 						self.currentString = tokens.lastObject;
-						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
+//						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
 						NSLog(@"token %@", self.currentString);
 
 					}
 
 					[self.spellCheckerManager fetchWords:self.currentString];
 				}
+				[self.textDocumentProxy deleteBackward];
 
 				break;
 			}
@@ -543,8 +560,7 @@ typedef enum {
 			}
 
 			CASE(@" ") {
-				[self adjustTextPositionByCharacterOffset:100];
-//				[self replaceWord:self.primaryString];
+				[self replaceWord:self.primaryString];
 				break;
 			}
 
@@ -554,12 +570,9 @@ typedef enum {
 				[self.textDocumentProxy insertText:key];
 
 				if (key.length == 1) {
-					if (self.currentString.length <= 8) {
 
-						self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
-						[self.spellCheckerManager fetchWords:self.currentString];
-
-					}
+					self.currentString = [NSString stringWithFormat:@"%@%@", self.currentString ? self.currentString : @"", key];
+					[self.spellCheckerManager fetchWords:self.currentString];
 
 
 				}
@@ -595,16 +608,6 @@ typedef enum {
 			break;
 		}
 
-//		CASE(@"\n") {
-//
-//			if (![searchString isEqualToString:@""]) {
-//
-//				[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:searchString];
-//				[self animateKeyboard:kTagGIFKeyboard];
-//			}
-//
-//			break;
-//		}
 		CASE(@"Search") {
 			if (![searchString isEqualToString:@""]) {
 
@@ -793,14 +796,13 @@ typedef enum {
 - (void)replaceWord:(NSString *)replacedWord {
 	NSArray *tokens = [self.textDocumentProxy.documentContextBeforeInput componentsSeparatedByString:@" "];
 
-	NSLog(@"%@", replacedWord);
 	replacedWord = [NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
 	if (replacedWord.length > 1) {
 		if ([tokens.lastObject length] > 0) {
 			for (int i = 0; i < [[tokens lastObject] length]; i++) {
 				[self.textDocumentProxy deleteBackward];
 			}
-//			[self.textDocumentProxy insertText:[NSString stringWithFormat:@"%@ ", [replacedWord stringByReplacingOccurrencesOfString:@"\"" withString:@""]]];
+
 			[self.textDocumentProxy insertText:replacedWord];
 			self.primaryString = @"";
 			self.currentString = @"";
@@ -916,51 +918,105 @@ typedef enum {
 	[self.keyboardView.returnButton setTitle:@"⏎" forState:UIControlStateNormal];
 	self.searchHolder.searchBar.isTextFieldSelected = NO;
 	self.searchHolder.shouldContinueBlinking = NO;
+
+	if ((!self.textDocumentProxy.documentContextBeforeInput && !self.textDocumentProxy.documentContextAfterInput) || ([self.textDocumentProxy.documentContextBeforeInput isEqualToString:@""] && [self.textDocumentProxy.documentContextAfterInput isEqualToString:@""])) {
+		self.currentString = @"";
+	}
+
 }
 
-- (IBAction)pan:(UIPanGestureRecognizer *)ges {
-	CGPoint translation = [ges translationInView:ges.view];
-	if (ges.state == UIGestureRecognizerStateBegan) {
+#pragma mark Touch Gestures
+
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+
+	CGPoint translation = [gesture locationInView:self.view];
+
+	if (gesture.state == UIGestureRecognizerStateBegan) {
 		self.savedOffset = 0;
 		self.view.alpha = 0.3;
-		self.lastRecognizedInterval = [ges translationInView:self.view];
+		self.lastRecognizedInterval = [gesture locationInView:self.view];
 
 	}
-	else if (ges.state == UIGestureRecognizerStateChanged) {
+	else if (gesture.state == UIGestureRecognizerStateChanged) {
 
-		if (translation.x > (self.lastRecognizedInterval.x + 3)) {
-			self.savedOffset = fminf(fmaxf((float) (translation.x), (float) -1.0), 1.0);
-			[self.textDocumentProxy adjustTextPositionByCharacterOffset:(NSInteger) self.savedOffset];
-			self.lastRecognizedInterval = translation;
+		if (translation.x >= (self.lastRecognizedInterval.x + 3)) {
 
+			[self.textDocumentProxy adjustTextPositionByCharacterOffset:1];
+			self.lastRecognizedInterval = CGPointMake(translation.x, 0);
 		}
-		else if (translation.x < (self.lastRecognizedInterval.x - 3)) {
-			self.savedOffset = fminf(fmaxf((float) (translation.x), (float) -1.0), 1.0);
-			[self.textDocumentProxy adjustTextPositionByCharacterOffset:(NSInteger) ((NSInteger) self.savedOffset)];
-			self.lastRecognizedInterval = translation;
+
+		else if (translation.x <= (self.lastRecognizedInterval.x - 3)) {
+
+			[self.textDocumentProxy adjustTextPositionByCharacterOffset:-1];
+			self.lastRecognizedInterval = CGPointMake(translation.x, 0);
 		}
 
 	}
-	else if (ges.state == UIGestureRecognizerStateEnded) {
+	else if (gesture.state == UIGestureRecognizerStateEnded) {
 
 		self.view.alpha = 1;
 
+	}
+
+}
+
+- (void)longPressNext:(UILongPressGestureRecognizer *)gesture {
+
+	CGPoint translation = [gesture locationInView:self.view];
+
+	if (gesture.state == UIGestureRecognizerStateBegan) {
+
+		[self setupSelection];
+	}
+	else if (gesture.state == UIGestureRecognizerStateChanged)
+	{
+		[self.keyboardSelection updatePosition:translation];
+
 
 	}
+
 }
 
-- (void)tap:(UITapGestureRecognizer *)gesuture {
-	[self tappedWord:@" "];
+- (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
+
+	// Used for space bar
+	[self keyWasTapped:@" "];
+
 }
 
+//
+- (void)setupInputOptionsConfiguration {
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//	if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-//		CGFloat xVelocity = [(UIPanGestureRecognizer *) gestureRecognizer velocityInView:gestureRecognizer.view].x;
-//		return fabs(xVelocity) <= 0.25;
-//	}
+	UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+	longPressGestureRecognizer.minimumPressDuration = 0.2;
+	[longPressGestureRecognizer setCancelsTouchesInView:NO];
+	longPressGestureRecognizer.delegate = self;
+	[self.keyboardView.spaceButton addGestureRecognizer:longPressGestureRecognizer];
+
+	UILongPressGestureRecognizer *longPressGestureRecognizerNextKeyboard = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressNext:)];
+	longPressGestureRecognizerNextKeyboard.minimumPressDuration = 0.2;
+//	[longPressGestureRecognizerNextKeyboard setCancelsTouchesInView:NO];
+	longPressGestureRecognizerNextKeyboard.delegate = self;
+	[self.keyboardView.nextKeyboardButton addGestureRecognizer:longPressGestureRecognizerNextKeyboard];
+
+
+}
+
+//
+//
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
 //	return YES;
 //}
 
+//- (BOOL)                         gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+//shouldRecognizeSimultaneouslyWithGestureRecognizer:
+//		(UIGestureRecognizer *)otherGestureRecognizer {
+//	return YES;
+//////
+////	return (gestureRecognizer == _panGestureRecognizer || gestureRecognizer == _optionsViewRecognizer) &&
+////			(otherGestureRecognizer == _panGestureRecognizer || otherGestureRecognizer == _optionsViewRecognizer);
+//}
 
 @end

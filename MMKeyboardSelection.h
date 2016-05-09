@@ -9,7 +9,6 @@
 @protocol KeyboardDelegate;
 
 
-
 typedef enum {
 	kTagSwitchKeyboard = 100,
 	kTagEmojiKeyboard,
@@ -20,5 +19,6 @@ typedef enum {
 
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
+-(void)updatePosition:(CGPoint)position;
 
 @end
