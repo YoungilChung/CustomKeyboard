@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSUserDefaults+Keyboard.h"
 
 @interface AppDelegate ()
 

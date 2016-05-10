@@ -59,6 +59,9 @@ typedef enum {
 @property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
 @property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 
+@property(nonatomic, strong) MMKeyboardButton *shiftButton;
+@property(nonatomic) BOOL capsLockIsOn;
+@property(nonatomic) BOOL spaceTapped;
 @end
 
 
@@ -82,6 +85,8 @@ typedef enum {
 	self.isCapitalised = NO;
 	self.isSpecialCharacter = NO;
 	self.isNumericCharacter = NO;
+	self.capsLockIsOn = NO;
+	self.spaceTapped = NO;
 
 
 	self.alphaButtons = @[].mutableCopy;
@@ -123,6 +128,7 @@ typedef enum {
 	MMKeyboardButton *button = sender;
 	NSString *title = [button titleForState:UIControlStateNormal];
 
+
 	SWITCH(title) {
 		CASE (@"⌫") {
 
@@ -136,48 +142,69 @@ typedef enum {
 			break;
 		}
 		CASE (@"space") {
-
-			[self.keyboardDelegate keyWasTapped:@" "];
+		
+//            if (self.spaceTapped) {
+//				[self.keyboardDelegate keyWasTapped:@"l"];
+//				self.spaceTapped = NO;
+//			}
+//
+//			else {
+				[self.keyboardDelegate keyWasTapped:@" "];
+//			}
 
 			break;
 		}
 		CASE (@"123") {
 			[sender setTitle:@"ABC" forState:UIControlStateNormal];
+
 			self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
+			[self capsLockOff];
 			break;
 		}
 		CASE (@"ABC") {
 			[sender setTitle:@"123" forState:UIControlStateNormal];
 			self.isNumericCharacter = [self changeButtons:self.isNumericCharacter typeOfTile:@"numeric"];
+			[self capsLockOff];
 
 			break;
 		}
 		CASE (@"#+=") {
 			[sender setTitle:@"?!@" forState:UIControlStateNormal];
 			self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
+			[self capsLockOff];
 			break;
 		}
 		CASE (@"?!@") {
 
 			[sender setTitle:@"#+=" forState:UIControlStateNormal];
 			self.isSpecialCharacter = [self changeButtons:self.isSpecialCharacter typeOfTile:@"special"];
+			[self capsLockOff];
 			break;
 		}
 		CASE (@"⇧") {
 
 			[self capataliseButtons];
+			[self capsLockOff];
 			break;
 		}
 
 		CASE (@"⇪") {
 
 			[self capataliseButtons];
+			[self capsLockOff];
 
 			break;
 		}
 		DEFAULT {
 
+
 			[self.keyboardDelegate keyWasTapped:title];
+
+			NSLog(@"%d%d", self.capsLockIsOn, self.isCapitalised);
+			if (!self.capsLockIsOn && self.isCapitalised) {
+				[self capataliseButtons];
+				[self capsLockOff];
+			}
 
 			break;
 		}
@@ -186,6 +213,11 @@ typedef enum {
 	}
 
 
+}
+
+- (void)capsLockOff {
+	[self.shiftButton setBackgroundColor:[UIColor darkGrayColor]];
+	self.capsLockIsOn = NO;
 }
 
 - (UIView *)createRowOfButtonWithTitle:(NSArray *)titles {
@@ -219,26 +251,59 @@ typedef enum {
 	button.translatesAutoresizingMaskIntoConstraints = NO;
 	[button setTitle:title forState:UIControlStateNormal];
 	button.titleLabel.textColor = [UIColor whiteColor];
-//	[button setBackgroundImage:[self createImageWithColor:HMColor(208, 208, 208)] forState:UIControlStateHighlighted];
 
+
+	if ([title isEqualToString:@"⇧"]) {
+
+		UITapGestureRecognizer *shiftDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shiftKeyDoubleTapped:)];
+		shiftDoubleTap.numberOfTapsRequired = 2;
+		[shiftDoubleTap setDelaysTouchesEnded:NO];
+		[button addGestureRecognizer:shiftDoubleTap];
+
+	}
+
+//	else {
 
 	[button addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 	[button addTarget:self action:@selector(handleTouchDown:) forControlEvents:UIControlEventTouchDown];
+//	}
+
+
 	return button;
 
 }
 
-//- (UIImage *)createImageWithColor:(UIColor *)color {
-//	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-//	UIGraphicsBeginImageContext(rect.size);
-//	CGContextRef context = UIGraphicsGetCurrentContext();
-//	CGContextSetFillColorWithColor(context, [color CGColor]);
-//	CGContextFillRect(context, rect);
-//	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-//	UIGraphicsEndImageContext();
-//
-//	return theImage;
-//}
+
+
+- (void)shiftKeyDoubleTapped:(UITapGestureRecognizer *)gestureRecognizer {
+
+	CGPoint location = [gestureRecognizer locationInView:self];
+	self.shiftButton = [self returnButtonLocation:location];
+
+	if ([self.shiftButton.titleLabel.text isEqualToString:@"#+="] || [self.shiftButton.titleLabel.text isEqualToString:@"?!@"] || [self.shiftButton.titleLabel.text isEqualToString:@"⇧"]) {
+
+	}
+	else {
+
+		[self.shiftButton setBackgroundColor:[UIColor colorWithPatternImage:[self createImageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]]]];
+		[self.keyboardDelegate capsLock:YES];
+		self.capsLockIsOn = YES;
+	}
+
+
+}
+
+- (UIImage *)createImageWithColor:(UIColor *)color {
+	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	return theImage;
+}
 
 #pragma mark layout methods
 
@@ -447,6 +512,8 @@ typedef enum {
 	[self.spaceButton setTitle:@"space" forState:UIControlStateNormal];
 	[self.spaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[holder addSubview:self.spaceButton];
+
+
 
 	self.returnButton = [MMKeyboardButton buttonWithType:UIButtonTypeCustom];
 	self.returnButton.translatesAutoresizingMaskIntoConstraints = NO;

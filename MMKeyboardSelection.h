@@ -14,11 +14,21 @@ typedef enum {
 	kTagEmojiKeyboard,
 } keyboardTags;
 
+typedef enum {
+	kChangeLanguageEnglish = 70,
+	kChangeLanguageDutch,
+} changeLanguage;
+
 @interface MMKeyboardSelection : UIView
 
 
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
--(void)updatePosition:(CGPoint)position;
+- (void)updatePosition:(CGPoint)position;
+
+- (void)selectedRowWithIndexPath:(NSIndexPath *)indexPath;
+
+@property(nonatomic, strong) UITableView *tableView;
+
 
 @end

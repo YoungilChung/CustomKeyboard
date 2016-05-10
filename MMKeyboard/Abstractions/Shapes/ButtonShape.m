@@ -41,24 +41,24 @@
 	CGFloat paddingX = 0;
 
 
-	UIBezierPath *path = [UIBezierPath bezierPath];
+	self.path = [UIBezierPath bezierPath];
 //	minY = minY + 160;
 
-	[path moveToPoint:CGPointMake(minX, minY)];
+	[self.path moveToPoint:CGPointMake(minX, minY)];
 
-	[path addCurveToPoint:CGPointMake(minX + paddingX, buttonMinY) controlPoint1:CGPointMake(minX, minY) controlPoint2:CGPointMake(minX + 12, (CGFloat) (buttonMinY / 1.5))];
-	[path addLineToPoint:CGPointMake(minX + paddingX, maxY)];
-	[path addLineToPoint:CGPointMake(maxX - paddingX, maxY)];
-	[path addLineToPoint:CGPointMake(maxX - paddingX, buttonMinY)];
-	[path addCurveToPoint:CGPointMake(maxX, minY) controlPoint1:CGPointMake(maxX, buttonMinY) controlPoint2:CGPointMake(maxX - 12, (CGFloat) (buttonMinY / 1.5))];
-	[path closePath];
+	[self.path addCurveToPoint:CGPointMake(minX + paddingX, buttonMinY) controlPoint1:CGPointMake(minX, minY) controlPoint2:CGPointMake(minX + 12, (CGFloat) (buttonMinY / 1.5))];
+	[self.path addLineToPoint:CGPointMake(minX + paddingX, maxY)];
+	[self.path addLineToPoint:CGPointMake(maxX - paddingX, maxY)];
+	[self.path addLineToPoint:CGPointMake(maxX - paddingX, buttonMinY)];
+	[self.path addCurveToPoint:CGPointMake(maxX, minY) controlPoint1:CGPointMake(maxX, buttonMinY) controlPoint2:CGPointMake(maxX - 12, (CGFloat) (buttonMinY / 1.5))];
+	[self.path closePath];
 
 
 //	path.lineWidth = 2.0;
-	[path setLineJoinStyle:kCGLineJoinRound];
-	[path setLineCapStyle:kCGLineCapRound];
+	[self.path setLineJoinStyle:kCGLineJoinRound];
+	[self.path setLineCapStyle:kCGLineCapRound];
 	[[UIColor lightGrayColor] setFill];
-	[path fill];
+	[self.path fill];
 
 //	CGRect bounds = self.bounds;
 //	CGFloat xMax = CGRectGetMaxX(bounds);
@@ -78,7 +78,7 @@
 	[self.layer setShadowRadius:3.0f];
 	[self.layer setShouldRasterize:YES];
 	[self.layer setCornerRadius:4.0f];
-	[self.layer setShadowPath:path.CGPath];
+	[self.layer setShadowPath:self.path.CGPath];
 
 //	CGContextRef context = UIGraphicsGetCurrentContext();
 //	CGContextAddPath(context, path.CGPath);

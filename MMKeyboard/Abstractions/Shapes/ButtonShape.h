@@ -10,4 +10,5 @@
 
 @property (nonatomic, assign)CGRect buttonView;
 
+@property(nonatomic, strong) UIBezierPath *path;
 @end

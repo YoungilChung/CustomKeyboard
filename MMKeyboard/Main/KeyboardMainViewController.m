@@ -1,4 +1,3 @@
-
 //
 // Created by Tom Atterton on 31/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
@@ -20,6 +19,7 @@
 #import "MMKeyboardButtonView.h"
 #import "MMGIFButton.h"
 #import "RandomCategories.h"
+#import "NSUserDefaults+Keyboard.h"
 
 
 typedef enum {
@@ -58,8 +58,6 @@ typedef enum {
 @property(nonatomic, strong) NSString *primaryString;
 @property(nonatomic, assign) BOOL selectionShowing;
 @property(nonatomic, strong) NSMutableArray *lastKey;
-@property(nonatomic, strong) UILexicon *lexicon;
-
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *keyboardLeftConstraint;
@@ -67,14 +65,11 @@ typedef enum {
 @property(nonatomic, strong) NSLayoutConstraint *categoryLeftConstraint;
 
 @property(nonatomic, strong) UIView *tempView;
-@property(nonatomic) CGFloat savedOffset;
 @property(nonatomic) CGPoint lastRecognizedInterval;
-
-// Gestures
-@property(nonatomic, strong) UILongPressGestureRecognizer *optionsViewRecognizer;
-@property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
-
 @property(nonatomic, strong) MMKeyboardSelection *keyboardSelection;
+
+
+@property(nonatomic, strong) NSUserDefaults *mySharedDefaults;
 @end
 
 @implementation KeyboardMainViewController
@@ -86,14 +81,20 @@ typedef enum {
 	self.selectionShowing = NO;
 
 
+	self.mySharedDefaults = [[NSUserDefaults alloc] init];
+
+	if (!self.mySharedDefaults.language) {
+
+		[self.mySharedDefaults setLanguage:kChangeLanguageDutch];
+		[self.mySharedDefaults synchronize];
+	}
+
+
 	self.spellCheckerManager = [SpellCheckerManager new];
 	self.spellCheckerManager.delegate = self;
 	[self.spellCheckerManager loadForSpellCorrection];
 	[self.view setBackgroundColor:[UIColor grayColor]];
 
-	[self requestSupplementaryLexiconWithCompletion:^(UILexicon *lexicon) {
-		self.lexicon = lexicon;
-	}];
 	self.emojiKeyboardHolder = [UIView new];
 	self.emojiKeyboardHolder.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emojiKeyboardHolder.clipsToBounds = YES;
@@ -176,30 +177,17 @@ typedef enum {
 
 	self.searchHolder.gifButton.tag = kTagGIFKeyboard;
 
-//	UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-//	longPressGestureRecognizer.minimumPressDuration = 0.2;
-////	longPressGestureRecognizer.numberOfTouchesRequired = 1;
-////	[longPressGestureRecognizer setCancelsTouchesInView:NO];
-//	longPressGestureRecognizer.delegate = self;
-//	[self.view addGestureRecognizer:longPressGestureRecognizer];
-//	self.optionsViewRecognizer = longPressGestureRecognizer;
-
-
 	[self setupInputOptionsConfiguration];
 	self.lastKey = @[].mutableCopy;
-
-
-//	UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-//	panGestureRecognizer.minimumNumberOfTouches = 1;
-//	panGestureRecognizer.maximumNumberOfTouches = 1;
-////	[panGestureRecognizer setCancelsTouchesInView:NO];
-//	panGestureRecognizer.delegate = self;
-//	[self.view addGestureRecognizer:panGestureRecognizer];
-//	self.panGestureRecognizer = panGestureRecognizer;
 
 	UITapGestureRecognizer *tapping = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
 	tapping.delegate = self;
 	[self.keyboardView.spaceButton addGestureRecognizer:tapping];
+
+	UITapGestureRecognizer *spaceDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(spaceKeyDoubleTapped:)];
+	spaceDoubleTap.numberOfTapsRequired = 2;
+	[spaceDoubleTap setDelaysTouchesEnded:NO];
+	[self.keyboardView.spaceButton addGestureRecognizer:spaceDoubleTap];
 
 }
 
@@ -362,7 +350,7 @@ typedef enum {
 		NSDictionary *metrics = @{};
 		NSDictionary *views = @{@"selectionHolder" : self.selectionHolder, @"table" : self.keyboardSelection};
 
-		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[table(==80)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[table(==120)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 		[self.selectionHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:
 				@"H:|-0-[table]-0-|"                                                 options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
@@ -538,7 +526,6 @@ typedef enum {
 					else {
 
 						self.currentString = tokens.lastObject;
-//						self.currentString = self.currentString.length <= 0 ? @"" : [self.currentString substringToIndex:[self.currentString length] - 1];
 						NSLog(@"token %@", self.currentString);
 
 					}
@@ -629,6 +616,20 @@ typedef enum {
 	}
 
 }
+
+- (void)capsLock:(BOOL)isON {
+
+	if (isON) {
+
+
+	}
+	else {
+
+
+	}
+
+}
+
 
 - (void)searchBarTapped {
 
@@ -905,13 +906,6 @@ typedef enum {
 	return nil;
 }
 
-
-- (void)adjustTextPositionByCharacterOffset:(NSInteger)offset {
-
-
-}
-
-
 - (void)textDidChange:(id <UITextInput>)textInput {
 
 	self.lastKey = @[].mutableCopy;
@@ -932,49 +926,67 @@ typedef enum {
 
 	CGPoint translation = [gesture locationInView:self.view];
 
-	if (gesture.state == UIGestureRecognizerStateBegan) {
-		self.savedOffset = 0;
-		self.view.alpha = 0.3;
-		self.lastRecognizedInterval = [gesture locationInView:self.view];
+	switch (gesture.state) {
 
-	}
-	else if (gesture.state == UIGestureRecognizerStateChanged) {
+		case UIGestureRecognizerStateBegan: {
 
-		if (translation.x >= (self.lastRecognizedInterval.x + 3)) {
+			self.view.alpha = 0.3;
+			self.lastRecognizedInterval = [gesture locationInView:self.view];
 
-			[self.textDocumentProxy adjustTextPositionByCharacterOffset:1];
-			self.lastRecognizedInterval = CGPointMake(translation.x, 0);
+			break;
 		}
+		case UIGestureRecognizerStateChanged: {
 
-		else if (translation.x <= (self.lastRecognizedInterval.x - 3)) {
+			if (translation.x >= (self.lastRecognizedInterval.x + 3)) {
 
-			[self.textDocumentProxy adjustTextPositionByCharacterOffset:-1];
-			self.lastRecognizedInterval = CGPointMake(translation.x, 0);
+				[self.textDocumentProxy adjustTextPositionByCharacterOffset:1];
+				self.lastRecognizedInterval = CGPointMake(translation.x, 0);
+			}
+
+			else if (translation.x <= (self.lastRecognizedInterval.x - 3)) {
+
+				[self.textDocumentProxy adjustTextPositionByCharacterOffset:-1];
+				self.lastRecognizedInterval = CGPointMake(translation.x, 0);
+			}
+			break;
 		}
+		case UIGestureRecognizerStateEnded: {
 
-	}
-	else if (gesture.state == UIGestureRecognizerStateEnded) {
+			self.view.alpha = 1;
 
-		self.view.alpha = 1;
-
+			break;
+		}
 	}
 
 }
 
 - (void)longPressNext:(UILongPressGestureRecognizer *)gesture {
 
-	CGPoint translation = [gesture locationInView:self.view];
+	CGPoint translation = [gesture locationInView:self.keyboardSelection.tableView];
 
-	if (gesture.state == UIGestureRecognizerStateBegan) {
+	switch (gesture.state) {
 
-		[self setupSelection];
+		case UIGestureRecognizerStateBegan: {
+
+			[self setupSelection];
+
+			break;
+		}
+		case UIGestureRecognizerStateChanged: {
+
+
+			NSIndexPath *indexPath = [self.keyboardSelection.tableView indexPathForRowAtPoint:translation];
+			[self.keyboardSelection.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:nil];
+
+			break;
+		}
+		case UIGestureRecognizerStateEnded: {
+
+			[self.keyboardSelection selectedRowWithIndexPath:[self.keyboardSelection.tableView indexPathForSelectedRow]];
+			break;
+		}
 	}
-	else if (gesture.state == UIGestureRecognizerStateChanged)
-	{
-		[self.keyboardSelection updatePosition:translation];
 
-
-	}
 
 }
 
@@ -982,7 +994,6 @@ typedef enum {
 
 	// Used for space bar
 	[self keyWasTapped:@" "];
-
 }
 
 //
@@ -996,27 +1007,34 @@ typedef enum {
 
 	UILongPressGestureRecognizer *longPressGestureRecognizerNextKeyboard = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressNext:)];
 	longPressGestureRecognizerNextKeyboard.minimumPressDuration = 0.2;
-//	[longPressGestureRecognizerNextKeyboard setCancelsTouchesInView:NO];
 	longPressGestureRecognizerNextKeyboard.delegate = self;
 	[self.keyboardView.nextKeyboardButton addGestureRecognizer:longPressGestureRecognizerNextKeyboard];
 
-
 }
 
-//
-//
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//	return YES;
-//}
+- (void)spaceKeyDoubleTapped:(UITapGestureRecognizer *)gestureRecognizer {
+	[self.textDocumentProxy deleteBackward];
+	[self keyWasTapped:@"."];
+}
 
-//- (BOOL)                         gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-//shouldRecognizeSimultaneouslyWithGestureRecognizer:
-//		(UIGestureRecognizer *)otherGestureRecognizer {
-//	return YES;
-//////
-////	return (gestureRecognizer == _panGestureRecognizer || gestureRecognizer == _optionsViewRecognizer) &&
-////			(otherGestureRecognizer == _panGestureRecognizer || otherGestureRecognizer == _optionsViewRecognizer);
-//}
+- (void)changeLanguage:(changeLanguage)tag {
+
+	switch (tag) {
+		case kChangeLanguageEnglish: {
+
+			self.selectionShowing = NO;
+			[self.selectionHolder removeFromSuperview];
+			[self.mySharedDefaults setLanguage:kChangeLanguageDutch];
+			break;
+		}
+		case kChangeLanguageDutch: {
+
+			self.selectionShowing = NO;
+			[self.selectionHolder removeFromSuperview];
+			[self.mySharedDefaults setLanguage:kChangeLanguageEnglish];
+			break;
+		}
+	}
+}
 
 @end

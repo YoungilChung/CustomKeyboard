@@ -8,6 +8,7 @@
 
 @interface AutoCorrectCollectionView () <UIGestureRecognizerDelegate>
 \
+
 @property(nonatomic, strong) SuggestionView *secondaryHolder;
 @property(nonatomic, strong) SuggestionView *tertiaryHolder;
 @property(nonatomic, strong) SuggestionView *primaryHolder;
@@ -65,19 +66,28 @@
 
 	switch (section) {
 		case ksectionHeaderPrimary: {
-			[self.primaryHolder updateLabel:updatedText];
-			self.primaryString = updatedText;
+			dispatch_async(dispatch_get_main_queue(), ^{
 
+				[self.primaryHolder updateLabel:updatedText];
+				self.primaryString = updatedText;
+			});
 			break;
 		}
 		case ksectionHeaderSecondary: {
-			[self.secondaryHolder updateLabel:updatedText];
-			self.secondaryString = updatedText;
+
+			dispatch_async(dispatch_get_main_queue(), ^{
+
+				[self.secondaryHolder updateLabel:updatedText];
+				self.secondaryString = updatedText;
+			});
 			break;
 		}
 		case ksectionHeaderTertiary: {
-			[self.tertiaryHolder updateLabel:updatedText];
-			self.tertiaryString = updatedText;
+			dispatch_async(dispatch_get_main_queue(), ^{
+
+				[self.tertiaryHolder updateLabel:updatedText];
+				self.tertiaryString = updatedText;
+			});
 			break;
 		}
 	}
