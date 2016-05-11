@@ -43,7 +43,7 @@
 	[self.suggestionLabel setFont:[UIFont fontWithName:@"AmericanTypewriter" size:20]];
 	[self addSubview:self.suggestionLabel];
 
-	NSDictionary *views = @{@"suggestionLabel": self.suggestionLabel};
+	NSDictionary *views = @{@"suggestionLabel" : self.suggestionLabel};
 	NSDictionary *metrics = @{};
 
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[suggestionLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];

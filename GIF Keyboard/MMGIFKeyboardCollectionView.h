@@ -10,14 +10,14 @@
 @protocol KeyboardDelegate;
 
 typedef NS_ENUM(NSUInteger, MMSearchType) {
-	MMSearchTypeAll = 0,
+	MMSearchTypeAll = 200,
 	MMSearchTypeNormal,
 	MMSearchTypeAwesome,
 	MMSearchTypeGiphy,
 
 };
 
-@interface MMKeyboardCollectionView : UIView
+@interface MMGIFKeyboardCollectionView : UIView
 
 
 // Manger
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, MMSearchType) {
 // Variables
 @property(nonatomic, assign) CGSize keyboardCollectionViewSize;
 @property(nonatomic, strong) NSString *gifURL;
-@property(nonatomic, assign) MMSearchType type;
+@property(nonatomic, assign) NSUInteger type;
 @property(nonatomic, weak) id <KeyboardDelegate> keyboardDelegate;
 
 - (void)loadGIFS;

@@ -3,17 +3,17 @@
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
-#import "MMKeyboardCollectionViewCell.h"
+#import "MMGIFKeyboardCollectionViewCell.h"
 #import "FLAnimatedImageView.h"
 #import "FLAnimatedImage.h"
 
-@interface MMKeyboardCollectionViewCell()
+@interface MMGIFKeyboardCollectionViewCell ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 
 @end
-@implementation MMKeyboardCollectionViewCell
+@implementation MMGIFKeyboardCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -61,8 +61,8 @@
 - (void)setData:(NSString *)urlString {
 	self.imageView.alpha = 0.f;
 
-	dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue", NULL);
-	dispatch_async(imageQueue, ^{
+//	dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue", NULL);
+//	dispatch_async(imageQueue, ^{
 		NSURL *url = [NSURL URLWithString:urlString];
 		FLAnimatedImage *imageObject = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:url]];
 
@@ -72,7 +72,7 @@
 			self.imageView.alpha = 1.f;
 		});
 
-	});
+//	});
 }
 
 + (NSString *)reuseIdentifier {

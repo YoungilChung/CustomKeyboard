@@ -1,5 +1,5 @@
 //
-//  MMViewController.h
+//  MMCollectedGIFSViewController.h
 //  MMCustomKeyboard
 //
 //  Created by mm0030240 on 06/10/15.
@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, MMSearchType) {
 	MMSearchTypeAwesome = 930,
 
 };
-@interface MMViewController : UIViewController
+@interface MMCollectedGIFSViewController : UIViewController
 
 
 @end

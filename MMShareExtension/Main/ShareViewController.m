@@ -13,7 +13,7 @@
 #import "GIFEntity.h"
 #import "PopUpShareViewController.h"
 #import "ShareCollectionView.h"
-#import "MMKeyboardCollectionViewCell.h"
+#import "MMGIFKeyboardCollectionViewCell.h"
 
 @interface ShareViewController () <UIViewControllerPreviewingDelegate>
 
@@ -149,7 +149,7 @@
 
 	self.animatedImageView = [FLAnimatedImageView new];
 	self.animatedImageView.translatesAutoresizingMaskIntoConstraints = NO;
-	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.shareCollectionView.collectionView cellForItemAtIndexPath:self.shareCollectionView.currentIndexPath];
+	MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *) [self.shareCollectionView.collectionView cellForItemAtIndexPath:self.shareCollectionView.currentIndexPath];
 	[self.animatedImageView setContentMode:UIViewContentModeScaleToFill];
 	[self.animatedImageView setAnimatedImage:cell.imageView.animatedImage];
 

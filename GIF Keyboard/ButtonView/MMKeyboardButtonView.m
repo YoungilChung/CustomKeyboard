@@ -190,6 +190,12 @@
 
 - (void)onFacebookTapped:(UIButton *)sender {
 
+
+	self.userInfo = @{@"iconPressed" : @"url saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+	self.hidden = YES;
+
+
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	NSData *data = [NSData dataWithContentsOfURL:url];
 	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
@@ -200,6 +206,12 @@
 }
 
 - (void)onWhatsAppTapped:(UIButton *)sender {
+
+	self.userInfo = @{@"iconPressed" : @"url saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+
+	self.hidden = YES;
+
 	NSURL *whatsappURL = [NSURL URLWithString:[NSString stringWithFormat:@"whatsapp://send?text=%@", self.gifUrl]];
 	[self toApp:whatsappURL];
 }
@@ -207,6 +219,11 @@
 - (void)onHipchatTapped:(UIButton *)sender {
 	NSURL *url = [[NSURL alloc] initWithString:self.gifUrl];
 	[[UIPasteboard generalPasteboard] setURL:url];
+
+	self.userInfo = @{@"iconPressed" : @"url saved"};
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"closeSubview" object:self userInfo:self.userInfo];
+
+	self.hidden = YES;
 
 	NSURL *hipChatURL = [NSURL URLWithString:[NSString stringWithFormat:@"hipchat://send?text=%@", self.gifUrl]];
 	[self toApp:hipChatURL];

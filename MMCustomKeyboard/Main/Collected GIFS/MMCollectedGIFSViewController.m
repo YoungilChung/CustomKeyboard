@@ -1,25 +1,25 @@
 //
-//  MMViewController.m
+//  MMCollectedGIFSViewController.m
 //  MMCustomKeyboard
 //
 //  Created by mm0030240 on 06/10/15.
 //  Copyright © 2015 mm0030240. All rights reserved.
 //
 
-#import "MMViewController.h"
+#import "MMCollectedGIFSViewController.h"
 #import "FLAnimatedImage.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
 #import "MMCollectionViewFlowLayout.h"
 #import "MMPreviewViewController.h"
-#import "MMKeyboardCollectionViewCell.h"
+#import "MMGIFKeyboardCollectionViewCell.h"
 
-@interface MMViewController () <UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
+@interface MMCollectedGIFSViewController () <UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 
 // Views
 @property(strong, nonatomic) UICollectionView *collectionView;
 @property(nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
-@property(strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+//@property(strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 // Variables
 @property(strong, nonatomic) FLAnimatedImage *image;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation MMViewController
+@implementation MMCollectedGIFSViewController
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -62,7 +62,7 @@
 	[self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
 
 	self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:self.flowLayout];
-	[self.collectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
+	[self.collectionView registerClass:[MMGIFKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier]];
 	self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.collectionView.backgroundColor = [UIColor blackColor];
 	[self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, 60, 0)];
@@ -70,43 +70,72 @@
 	self.collectionView.dataSource = self;
 	[self.view addSubview:self.collectionView];
 
-	NSDictionary *views = @{@"collection" : self.collectionView, @"topGuide" : self.topLayoutGuide};
-	NSDictionary *metrics = @{@"padding" : @(10)};
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
+	UIView *holder = [UIView new];
+	holder.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addSubview:holder];
+
+	UIButton *allButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	allButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[allButton setTitle:@"All" forState:UIControlStateNormal];
+	[allButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[allButton setBackgroundColor:[UIColor lightGrayColor]];
+	[allButton addTarget:self action:@selector(allButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	allButton.layer.cornerRadius = 10;
+	[holder addSubview:allButton];
+
+	UIButton *normalButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	normalButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[normalButton setTitle:@"Normal" forState:UIControlStateNormal];
+	[normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[normalButton setBackgroundColor:[UIColor lightGrayColor]];
+	[normalButton addTarget:self action:@selector(normalButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	normalButton.layer.cornerRadius = 10;
+	[holder addSubview:normalButton];
+
+	UIButton *awesomeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	awesomeButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[awesomeButton setTitle:@"Awesome" forState:UIControlStateNormal];
+	[awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[awesomeButton setBackgroundColor:[UIColor lightGrayColor]];
+	[awesomeButton addTarget:self action:@selector(awesomeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+	awesomeButton.layer.cornerRadius = 10;
+	[holder addSubview:awesomeButton];
+
+	id topGuide = self.topLayoutGuide;
+
+	NSDictionary *views = @{@"collection" : self.collectionView, @"holder" : holder, @"allButton" : allButton, @"normalButton" : normalButton, @"awesomeButton" : awesomeButton};
+	NSDictionary *metrics = @{@"padding" : @(10), @"topGuide": @((NSInteger)topGuide)};
+
+
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[holder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(20)-[holder]-10-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[allButton(==awesomeButton)]-5-[normalButton(==allButton)]-5-[awesomeButton(allButton)]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[allButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[normalButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[awesomeButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 }
+
 
 #pragma mark Actions
 
-- (IBAction)segmentController_Tapped:(UISegmentedControl *)sender {
+- (void)allButtonTapped:(UIButton *)sender {
 
-	switch (sender.selectedSegmentIndex) {
-
-
-		case 0: {
-
-			[self newType:MMSearchTypeAll];
-			break;
-
-		}
-		case 1: {
-			[self newType:MMSearchTypeNormal];
-
-			break;
-
-
-		}
-		case 2: {
-
-			[self newType:MMSearchTypeAwesome];
-			break;
-		}
-
-		default:
-			break;
-	}
+	[self newType:MMSearchTypeAll];
 }
+
+- (void)normalButtonTapped:(UIButton *)sender {
+
+	[self newType:MMSearchTypeNormal];
+}
+
+- (void)awesomeButtonTapped:(UIButton *)sender {
+
+	[self newType:MMSearchTypeAwesome];
+}
+
 
 - (void)newType:(MMSearchType)type {
 
@@ -138,7 +167,6 @@
 
 				case MMSearchTypeAll: {
 					[self.data addObject:entity];
-					NSLog(@"%@", entity);
 					break;
 				}
 				case MMSearchTypeNormal: {
@@ -176,7 +204,7 @@
 
 //- (UICollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //
-//	MMKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//	MMGIFKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 //	[cell setBackgroundColor:[UIColor clearColor]];
 //
 //	[cell setData:[self.data valueForKey:@"gifURL"][(NSUInteger) indexPath.row]];
@@ -185,9 +213,9 @@
 //
 //}
 
-- (MMKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (MMGIFKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-	MMKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 
 	[cell setBackgroundColor:[UIColor clearColor]];
 
@@ -225,11 +253,10 @@
 }
 
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 
-	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
 //	entity[indexPath.row];
 	MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:cell.imageView.animatedImage withGifEntity:self.data[(NSUInteger) indexPath.row]];
 	viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;

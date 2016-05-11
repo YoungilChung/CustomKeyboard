@@ -21,8 +21,6 @@
 	NSArray *results = @[];
 	NSDictionary *dictResults = [parsedObject valueForKey:@"data"];
 
-	NSLog(@"it came here %@", objectNotation);
-
 	switch (searchType) {
 
 		case kSearchTypeString:

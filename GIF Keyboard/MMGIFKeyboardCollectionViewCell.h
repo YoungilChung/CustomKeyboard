@@ -8,7 +8,7 @@
 
 @class FLAnimatedImageView;
 
-@interface MMKeyboardCollectionViewCell : UICollectionViewCell
+@interface MMGIFKeyboardCollectionViewCell : UICollectionViewCell
 
 + (NSString *)reuseIdentifier;
 @property (nonatomic, strong) FLAnimatedImageView *imageView;

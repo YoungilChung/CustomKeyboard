@@ -286,7 +286,6 @@ typedef enum {
 	else {
 
 		[self.shiftButton setBackgroundColor:[UIColor colorWithPatternImage:[self createImageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]]]];
-		[self.keyboardDelegate capsLock:YES];
 		self.capsLockIsOn = YES;
 	}
 

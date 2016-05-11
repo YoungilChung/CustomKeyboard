@@ -3,14 +3,14 @@
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
-#import "MMKeyboardCollectionViewFlowLayout.h"
+#import "MMGIFKeyboardCollectionViewFlowLayout.h"
 
-@interface MMKeyboardCollectionViewFlowLayout ()
+@interface MMGIFKeyboardCollectionViewFlowLayout ()
 @property(nonatomic, strong) NSIndexPath *pathForFocusItem;
 
 @end
 
-@implementation MMKeyboardCollectionViewFlowLayout
+@implementation MMGIFKeyboardCollectionViewFlowLayout
 
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)offset
 								 withScrollingVelocity:(CGPoint)velocity {

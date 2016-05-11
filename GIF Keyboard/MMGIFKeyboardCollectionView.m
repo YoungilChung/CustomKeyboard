@@ -1,17 +1,15 @@
-
-
 //
 // Created by Tom Atterton on 16/03/16.
 // Copyright (c) 2016 mm0030240. All rights reserved.
 //
 
-#import "MMKeyboardCollectionView.h"
-#import "MMKeyboardCollectionViewCell.h"
+#import "MMGIFKeyboardCollectionView.h"
+#import "MMGIFKeyboardCollectionViewCell.h"
 #import "AFURLSessionManager.h"
 #import "MMKeyboardButtonView.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
-#import "MMKeyboardCollectionViewFlowLayout.h"
+#import "MMGIFKeyboardCollectionViewFlowLayout.h"
 #import "SearchGIFManager.h"
 #import "MMAlphaKeyboardView.h"
 #import "KeyboardDelegate.h"
@@ -21,11 +19,11 @@
 #import "EmptyGIFCell.h"
 
 
-@interface MMKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate,
+@interface MMGIFKeyboardCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate,
 		UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate, SearchMangerDelegate>
 
 // View
-@property(nonatomic, strong) MMKeyboardCollectionViewFlowLayout *collectionFlowLayout;
+@property(nonatomic, strong) MMGIFKeyboardCollectionViewFlowLayout *collectionFlowLayout;
 @property(nonatomic, strong) EmptyGIFCell *emptyCellView;
 
 
@@ -42,7 +40,7 @@
 @end
 
 
-@implementation MMKeyboardCollectionView
+@implementation MMGIFKeyboardCollectionView
 
 
 - (instancetype)init {
@@ -71,7 +69,7 @@
 
 	self.gifHolder = @{}.mutableCopy;
 
-	self.collectionFlowLayout = [MMKeyboardCollectionViewFlowLayout new];
+	self.collectionFlowLayout = [MMGIFKeyboardCollectionViewFlowLayout new];
 	[self.collectionFlowLayout setMinimumInteritemSpacing:0];
 	[self.collectionFlowLayout setMinimumLineSpacing:0];
 	[self.collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -79,7 +77,7 @@
 	self.keyboardCollectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:self.collectionFlowLayout];
 
 	self.keyboardCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.keyboardCollectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
+	[self.keyboardCollectionView registerClass:[MMGIFKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier]];
 	self.keyboardCollectionView.backgroundColor = [UIColor blackColor];
 	self.keyboardCollectionView.delegate = self;
 	self.keyboardCollectionView.dataSource = self;
@@ -121,8 +119,9 @@
 
 	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)];
 
-	if (tempArray.count == 0) {
+	if (tempArray.count == 0 && self.data.count == 0) {
 		NSLog(@"Empty");
+		[self loadEmptyCell];
 	}
 	else {
 
@@ -138,11 +137,19 @@
 					if ([entity.gifCategory isEqualToString:@"Normal"]) {
 						[self.data addObject:entity];
 					}
+
+					else {
+						[self loadEmptyCell];
+					}
+
 					break;
 				}
 				case MMSearchTypeAwesome: {
 					if ([entity.gifCategory isEqualToString:@"Awesome"]) {
 						[self.data addObject:entity];
+					}
+					else {
+						[self loadEmptyCell];
 					}
 
 					break;
@@ -155,6 +162,10 @@
 			}
 
 		}];
+		if (self.data.count > 0) {
+
+			[self.emptyCellView removeFromSuperview];
+		}
 	}
 
 	[self.keyboardCollectionView reloadData];
@@ -165,17 +176,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-	if (self.data.count == 0) {
-
-		[self loadEmptyCell];
-
-		return 0;
-	}
-	else {
-
-		[self.emptyCellView removeFromSuperview];
-
-	}
 	return self.data ? self.data.count : 0;
 }
 
@@ -185,9 +185,9 @@
 
 }
 
-- (MMKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (MMGIFKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-	MMKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 
 	[cell setBackgroundColor:[UIColor clearColor]];
 
@@ -201,11 +201,16 @@
 		cell.imageView.alpha = 1.f;
 		return cell;
 	}
+//	dispatch_async(dispatch_get_main_queue(), ^{
 
 	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage) {
 
 		if (self.type == MMSearchTypeGiphy) {
-			[self.gifHolder setValue:tempImage forKey:self.data[item]];
+            if(self.data)
+            {
+                [self.gifHolder setValue:tempImage forKey:self.data[item]];
+
+            }
 		}
 		else {
 			if (item) {
@@ -217,6 +222,7 @@
 		cell.imageView.alpha = 1.f;
 		[cell.imageView setAnimatedImage:tempImage];
 	}];
+//	});
 
 	[cell layoutIfNeeded];
 	return cell;
@@ -224,15 +230,18 @@
 
 - (void)loadGifItem:(NSUInteger)item callback:(void (^)(FLAnimatedImage *image))callback {
 	NSURL *url;
+
 	if (item < self.data.count) {
 
 		if (self.type == MMSearchTypeGiphy) {
 
 			url = [[NSURL alloc] initWithString:self.data[item]];
 		}
+
 		else {
 			url = [[NSURL alloc] initWithString:[self.data valueForKey:@"gifURL"][item]];
 		}
+
 		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
 		NSURLSession *session = [NSURLSession sharedSession];
 		NSURLSessionDataTask *task = [session dataTaskWithRequest:urlRequest
@@ -244,8 +253,8 @@
 														}];
 		[task resume];
 
-
 	}
+
 }
 
 
@@ -265,14 +274,14 @@
 	}
 
 	[self.keyboardDelegate cellWasTapped:self.gifURL WithMessageTitle:@"URL Copied"];
-	MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
 	[self.buttonCopyView removeFromSuperview];
 
 	self.buttonCopyView = [[UIView alloc] init];
 	self.buttonCopyView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.buttonCopyView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8]];
 	[cell addSubview:self.buttonCopyView];
-	
+
 	UIButton *copyButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	copyButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[copyButton setTitle:@"Copy" forState:UIControlStateNormal];
@@ -280,13 +289,13 @@
 	[copyButton addTarget:self action:@selector(copyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[copyButton.layer setBorderColor:[UIColor whiteColor].CGColor];
 	[self.buttonCopyView addSubview:copyButton];
-	
+
 	NSDictionary *metrics = @{};
-	NSDictionary *views = @{@"buttonCopyView": self.buttonCopyView, @"copyButton": copyButton};
+	NSDictionary *views = @{@"buttonCopyView" : self.buttonCopyView, @"copyButton" : copyButton};
 
 	[cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[buttonCopyView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonCopyView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	
+
 	[self.buttonCopyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=0)-[copyButton]-(>=0)-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.buttonCopyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[copyButton]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self.buttonCopyView addConstraint:[NSLayoutConstraint constraintWithItem:copyButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.buttonCopyView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
@@ -310,7 +319,7 @@
 
 			CGPoint p = [sender locationInView:self.keyboardCollectionView];
 			NSIndexPath *indexPath = [self.keyboardCollectionView indexPathForItemAtPoint:p];
-			MMKeyboardCollectionViewCell *cell = (MMKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
+			MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *) [self.keyboardCollectionView cellForItemAtIndexPath:indexPath];
 
 
 			if (indexPath == nil) {
@@ -357,16 +366,28 @@
 	return _fetchedResultsController;
 }
 
+#pragma mark Search Manager Delegate
 
 - (void)didReceiveGIFS:(NSArray *)groups {
-
+	self.data = [@[] mutableCopy];
 	if (groups) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.type = MMSearchTypeGiphy;
-			self.data = [groups mutableCopy];
-			[self.emptyCellView removeFromSuperview];
-			NSLog(@"%@",groups);
-			[self.keyboardCollectionView reloadData];
+			if (self.type == MMSearchTypeGiphy) {
+				self.data = [groups mutableCopy];
+				[self.emptyCellView removeFromSuperview];
+				[self.keyboardCollectionView reloadData];
+//			[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
+
+			}
+			else {
+				self.type = MMSearchTypeGiphy;
+				self.data = [groups mutableCopy];
+				[self.emptyCellView removeFromSuperview];
+				[self.keyboardCollectionView reloadData];
+//			[self.keyboardCollectionView.collectionViewLayout invalidateLayout];
+
+			}
+
 		});
 
 	}
@@ -377,6 +398,8 @@
 	NSLog(@"Error %@; %@", error, [error localizedDescription]);
 }
 
+
+#pragma mark Helper
 
 - (void)loadEmptyCell {
 
@@ -390,5 +413,7 @@
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[emptyCellView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 }
+
+
 
 @end

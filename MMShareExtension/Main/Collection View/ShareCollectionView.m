@@ -8,7 +8,7 @@
 #import "ShareCollectionFlowLayout.h"
 #import "CoreDataStack.h"
 #import "GIFEntity.h"
-#import "MMKeyboardCollectionViewCell.h"
+#import "MMGIFKeyboardCollectionViewCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIImage+emoji.h"
 #import "FLAnimatedImage.h"
@@ -55,7 +55,7 @@
 	self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 
 	self.collectionView.clipsToBounds = YES;
-	[self.collectionView registerClass:[MMKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier]];
+	[self.collectionView registerClass:[MMGIFKeyboardCollectionViewCell class] forCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier]];
 	self.collectionView.backgroundColor = [UIColor blackColor];
 	[self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	self.collectionView.delegate = self;
@@ -110,7 +110,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-	MMKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 	[cell setBackgroundColor:[UIColor clearColor]];
 
 	[cell setData:self.data[(NSUInteger) indexPath.row]];
@@ -118,9 +118,9 @@
 	return cell;
 }
 
-//- (MMKeyboardCollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//- (MMGIFKeyboardCollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //
-//	MMKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+//	MMGIFKeyboardCollectionViewCell *cell = [gifKeyboardView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 //
 //	[cell setBackgroundColor:[UIColor clearColor]];
 //

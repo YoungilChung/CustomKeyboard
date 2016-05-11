@@ -31,6 +31,4 @@
 
 - (void)didEnterButtonViewWithURL:(NSString *)gifURL withEntity:(GIFEntity *)entity withImage:(FLAnimatedImage *)animatedImage;
 
-- (void)capsLock:(BOOL)isON;
-
 @end

@@ -8,9 +8,9 @@
 #import "MMAlphaKeyboardView.h"
 #import "SearchBarView.h"
 #import "MMKeyboardButton.h"
-#import "MMKeyboardCollectionView.h"
+#import "MMGIFKeyboardCollectionView.h"
 #import "SearchGIFManager.h"
-#import "CategoryHolder.h"
+#import "MMGIFCategoryHolder.h"
 #import "SpellCheckerManager.h"
 #import "AutoCorrectCollectionView.h"
 #import "MMCustomTextField.h"
@@ -40,9 +40,9 @@ typedef enum {
 // Views
 @property(nonatomic, strong) MMAlphaKeyboardView *keyboardView;
 @property(nonatomic, strong) SearchBarView *searchHolder;
-@property(nonatomic, strong) CategoryHolder *categoryHolderView;
+@property(nonatomic, strong) MMGIFCategoryHolder *categoryHolderView;
 @property(nonatomic, strong) UIView *gifKeyboardHolder;
-@property(nonatomic, strong) MMKeyboardCollectionView *gifKeyboardView;
+@property(nonatomic, strong) MMGIFKeyboardCollectionView *gifKeyboardView;
 @property(nonatomic, strong) AutoCorrectCollectionView *autoCorrectCollectionView;
 @property(nonatomic, strong) SpellCheckerManager *spellCheckerManager;
 @property(nonatomic, strong) UIView *emojiKeyboardHolder;
@@ -126,7 +126,7 @@ typedef enum {
 	[self.searchHolder.gifButton addTarget:self action:@selector(changeKeyboardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.searchHolder];
 
-	self.categoryHolderView = [CategoryHolder new];
+	self.categoryHolderView = [MMGIFCategoryHolder new];
 	self.categoryHolderView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.categoryHolderView.clipsToBounds = YES;
 	[self.categoryHolderView.trendingButton addTarget:self action:@selector(trendingButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -143,7 +143,7 @@ typedef enum {
 	[self.view addSubview:self.gifKeyboardHolder];
 
 
-	self.gifKeyboardView = [[MMKeyboardCollectionView alloc] init];
+	self.gifKeyboardView = [[MMGIFKeyboardCollectionView alloc] init];
 	self.gifKeyboardView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.gifKeyboardView.clipsToBounds = YES;
 	self.gifKeyboardView.keyboardDelegate = self;
@@ -379,6 +379,7 @@ typedef enum {
 
 
 	switch (tag) {
+
 		case kTagGIFKeyboard: {
 
 
@@ -447,15 +448,18 @@ typedef enum {
 #pragma mark GifKeyboard Actions
 
 - (void)trendingButtonTapped:(UIButton *)sender {
+
+	self.gifKeyboardView.type = MMSearchTypeGiphy;
 	[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:nil withSearchType:kSearchTypeTrending];
-	[self animateKeyboard:kTagGIFKeyboard];
+//	[self animateKeyboard:kTagGIFKeyboard];
 
 }
 
 - (void)randomButtonTapped:(UIButton *)sender {
-
+	self.gifKeyboardView.type = MMSearchTypeGiphy;
 	[self.gifKeyboardView.searchManager fetchGIFSForSearchQuery:[RandomCategories searchString] withSearchType:kSearchTypeString];
-	[self animateKeyboard:kTagGIFKeyboard];
+//	[self animateKeyboard:kTagGIFKeyboard];
+
 }
 
 - (void)allButtonTapped:(UIButton *)sender {
@@ -616,20 +620,6 @@ typedef enum {
 	}
 
 }
-
-- (void)capsLock:(BOOL)isON {
-
-	if (isON) {
-
-
-	}
-	else {
-
-
-	}
-
-}
-
 
 - (void)searchBarTapped {
 
@@ -886,6 +876,12 @@ typedef enum {
 	if ([self.userInfo[@"iconPressed"] isEqualToString:@"copied"]) {
 
 		[self loadMessage:self.userInfo[@"iconPressed"]];
+		[[UIPasteboard generalPasteboard] setString:self.gifURL];
+	}
+
+	if ([self.userInfo[@"iconPressed"] isEqualToString:@"url saved"]) {
+
+		[self loadMessage:@"URL Copied"];
 		[[UIPasteboard generalPasteboard] setString:self.gifURL];
 	}
 

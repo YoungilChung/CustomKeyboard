@@ -8,7 +8,7 @@
 
 @class MMKeyboardButton;
 
-@interface CategoryHolder : UIView
+@interface MMGIFCategoryHolder : UIView
 @property(nonatomic, strong) UIButton *trendingButton;
 @property(nonatomic, strong) UIButton *randomButton;
 @property(nonatomic, strong) UIButton *allButton;
