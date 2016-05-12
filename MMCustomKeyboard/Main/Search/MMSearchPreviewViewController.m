@@ -96,6 +96,30 @@
 	bottomHolderView.clipsToBounds = YES;
 	[holderView addSubview:bottomHolderView];
 
+	UILabel *shareLabel = [UILabel new];
+	shareLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	[shareLabel setText:@"Share this is GIF"];
+	[shareLabel setTextAlignment:NSTextAlignmentCenter];
+	[shareLabel setTextColor:[UIColor whiteColor]];
+	[shareLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
+	[holderView addSubview:shareLabel];
+
+	UILabel *saveGIFLabel = [UILabel new];
+	saveGIFLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	[saveGIFLabel setText:@"Save this GIF"];
+	[saveGIFLabel setTextAlignment:NSTextAlignmentCenter];
+	[saveGIFLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
+	[saveGIFLabel setTextColor:[UIColor whiteColor]];
+	[holderView addSubview:saveGIFLabel];
+
+	UILabel *copyGIFLabel = [UILabel new];
+	copyGIFLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	[copyGIFLabel setText:@"Copy this GIF"];
+	[copyGIFLabel setTextAlignment:NSTextAlignmentCenter];
+	[copyGIFLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
+	[copyGIFLabel setTextColor:[UIColor whiteColor]];
+	[holderView addSubview:copyGIFLabel];
+
 	UIButton *hipchatButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	hipchatButton.translatesAutoresizingMaskIntoConstraints = NO;
 	[hipchatButton setImage:[UIImage imageNamed:@"newHipchat"] forState:UIControlStateNormal];
@@ -136,6 +160,7 @@
 
 
 	NSDictionary *views = @{@"holder" : holderView, @"imageView" : animatedImageView,
+			@"shareLabel" : shareLabel, @"saveLabel" : saveGIFLabel, @"copyLabel" : copyGIFLabel,
 			@"topHolder" : topHolderView, @"bottomHolder" : bottomHolderView,
 			@"facebookBtn" : facebookButton, @"hipchatBtn" : hipchatButton, @"whatsAppBtn" : whatsAppButton, @"saveGif" : sendGifButton, @"sendUrl" : sendUrlButton, @"close" : closeButton};
 	NSDictionary *metrics = @{@"padding" : @(15), @"paddingTop" : @30.0f};
@@ -171,7 +196,12 @@
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[topHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bottomHolder]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(230)]-(20)-[topHolder(>=70)]-10-[bottomHolder(topHolder)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[shareLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+//	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[saveLabel]-5-[copyLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holderView addConstraint:[NSLayoutConstraint constraintWithItem:saveGIFLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sendGifButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+	[holderView addConstraint:[NSLayoutConstraint constraintWithItem:copyGIFLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:sendUrlButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(230)]-(15)-[shareLabel]-5-[topHolder(>=50)]-10-[bottomHolder(topHolder)]-5-[saveLabel]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(230)]-(15)-[shareLabel]-5-[topHolder(>=50)]-10-[bottomHolder(topHolder)]-5-[copyLabel]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 }
 

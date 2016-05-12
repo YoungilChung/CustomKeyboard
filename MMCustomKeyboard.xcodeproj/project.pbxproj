@@ -73,6 +73,7 @@
 		9A18A6271CAA882000D6A6F9 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A18A5E91CAA87C700D6A6F9 /* SF-UI-Text-Semibold.otf */; };
 		9A27C6CF1C9976F30005766A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */; };
 		9A27C6D01C9976F40005766A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7FC1C61C980B3A00E7CEB1 /* Localizable.strings */; };
+		9A2B57F31CE4817300F2100A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9A2B57F21CE4817300F2100A /* Settings.bundle */; };
 		9A30D4261CC67CB100571C8C /* wiki-100k.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9A30D4251CC67CB100571C8C /* wiki-100k.txt */; };
 		9A38148A1CE33A310076B14C /* MMCollectedGIFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36162F2302BBA9D7D2BA8 /* MMCollectedGIFSViewController.m */; };
 		9A38148B1CE33A320076B14C /* MMCollectedGIFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36162F2302BBA9D7D2BA8 /* MMCollectedGIFSViewController.m */; };
@@ -102,6 +103,7 @@
 		C3C3602186A3EF4B71E9B5DE /* icon-close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C36E95AF253D52DD7666EF /* icon-close.pdf */; };
 		C3C36027B2540765961AC085 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C36028029D26D0204DD0AF /* MMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36996E5FE1EF6AF1379E5 /* MMSearchViewController.m */; };
+		C3C3603EB0760AB88EA19DD2 /* MMSettingsSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CE74493A1DA9A3142AA /* MMSettingsSubtitle.m */; };
 		C3C360573CBA9913AB46B4C5 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36BD0E9DDA9D747FF00BA /* PopupView.m */; };
 		C3C3608DFFD120A4D9499390 /* SpellCheckerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C362282B453C94B1B4C8BD /* SpellCheckerManager.m */; };
 		C3C360A69782ECEA7659FA1A /* RandomCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36888BC272D3B167810B4 /* RandomCategories.m */; };
@@ -109,6 +111,7 @@
 		C3C36108F7441A1C80B44792 /* copyFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */; };
 		C3C3610A89A7BE7DC84F8EFB /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
 		C3C36134DE1A2D170400F69D /* MMGIFKeyboardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C3380DB2D8748DA26C /* MMGIFKeyboardCollectionViewCell.m */; };
+		C3C36149B25420BACC20D078 /* MMSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36440CA80650841DF1C14 /* MMSettingsTableViewCell.m */; };
 		C3C3614FCB1E1BA9CBB71F45 /* SearchGIFSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364103D64CCD8B1167010 /* SearchGIFSController.m */; };
 		C3C36158C9210A6D1DCA13A6 /* MMGIFKeyboardCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364723960A9553CD744B5 /* MMGIFKeyboardCollectionViewFlowLayout.m */; };
 		C3C3616261688D2515677B7E /* MMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36996E5FE1EF6AF1379E5 /* MMSearchViewController.m */; };
@@ -127,6 +130,7 @@
 		C3C3621E2CD7124B17869683 /* MMKeyboardKeysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367CA6BA815822353F272 /* MMKeyboardKeysModel.m */; };
 		C3C362408E1A70C87629D109 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C362433F05B96769A8E9B7 /* MMButtonViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C363B4DDEED79B9C04C33E /* MMButtonViewCollectionViewCell.m */; };
+		C3C36254BF9D65FC028A567F /* MMSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36440CA80650841DF1C14 /* MMSettingsTableViewCell.m */; };
 		C3C36282A6EF8A0157387202 /* greenTick.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */; };
 		C3C36294E29CE84896848455 /* AutoCorrectCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36B4BB177DBC4C12F6740 /* AutoCorrectCollectionView.m */; };
 		C3C36298CB2CC2BB9881652A /* MMKeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F54AFE575612002B755 /* MMKeyboardButtonView.m */; };
@@ -173,6 +177,7 @@
 		C3C366F27D84E2CA0550D744 /* MMButtonViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C363B4DDEED79B9C04C33E /* MMButtonViewCollectionViewCell.m */; };
 		C3C366F2C83B7FE82E67D745 /* icon-delete.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C3C365556A60DB36ADAACBC1 /* icon-delete.pdf */; };
 		C3C36750103B75A7A312E64C /* MMKeyboardSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36FBD234E654D1196A87A /* MMKeyboardSelection.m */; };
+		C3C3676563E647C59001F236 /* MMSettingsSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CE74493A1DA9A3142AA /* MMSettingsSubtitle.m */; };
 		C3C3676B0AA3AEEDEFC5E61A /* unnamed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C369902F1F7CB1FA29388B /* unnamed@2x.png */; };
 		C3C367B0C5CAA006F0409AB2 /* PopupButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364E0F3F5A2BE4E26E2B7 /* PopupButtonView.m */; };
 		C3C367CBA1C1137B251AF676 /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C360DA27C2E3A79FF219D9 /* MMSettingsViewController.m */; };
@@ -185,12 +190,15 @@
 		C3C3681D9E3E9F45E4788484 /* MMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36C67F4EACBB75541DCD3 /* MMMainViewController.m */; };
 		C3C3681DAD8B31BB6FB9B993 /* testfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3C3660166C01B0CFA371298 /* testfile.txt */; };
 		C3C3682A22AC75B2F7E22958 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
+		C3C368416B86D466A662D1BD /* MMSettingsSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CE74493A1DA9A3142AA /* MMSettingsSubtitle.m */; };
 		C3C368638E167098B28F4442 /* MMEmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C367C42D8C1BD006E89291 /* MMEmojiCollectionView.m */; };
 		C3C368736746CC9307526561 /* NextKeyboardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */; };
+		C3C3689F1970A450F5CDA593 /* MMSettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E18C7C6A2E40709F4E1 /* MMSettingsData.m */; };
 		C3C368B49B12D796EAEA5FBB /* PopUpShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C368868A8123A9962F7471 /* PopUpShareViewController.m */; };
 		C3C368EA6D752F8147F12EF8 /* MMEmojiCollectionViewMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3655FCD2F4671E20DDA24 /* MMEmojiCollectionViewMainCell.m */; };
 		C3C3690AC761022D477FDCE7 /* NSUserDefaults+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C364C16767F5114C36A86E /* NSUserDefaults+Keyboard.m */; };
 		C3C3690EB1B45F25A215E240 /* MMKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F27B8911574E6D09CC4 /* MMKeyboardButton.m */; };
+		C3C369167C29FC889E518847 /* MMSettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E18C7C6A2E40709F4E1 /* MMSettingsData.m */; };
 		C3C3694AD2EC0CBF6EFB8B6D /* MMKeyboardButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36F54AFE575612002B755 /* MMKeyboardButtonView.m */; };
 		C3C3695D5F44020315EA5EB0 /* MMEmojiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36FC83581D936E0C80134 /* MMEmojiCollectionViewCell.m */; };
 		C3C3695F377AC88E3E7F769B /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */; };
@@ -209,6 +217,7 @@
 		C3C36A7E505947B78B3236D5 /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
 		C3C36A9716ABFCCDC6B77794 /* MMAlphaKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3681BD67B71D545DAFAEA /* MMAlphaKeyboardView.m */; };
 		C3C36A976A4FF0032FA2EE26 /* ShareCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C361001BC34D72C10B1D33 /* ShareCollectionFlowLayout.m */; };
+		C3C36A9F1FE324FA790ADB09 /* MMSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36440CA80650841DF1C14 /* MMSettingsTableViewCell.m */; };
 		C3C36AA5095C250A3A2A86FF /* newWhatsAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */; };
 		C3C36AEBC96B8AB9109FCBC7 /* SearchForGIFSCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DEF44FD45676B2403A2 /* SearchForGIFSCommunicator.m */; };
 		C3C36B0AEAD333343A00E424 /* newHipchat.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C3625E75DF10647834B18B /* newHipchat.png */; };
@@ -251,6 +260,7 @@
 		C3C36E7D2BB108215E1AF774 /* ShareCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C360D145368CE6EBE40A89 /* ShareCollectionView.m */; };
 		C3C36F0E5AA46103CF0F7045 /* MMEmojiCollectionViewMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3655FCD2F4671E20DDA24 /* MMEmojiCollectionViewMainCell.m */; };
 		C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C36B8D52AFE38F4BB0832F /* downloadIcon.png */; };
+		C3C36F3B502A13D12077B448 /* MMSettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36E18C7C6A2E40709F4E1 /* MMSettingsData.m */; };
 		C3C36F6AE65F63354BA64143 /* MMGIFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C3614A38653323AF0B67BB /* MMGIFButton.m */; };
 		C3C36F78E675BC5296A3C2AE /* MMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36A77ED95C764E65DD8D7 /* MMCustomTextField.m */; };
 		C3C36F7CA433D3A3AFE35C41 /* SuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C36DD7226C24445091C6B1 /* SuggestionView.m */; };
@@ -357,6 +367,7 @@
 		9A18A5E81CAA87C700D6A6F9 /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-RegularItalic.otf"; path = "../../SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		9A18A5E91CAA87C700D6A6F9 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Semibold.otf"; path = "../../SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9A18A5EA1CAA87C700D6A6F9 /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		9A2B57F21CE4817300F2100A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9A30D4251CC67CB100571C8C /* wiki-100k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "wiki-100k.txt"; path = "../../../../Downloads/1976236-bbabb412261386673eff521dddbe1dc815373b1d/wiki-100k.txt"; sourceTree = "<group>"; };
 		9A4C423E1CB546FC00F6125B /* SpellChecker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpellChecker.cpp; sourceTree = "<group>"; };
 		9A4C423F1CB546FC00F6125B /* SpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellChecker.h; sourceTree = "<group>"; };
@@ -403,6 +414,7 @@
 		C3C363CFD0F8BA64BE4586F4 /* SpellCheckerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckerManager.h; sourceTree = "<group>"; };
 		C3C364103D64CCD8B1167010 /* SearchGIFSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGIFSController.m; sourceTree = SOURCE_ROOT; };
 		C3C364141E177A09D65D107E /* MMOnBoardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOnBoardingViewController.h; sourceTree = "<group>"; };
+		C3C36440CA80650841DF1C14 /* MMSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsTableViewCell.m; sourceTree = "<group>"; };
 		C3C36445DD00E880B34FCDB7 /* NSUserDefaults+Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Keyboard.h"; sourceTree = "<group>"; };
 		C3C3645D4DBB8057DF2D810C /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		C3C36467FCA2001C76877FF5 /* MMGIFKeyboardCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGIFKeyboardCollectionView.m; sourceTree = "<group>"; };
@@ -440,11 +452,13 @@
 		C3C36888BC272D3B167810B4 /* RandomCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomCategories.m; sourceTree = SOURCE_ROOT; };
 		C3C368B18319EBA9B4A486F7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3C368EDA40C3E787E4D94F8 /* ShareCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCollectionView.h; sourceTree = "<group>"; };
+		C3C369531748260261E142BC /* MMSettingsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsData.h; sourceTree = "<group>"; };
 		C3C369902F1F7CB1FA29388B /* unnamed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unnamed@2x.png"; sourceTree = "<group>"; };
 		C3C36996E5FE1EF6AF1379E5 /* MMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSearchViewController.m; sourceTree = "<group>"; };
 		C3C369AFF1F5424FD7017CC2 /* AutoCorrectCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCorrectCollectionView.h; sourceTree = "<group>"; };
 		C3C369C09E65C065C98F832C /* MMSearchPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSearchPreviewViewController.m; sourceTree = "<group>"; };
 		C3C369EB71DAF1A423D16974 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		C3C36A176D9A79E7D520F057 /* MMSettingsSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsSubtitle.h; sourceTree = "<group>"; };
 		C3C36A29F129BDE61CECB9C1 /* MMGIFKeyboardCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGIFKeyboardCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		C3C36A37A56656BA87FA3AB8 /* copyFileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyFileIcon.png; sourceTree = "<group>"; };
 		C3C36A631766DEC0B59C5370 /* MMGIFCategoryHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGIFCategoryHolder.m; sourceTree = "<group>"; };
@@ -468,6 +482,7 @@
 		C3C36C96DD5EF9DE03B4C9A9 /* greenTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTick.png; sourceTree = "<group>"; };
 		C3C36CAC378ECBB632BCFE46 /* MMPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPreviewViewController.h; sourceTree = "<group>"; };
 		C3C36CE4F4C1F389E5416BF7 /* MMEmojiCollectionViewMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEmojiCollectionViewMainCell.h; sourceTree = SOURCE_ROOT; };
+		C3C36CE74493A1DA9A3142AA /* MMSettingsSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsSubtitle.m; sourceTree = "<group>"; };
 		C3C36CFFBB2F2BB8EFD27BCA /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		C3C36D295C0C60A24E0106A9 /* newWhatsAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newWhatsAppIcon.png; sourceTree = "<group>"; };
 		C3C36D3B4B5549A8DF4D0232 /* MMCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCustomTextField.h; sourceTree = "<group>"; };
@@ -476,6 +491,7 @@
 		C3C36DA282959F8FBA745E44 /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarView.h; sourceTree = SOURCE_ROOT; };
 		C3C36DD7226C24445091C6B1 /* SuggestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionView.m; sourceTree = "<group>"; };
 		C3C36DEF44FD45676B2403A2 /* SearchForGIFSCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForGIFSCommunicator.m; sourceTree = SOURCE_ROOT; };
+		C3C36E18C7C6A2E40709F4E1 /* MMSettingsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsData.m; sourceTree = "<group>"; };
 		C3C36E458C43F0A2774B2A99 /* MMGIFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGIFButton.h; sourceTree = "<group>"; };
 		C3C36E55633E191B6DB19F6B /* MMEmojiCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEmojiCollectionViewFlowLayout.h; sourceTree = SOURCE_ROOT; };
 		C3C36E703BA910311996538C /* SpellCheckerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckerCommunicator.h; sourceTree = "<group>"; };
@@ -487,6 +503,7 @@
 		C3C36F1A45F20E7DD44A20DB /* NextKeyboardIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NextKeyboardIcon.png; sourceTree = "<group>"; };
 		C3C36F1EE72E614FAAB39D56 /* MMCollectedGIFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCollectedGIFSViewController.h; sourceTree = "<group>"; };
 		C3C36F27B8911574E6D09CC4 /* MMKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardButton.m; sourceTree = "<group>"; };
+		C3C36F4E598C60A3657DB7DA /* MMSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsTableViewCell.h; sourceTree = "<group>"; };
 		C3C36F54AFE575612002B755 /* MMKeyboardButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMKeyboardButtonView.m; sourceTree = "<group>"; };
 		C3C36F69332921F8AF5DBA8D /* SearchForGIFSCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForGIFSCommunicator.h; sourceTree = SOURCE_ROOT; };
 		C3C36F697A00F74BCE767758 /* PopupButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupButtonView.h; sourceTree = SOURCE_ROOT; };
@@ -1017,6 +1034,13 @@
 			children = (
 				C3C360DA27C2E3A79FF219D9 /* MMSettingsViewController.m */,
 				C3C36E9FCC7A6EEFB353BEE6 /* MMSettingsViewController.h */,
+				C3C36440CA80650841DF1C14 /* MMSettingsTableViewCell.m */,
+				C3C36F4E598C60A3657DB7DA /* MMSettingsTableViewCell.h */,
+				9A2B57F21CE4817300F2100A /* Settings.bundle */,
+				C3C36E18C7C6A2E40709F4E1 /* MMSettingsData.m */,
+				C3C369531748260261E142BC /* MMSettingsData.h */,
+				C3C36CE74493A1DA9A3142AA /* MMSettingsSubtitle.m */,
+				C3C36A176D9A79E7D520F057 /* MMSettingsSubtitle.h */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1342,6 +1366,7 @@
 				C3C36F2E9A9D117E35107AE9 /* downloadIcon.png in Resources */,
 				C3C3619678A38FEC8EFB38BA /* copyFileIcon.png in Resources */,
 				9A18A6141CAA882000D6A6F9 /* SF-UI-Display-Black.otf in Resources */,
+				9A2B57F31CE4817300F2100A /* Settings.bundle in Resources */,
 				9A18A6171CAA882000D6A6F9 /* SF-UI-Display-Light.otf in Resources */,
 				9A18A6161CAA882000D6A6F9 /* SF-UI-Display-Heavy.otf in Resources */,
 				9A18A6221CAA882000D6A6F9 /* SF-UI-Text-LightItalic.otf in Resources */,
@@ -1650,6 +1675,9 @@
 				C3C36028029D26D0204DD0AF /* MMSearchViewController.m in Sources */,
 				C3C3619AD1AA8BD8611E9104 /* MMOnBoardingViewController.m in Sources */,
 				C3C360E24B57D6ACEECB6F76 /* MMSearchPreviewViewController.m in Sources */,
+				C3C36A9F1FE324FA790ADB09 /* MMSettingsTableViewCell.m in Sources */,
+				C3C369167C29FC889E518847 /* MMSettingsData.m in Sources */,
+				C3C3603EB0760AB88EA19DD2 /* MMSettingsSubtitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1753,9 @@
 				C3C36BEF16FE57C360B6E662 /* MMSearchViewController.m in Sources */,
 				C3C364DC526190358B3CBD63 /* MMOnBoardingViewController.m in Sources */,
 				C3C3631DFB1DFDA8EC32550E /* MMSearchPreviewViewController.m in Sources */,
+				C3C36254BF9D65FC028A567F /* MMSettingsTableViewCell.m in Sources */,
+				C3C3689F1970A450F5CDA593 /* MMSettingsData.m in Sources */,
+				C3C3676563E647C59001F236 /* MMSettingsSubtitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,6 +1810,9 @@
 				C3C3616261688D2515677B7E /* MMSearchViewController.m in Sources */,
 				C3C36446EE4233E3243DDF68 /* MMOnBoardingViewController.m in Sources */,
 				C3C36CFC877C6299BE6EE6DE /* MMSearchPreviewViewController.m in Sources */,
+				C3C36149B25420BACC20D078 /* MMSettingsTableViewCell.m in Sources */,
+				C3C36F3B502A13D12077B448 /* MMSettingsData.m in Sources */,
+				C3C368416B86D466A662D1BD /* MMSettingsSubtitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "MMCollectionViewFlowLayout.h"
 #import "MMPreviewViewController.h"
 #import "MMGIFKeyboardCollectionViewCell.h"
+#import "NSUserDefaults+Keyboard.h"
 
 @interface MMCollectedGIFSViewController () <UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 
@@ -124,6 +125,10 @@
 - (void)allButtonTapped:(UIButton *)sender {
 
 	[self newType:MMSearchTypeAll];
+	NSUserDefaults *userDefaults = [[NSUserDefaults alloc] init];
+
+	NSLog(@"%d", userDefaults.isAutoCapitalize);
+
 }
 
 - (void)normalButtonTapped:(UIButton *)sender {
