@@ -18,23 +18,24 @@
 @interface MMCollectedGIFSViewController () <UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 
 // Views
-@property(strong, nonatomic) UICollectionView *collectionView;
-@property(nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 //@property(strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 // Variables
-@property(strong, nonatomic) FLAnimatedImage *image;
-@property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property(nonatomic, strong) NSMutableArray *data;
-@property(nonatomic, assign) MMSearchType type;
-@property(nonatomic, strong) NSMutableDictionary *gifHolder;
+@property (strong, nonatomic) FLAnimatedImage *image;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, assign) MMSearchType type;
+@property (nonatomic, strong) NSMutableDictionary *gifHolder;
 
 
 @end
 
 @implementation MMCollectedGIFSViewController
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
 	[super viewWillAppear:animated];
 	[self loadGifs];
 
@@ -42,7 +43,8 @@
 
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
 	[super viewWillDisappear:animated];
 
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadGIFS" object:nil];
@@ -50,7 +52,8 @@
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
 
 	[self.fetchedResultsController performFetch:nil];
@@ -106,7 +109,7 @@
 	id topGuide = self.topLayoutGuide;
 
 	NSDictionary *views = @{@"collection" : self.collectionView, @"holder" : holder, @"allButton" : allButton, @"normalButton" : normalButton, @"awesomeButton" : awesomeButton};
-	NSDictionary *metrics = @{@"padding" : @(10), @"topGuide": @((NSInteger)topGuide)};
+	NSDictionary *metrics = @{@"padding" : @(10), @"topGuide" : @((NSInteger)topGuide)};
 
 
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collection]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
@@ -122,7 +125,8 @@
 
 #pragma mark Actions
 
-- (void)allButtonTapped:(UIButton *)sender {
+- (void)allButtonTapped:(UIButton *)sender
+{
 
 	[self newType:MMSearchTypeAll];
 	NSUserDefaults *userDefaults = [[NSUserDefaults alloc] init];
@@ -131,20 +135,24 @@
 
 }
 
-- (void)normalButtonTapped:(UIButton *)sender {
+- (void)normalButtonTapped:(UIButton *)sender
+{
 
 	[self newType:MMSearchTypeNormal];
 }
 
-- (void)awesomeButtonTapped:(UIButton *)sender {
+- (void)awesomeButtonTapped:(UIButton *)sender
+{
 
 	[self newType:MMSearchTypeAwesome];
 }
 
 
-- (void)newType:(MMSearchType)type {
+- (void)newType:(MMSearchType)type
+{
 
-	if (type) {
+	if (type)
+	{
 		self.type = type;
 		[self loadGifs];
 	}
@@ -152,7 +160,8 @@
 
 #pragma mark Methods
 
-- (void)loadGifs {
+- (void)loadGifs
+{
 
 	self.data = [@[] mutableCopy];
 
@@ -161,28 +170,37 @@
 
 	NSArray *tempArray = [[self.fetchedResultsController fetchedObjects] valueForKey:NSLocalizedString(@"CoreData.Category.Key", nil)];
 
-	if (tempArray.count == 0) {
+	if (tempArray.count == 0)
+	{
 		NSLog(@"Empty");
 	}
-	else {
+	else
+	{
 
-		[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(GIFEntity *entity, NSUInteger idx, BOOL *stop) {
+		[self.fetchedResultsController.fetchedObjects enumerateObjectsUsingBlock:^(GIFEntity *entity, NSUInteger idx, BOOL *stop)
+		{
 
-			switch (self.type) {
+			switch (self.type)
+			{
 
-				case MMSearchTypeAll: {
+				case MMSearchTypeAll:
+				{
 					[self.data addObject:entity];
 					break;
 				}
-				case MMSearchTypeNormal: {
+				case MMSearchTypeNormal:
+				{
 
-					if ([entity.gifCategory isEqualToString:@"Normal"]) {
+					if ([entity.gifCategory isEqualToString:@"Normal"])
+					{
 						[self.data addObject:entity];
 					}
 					break;
 				}
-				case MMSearchTypeAwesome: {
-					if ([entity.gifCategory isEqualToString:@"Awesome"]) {
+				case MMSearchTypeAwesome:
+				{
+					if ([entity.gifCategory isEqualToString:@"Awesome"])
+					{
 						[self.data addObject:entity];
 					}
 					break;
@@ -197,14 +215,16 @@
 
 #pragma mark Collection View
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
 
 	return self.data ? self.data.count : 0;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
 
-	return CGSizeMake((CGFloat) (self.view.frame.size.width / 3 - 4), (CGFloat) (self.view.frame.size.width / 3 - 4));
+	return CGSizeMake((CGFloat)(self.view.frame.size.width / 3 - 4), (CGFloat)(self.view.frame.size.width / 3 - 4));
 }
 
 //- (UICollectionViewCell *)gifKeyboardView:(UICollectionView *)gifKeyboardView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -218,23 +238,26 @@
 //
 //}
 
-- (MMGIFKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (MMGIFKeyboardCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
 
 	MMGIFKeyboardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MMGIFKeyboardCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
 
 	[cell setBackgroundColor:[UIColor clearColor]];
 
-	NSUInteger item = (NSUInteger) indexPath.item;
+	NSUInteger item = (NSUInteger)indexPath.item;
 	FLAnimatedImage *image = self.gifHolder[self.data[item]];
 	cell.imageView.alpha = 0.f;
 
-	if (image) {
+	if (image)
+	{
 
 		[cell.imageView setAnimatedImage:image];
 		cell.imageView.alpha = 1.f;
 		return cell;
 	}
-	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage) {
+	[self loadGifItem:item callback:^(FLAnimatedImage *tempImage)
+	{
 		[self.gifHolder setValue:tempImage forKey:[self.data valueForKey:@"gifURL"][item]];
 		cell.imageView.alpha = 1.f;
 
@@ -245,12 +268,15 @@
 	return cell;
 }
 
-- (void)loadGifItem:(NSUInteger)item callback:(void (^)(FLAnimatedImage *image))callback {
-	if (item < self.data.count) {
+- (void)loadGifItem:(NSUInteger)item callback:(void (^) (FLAnimatedImage *image))callback
+{
+	if (item < self.data.count)
+	{
 		NSURL *url = [[NSURL alloc] initWithString:[self.data valueForKey:@"gifURL"][item]];
 		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
 
-		[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+		[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+		{
 			FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
 			callback(image);
 		}];
@@ -258,12 +284,13 @@
 }
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
 
 
-	MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+	MMGIFKeyboardCollectionViewCell *cell = (MMGIFKeyboardCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 //	entity[indexPath.row];
-	MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:cell.imageView.animatedImage withGifEntity:self.data[(NSUInteger) indexPath.row]];
+	MMPreviewViewController *viewController = [[MMPreviewViewController alloc] initWithAnimatedImage:cell.imageView.animatedImage withGifEntity:self.data[(NSUInteger)indexPath.row]];
 	viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 	[self presentViewController:viewController animated:YES completion:nil];
 
@@ -271,28 +298,33 @@
 
 #pragma  mark - NSFetchedResultController
 
-- (NSFetchRequest *)entryListFetchRequest {
+- (NSFetchRequest *)entryListFetchRequest
+{
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSLocalizedString(@"CoreData.Entity.Key", nil)];
 	fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSLocalizedString(@"CoreData.URL.Key", nil) ascending:NO]]; // This will sort how the request is shown
 	return fetchRequest;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
-	if (_fetchedResultsController != nil) {
+- (NSFetchedResultsController *)fetchedResultsController
+{
+	if (_fetchedResultsController != nil)
+	{
 		return _fetchedResultsController;
 	}
 	CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
 	NSFetchRequest *fetchRequest = [self entryListFetchRequest];
 	_fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:coreDataStack.managedObjectContext sectionNameKeyPath:@"gifURL" cacheName:nil];
 
-	if ([_fetchedResultsController fetchedObjects]) {
+	if ([_fetchedResultsController fetchedObjects])
+	{
 		_fetchedResultsController.delegate = self;
 	}
 	return _fetchedResultsController;
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }

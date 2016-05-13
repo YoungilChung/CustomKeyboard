@@ -13,6 +13,6 @@
 
 @interface MMPreviewViewController : UIViewController
 
-- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withGifEntity: (GIFEntity *)gifEntity;
+- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withGifEntity:(GIFEntity *)gifEntity;
 
 @end

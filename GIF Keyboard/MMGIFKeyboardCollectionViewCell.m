@@ -39,7 +39,7 @@
 
 	self.imageView = [FLAnimatedImageView new];
 	self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-	self.imageView.contentMode = UIViewContentModeScaleToFill;
+	self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 	self.imageView.clipsToBounds = YES;
 	self.imageView.backgroundColor = [UIColor blackColor];
 	[self addSubview:self.imageView];

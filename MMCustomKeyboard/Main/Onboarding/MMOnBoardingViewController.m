@@ -9,7 +9,8 @@
 @implementation MMOnBoardingViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
 
 

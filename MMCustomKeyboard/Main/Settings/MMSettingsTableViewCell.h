@@ -10,12 +10,11 @@
 
 @interface MMSettingsTableViewCell : UITableViewCell
 
-@property(nonatomic, strong) NSString *cellID;
-@property(nonatomic, strong) NSUserDefaults *shareDefaults;
-@property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) MMSettingsSubtitle *subTitleLabel;
-@property(nonatomic, strong) UISwitch *uiSwitch;
-@property(nonatomic, assign) BOOL showSwitch;
+@property (nonatomic, strong) NSString *cellID;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) MMSettingsSubtitle *subTitleLabel;
+@property (nonatomic, strong) UISwitch *uiSwitch;
+@property (nonatomic, assign) BOOL showSwitch;
 
 - (void)setSwitch;
 @end

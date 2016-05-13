@@ -20,9 +20,11 @@
 @implementation MMSettingsTableViewCell
 
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-	if (self) {
+	if (self)
+	{
 		[self setup];
 
 	}
@@ -31,7 +33,8 @@
 }
 
 
-- (void)setup {
+- (void)setup
+{
 
 	[self setClipsToBounds:YES];
 	self.titleLabel = [UILabel new];
@@ -51,15 +54,6 @@
 	[self.subTitleLabel setTextColor:[UIColor blackColor]];
 	[self addSubview:self.subTitleLabel];
 
-
-	if (self.showSwitch) {
-		// Show switch
-	}
-	else {
-		// show arrow
-
-	}
-
 	self.uiSwitch = [UISwitch new];
 	self.uiSwitch.translatesAutoresizingMaskIntoConstraints = NO;
 	[self addSubview:self.uiSwitch];
@@ -67,13 +61,11 @@
 	NSDictionary *views = @{@"titleLabel" : self.titleLabel, @"subTitleLabel" : self.subTitleLabel, @"switch" : self.uiSwitch};
 	NSDictionary *metrics = @{@"padding" : @(5)};
 
-
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[titleLabel]-5-[subTitleLabel]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[switch]-5-[subTitleLabel]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[titleLabel]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[switch]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subTitleLabel]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
-
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[switch]-5-[subTitleLabel]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[switch]-5-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
 }
 

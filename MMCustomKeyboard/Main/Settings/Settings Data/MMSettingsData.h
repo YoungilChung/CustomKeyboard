@@ -9,7 +9,6 @@
 @interface MMSettingsData : NSObject
 
 
-@property(nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSArray *data;
 
-+(NSArray *) settingData;
 @end

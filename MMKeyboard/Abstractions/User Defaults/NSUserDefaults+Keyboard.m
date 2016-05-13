@@ -20,10 +20,12 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 @implementation NSUserDefaults (Keyboard)
 
-- (instancetype)init {
+- (instancetype)init
+{
 
 	self = [super init];
-	if (self) {
+	if (self)
+	{
 
 		self = [self initWithSuiteName:@"group.TomMonk.MMCustomKeyboard"];
 	}
@@ -33,17 +35,21 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 #pragma mark Keyboard Change Language
 
-- (changeLanguage)language {
+- (changeLanguage)language
+{
 
-	return (changeLanguage) [self integerForKey:SET_LANGUAGE];
+	return (changeLanguage)[self integerForKey:SET_LANGUAGE];
 }
 
-- (void)setLanguage:(changeLanguage)language {
+- (void)setLanguage:(changeLanguage)language
+{
 
-	if (language) {
+	if (language)
+	{
 		[self setInteger:language forKey:SET_LANGUAGE];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:SET_LANGUAGE];
 	}
 
@@ -53,17 +59,21 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 # pragma mark Settings
 
-- (BOOL)isAutoCorrect {
+- (BOOL)isAutoCorrect
+{
 
 	return [self boolForKey:AUTOCORRECT];
 }
 
-- (void)setIsAutoCorrect:(BOOL)isAutoCorrect {
+- (void)setIsAutoCorrect:(BOOL)isAutoCorrect
+{
 
-	if (isAutoCorrect) {
+	if (isAutoCorrect)
+	{
 		[self setInteger:isAutoCorrect forKey:AUTOCORRECT];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:AUTOCORRECT];
 	}
 
@@ -72,16 +82,20 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 }
 
-- (BOOL)isQuickPeriod {
+- (BOOL)isQuickPeriod
+{
 	return [self boolForKey:QUICK_PERIOD];
 }
 
-- (void)setIsQuickPeriod:(BOOL)isQuickPeriod {
+- (void)setIsQuickPeriod:(BOOL)isQuickPeriod
+{
 
-	if (isQuickPeriod) {
+	if (isQuickPeriod)
+	{
 		[self setInteger:isQuickPeriod forKey:QUICK_PERIOD];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:QUICK_PERIOD];
 	}
 
@@ -90,16 +104,20 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 }
 
-- (BOOL)isAutoCapitalize {
+- (BOOL)isAutoCapitalize
+{
 	return [self boolForKey:AUTO_CAPITALIZE];
 }
 
-- (void)setIsAutoCapitalize:(BOOL)isAutoCapitalize {
+- (void)setIsAutoCapitalize:(BOOL)isAutoCapitalize
+{
 
-	if (isAutoCapitalize) {
+	if (isAutoCapitalize)
+	{
 		[self setInteger:isAutoCapitalize forKey:AUTO_CAPITALIZE];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:AUTO_CAPITALIZE];
 	}
 
@@ -108,16 +126,20 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 }
 
-- (BOOL)isDoubleSpacePunctuation {
+- (BOOL)isDoubleSpacePunctuation
+{
 	return [self boolForKey:DOUBLE_SPACE];
 }
 
-- (void)setIsDoubleSpacePunctuation:(BOOL)isDoubleSpacePunctuation {
+- (void)setIsDoubleSpacePunctuation:(BOOL)isDoubleSpacePunctuation
+{
 
-	if (isDoubleSpacePunctuation) {
+	if (isDoubleSpacePunctuation)
+	{
 		[self setInteger:isDoubleSpacePunctuation forKey:DOUBLE_SPACE];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:DOUBLE_SPACE];
 	}
 
@@ -125,45 +147,80 @@ static NSString *const KEYBOARD_FONT = @"hrtdufh#%FD";
 
 }
 
-- (BOOL)isKeyClickSounds {
+- (BOOL)isKeyClickSounds
+{
 	return [self boolForKey:KEY_CLICK_SOUNDS];
 }
 
-- (void)setIsKeyClickSounds:(BOOL)isKeyClickSounds {
-	if (isKeyClickSounds) {
+- (void)setIsKeyClickSounds:(BOOL)isKeyClickSounds
+{
+	if (isKeyClickSounds)
+	{
 		[self setInteger:isKeyClickSounds forKey:KEY_CLICK_SOUNDS];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:KEY_CLICK_SOUNDS];
 	}
 
 	[self synchronize];
 }
 
-- (UIColor *)isTheme {
+- (UIColor *)isTheme
+{
 	return [self objectForKey:THEME];
 }
 
-- (void)setIsTheme:(UIColor *)isTheme {
-	if (isTheme) {
+- (void)setIsTheme:(UIColor *)isTheme
+{
+	if (isTheme)
+	{
 		[self setObject:isTheme forKey:THEME];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:THEME];
 	}
 
 	[self synchronize];
 }
 
-- (NSString *)isKeyboardFont {
+
+- (keyboardTheme)keyboardTheme
+{
+	return (keyboardTheme)[self integerForKey:THEME];
+}
+
+- (void)setKeyboardTheme:(keyboardTheme)keyboardTheme
+{
+
+	if (keyboardTheme)
+	{
+		[self setInteger:keyboardTheme forKey:THEME];
+	}
+	else
+	{
+		[self removeObjectForKey:THEME];
+	}
+
+	[self synchronize];
+
+}
+
+
+- (NSString *)isKeyboardFont
+{
 	return [self stringForKey:KEYBOARD_FONT];
 }
 
-- (void)setIsKeyboardFont:(NSString *)isKeyboardFont {
-	if (isKeyboardFont) {
+- (void)setIsKeyboardFont:(NSString *)isKeyboardFont
+{
+	if (isKeyboardFont)
+	{
 		[self setValue:isKeyboardFont forKey:KEYBOARD_FONT];
 	}
-	else {
+	else
+	{
 		[self removeObjectForKey:KEYBOARD_FONT];
 	}
 

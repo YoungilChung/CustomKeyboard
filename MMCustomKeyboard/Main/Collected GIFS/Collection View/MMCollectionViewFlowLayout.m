@@ -11,22 +11,25 @@
 @implementation MMCollectionViewFlowLayout
 
 
-
-- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
-    NSMutableArray *newAttributes = [NSMutableArray arrayWithCapacity:attributes.count];
-    for (UICollectionViewLayoutAttributes *attribute in attributes) {
-        if ((attribute.frame.origin.x + attribute.frame.size.width <= self.collectionViewContentSize.width) &&
-                (attribute.frame.origin.y + attribute.frame.size.height <= self.collectionViewContentSize.height)) {
-            [newAttributes addObject:attribute];
-        }
-    }
-    return newAttributes;
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+{
+	NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
+	NSMutableArray *newAttributes = [NSMutableArray arrayWithCapacity:attributes.count];
+	for (UICollectionViewLayoutAttributes *attribute in attributes)
+	{
+		if ((attribute.frame.origin.x + attribute.frame.size.width <= self.collectionViewContentSize.width) &&
+				(attribute.frame.origin.y + attribute.frame.size.height <= self.collectionViewContentSize.height))
+		{
+			[newAttributes addObject:attribute];
+		}
+	}
+	return newAttributes;
 }
 
 
--(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
-    return YES;
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+	return YES;
 }
 
 @end

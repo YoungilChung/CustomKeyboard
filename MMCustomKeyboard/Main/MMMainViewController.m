@@ -17,7 +17,8 @@
 
 @implementation MMMainViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
 
 	MMOnBoardingViewController *onBoardingViewController = [[MMOnBoardingViewController alloc] init];
@@ -32,9 +33,12 @@
 	[searchViewController.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemSearch tag:3];
 
 	MMSettingsViewController *settingsViewController = [[MMSettingsViewController alloc] init];
-	[settingsViewController.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemMore tag:4];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+	[navigationController.view setBackgroundColor:[UIColor blackColor]];
+	[navigationController.navigationBar.topItem setTitle:@"Settings"];
+	[navigationController.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemMore tag:4];
 
-	[self setViewControllers:@[onBoardingViewController, collectedGIFSViewController, searchViewController, settingsViewController]];
+	[self setViewControllers:@[onBoardingViewController, collectedGIFSViewController, searchViewController, navigationController]];
 
 }
 

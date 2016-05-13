@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger, MMSearchType) {
+
+typedef NS_ENUM(NSInteger, MMSearchType)
+{
 	MMSearchTypeAll = 980,
 	MMSearchTypeNormal = 920,
 	MMSearchTypeAwesome = 930,
 
 };
+
 @interface MMCollectedGIFSViewController : UIViewController
 
 

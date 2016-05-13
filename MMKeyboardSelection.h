@@ -14,10 +14,13 @@ typedef enum {
 	kTagEmojiKeyboard,
 } keyboardTags;
 
+
 typedef enum {
 	kChangeLanguageEnglish = 70,
 	kChangeLanguageDutch,
 } changeLanguage;
+
+
 
 @interface MMKeyboardSelection : UIView
 

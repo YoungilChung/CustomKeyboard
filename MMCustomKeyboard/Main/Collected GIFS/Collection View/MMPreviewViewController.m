@@ -11,18 +11,20 @@
 #import "UIImage+Vector.h"
 
 @interface MMPreviewViewController ()
-@property(nonatomic, assign) FLAnimatedImage *animatedImage;
-@property(nonatomic, strong) GIFEntity *gifEntity;
+@property (nonatomic, assign) FLAnimatedImage *animatedImage;
+@property (nonatomic, strong) GIFEntity *gifEntity;
 
 @end
 
 @implementation MMPreviewViewController
 
-- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withGifEntity:(GIFEntity *)gifEntity {
+- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withGifEntity:(GIFEntity *)gifEntity
+{
 
 	self = [super init];
 
-	if (self) {
+	if (self)
+	{
 
 		self.animatedImage = animatedImage;
 		self.gifEntity = gifEntity;
@@ -34,7 +36,8 @@
 }
 
 
-- (void)setup {
+- (void)setup
+{
 
 	UIVisualEffect *blurEffect;
 	blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -129,11 +132,13 @@
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[title]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 	[holderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(==250)]-10-[title]-15-[normalBtn(==awesomeBtn)]-5-[awesomeBtn(==normalBtn)]-0-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:metrics views:views]];
 
-	if ([self.gifEntity.gifCategory isEqualToString:@"Normal"]) {
+	if ([self.gifEntity.gifCategory isEqualToString:@"Normal"])
+	{
 		normalButton.backgroundColor = [UIColor blueColor];
 		[normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	}
-	else {
+	else
+	{
 
 		awesomeButton.backgroundColor = [UIColor blueColor];
 		[awesomeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -144,21 +149,26 @@
 
 #pragma mark Actions
 
-- (void)deleteButtonPressed:(UIButton *)sender {
+- (void)deleteButtonPressed:(UIButton *)sender
+{
 
 
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You sure you wanna delete this pretty gif?" preferredStyle:UIAlertControllerStyleAlert];
-	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
+	{
 
 	}]];
-	[alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		if (self.gifEntity) {
+	[alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+	{
+		if (self.gifEntity)
+		{
 			//TODO are you sure you want to delete
 			CoreDataStack *coreData = [CoreDataStack defaultStack];
 			[[coreData managedObjectContext] deleteObject:self.gifEntity];
 			[coreData saveContext];
 		}
-		[self dismissViewControllerAnimated:YES completion:^{
+		[self dismissViewControllerAnimated:YES completion:^
+		{
 
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"reloadGIFS" object:nil];
 
@@ -169,35 +179,43 @@
 
 }
 
-- (void)awesomeButtonPressed:(UIButton *)sender {
+- (void)awesomeButtonPressed:(UIButton *)sender
+{
 
-	if (self.gifEntity) {
+	if (self.gifEntity)
+	{
 		[self addGifToNewCategory:@"Awesome"];
 	}
-	[self dismissViewControllerAnimated:YES completion:^{
+	[self dismissViewControllerAnimated:YES completion:^
+	{
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"reloadGIFS" object:nil];
 
 	}];
 }
 
-- (void)normalButtonPressed:(UIButton *)sender {
+- (void)normalButtonPressed:(UIButton *)sender
+{
 
-	if (self.gifEntity) {
+	if (self.gifEntity)
+	{
 		[self addGifToNewCategory:@"Normal"];
 	}
-	[self dismissViewControllerAnimated:YES completion:^{
+	[self dismissViewControllerAnimated:YES completion:^
+	{
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"reloadGIFS" object:nil];
 
 	}];
 }
 
-- (void)closeButtonPressed:(UIButton *)sender {
+- (void)closeButtonPressed:(UIButton *)sender
+{
 
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)addGifToNewCategory:(NSString *)category {
+- (void)addGifToNewCategory:(NSString *)category
+{
 
 	if ([self.gifEntity.gifCategory isEqualToString:category])
 	{

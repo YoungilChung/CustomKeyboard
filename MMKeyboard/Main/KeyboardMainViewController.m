@@ -20,6 +20,7 @@
 #import "MMGIFButton.h"
 #import "RandomCategories.h"
 #import "NSUserDefaults+Keyboard.h"
+#import "UIColor+KeyboardColors.h"
 
 
 typedef enum {
@@ -75,6 +76,8 @@ typedef enum {
 @implementation KeyboardMainViewController
 
 
+
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -82,6 +85,12 @@ typedef enum {
 
 
 	self.mySharedDefaults = [[NSUserDefaults alloc] init];
+	MMKeyboardThemeModel *themeModel = [[MMKeyboardThemeModel alloc] initWithKeyboardTheme:self.mySharedDefaults.keyboardTheme];
+
+	UIColor  *color = [[UIColor alloc] init];
+	[color setMainThemeColor:themeModel.mainColor];
+	[color setSubThemeColor:themeModel.mainColor];
+	[color setBackgroundThemeColor:themeModel.mainColor];
 
 	if (!self.mySharedDefaults.language) {
 

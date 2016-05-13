@@ -14,11 +14,11 @@
 @interface MMSearchPreviewViewController ()
 
 //Views
-@property(nonatomic, strong) UIView *chooseCategoryView;
+@property (nonatomic, strong) UIView *chooseCategoryView;
 //Variables
 
-@property(nonatomic, assign) FLAnimatedImage *animatedImage;
-@property(nonatomic, assign) NSString *urlString;
+@property (nonatomic, assign) FLAnimatedImage *animatedImage;
+@property (nonatomic, assign) NSString *urlString;
 
 
 @end
@@ -26,10 +26,12 @@
 @implementation MMSearchPreviewViewController
 
 
-- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withURL:(NSString *)urlString {
+- (instancetype)initWithAnimatedImage:(FLAnimatedImage *)animatedImage withURL:(NSString *)urlString
+{
 	self = [super init];
 
-	if (self) {
+	if (self)
+	{
 
 		self.animatedImage = animatedImage;
 		self.urlString = urlString;
@@ -41,7 +43,8 @@
 
 }
 
-- (void)setup {
+- (void)setup
+{
 
 	UIVisualEffect *blurEffect;
 	blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -50,8 +53,8 @@
 	[visualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
 	[self.view addSubview:visualEffectView];
 
-	self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-
+//	self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+	self.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.2 blue:0.5 alpha:0.7];
 
 	UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	closeButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -70,7 +73,7 @@
 	animatedImageView.animatedImage = self.animatedImage;
 	[animatedImageView setContentCompressionResistancePriority:500 forAxis:UILayoutConstraintAxisHorizontal];
 	[animatedImageView setContentCompressionResistancePriority:300 forAxis:UILayoutConstraintAxisVertical];
-	animatedImageView.contentMode = UIViewContentModeScaleAspectFill;
+	animatedImageView.contentMode = UIViewContentModeScaleAspectFit;
 	[holderView addSubview:animatedImageView];
 
 //	UILabel *titleLabel = [UILabel new];
@@ -208,24 +211,27 @@
 #pragma mark Actions
 
 
-- (void)onFacebookTapped:(UIButton *)sender {
+- (void)onFacebookTapped:(UIButton *)sender
+{
 
 	NSURL *url = [[NSURL alloc] initWithString:self.urlString];
 	NSData *data = [NSData dataWithContentsOfURL:url];
-	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *) kUTTypeGIF];
+	[[UIPasteboard generalPasteboard] setData:data forPasteboardType:(NSString *)kUTTypeGIF];
 
 	NSURL *facebookURL = [NSURL URLWithString:@"fb-messenger://compose"];
 	[self toApp:facebookURL];
 
 }
 
-- (void)onWhatsAppTapped:(UIButton *)sender {
+- (void)onWhatsAppTapped:(UIButton *)sender
+{
 
 	NSURL *whatsappURL = [NSURL URLWithString:[NSString stringWithFormat:@"whatsapp://send?text=%@", self.urlString]];
 	[self toApp:whatsappURL];
 }
 
-- (void)onHipchatTapped:(UIButton *)sender {
+- (void)onHipchatTapped:(UIButton *)sender
+{
 
 	NSURL *url = [[NSURL alloc] initWithString:self.urlString];
 	[[UIPasteboard generalPasteboard] setURL:url];
@@ -234,21 +240,24 @@
 	[self toApp:hipChatURL];
 }
 
-- (void)onUrlTapped:(UIButton *)sender {
+- (void)onUrlTapped:(UIButton *)sender
+{
 
 	NSURL *url = [[NSURL alloc] initWithString:self.urlString];
 	[[UIPasteboard generalPasteboard] setURL:url];
 }
 
 
-- (void)closeButtonPressed:(UIButton *)sender {
+- (void)closeButtonPressed:(UIButton *)sender
+{
 
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Gif Save Method
 
-- (void)onGifTapped:(UIButton *)sender {
+- (void)onGifTapped:(UIButton *)sender
+{
 
 
 	self.chooseCategoryView = [UIView new];
@@ -315,12 +324,15 @@
 }
 
 
-- (void)onCloseTappedCategories:(UIButton *)sender {
+- (void)onCloseTappedCategories:(UIButton *)sender
+{
 	[self.chooseCategoryView removeFromSuperview];
 }
 
-- (void)awesomeButtonTapped:(UIButton *)sender {
-	dispatch_async(dispatch_get_main_queue(), ^{
+- (void)awesomeButtonTapped:(UIButton *)sender
+{
+	dispatch_async(dispatch_get_main_queue(), ^
+	{
 		//Update UI
 		CoreDataStack *coreData = [CoreDataStack defaultStack];
 		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
@@ -332,8 +344,10 @@
 	});
 }
 
-- (void)foodButtonTapped:(UIButton *)sender {
-	dispatch_async(dispatch_get_main_queue(), ^{
+- (void)foodButtonTapped:(UIButton *)sender
+{
+	dispatch_async(dispatch_get_main_queue(), ^
+	{
 		//Update UI
 		CoreDataStack *coreData = [CoreDataStack defaultStack];
 		GIFEntity *gifEntity = [NSEntityDescription insertNewObjectForEntityForName:@"GIFEntity" inManagedObjectContext:coreData.managedObjectContext];
@@ -347,11 +361,14 @@
 
 #pragma  mark Helper
 
-- (void)toApp:(NSURL *)url {
+- (void)toApp:(NSURL *)url
+{
 	UIResponder *responder = self;
-	while ((responder = [responder nextResponder]) != nil) {
+	while ((responder = [responder nextResponder]) != nil)
+	{
 		//		if ([responder respondsToSelector:@selector(openURL)])
-		if ([responder respondsToSelector:@selector(openURL:)]) {
+		if ([responder respondsToSelector:@selector(openURL:)])
+		{
 			[responder performSelector:@selector(openURL:) withObject:url];
 		}
 	}
